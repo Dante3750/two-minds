@@ -36,7 +36,7 @@ let S = {
   xp:{me:{}, partner:{}}, stats:{me:blankStats(), partner:blankStats()},
   h2h:[0,0,0], history:[], used:{}, us:[], badges:[], fav:[], recent:[],
   daily:{}, settings:{sound:true, vib:true, relaxed:false, seat:'face', botLevel:1},
-  onboarded:false, couple:{bestKnow:0, bestLikely:0, played:0}, challenges:{sent:0, played:0, won:0}
+  id: Math.random().toString(36).slice(2, 10), onboarded:false, couple:{bestKnow:0, bestLikely:0, played:0}, challenges:{sent:0, played:0, won:0}
 };
 function load(){
   try{
@@ -72,7 +72,8 @@ function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F
 function today(){ const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
 const nameOf = who => (S[who].name || (who === 'me' ? 'You' : 'Partner')).trim();
 const initial = n => (String(n).trim()[0] || '?').toUpperCase();
-function avatar(name, color, cls = ''){ return `<span class="av ${cls}" style="--c:${color}">${esc(initial(name))}</span>`; }
+const safeColor = c => (typeof c === 'string' && /^#[0-9a-f]{3,8}$/i.test(c)) ? c : '#9aa3d1';
+function avatar(name, color, cls = ''){ return `<span class="av ${cls}" style="--c:${safeColor(color)}">${esc(initial(name))}</span>`; }
 function levelOf(xp){ let lv = 1, need = 150, left = xp || 0; while (left >= need){ left -= need; lv++; need = Math.round(need*1.18); } return {lv, into:left, need}; }
 function totalXp(who){ return Object.values(S.xp[who] || {}).reduce((a, b) => a + b, 0); }
 function overallLevel(who){ return levelOf(totalXp(who) / 3).lv; }
@@ -177,15 +178,29 @@ function baseUrl(){ return location.href.split('#')[0]; }
 function packRefs(refs){ return refs.map(r => r.c ? {c: r.c} : [TOPIC_IDS.indexOf(r.t), r.i]); }
 function unpackRefs(arr){ return arr.map(x => Array.isArray(x) ? {t: TOPIC_IDS[x[0]], i: x[1]} : {c: x.c}); }
 function playerPack(who, res){ return {n: nameOf(who), c: S[who].color, lv: overallLevel(who), p: res.picks, s: res.score}; }
-function linkFor(kind, topic, refs, A, B, date){
-  const payload = {v:2, k:kind, t:topic, q:packRefs(refs), A};
+function linkFor(kind, topic, refs, A, B, date, ms){
+  const payload = {v:2, k:kind, t:topic, q:packRefs(refs), A, ms: (M && M.T) || (S.settings.relaxed ? 15000 : 10000)};
   if (B) payload.B = B;
   if (date) payload.d = date;
+  if (ms) payload.ms = ms;
   return baseUrl() + '#c=' + b64e(payload);
 }
+function validPlayer(x){
+  if (!x || typeof x !== 'object') return false;
+  if (typeof x.n !== 'string' || !x.n.trim() || x.n.length > 24) return false;
+  if (!Number.isInteger(x.s) || x.s < 0 || x.s > 160) return false;
+  if (!/^#[0-9a-f]{3,8}$/i.test(String(x.c))) return false;
+  if (x.lv !== undefined && !(Number.isInteger(x.lv) && x.lv >= 0 && x.lv < 1000)) return false;
+  if (x.i !== undefined && !(typeof x.i === 'string' && /^[a-z0-9]{1,16}$/.test(x.i))) return false;
+  return Array.isArray(x.p) && x.p.length === ROUNDS && x.p.every(k => Array.isArray(k) && Number.isInteger(k[0]) && k[0] >= -1 && k[0] <= 3 && Number.isFinite(k[1]) && k[1] >= 0 && k[1] <= 20000);
+}
 function validLink(p){
-  if (!p || p.v !== 2 || !Array.isArray(p.q) || p.q.length !== ROUNDS || !p.A || !Array.isArray(p.A.p)) return false;
-  return unpackRefs(p.q).every(r => { const q = refQ(r); return Array.isArray(q) && q.length >= 5; });
+  if (!p || p.v !== 2 || !Array.isArray(p.q) || p.q.length !== ROUNDS || !validPlayer(p.A)) return false;
+  if (p.B !== undefined && !validPlayer(p.B)) return false;
+  if (!TOPICS[p.t]) return false;
+  if (p.ms !== undefined && p.ms !== 10000 && p.ms !== 15000) return false;
+  if (p.d !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(String(p.d))) return false;
+  return unpackRefs(p.q).every(r => { if (r.c) return Array.isArray(r.c) && r.c.length === 5 && r.c.every(x => typeof x === 'string' && x.length <= 120); const q = refQ(r); return Array.isArray(q) && q.length >= 5; });
 }
 
 async function shareLink(url, text){
@@ -327,7 +342,7 @@ function vsIntro(a, b, topicId, face, then){
 }
 
 /* ================= shared round helpers ================= */
-const answerMs = () => S.settings.relaxed ? 15000 : 10000;
+const answerMs = () => (M && M.T) || (S.settings.relaxed ? 15000 : 10000);
 function pointsFor(leftMs, bonus){ const T = answerMs(); const base = clamp(10 + Math.ceil(leftMs / T * 10), 11, 20); return bonus ? base*2 : base; }
 function wakeLock(){ try{ navigator.wakeLock && navigator.wakeLock.request('screen').catch(() => {}); }catch(e){} }
 
@@ -340,7 +355,8 @@ function startDuel(topicId){
   const refs = pickRefs(topicId);
   const Q = refs.map(materialize);
   if (Q.some(q => !q)){ toast('Could not load questions for this topic'); return; }
-  M = {mode:'duel', topic:topicId, refs, Q, round:-1, scores:[0,0], log:[], picks:[null,null], times:[0,0], phase:'intro', id: Math.random()};
+  M = null;
+  M = {T: S.settings.relaxed ? 15000 : 10000, mode:'duel', topic:topicId, refs, Q, round:-1, scores:[0,0], log:[], picks:[null,null], times:[0,0], phase:'intro', id: Math.random()};
   const face = S.settings.seat === 'face';
   $('duel').classList.toggle('face', face);
   const nm = [nameOf('me'), nameOf('partner')], col = [S.me.color, S.partner.color];
@@ -463,7 +479,9 @@ function startSolo(o){
   if (Q.some(q => !q)){ toast('Could not load these questions'); return; }
   let ghost = o.ghost || null;
   if (kind === 'bot') ghost = makeBotGhost(refs);
-  M = {mode:'solo', kind, topic:o.topic, refs, Q, ghost, round:-1, score:0, gscore:0, log:[], phase:'intro', id:Math.random(), link:o.link || null, date:o.date || (o.topic === 'daily' ? today() : null)};
+  M = null;
+  const matchT = o.ms || (S.settings.relaxed ? 15000 : 10000);
+  M = {T: matchT, mode:'solo', kind, topic:o.topic, refs, Q, ghost, round:-1, score:0, gscore:0, log:[], phase:'intro', id:Math.random(), link:o.link || null, date:o.date || (o.topic === 'daily' ? today() : null)};
   const me = {n:nameOf('me'), c:S.me.color}, opp = ghost ? {n:ghost.n, c:ghost.c} : {n:nameOf('partner'), c:S.partner.color};
   $('soloMe').innerHTML = `${avatar(me.n, me.c, 's')}<div><div class="nm">${esc(me.n)}</div><div class="sc">0<span class="gain"></span></div></div>`;
   $('soloOpp').innerHTML = `${avatar(opp.n, opp.c, 's')}<div><div class="nm">${esc(opp.n)}</div><div class="sc">${ghost ? '0' : '–'}<span class="gain"></span></div><div class="state" id="oppState">${ghost ? '' : 'plays later'}</div></div>`;
@@ -652,7 +670,7 @@ function renderResults(o){
   else if (r === 'p') actions = `<button class="cta" id="rShare" type="button">Send challenge to ${esc(nameOf('partner'))}<small>She plays the same 7 questions against your ghost</small></button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
   else actions = `<button class="cta" id="rShare" type="button">Send your result back<small>Shows the full scoreboard on their phone</small></button><button class="btn" type="button" id="rBack">Challenge back with new questions</button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
   $('results').innerHTML = `<div class="col">
-    <p class="small" style="text-align:center"><span style="color:${T.c}">${T.ic}</span> ${esc(T.name)} · ${m.mode === 'duel' ? 'Duel on one phone' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily Duel · ' + esc(m.date || today()) : 'Link challenge'}</p>
+    <p class="small" style="text-align:center"><span style="color:${T.c}">${T.ic}</span> ${m.topic === 'daily' ? '' : esc(T.name) + ' · '}${m.mode === 'duel' ? 'Duel on one phone' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily Duel · ' + esc(m.date || today()) : 'Link challenge'}</p>
     <h1 class="winner">${head}</h1>
     <div class="sline"><div class="sb">${avatar(myName, S.me.color, 'l')}<b style="color:${S.me.color}">${s0}</b><span>${esc(myName)}</span></div><em>vs</em>
       <div class="sb">${avatar(oppName, oppColor, 'l')}<b style="color:${oppColor}">${showOpp ? s1 : '?'}</b><span>${esc(oppName)}</span></div></div>
@@ -668,17 +686,17 @@ function renderResults(o){
   if (winFx){ SFX.win(); confetti(140, m.mode === 'duel' ? [r === 'w' ? S.me.color : S.partner.color, '#ffc53d', '#f2f4ff'] : undefined); buzz([30,50,30,50,80]); }
   else if (r === 'd'){ SFX.win(); } else { SFX.lose(); buzz([60]); }
 
-  const myPack = {n: myName, c: S.me.color, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
+  const myPack = {i: S.id, n: myName, c: S.me.color, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
   if ($('rAgain')) $('rAgain').onclick = () => m.mode === 'duel' ? startDuel(m.topic) : startSolo({kind:'bot', topic:m.topic});
   if ($('rShare')) $('rShare').onclick = async () => {
     let url, text;
     if (r === 'p'){
-      url = linkFor('ch', m.topic, m.refs, myPack, null, m.date);
+      url = linkFor('ch', m.topic, m.refs, myPack, null, m.date, m.T);
       text = `${myName} challenged you on Two Minds: ${T.name}. ${s0} points to beat!`;
       S.challenges.sent++; const nb = checkBadges(); save(); badgeToast(nb);
     } else {
-      const ghostPack = {n: m.ghost.n, c: m.ghost.c, lv: m.ghost.lv, p: m.ghost.picks, s: s1};
-      url = linkFor('res', m.topic, m.refs, ghostPack, myPack, m.date);
+      const ghostPack = {i: m.ghost.i, n: m.ghost.n, c: m.ghost.c, lv: m.ghost.lv, p: m.ghost.picks, s: s1};
+      url = linkFor('res', m.topic, m.refs, ghostPack, myPack, m.date, m.T);
       text = `Two Minds result: ${myName} ${s0} vs ${m.ghost.n} ${s1} in ${T.name}`;
     }
     showLinkBox(url, text);
@@ -702,11 +720,12 @@ function handleHash(){
   try{ p = b64d(h.slice(3)); }catch(e){}
   history.replaceState(null, '', baseUrl());
   if (!validLink(p)){ toast('That link looks broken or is from an older version'); return false; }
+  $('modal').hidden = true;
   const refs = unpackRefs(p.q), T = TOPICS[p.t] || TOPICS.mixed;
   const A = p.A, B = p.B;
   if (p.k === 'res' && B){
     // final scoreboard: A played first, B replied
-    const meIsA = A.n === nameOf('me'), mine = meIsA ? A : B, theirs = meIsA ? B : A;
+    const meIsA = A.i ? A.i === S.id : A.n === nameOf('me'), mine = meIsA ? A : B, theirs = meIsA ? B : A;
     const r = mine.s > theirs.s ? 'w' : mine.s < theirs.s ? 'l' : 'd';
     const rows = refs.map((ref, i) => { const q = refQ(ref);
       const cell = pk => { const o = pk.p[i] || [-1]; return `<span class="c ${o[0] === 0 ? 'ok' : ''}">${o[0] === 0 ? '✓ ' + (o[1]/1000).toFixed(1) + 's' : o[0] === -1 ? 'too slow' : '✗'}</span>`; };
@@ -718,8 +737,10 @@ function handleHash(){
       <button class="cta" type="button" id="incRe">Rematch by link</button><button class="btn" type="button" data-go="home">Home</button></div>`;
     go('incoming');
     if (r === 'w') { confetti(120); SFX.win(); }
-    const key = 'res:' + h.slice(3, 40);
+    const key = 'res:' + hash(h);
     if (meIsA && !S.history.some(x => x.key === key)){
+      const pend = S.history.findIndex(x => x.r === 'p' && x.t === p.t && x.s[0] === mine.s);
+      if (pend !== -1) S.history.splice(pend, 1);
       S.history.unshift({key, t: p.t, m:'Link', o: theirs.n, s:[mine.s, theirs.s], r, when: new Date().toLocaleDateString(undefined, {day:'numeric', month:'short'})});
       if (r === 'w'){ S.challenges.won++; } save();
     }
@@ -746,7 +767,7 @@ function handleHash(){
     S.me.name = n;
     if (!S.partner.name || S.partner.name === 'Partner') S.partner.name = A.n;
     save();
-    startSolo({kind:'reply', topic: p.t, refs, ghost:{n:A.n, c:A.c, lv:A.lv, picks:A.p}, date:p.d});
+    startSolo({kind:'reply', topic: p.t, refs, ghost:{n:A.n, c:A.c, lv:A.lv, i:A.i, picks:A.p}, date:p.d, ms:p.ms});
   };
   return true;
 }
@@ -919,8 +940,12 @@ function renderMe(){
     <button class="btn" type="button" id="resetBtn" style="color:var(--bad)">Reset all progress</button>
     <p class="small" style="text-align:center">Two Minds keeps everything on this phone. Inspired by the head-to-head trivia games we miss.</p>
   </div>`;
-  $('me').querySelectorAll('[data-name]').forEach(i => i.oninput = () => { S[i.dataset.name].name = i.value.trim(); save(); });
-  $('me').querySelectorAll('[data-name]').forEach(i => i.onchange = () => renderMe());
+  $('me').querySelectorAll('[data-name]').forEach(i => i.onchange = () => {
+    const k = i.dataset.name, other = k === 'me' ? 'partner' : 'me', v = i.value.trim();
+    if (!v){ toast('Names can\'t be empty'); i.value = S[k].name; return; }
+    if (S[other].name && v.toLowerCase() === S[other].name.toLowerCase()){ toast('Pick two different names'); i.value = S[k].name; return; }
+    S[k].name = v; save(); renderMe();
+  });
   $('me').querySelectorAll('[data-col]').forEach(b => b.onclick = () => { S[b.dataset.col].color = b.dataset.c; save(); SFX.tap(); renderMe(); });
   $('me').querySelectorAll('[data-set]').forEach(b => b.onclick = () => {
     const k = b.dataset.set, v = b.dataset.v;
