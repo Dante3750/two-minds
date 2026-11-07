@@ -313,6 +313,37 @@ input{font:inherit;color:inherit}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media (min-width:700px){.tgrid{grid-template-columns:repeat(4,1fr)}}
 
+/* ---------- phone fixes from layout QA ---------- */
+.splash span{white-space:normal;max-width:calc(100vw - 32px);text-align:center;font-size:clamp(18px,5.5vw,30px)}
+.half .gain{top:50%;right:calc(100% + 6px);transform:translateY(-50%)}
+.half .gain.show{animation:gainx 1.1s ease-out}
+@keyframes gainx{0%{opacity:0;transform:translate(6px,-50%)}15%{opacity:1}100%{opacity:0;transform:translate(-14px,-50%)}}
+.band{padding-inline:64px}
+.cq{overflow-y:auto}
+.cq .qq{flex:1 0 auto;min-height:0;padding:12px 0}
+.half .q{font-size:clamp(14px,min(4.4vw,2.6vh),20px)}
+.chip,.seg button,.quit,.squit,.li .x,.thero .fav{min-height:44px}
+.quit,.squit{display:grid;place-items:center}
+.h button,.h a{padding:12px 0;margin:-12px 0}
+.top .btn{min-height:44px}
+.bd:not(.on){opacity:1}
+.bd:not(.on) .bi{filter:grayscale(1);opacity:.6}
+.btn{text-decoration:none}
+.colors{display:grid;grid-template-columns:repeat(8,minmax(0,36px));gap:6px;justify-content:space-between}
+.colors button{width:100%;max-width:36px;aspect-ratio:1;height:auto}
+.li .t1,.li .t2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mode span{display:block}
+.cats{margin-inline:-16px;padding-inline:16px}
+.opt{font-size:clamp(13.5px,3.8vw,15px)}
+@media (max-width:400px){
+  .pair .av{width:36px;height:36px;font-size:15px}
+  .rec{font-size:18px}
+  .pp .tt{white-space:normal;line-height:1.25}
+  .ring{width:52px;height:52px}
+  .ring b{font-size:19px}
+  .sp .nm{white-space:normal;line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+}
+
 </style>
 </head>
 <body>
@@ -762,7 +793,7 @@ function duelNext(){
     o.innerHTML = Q.opts.map((x, i) => `<button type="button" class="opt" data-p="${p}" data-i="${i}">${esc(x.text)}</button>`).join('');
     h.querySelector('.timer').classList.remove('hurry'); h.querySelector('.timer i').style.transform = 'scaleX(1)';
   });
-  if (bonus){ SFX.bonus(); buzz([30,40,30]); splash($('duel'), 'Bonus round · double points', 1300, () => { if (M && M.id === id) duelShow(); }); }
+  if (bonus){ SFX.bonus(); buzz([30,40,30]); splash($('duel'), 'Bonus ×2', 1300, () => { if (M && M.id === id) duelShow(); }); }
   else { SFX.round(); setTimeout(() => { if (M && M.id === id) duelShow(); }, 1000); }
 }
 function duelShow(){
@@ -878,7 +909,7 @@ function soloNext(){
   M.pick = null; M.left = 0; M.phase = 'question'; M.gAnswered = false;
   if ($('oppState') && M.ghost) $('oppState').textContent = '';
   setRing(1, Math.ceil(answerMs()/1000));
-  if (bonus){ SFX.bonus(); buzz([30,40,30]); splash($('solo'), 'Bonus round · double points', 1300, () => { if (M && M.id === id) soloShow(); }); }
+  if (bonus){ SFX.bonus(); buzz([30,40,30]); splash($('solo'), 'Bonus round ×2', 1300, () => { if (M && M.id === id) soloShow(); }); }
   else { SFX.round(); setTimeout(() => { if (M && M.id === id) soloShow(); }, 1100); }
 }
 function setRing(k, sec){
@@ -1057,7 +1088,6 @@ function renderResults(o){
   const winFx = (m.mode === 'duel' && r !== 'd') || r === 'w' || r === 'p';
   if (winFx){ SFX.win(); confetti(140, m.mode === 'duel' ? [r === 'w' ? S.me.color : S.partner.color, '#ffc53d', '#f2f4ff'] : undefined); buzz([30,50,30,50,80]); }
   else if (r === 'd'){ SFX.win(); } else { SFX.lose(); buzz([60]); }
-  badgeToast(newBadges);
 
   const myPack = {n: myName, c: S.me.color, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
   if ($('rAgain')) $('rAgain').onclick = () => m.mode === 'duel' ? startDuel(m.topic) : startSolo({kind:'bot', topic:m.topic});
@@ -1130,6 +1160,7 @@ function handleHash(){
     <button class="cta" type="button" id="incGo">Accept challenge</button>
     <button class="btn" type="button" data-go="home">Not now</button></div>`;
   go('incoming');
+  if (S.me.color === A.c){ S.me.color = COLORS.find(c => c !== A.c && c !== S.partner.color) || COLORS[1]; save(); $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.c === S.me.color)); }
   $('incColors').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; S.me.color = b.dataset.c; save(); $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); };
   $('incGo').onclick = () => {
     const n = $('incName').value.trim(); if (!n){ toast('Type your name first'); $('incName').focus(); return; }
@@ -1248,7 +1279,6 @@ function coupleResults(){
     <button class="cta" type="button" id="crAgain">Play again</button><button class="btn" type="button" data-go="couple">Couple corner</button></div>`;
   go('coupleRes');
   if (pct >= 50){ confetti(140, ['#ff8fa3','#c77dff','#ffc53d']); SFX.win(); }
-  badgeToast(nb);
   const t = C.type; C = null;
   $('crAgain').onclick = () => t === 'know' ? startKnow() : startLikely();
 }
@@ -1259,7 +1289,7 @@ function renderUs(){
     <div class="top"><button class="btn" style="width:auto;padding:9px 12px" id="usBack">← Back</button><h1 class="logo" style="font-size:24px">Quiz about us</h1></div>
     <p class="lede">Write questions about your story. Put the real answer first, then three believable wrong ones. Play them as a duel, or send them to her as a link.</p>
     <form class="card stack" id="usForm" autocomplete="off">
-      <div class="field">Question<input id="uq" maxlength="110" placeholder="Where did we have our first date?" required></div>
+      <div class="field">Question<input id="uq" maxlength="100" placeholder="Where did we have our first date?" required></div>
       <div class="field">Right answer<input id="ua" maxlength="40" placeholder="That little café near college" required style="border-color:rgba(61,220,132,.6)"></div>
       <div class="field">Wrong answers<input id="uw1" maxlength="40" placeholder="The movies" required><input id="uw2" maxlength="40" placeholder="A friend's party" required><input id="uw3" maxlength="40" placeholder="The beach" required></div>
       <button class="cta" type="submit">Add question</button>

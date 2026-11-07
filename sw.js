@@ -1,5 +1,5 @@
 // Offline support: cache the app shell, always try the network first for the page so updates arrive.
-const CACHE = 'twominds-7479469ea5';
+const CACHE = 'twominds-ac5786438a';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));

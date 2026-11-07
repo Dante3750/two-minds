@@ -372,7 +372,7 @@ function duelNext(){
     o.innerHTML = Q.opts.map((x, i) => `<button type="button" class="opt" data-p="${p}" data-i="${i}">${esc(x.text)}</button>`).join('');
     h.querySelector('.timer').classList.remove('hurry'); h.querySelector('.timer i').style.transform = 'scaleX(1)';
   });
-  if (bonus){ SFX.bonus(); buzz([30,40,30]); splash($('duel'), 'Bonus round · double points', 1300, () => { if (M && M.id === id) duelShow(); }); }
+  if (bonus){ SFX.bonus(); buzz([30,40,30]); splash($('duel'), 'Bonus ×2', 1300, () => { if (M && M.id === id) duelShow(); }); }
   else { SFX.round(); setTimeout(() => { if (M && M.id === id) duelShow(); }, 1000); }
 }
 function duelShow(){
@@ -488,7 +488,7 @@ function soloNext(){
   M.pick = null; M.left = 0; M.phase = 'question'; M.gAnswered = false;
   if ($('oppState') && M.ghost) $('oppState').textContent = '';
   setRing(1, Math.ceil(answerMs()/1000));
-  if (bonus){ SFX.bonus(); buzz([30,40,30]); splash($('solo'), 'Bonus round · double points', 1300, () => { if (M && M.id === id) soloShow(); }); }
+  if (bonus){ SFX.bonus(); buzz([30,40,30]); splash($('solo'), 'Bonus round ×2', 1300, () => { if (M && M.id === id) soloShow(); }); }
   else { SFX.round(); setTimeout(() => { if (M && M.id === id) soloShow(); }, 1100); }
 }
 function setRing(k, sec){
@@ -667,7 +667,6 @@ function renderResults(o){
   const winFx = (m.mode === 'duel' && r !== 'd') || r === 'w' || r === 'p';
   if (winFx){ SFX.win(); confetti(140, m.mode === 'duel' ? [r === 'w' ? S.me.color : S.partner.color, '#ffc53d', '#f2f4ff'] : undefined); buzz([30,50,30,50,80]); }
   else if (r === 'd'){ SFX.win(); } else { SFX.lose(); buzz([60]); }
-  badgeToast(newBadges);
 
   const myPack = {n: myName, c: S.me.color, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
   if ($('rAgain')) $('rAgain').onclick = () => m.mode === 'duel' ? startDuel(m.topic) : startSolo({kind:'bot', topic:m.topic});
@@ -740,6 +739,7 @@ function handleHash(){
     <button class="cta" type="button" id="incGo">Accept challenge</button>
     <button class="btn" type="button" data-go="home">Not now</button></div>`;
   go('incoming');
+  if (S.me.color === A.c){ S.me.color = COLORS.find(c => c !== A.c && c !== S.partner.color) || COLORS[1]; save(); $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.c === S.me.color)); }
   $('incColors').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; S.me.color = b.dataset.c; save(); $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); };
   $('incGo').onclick = () => {
     const n = $('incName').value.trim(); if (!n){ toast('Type your name first'); $('incName').focus(); return; }
@@ -858,7 +858,6 @@ function coupleResults(){
     <button class="cta" type="button" id="crAgain">Play again</button><button class="btn" type="button" data-go="couple">Couple corner</button></div>`;
   go('coupleRes');
   if (pct >= 50){ confetti(140, ['#ff8fa3','#c77dff','#ffc53d']); SFX.win(); }
-  badgeToast(nb);
   const t = C.type; C = null;
   $('crAgain').onclick = () => t === 'know' ? startKnow() : startLikely();
 }
@@ -869,7 +868,7 @@ function renderUs(){
     <div class="top"><button class="btn" style="width:auto;padding:9px 12px" id="usBack">← Back</button><h1 class="logo" style="font-size:24px">Quiz about us</h1></div>
     <p class="lede">Write questions about your story. Put the real answer first, then three believable wrong ones. Play them as a duel, or send them to her as a link.</p>
     <form class="card stack" id="usForm" autocomplete="off">
-      <div class="field">Question<input id="uq" maxlength="110" placeholder="Where did we have our first date?" required></div>
+      <div class="field">Question<input id="uq" maxlength="100" placeholder="Where did we have our first date?" required></div>
       <div class="field">Right answer<input id="ua" maxlength="40" placeholder="That little café near college" required style="border-color:rgba(61,220,132,.6)"></div>
       <div class="field">Wrong answers<input id="uw1" maxlength="40" placeholder="The movies" required><input id="uw2" maxlength="40" placeholder="A friend's party" required><input id="uw3" maxlength="40" placeholder="The beach" required></div>
       <button class="cta" type="submit">Add question</button>
