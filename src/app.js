@@ -23,6 +23,7 @@ TOPICS.mixed = {id:'mixed', name:'Mixed Bag', ic:'✳', c:'#f2f4ff', cat:'all', 
 TOPICS.us = {id:'us', name:'Us Two', ic:'❦', c:'#ffb3c1', cat:'all', q:null};
 TOPICS.daily = {id:'daily', name:'Daily Duel', ic:'☀', c:'#ffc53d', cat:'all', q:null};
 const TOPIC_IDS = META.map(m => m[0]);
+const TOPIC_ICON = {gk:'bulb', brain:'puzzle', history:'hourglass', science:'flask', space:'rocket', animals:'paw', tech:'cpu', bollywood:'clapper', hollywood:'film', music:'music', love:'heart', geography:'globe', capitals:'flag', india:'landmark', food:'utensils', cricket:'cricket', sports:'trophy', gaming:'gamepad', mixed:'shuffle', us:'hearts', daily:'sun'};
 const CATS = [['all','All'],['know','Knowledge'],['pop','Pop culture'],['world','World'],['play','Sports & games']];
 const COLORS = ['#ff6b5a','#38d6ff','#ffc53d','#3ddc84','#c77dff','#ff8fa3','#f4a259','#8f96ff'];
 const TITLES = [[1,'Rookie'],[3,'Quizzer'],[6,'Brainiac'],[10,'Mastermind'],[15,'Genius'],[22,'Legend'],[30,'Grandmaster']];
@@ -62,6 +63,62 @@ function load(){
 }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 load();
+
+
+/* ================= icons (hand-drawn line set, 24px grid) ================= */
+const ICON = {
+  home:'<path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6.5H9V21H4.5a1 1 0 0 1-1-1z"/>',
+  grid:'<rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/>',
+  heart:'<path d="M12 20.5s-7.5-4.6-9.3-9.4A4.9 4.9 0 0 1 12 6.3a4.9 4.9 0 0 1 9.3 4.8C19.5 15.9 12 20.5 12 20.5z"/>',
+  hearts:'<path d="M9.5 19s-6-3.7-7.4-7.5A3.9 3.9 0 0 1 9.5 7.7a3.9 3.9 0 0 1 7.4 3.8"/><path d="M16.5 21s-4.4-2.7-5.4-5.5a2.9 2.9 0 0 1 5.4-2.3 2.9 2.9 0 0 1 5.4 2.3c-1 2.8-5.4 5.5-5.4 5.5z"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  swords:'<path d="M14.5 17.5 3 6V3h3l11.5 11.5"/><path d="m13 19 6-6M16 16l4 4M19 21l2-2"/><path d="M9.5 6.5 13 3h3v3l-3.5 3.5"/><path d="m5 14 4 4M7 17l-3 3M3 19l2 2"/>',
+  send:'<path d="M21.5 2.5 10.6 13.4"/><path d="M21.5 2.5 14.6 21.5l-4-8.1-8.1-4z"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/>',
+  chev:'<path d="m9 5 7 7-7 7"/>', back:'<path d="m15 5-7 7 7 7"/>',
+  star:'<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/>',
+  starf:'<path class="fill" d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/>',
+  bot:'<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13v1M15 13v1M9.5 17h5"/><circle cx="12" cy="3.5" r="1"/>',
+  bulb:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3z"/>',
+  puzzle:'<path d="M4 7h3.5a2 2 0 1 1 4 0H15v3.5a2 2 0 1 1 0 4V18h-3.5a2 2 0 1 0-4 0H4v-3.5a2 2 0 1 0 0-4z"/><path d="M15 10.5h1.5a2 2 0 1 1 0 4H15" opacity=".0"/>',
+  hourglass:'<path d="M6 3h12M6 21h12"/><path d="M7 3c0 4 10 5 10 9s-10 5-10 9M17 3c0 4-10 5-10 9s10 5 10 9"/>',
+  flask:'<path d="M9 3h6M10 3v6l-5.4 9.6A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.4-2.4L14 9V3"/><path d="M7.5 15h9"/>',
+  rocket:'<path d="M12 2.5c3.2 2.2 5 5.9 5 10l-2 4H9l-2-4c0-4.1 1.8-7.8 5-10z"/><circle cx="12" cy="10" r="1.8"/><path d="M9 16.5 7 21l3-1.5M15 16.5l2 4.5-3-1.5"/>',
+  paw:'<path d="M12 12.5c-3 0-5.5 3.2-5.5 5.4 0 1.5 1.3 2.1 2.6 2.1 1.2 0 1.8-.7 2.9-.7s1.7.7 2.9.7c1.3 0 2.6-.6 2.6-2.1 0-2.2-2.5-5.4-5.5-5.4z"/><ellipse cx="5.5" cy="10" rx="1.7" ry="2.2"/><ellipse cx="9.3" cy="5.8" rx="1.7" ry="2.2"/><ellipse cx="14.7" cy="5.8" rx="1.7" ry="2.2"/><ellipse cx="18.5" cy="10" rx="1.7" ry="2.2"/>',
+  cpu:'<rect x="6" y="6" width="12" height="12" rx="2.5"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2.5v3.5M15 2.5v3.5M9 18v3.5M15 18v3.5M2.5 9h3.5M2.5 15h3.5M18 9h3.5M18 15h3.5"/>',
+  clapper:'<path d="M3.5 10h17v9a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19z"/><path d="m3.5 10 1.2-4.6a1.5 1.5 0 0 1 1.8-1.1l13 3.4-.6 2.3"/><path d="m8.5 5 1.5 4.5M13.5 6.3 15 10"/>',
+  film:'<rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M7.5 3.5v17M16.5 3.5v17M3.5 8h4M3.5 12h4M3.5 16h4M16.5 8h4M16.5 12h4M16.5 16h4"/>',
+  music:'<path d="M9 18V5.5l11-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/>',
+  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/>',
+  flag:'<path d="M5 21V4"/><path d="M5 4h12l-2.5 4.5L17 13H5"/>',
+  landmark:'<path d="M3 21h18M5 21v-9M9.7 21v-9M14.3 21v-9M19 21v-9M2.5 10h19L12 3.5z"/>',
+  utensils:'<path d="M6.5 2.5V11M4.5 2.5v5a2 2 0 0 0 4 0v-5M6.5 11v10.5"/><path d="M18 2.5c-2.2 1.1-3.5 4-3.5 7.5h3.5v11.5"/>',
+  cricket:'<path d="m14.6 3.4 6 6-8.5 8.5a1.5 1.5 0 0 1-2.1 0L6.1 14a1.5 1.5 0 0 1 0-2.1z"/><path d="m7.5 16.5-4 4"/><circle cx="18" cy="18" r="2.4"/>',
+  trophy:'<path d="M8 21h8M12 16.5V21"/><path d="M7 3.5h10V9a5 5 0 0 1-10 0z"/><path d="M7 5.5H4.5a3 3 0 0 0 3 4.4M17 5.5h2.5a3 3 0 0 1-3 4.4"/>',
+  gamepad:'<path d="M7 7.5h10a4.5 4.5 0 0 1 4.4 5.5l-.8 3.4a2.4 2.4 0 0 1-4.1 1L14.6 15H9.4l-1.9 2.4a2.4 2.4 0 0 1-4.1-1L2.6 13A4.5 4.5 0 0 1 7 7.5z"/><path d="M8 10v3M6.5 11.5h3"/><circle cx="15.5" cy="10.5" r=".8" class="fill"/><circle cx="17.5" cy="12.5" r=".8" class="fill"/>',
+  shuffle:'<path d="M16 3.5h4.5V8M3.5 20 20.5 3.5M20.5 16v4.5H16M14.5 14.5l6 6M3.5 4l5 5"/>',
+  flame:'<path d="M12 21.5a7 7 0 0 0 7-7c0-4-3-6.3-4.2-10-2 2-3 4-3 6-1-.8-2-2.2-2.3-4C6.5 9 5 11.5 5 14.5a7 7 0 0 0 7 7z"/>',
+  crown:'<path d="M3 18.5h18M4 8l4 3.5 4-6.5 4 6.5L20 8l-1.5 10.5h-13z"/>',
+  check:'<circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.7 2.7L16 9.5"/>',
+  zap:'<path d="M13 2.5 4.5 13.5H11l-1 8 8.5-11H12z"/>',
+  undo:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5"/>',
+  scale:'<path d="M12 3.5v17M6.5 20.5h11M4.5 7h15"/><path d="m4.5 7-2.5 6a2.8 2.8 0 0 0 5 0zM19.5 7 17 13a2.8 2.8 0 0 0 5 0z"/>',
+  compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+  award:'<circle cx="12" cy="9" r="5.5"/><path d="m8.6 13.4-1.6 7.6 5-2.6 5 2.6-1.6-7.6"/>',
+  calendar:'<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  pen:'<path d="M4 20h4.5L19.6 8.9a2.1 2.1 0 0 0-3-3L5.5 17v3z"/><path d="m14.5 8 2.5 2.5"/>',
+  eye:'<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
+  waves:'<path d="M2.5 9c2.4-2.4 4.4 2.4 6.8 0s4.4 2.4 6.8 0 4-2 5.4 0M2.5 15c2.4-2.4 4.4 2.4 6.8 0s4.4 2.4 6.8 0 4-2 5.4 0"/>',
+  repeat:'<path d="M17 2.5 20.5 6 17 9.5"/><path d="M3.5 11V9.5A3.5 3.5 0 0 1 7 6h13.5M7 21.5 3.5 18 7 14.5"/><path d="M20.5 13v1.5A3.5 3.5 0 0 1 17 18H3.5"/>',
+  moon:'<path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a6.6 6.6 0 0 0 11 11z"/>',
+  timer:'<circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V10M9.5 2.5h5M19 6l1.5-1.5"/>',
+  hundred:'<path d="M4 8.5 6 7v10M10.5 7h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zM18 7h.5a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/>',
+  link:'<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/>',
+  copy:'<rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 8.5V6A2.5 2.5 0 0 0 13 3.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>', x:'<path d="M6 6l12 12M18 6 6 18"/>', history:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5M12 7.5V12l3 2"/>'
+};
+function icon(name, cls = ''){ return `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICON[name] || ICON.star}</svg>`; }
+Object.values(TOPICS).forEach(T => T.ic = icon(TOPIC_ICON[T.id] || 'star'));
 
 /* ================= small utils ================= */
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -219,7 +276,7 @@ let current = 'home', topicSel = 'gk';
 function go(id, opts = {}){
   current = id;
   for (const s of APP_SCREENS) $(s).hidden = s !== id;
-  const tabbed = ['home','topics','couple','me'].includes(id);
+  const tabbed = ['home','topics','topic','couple','me'].includes(id);
   $('tabbar').hidden = !tabbed;
   document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-current', t.dataset.go === id || (id === 'topic' && t.dataset.go === 'topics') ? 'page' : 'false'));
   ({home:renderHome, topics:renderTopics, topic:renderTopic, couple:renderCouple, me:renderMe, us:renderUs, history:renderHistory}[id] || (() => {}))(opts);
@@ -234,29 +291,29 @@ document.addEventListener('click', e => {
 function pairStrip(){
   const lm = overallLevel('me'), lp = overallLevel('partner');
   return `<div class="pair">
-    <div class="pp">${avatar(nameOf('me'), S.me.color)}<div><div class="nm">${esc(nameOf('me'))}</div><div class="tt">Lv ${lm} · ${titleFor(lm)}</div></div></div>
+    <div class="pp">${avatar(nameOf('me'), S.me.color)}<div><div class="nm">${esc(nameOf('me'))}</div><div class="tt">Lv ${lm} ${titleFor(lm)}</div></div></div>
     <div class="rec"><span style="color:${S.me.color}">${S.h2h[0]}</span>–<span style="color:${S.partner.color}">${S.h2h[1]}</span><small>head to head</small></div>
-    <div class="pp r">${avatar(nameOf('partner'), S.partner.color)}<div><div class="nm">${esc(nameOf('partner'))}</div><div class="tt">Lv ${lp} · ${titleFor(lp)}</div></div></div>
+    <div class="pp r">${avatar(nameOf('partner'), S.partner.color)}<div><div class="nm">${esc(nameOf('partner'))}</div><div class="tt">Lv ${lp} ${titleFor(lp)}</div></div></div>
   </div>`;
 }
 function topicTile(id){
   const T = TOPICS[id];
   const lv = Math.max(topicLevel('me', id).lv, topicLevel('partner', id).lv);
   const sub = id === 'us' ? `${S.us.length} written` : id === 'mixed' ? 'All topics' : `Lv ${lv} · ${T.q.length} Qs`;
-  return `<button type="button" class="tp" data-topic="${id}" style="--c:${T.c}">${S.fav.includes(id) ? '<span class="star">★</span>' : ''}<span class="ic">${T.ic}</span><b>${esc(T.name)}</b><small>${sub}</small></button>`;
+  return `<button type="button" class="tp" data-topic="${id}" style="--c:${T.c}">${S.fav.includes(id) ? `<span class="star">${icon('starf','sm')}</span>` : ''}<span class="ic">${T.ic}</span><span><b>${esc(T.name)}</b><small>${sub}</small></span></button>`;
 }
 function renderHome(){
   const dDone = S.daily[today()];
   const recent = [...new Set([...S.fav, ...S.recent])].filter(id => TOPICS[id] && id !== 'daily').slice(0, 6);
   const show = recent.length ? recent : ['gk','bollywood','love','cricket','india','mixed'];
   $('home').innerHTML = `<div class="col">
-    <div class="top"><h1 class="logo"><span class="a">Two</span> <span class="b">Minds</span></h1><button class="btn" style="width:auto;padding:9px 12px;font-size:12.5px" data-go="me">Profiles</button></div>
+    <div class="top"><h1 class="logo"><span class="a">Two</span> <span class="b">Minds</span></h1><button class="iconbtn" type="button" data-go="me" aria-label="Profiles">${icon('user')}</button></div>
     ${pairStrip()}
     <div class="modes">
-      <button class="mode m-duel" type="button" id="hmDuel"><span class="mi">⚔</span><div><b>Duel on this phone</b><span>Face to face, same question, fastest wins</span></div></button>
-      <button class="mode m-link" type="button" id="hmLink"><span class="mi">✉</span><div><b>Challenge by link</b><span>Play now, she plays your ghost later</span></div></button>
-      <button class="mode m-daily wide" type="button" id="hmDaily"><span class="mi">☀</span><div><b>Daily Duel</b><span>7 mixed questions, same for both of you today</span></div><span class="go">${dDone ? 'Score ' + dDone.score : 'Play'}</span></button>
-      <button class="mode m-couple wide" type="button" data-go="couple"><span class="mi">❦</span><div><b>Couple corner</b><span>How well do you know me? Who's more likely?</span></div><span class="go">Open</span></button>
+      <button class="mode m-duel" type="button" id="hmDuel"><span class="mi">${icon('swords')}</span><div><b>Duel on this phone</b><span class="d">Face to face. Same question, fastest tap wins.</span></div></button>
+      <button class="mode m-link" type="button" id="hmLink"><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play now. She plays your ghost later.</span></div></button>
+      <button class="mode m-daily wide" type="button" id="hmDaily"><span class="mi">${icon('sun')}</span><div><b>Daily Duel</b><span class="d">7 mixed questions, the same for both of you</span></div><span class="go">${dDone ? 'Score ' + dDone.score : 'Play'}${icon('chev','sm')}</span></button>
+      <button class="mode m-couple wide" type="button" data-go="couple"><span class="mi">${icon('heart')}</span><div><b>Couple corner</b><span class="d">How well do you know me? Who's more likely?</span></div><span class="go">Open${icon('chev','sm')}</span></button>
     </div>
     <div class="h">${S.fav.length || S.recent.length ? 'Your topics' : 'Popular topics'}<button type="button" data-go="topics">All ${TOPIC_IDS.length} topics</button></div>
     <div class="tgrid">${show.map(topicTile).join('')}</div>
@@ -269,13 +326,13 @@ function renderHome(){
 function pickTopicThen(mode){ go('topics', {intent: mode}); }
 
 function histRow(h){
-  const cls = h.r === 'w' ? 'res-w' : h.r === 'l' ? 'res-l' : 'res-d';
+  const cls = h.r === 'w' ? 'res-w' : h.r === 'l' ? 'res-l' : h.r === 'd' ? 'res-d' : 'res-p';
   const word = h.r === 'w' ? 'Won' : h.r === 'l' ? 'Lost' : h.r === 'd' ? 'Draw' : 'Played';
   const T = TOPICS[h.t] || {name: h.t, c:'#888', ic:'?'};
-  return `<li class="li"><span class="av s" style="--c:${T.c}">${T.ic}</span><div><div class="t1">${esc(T.name)} · ${esc(h.m)}</div><div class="t2">vs ${esc(h.o)} · ${esc(h.when)}</div></div><span class="sc"><span class="${cls}">${word}</span> ${h.s[0]}–${h.s[1]}</span></li>`;
+  return `<li class="li"><span class="tic" style="--c:${T.c}">${T.ic}</span><div><div class="t1">${esc(T.name)}</div><div class="t2">${esc(h.m)} vs ${esc(h.o)} · ${esc(h.when)}</div></div><span class="sc"><b>${h.s[0]}–${h.s[1]}</b><span class="${cls}">${word}</span></span></li>`;
 }
 function renderHistory(){
-  $('history').innerHTML = `<div class="col"><div class="top"><button class="btn" style="width:auto;padding:9px 12px" data-go="home">← Back</button><h1 class="logo" style="font-size:24px">Matches</h1></div>
+  $('history').innerHTML = `<div class="col"><div class="top"><button class="iconbtn" type="button" data-go="home" aria-label="Back">${icon('back')}</button><h1 class="title">Match history</h1></div>
     ${S.history.length ? `<ul class="list">${S.history.map(histRow).join('')}</ul>` : '<p class="lede">No matches yet.</p>'}</div>`;
 }
 
@@ -291,7 +348,7 @@ function renderTopics(opts = {}){
   });
   const intentLine = topicIntent === 'duel' ? 'Pick a topic for your duel on this phone' : topicIntent === 'link' ? 'Pick a topic for your link challenge' : 'Tap a topic to see your levels and play';
   $('topics').innerHTML = `<div class="col">
-    <div class="top"><h1 class="logo" style="font-size:28px">Topics</h1></div>
+    <div class="top"><h1 class="title">Topics</h1></div>
     <p class="lede">${intentLine}</p>
     <input class="search" id="tsearch" type="search" placeholder="Search topics" value="${esc(searchTerm)}" autocomplete="off">
     <div class="cats">${CATS.map(([id, n]) => `<button type="button" class="chip" data-cat="${id}" aria-pressed="${catSel === id}">${n}</button>`).join('')}</div>
@@ -309,15 +366,16 @@ function renderTopic(){
   const usNote = id === 'us' ? (S.us.length < 3 ? `<p class="small">Write at least 3 questions about you two to play this topic. With fewer than 7, the rest come from Mixed Bag.</p>` : `<p class="small">${S.us.length} questions written. Send them as a link and she answers questions about you two.</p>`) : '';
   const lvRow = (who, L) => `<div class="lvrow">${avatar(nameOf(who), S[who].color, 's')}<div><div class="meta"><b>${esc(nameOf(who))}</b><span>Lv ${L.lv} · ${titleFor(L.lv, TOPIC_TITLES)}</span></div><div class="xpbar" style="--c:${S[who].color}"><i style="width:${Math.round(L.into / L.need * 100)}%"></i></div></div></div>`;
   $('topic').innerHTML = `<div class="col">
-    <div class="top"><button class="btn" style="width:auto;padding:9px 12px" data-go="topics">← Topics</button></div>
-    <div class="thero" style="--c:${T.c}"><span class="ic">${T.ic}</span><h1>${esc(T.name)}</h1><p>${count} questions · 7 rounds · bonus round counts double</p>
-      ${id !== 'us' && id !== 'mixed' ? `<button type="button" class="fav" id="favBtn">${fav ? '★ Favourite' : '☆ Favourite'}</button>` : ''}</div>
+    <div class="top"><button class="iconbtn" type="button" data-go="topics" aria-label="All topics">${icon('back')}</button><span class="small">${topicIntent === 'duel' ? 'Duel on this phone' : topicIntent === 'link' ? 'Challenge by link' : 'Topic'}</span></div>
+    <div class="thero" style="--c:${T.c}"><span class="ic">${T.ic}</span><div><h1>${esc(T.name)}</h1><p>${count} questions · 7 rounds · bonus round ×2</p></div>
+      ${id !== 'us' && id !== 'mixed' ? `<button type="button" class="fav" id="favBtn" aria-pressed="${fav}">${icon(fav ? 'starf' : 'star', 'sm')}${fav ? 'Favourite' : 'Favourite'}</button>` : ''}</div>
     ${usNote}
-    ${id === 'us' ? `<button class="btn" type="button" data-go="us">Write questions about us</button>` : ''}
-    <div class="card lvls">${lvRow('me', lm)}${lvRow('partner', lp)}</div>
-    <button class="cta" type="button" id="tpDuel" ${topicIntent === 'link' ? 'style="order:2"' : ''}>Duel on this phone<small>Phone flat between you, race to tap</small></button>
-    <button class="cta solid" type="button" id="tpLink" style="--c:${S.partner.color}">Challenge ${esc(nameOf('partner'))} by link<small>Play now, send the link, she plays your ghost</small></button>
-    <button class="btn" type="button" id="tpBot">Practice against a bot<small>${['Easy','Normal','Hard'][S.settings.botLevel]} · change in Profiles</small></button>
+    ${id === 'us' ? `<button class="btn" type="button" data-go="us">${icon('pen','sm')}Write questions about us</button>` : ''}
+    <div class="card lvls"><div class="h" style="margin:0 0 -2px">Your levels</div>${lvRow('me', lm)}${lvRow('partner', lp)}</div>
+    <div class="stack">
+    <button class="cta" type="button" id="tpDuel" style="--c:${S.me.color}">Duel on this phone<small>Phone flat between you, race to tap</small></button>
+    <button class="cta" type="button" id="tpLink" style="--c:${S.partner.color}">Challenge ${esc(nameOf('partner'))} by link<small>Play now, she plays your ghost later</small></button>
+    <button class="btn" type="button" id="tpBot">Practice against a bot<small>${['Easy','Normal','Hard'][S.settings.botLevel]} · change in Profiles</small></button></div>
   </div>`;
   if ($('favBtn')) $('favBtn').onclick = () => { S.fav = fav ? S.fav.filter(x => x !== id) : [id, ...S.fav]; save(); SFX.tap(); renderTopic(); };
   const usOk = id !== 'us' || S.us.length >= 3;
@@ -333,8 +391,9 @@ function vsIntro(a, b, topicId, face, then){
   const T = TOPICS[topicId];
   const el = $('vs');
   el.className = 'vs' + (face ? ' face' : '');
+  el.style.setProperty('--ca', safeColor(a.c)); el.style.setProperty('--cb', safeColor(b.c));
   el.innerHTML = `<div class="side b">${avatar(b.n, b.c, 'l')}<div class="nm">${esc(b.n)}</div><div class="tt">${esc(b.sub)}</div></div>
-    <div class="mid"><div class="big">VS</div><span class="topic" style="--c:${T.c}">${T.ic} ${esc(T.name)}</span></div>
+    <div class="mid"><div class="big">VS</div><span class="pill topic" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)}</span></div>
     <div class="side a">${avatar(a.n, a.c, 'l')}<div class="nm">${esc(a.n)}</div><div class="tt">${esc(a.sub)}</div></div>`;
   el.hidden = false;
   SFX.vs(); buzz([30, 60, 30]);
@@ -642,6 +701,9 @@ function checkBadges(ctx = {}){
   S.badges = [...got];
   return add;
 }
+const BADGE_ICON = {first_win:'trophy', win10:'flame', streak3:'crown', perfect:'check', score140:'zap', comeback:'undo', draw:'scale', topics5:'compass', topics12:'globe',
+  lv5:'star', lv10:'award', daily1:'sun', daily7:'calendar', sent:'send', ldw:'heart', us5:'pen', know80:'eye', likely80:'waves', bothard:'bot', played25:'repeat', century:'hundred', night:'moon', fast20:'timer', h2h10:'swords'};
+BADGES.forEach(b => b[3] = icon(BADGE_ICON[b[0]] || 'star'));
 function badgeHtml(ids){ return ids.map(id => { const b = BADGES.find(x => x[0] === id); return b ? `<div class="newb"><span class="bi">${b[3]}</span><div><b>Badge unlocked: ${esc(b[1])}</b><span>${esc(b[2])}</span></div></div>` : ''; }).join(''); }
 function badgeToast(ids){ ids.forEach((id, k) => { const b = BADGES.find(x => x[0] === id); if (b) setTimeout(() => { toast(`Badge unlocked: ${b[1]}`); SFX.badge(); }, 600 + k*2200); }); }
 
@@ -670,15 +732,16 @@ function renderResults(o){
   else if (r === 'p') actions = `<button class="cta" id="rShare" type="button">Send challenge to ${esc(nameOf('partner'))}<small>She plays the same 7 questions against your ghost</small></button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
   else actions = `<button class="cta" id="rShare" type="button">Send your result back<small>Shows the full scoreboard on their phone</small></button><button class="btn" type="button" id="rBack">Challenge back with new questions</button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
   $('results').innerHTML = `<div class="col">
-    <p class="small" style="text-align:center"><span style="color:${T.c}">${T.ic}</span> ${m.topic === 'daily' ? '' : esc(T.name) + ' · '}${m.mode === 'duel' ? 'Duel on one phone' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily Duel · ' + esc(m.date || today()) : 'Link challenge'}</p>
+    <div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${m.topic === 'daily' ? '' : esc(T.name) + ' · '}${m.mode === 'duel' ? 'Duel' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily Duel · ' + esc(m.date || today()) : 'Link challenge'}</span></div>
     <h1 class="winner">${head}</h1>
-    <div class="sline"><div class="sb">${avatar(myName, S.me.color, 'l')}<b style="color:${S.me.color}">${s0}</b><span>${esc(myName)}</span></div><em>vs</em>
-      <div class="sb">${avatar(oppName, oppColor, 'l')}<b style="color:${oppColor}">${showOpp ? s1 : '?'}</b><span>${esc(oppName)}</span></div></div>
+    <div class="card board">
+      <div class="sb">${showOpp && s0 > s1 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(myName, S.me.color, 'l')}<b style="color:${S.me.color}">${s0}</b><span>${esc(myName)}</span></div><em>VS</em>
+      <div class="sb">${showOpp && s1 > s0 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(oppName, oppColor, 'l')}<b style="color:${safeColor(oppColor)}">${showOpp ? s1 : '?'}</b><span>${esc(oppName)}</span></div></div>
     ${badgeHtml(newBadges)}
     <div class="card rounds"><div class="rr head"><span class="n"></span><span class="c" style="color:${S.me.color}">${esc(myName)}</span><span class="c" style="color:${oppColor}">${esc(oppName)}</span></div>${rows}</div>
     <div class="card lvls">${xpRow('me')}${xpRow('partner')}</div>
     ${actions}
-    <details class="card"><summary style="cursor:pointer;font-weight:500">Review the answers</summary><div class="review" style="margin-top:10px">${m.log.map((l, i) => `<div class="rv">${i + 1}. ${esc(l.q)}<div class="a">✓ ${esc(l.a)}</div></div>`).join('')}</div></details>
+    <details class="card"><summary>Review the answers</summary><div class="review">${m.log.map((l, i) => `<div class="rv">${i + 1}. ${esc(l.q)}<div class="a">✓ ${esc(l.a)}</div></div>`).join('')}</div></details>
   </div>`;
   go('results');
   requestAnimationFrame(() => setTimeout(() => $('results').querySelectorAll('.xpbar i[data-w]').forEach(i => i.style.width = i.dataset.w + '%'), 80));
@@ -708,7 +771,7 @@ function renderResults(o){
 function showLinkBox(url, text){
   const box = $('lbox'); if (!box) return;
   box.hidden = false;
-  box.innerHTML = `<input readonly value="${esc(url)}" id="lurl" aria-label="Challenge link"><div class="row"><button class="btn" type="button" id="lcopy">Copy link</button><a class="btn green" href="https://wa.me/?text=${encodeURIComponent(text + '\n' + url)}" target="_blank" rel="noopener">WhatsApp</a></div>`;
+  box.innerHTML = `<input readonly value="${esc(url)}" id="lurl" aria-label="Challenge link"><div class="row"><button class="btn" type="button" id="lcopy">${icon('copy','sm')}Copy link</button><a class="btn green" href="https://wa.me/?text=${encodeURIComponent(text + '\n' + url)}" target="_blank" rel="noopener">WhatsApp</a></div>`;
   $('lcopy').onclick = async () => { try{ await navigator.clipboard.writeText(text + '\n' + url); toast('Link copied'); }catch(e){ const i = $('lurl'); i.select(); toast('Select and copy the link'); } };
 }
 
@@ -730,9 +793,9 @@ function handleHash(){
     const rows = refs.map((ref, i) => { const q = refQ(ref);
       const cell = pk => { const o = pk.p[i] || [-1]; return `<span class="c ${o[0] === 0 ? 'ok' : ''}">${o[0] === 0 ? '✓ ' + (o[1]/1000).toFixed(1) + 's' : o[0] === -1 ? 'too slow' : '✗'}</span>`; };
       return `<div class="rr"><span class="n">${i === ROUNDS - 1 ? 'Bonus' : 'R' + (i + 1)}</span>${cell(mine)}${cell(theirs)}</div>`; }).join('');
-    $('incoming').innerHTML = `<div class="col"><p class="small" style="text-align:center">${T.ic} ${esc(T.name)} · Link challenge result</p>
+    $('incoming').innerHTML = `<div class="col"><div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)} · Link result</span></div>
       <h1 class="winner">${r === 'w' ? `${esc(mine.n)} wins!` : r === 'l' ? `${esc(theirs.n)} wins!` : "It's a draw!"}</h1>
-      <div class="sline"><div class="sb">${avatar(mine.n, mine.c, 'l')}<b style="color:${mine.c}">${mine.s}</b><span>${esc(mine.n)}</span></div><em>vs</em><div class="sb">${avatar(theirs.n, theirs.c, 'l')}<b style="color:${theirs.c}">${theirs.s}</b><span>${esc(theirs.n)}</span></div></div>
+      <div class="card board"><div class="sb">${mine.s > theirs.s ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(mine.n, mine.c, 'l')}<b style="color:${safeColor(mine.c)}">${mine.s}</b><span>${esc(mine.n)}</span></div><em>VS</em><div class="sb">${theirs.s > mine.s ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(theirs.n, theirs.c, 'l')}<b style="color:${safeColor(theirs.c)}">${theirs.s}</b><span>${esc(theirs.n)}</span></div></div>
       <div class="card rounds"><div class="rr head"><span class="n"></span><span class="c" style="color:${mine.c}">${esc(mine.n)}</span><span class="c" style="color:${theirs.c}">${esc(theirs.n)}</span></div>${rows}</div>
       <button class="cta" type="button" id="incRe">Rematch by link</button><button class="btn" type="button" data-go="home">Home</button></div>`;
     go('incoming');
@@ -751,8 +814,8 @@ function handleHash(){
   $('incoming').innerHTML = `<div class="col" style="min-height:70vh;align-content:center">
     <div style="display:grid;justify-items:center;gap:14px;text-align:center">
       ${avatar(A.n, A.c, 'l')}
-      <h1 class="winner" style="font-size:30px">${esc(A.n)} challenged you!</h1>
-      <span class="topic" style="padding:7px 14px;border-radius:999px;font-weight:700;font-size:13px;color:#10132a;background:${T.c}">${T.ic} ${esc(T.name)}</span>
+      <h1 class="winner">${esc(A.n)} challenged you</h1>
+      <span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)}</span>
       <p class="lede">Same 7 questions, ten seconds each. You'll see when ${esc(A.n)} answered, and their pick is revealed after yours. Score to beat: <b style="color:var(--gold)">${A.s}</b></p>
     </div>
     <div class="card stack"><div class="field">Your name<input id="incName" maxlength="14" autocomplete="off" value="${esc(S.me.name)}" placeholder="Type your name"></div>
@@ -778,11 +841,11 @@ let C = null;
 function renderCouple(){
   const pk = S.couple;
   $('couple').innerHTML = `<div class="col">
-    <div class="top"><h1 class="logo" style="font-size:28px">Couple corner</h1></div>
+    <div class="top"><h1 class="title">Couple corner</h1></div>
     <p class="lede">Pass-the-phone games for the two of you. No timer, just honesty.</p>
-    <button class="mode m-couple wide" type="button" id="cKnow" style="min-height:96px"><span class="mi">◎</span><div><b>How well do you know me?</b><span>One answers about themselves in secret, the other guesses. 10 questions.</span></div><span class="go">Play</span></button>
-    <button class="mode m-daily wide" type="button" id="cLikely" style="min-height:96px"><span class="mi">≈</span><div><b>Who's more likely to…</b><span>You both vote in secret, then see if you agree. 10 prompts.</span></div><span class="go">Play</span></button>
-    <button class="mode m-link wide" type="button" id="cUs" style="min-height:96px"><span class="mi">✎</span><div><b>Quiz about us</b><span>Write questions about your story and race to answer them.</span></div><span class="go">${S.us.length} Qs</span></button>
+    <button class="mode m-couple wide" type="button" id="cKnow"><span class="mi">${icon('eye')}</span><div><b>How well do you know me?</b><span class="d">One answers in secret, the other guesses. 10 rounds.</span></div><span class="go">${icon('chev')}</span></button>
+    <button class="mode m-daily wide" type="button" id="cLikely"><span class="mi">${icon('scale')}</span><div><b>Who's more likely to…</b><span class="d">Vote in secret, then see if you agree. 10 prompts.</span></div><span class="go">${icon('chev')}</span></button>
+    <button class="mode m-us wide" type="button" id="cUs"><span class="mi">${icon('pen')}</span><div><b>Quiz about us</b><span class="d">Write questions about your story and race to answer.</span></div><span class="go">${S.us.length} Qs${icon('chev','sm')}</span></button>
     <div class="statg"><div class="st">Best read<b>${pk.bestKnow}%</b></div><div class="st">Best sync<b>${pk.bestLikely}%</b></div><div class="st">Played<b>${pk.played}</b></div></div>
   </div>`;
   const need = fn => () => { if (!S.me.name || !S.partner.name){ askNames(fn); return; } fn(); };
@@ -801,8 +864,8 @@ function startLikely(){
 }
 const who = k => k ? 'partner' : 'me';
 function cover(name, color, line, btn, then){
-  const el = $('ccover'); el.style.setProperty('--c', color); el.hidden = false; $('cplay').hidden = true;
-  el.innerHTML = `<div class="in">${avatar(name, color, 'l')}<h2>${esc(name)}'s turn</h2><p class="lede">${line}</p><button class="cta solid" style="--c:${color}" type="button" id="cvGo">${btn}</button><button class="btn" type="button" id="cvQuit" style="width:auto;padding:10px 16px">Quit game</button></div>`;
+  const el = $('ccover'); el.style.setProperty('--c', safeColor(color)); el.hidden = false; $('cplay').hidden = true;
+  el.innerHTML = `<div class="in">${avatar(name, color, 'l')}<h2>${esc(name)}'s turn</h2><p class="lede">${line}</p><button class="cta" style="--c:${safeColor(color)}" type="button" id="cvGo">${btn}</button><button class="btn ghost" type="button" id="cvQuit">Quit game</button></div>`;
   $('cvGo').onclick = () => { SFX.tap(); el.hidden = true; then(); };
   $('cvQuit').onclick = () => { el.hidden = true; $('cplay').hidden = true; C = null; go('couple'); };
 }
@@ -848,7 +911,7 @@ function likelyStep(step){
     if (same) C.agree++;
     C.log.push({p, a, b});
     const el = cplay(`<div class="who" style="color:var(--gold)">Reveal · ${counter}</div><div class="qq">Who's more likely to ${esc(p)}?</div>
-      <div class="vote">${[0,1].map(k => { const v = C.votes[k]; return `<div style="border-radius:20px;padding:16px 8px;display:grid;justify-items:center;gap:8px;background:var(--bg2);border:2px solid ${S[who(v)].color}"><span class="small">${esc(nameOf(who(k)))} said</span>${avatar(nameOf(who(v)), S[who(v)].color, 'l')}<b>${esc(nameOf(who(v)))}</b></div>`; }).join('')}</div>
+      <div class="vote">${[0,1].map(k => { const v = C.votes[k]; return `<div class="vc" style="border-color:${S[who(v)].color}"><span class="small">${esc(nameOf(who(k)))} said</span>${avatar(nameOf(who(v)), S[who(v)].color, 'l')}<b>${esc(nameOf(who(v)))}</b></div>`; }).join('')}</div>
       <p class="lede" style="text-align:center;font-weight:700;color:${same ? 'var(--good)' : 'var(--gold)'}">${same ? `You agree, it's ${esc(nameOf(who(a)))}!` : 'You disagree! Time to argue it out.'}</p>
       <button class="cta" type="button" id="lNext">${C.i + 1 < C.items.length ? 'Next' : 'See results'}</button>`);
     same ? (SFX.right(), confetti(40)) : tone(300, 0.2, 'triangle', 0.06, 1.4);
@@ -875,7 +938,7 @@ function coupleResults(){
   S.couple.played++;
   const nb = checkBadges(); save();
   $('coupleRes').innerHTML = `<div class="col"><p class="small" style="text-align:center">${C.type === 'know' ? 'How well do you know me?' : "Who's more likely"}</p>
-    <div class="big-pct">${pct}%</div><h1 class="winner" style="font-size:28px">${title}</h1>${body}${badgeHtml(nb)}
+    <div class="big-pct">${pct}%</div><h1 class="winner">${title}</h1>${body}${badgeHtml(nb)}
     <button class="cta" type="button" id="crAgain">Play again</button><button class="btn" type="button" data-go="couple">Couple corner</button></div>`;
   go('coupleRes');
   if (pct >= 50){ confetti(140, ['#ff8fa3','#c77dff','#ffc53d']); SFX.win(); }
@@ -886,11 +949,11 @@ function coupleResults(){
 /* ================= us editor ================= */
 function renderUs(){
   $('us').innerHTML = `<div class="col">
-    <div class="top"><button class="btn" style="width:auto;padding:9px 12px" id="usBack">← Back</button><h1 class="logo" style="font-size:24px">Quiz about us</h1></div>
+    <div class="top"><button class="iconbtn" type="button" id="usBack" aria-label="Back">${icon('back')}</button><h1 class="title">Quiz about us</h1></div>
     <p class="lede">Write questions about your story. Put the real answer first, then three believable wrong ones. Play them as a duel, or send them to her as a link.</p>
     <form class="card stack" id="usForm" autocomplete="off">
       <div class="field">Question<input id="uq" maxlength="100" placeholder="Where did we have our first date?" required></div>
-      <div class="field">Right answer<input id="ua" maxlength="40" placeholder="That little café near college" required style="border-color:rgba(61,220,132,.6)"></div>
+      <div class="field">Right answer<input id="ua" class="ok" maxlength="40" placeholder="That little café near college" required></div>
       <div class="field">Wrong answers<input id="uw1" maxlength="40" placeholder="The movies" required><input id="uw2" maxlength="40" placeholder="A friend's party" required><input id="uw3" maxlength="40" placeholder="The beach" required></div>
       <button class="cta" type="submit">Add question</button>
     </form>
@@ -919,11 +982,11 @@ function renderMe(){
     <div class="field">${whoK === 'me' ? 'Your name' : 'Partner name'}<input data-name="${whoK}" maxlength="14" autocomplete="off" value="${esc(S[whoK].name)}" placeholder="${whoK === 'me' ? 'Your name' : 'Her name'}"></div>
     <div class="colors">${COLORS.map(c => `<button type="button" style="--c:${c}" data-col="${whoK}" data-c="${c}" aria-pressed="${S[whoK].color === c}" aria-label="Colour"></button>`).join('')}</div></div>`;
   $('me').innerHTML = `<div class="col">
-    <div class="top"><h1 class="logo" style="font-size:28px">Profiles</h1></div>
+    <div class="top"><h1 class="title">Profiles</h1></div>
     ${prof('me')}${prof('partner')}
     <div class="h">Your stats</div>
     <div class="statg"><div class="st">Played<b>${st.played}</b></div><div class="st">Won<b>${st.won}</b></div><div class="st">Accuracy<b>${acc}%</b></div><div class="st">Best streak<b>${st.best}</b></div><div class="st">Perfect<b>${st.perfect}</b></div><div class="st">Level<b>${lm}</b></div></div>
-    ${topTopics.length ? `<div class="h">Top topics</div><div class="card lvls">${topTopics.map(x => { const T = TOPICS[x.id]; return `<div class="lvrow"><span class="av s" style="--c:${T.c}">${T.ic}</span><div><div class="meta"><b>${esc(T.name)}</b><span>Lv ${x.L.lv} · ${titleFor(x.L.lv, TOPIC_TITLES)}</span></div><div class="xpbar" style="--c:${T.c}"><i style="width:${Math.round(x.L.into / x.L.need * 100)}%"></i></div></div></div>`; }).join('')}</div>` : ''}
+    ${topTopics.length ? `<div class="h">Top topics</div><div class="card lvls">${topTopics.map(x => { const T = TOPICS[x.id]; return `<div class="lvrow"><span class="tic" style="--c:${T.c}">${T.ic}</span><div><div class="meta"><b>${esc(T.name)}</b><span>Lv ${x.L.lv} · ${titleFor(x.L.lv, TOPIC_TITLES)}</span></div><div class="xpbar" style="--c:${T.c}"><i style="width:${Math.round(x.L.into / x.L.need * 100)}%"></i></div></div></div>`; }).join('')}</div>` : ''}
     <div class="h">Badges · ${S.badges.length}/${BADGES.length}</div>
     <div class="bgrid">${BADGES.map(b => `<div class="bd ${S.badges.includes(b[0]) ? 'on' : ''}"><span class="bi">${b[3]}</span><b>${esc(b[1])}</b>${esc(b[2])}</div>`).join('')}</div>
     <div class="h">Settings</div>
@@ -936,8 +999,8 @@ function renderMe(){
       <div class="seg">${['Easy','Normal','Hard'].map((n, i) => `<button type="button" data-set="botLevel" data-v="${i}" aria-pressed="${S.settings.botLevel === i}">${n}</button>`).join('')}</div>
       <div class="seg"><button type="button" data-set="sound" data-v="t" aria-pressed="${S.settings.sound}">Sound ${S.settings.sound ? 'on' : 'off'}</button><button type="button" data-set="vib" data-v="t" aria-pressed="${S.settings.vib}">Vibration ${S.settings.vib ? 'on' : 'off'}</button></div>
     </div>
-    <button class="btn" type="button" data-go="history">Match history</button>
-    <button class="btn" type="button" id="resetBtn" style="color:var(--bad)">Reset all progress</button>
+    <button class="btn" type="button" data-go="history">${icon('history','sm')}Match history</button>
+    <button class="btn danger ghost" type="button" id="resetBtn">Reset all progress</button>
     <p class="small" style="text-align:center">Two Minds keeps everything on this phone. Inspired by the head-to-head trivia games we miss.</p>
   </div>`;
   $('me').querySelectorAll('[data-name]').forEach(i => i.onchange = () => {
@@ -962,21 +1025,22 @@ function renderMe(){
 /* ================= names prompt ================= */
 function askNames(then){
   const md = $('modal'); md.hidden = false;
-  md.innerHTML = `<div class="sheet"><h3>Who's playing?</h3><p class="small">Names show on the scoreboard. You can change them later in Profiles.</p>
+  md.innerHTML = `<div class="sheet"><span class="grab"></span><h3>Who's playing?</h3><p class="small">Names show on the scoreboard. You can change them later in Profiles.</p>
     <div class="field">You (this phone)<input id="mdMe" maxlength="14" autocomplete="off" value="${esc(S.me.name)}" placeholder="Your name"></div>
     <div class="field">Your partner<input id="mdPa" maxlength="14" autocomplete="off" value="${esc(S.partner.name)}" placeholder="Her name"></div>
-    <button class="cta" type="button" id="mdGo">Let's play</button><button class="btn" type="button" id="mdX">Cancel</button></div>`;
+    <button class="cta" type="button" id="mdGo">Let's play</button><button class="btn ghost" type="button" id="mdX">Later</button></div>`;
   $('mdGo').onclick = () => {
     const a = $('mdMe').value.trim(), b = $('mdPa').value.trim();
     if (!a || !b){ toast('Type both names'); return; }
     if (a.toLowerCase() === b.toLowerCase()){ toast('Pick two different names'); return; }
-    S.me.name = a; S.partner.name = b; S.onboarded = true; save(); md.hidden = true; then && then();
+    S.me.name = a; S.partner.name = b; S.onboarded = true; save(); md.hidden = true; if (then) then(); else go(current, {keepScroll:true});
   };
   $('mdX').onclick = () => { md.hidden = true; };
   setTimeout(() => (S.me.name ? $('mdPa') : $('mdMe')).focus(), 50);
 }
 
 /* ================= boot ================= */
+document.querySelectorAll('.tab').forEach(t => { const k = {home:'home', topics:'grid', couple:'heart', me:'user'}[t.dataset.go]; const ti = t.querySelector('.ti'); if (ti && k) ti.outerHTML = icon(k); });
 document.addEventListener('visibilitychange', () => { if (document.hidden && M){ /* timers keep real time; nothing to pause in a live duel */ } });
 if (!handleHash()){
   go('home');
