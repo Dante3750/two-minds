@@ -1,0 +1,402 @@
+[
+ {
+  "q": "How many sides does a hexagon have?",
+  "a": "6",
+  "w": [
+   "5",
+   "7",
+   "8"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many legs does an insect have?",
+  "a": "6",
+  "w": [
+   "4",
+   "8",
+   "10"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many days are there in a leap year?",
+  "a": "366",
+  "w": [
+   "365",
+   "364",
+   "367"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who painted the Mona Lisa?",
+  "a": "Leonardo da Vinci",
+  "w": [
+   "Michelangelo",
+   "Raphael",
+   "Vincent van Gogh"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the largest country in the world by area?",
+  "a": "Russia",
+  "w": [
+   "Canada",
+   "China",
+   "USA"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many colours are there in a rainbow?",
+  "a": "7",
+  "w": [
+   "6",
+   "8",
+   "5"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the smallest prime number?",
+  "a": "2",
+  "w": [
+   "1",
+   "3",
+   "0"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which colour do you get by mixing blue and yellow?",
+  "a": "Green",
+  "w": [
+   "Purple",
+   "Orange",
+   "Brown"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many zeros are there in one million?",
+  "a": "6",
+  "w": [
+   "5",
+   "7",
+   "9"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which famous detective lives at 221B Baker Street?",
+  "a": "Sherlock Holmes",
+  "w": [
+   "Hercule Poirot",
+   "Miss Marple",
+   "Byomkesh Bakshi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who wrote the Harry Potter books?",
+  "a": "J. K. Rowling",
+  "w": [
+   "Roald Dahl",
+   "Enid Blyton",
+   "C. S. Lewis"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who wrote the play 'Romeo and Juliet'?",
+  "a": "William Shakespeare",
+  "w": [
+   "Charles Dickens",
+   "Jane Austen",
+   "Mark Twain"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the main language spoken in Brazil?",
+  "a": "Portuguese",
+  "w": [
+   "Spanish",
+   "French",
+   "Italian"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In the commonly taught model, how many continents are there?",
+  "a": "7",
+  "w": [
+   "5",
+   "6",
+   "8"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many years are there in a century?",
+  "a": "100",
+  "w": [
+   "10",
+   "50",
+   "1000"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many minutes are there in one day?",
+  "a": "1440",
+  "w": [
+   "1240",
+   "1340",
+   "1540"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was granted the first patent for the telephone in 1876?",
+  "a": "Alexander Graham Bell",
+  "w": [
+   "Thomas Edison",
+   "Nikola Tesla",
+   "Guglielmo Marconi"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who wrote the novel 'War and Peace'?",
+  "a": "Leo Tolstoy",
+  "w": [
+   "Fyodor Dostoevsky",
+   "Anton Chekhov",
+   "Ivan Turgenev"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Indian city is known as the 'Pink City'?",
+  "a": "Jaipur",
+  "w": [
+   "Jodhpur",
+   "Udaipur",
+   "Bikaner"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who painted 'The Starry Night'?",
+  "a": "Vincent van Gogh",
+  "w": [
+   "Claude Monet",
+   "Pablo Picasso",
+   "Salvador Dali"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the currency of the United Kingdom?",
+  "a": "Pound sterling",
+  "w": [
+   "Euro",
+   "Dollar",
+   "Franc"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the currency of Japan?",
+  "a": "Yen",
+  "w": [
+   "Won",
+   "Yuan",
+   "Ringgit"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many pieces does each player start with in chess?",
+  "a": "16",
+  "w": [
+   "12",
+   "14",
+   "18"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Greek letter stands for a circle's circumference-to-diameter ratio?",
+  "a": "Pi",
+  "w": [
+   "Theta",
+   "Sigma",
+   "Delta"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many strings does a standard violin have?",
+  "a": "4",
+  "w": [
+   "5",
+   "6",
+   "3"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who painted the ceiling of the Sistine Chapel?",
+  "a": "Michelangelo",
+  "w": [
+   "Raphael",
+   "Leonardo da Vinci",
+   "Botticelli"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Water freezes at how many degrees Fahrenheit?",
+  "a": "32",
+  "w": [
+   "0",
+   "12",
+   "40"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country gifted the Statue of Liberty to the USA?",
+  "a": "France",
+  "w": [
+   "United Kingdom",
+   "Spain",
+   "Netherlands"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which country did the ancient Olympic Games originate?",
+  "a": "Greece",
+  "w": [
+   "Italy",
+   "Egypt",
+   "Turkey"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a word that reads the same backward and forward, like 'level'?",
+  "a": "Palindrome",
+  "w": [
+   "Anagram",
+   "Homophone",
+   "Oxymoron"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the fear of cats called?",
+  "a": "Ailurophobia",
+  "w": [
+   "Arachnophobia",
+   "Cynophobia",
+   "Ophidiophobia"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What does the acronym SONAR stand for?",
+  "a": "Sound Navigation and Ranging",
+  "w": [
+   "Sonic Navigation and Radar",
+   "Sound Network and Radar",
+   "Signal Orientation and Ranging"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the fear of heights called?",
+  "a": "Acrophobia",
+  "w": [
+   "Agoraphobia",
+   "Claustrophobia",
+   "Hydrophobia"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who painted 'Guernica'?",
+  "a": "Pablo Picasso",
+  "w": [
+   "Joan Miro",
+   "Salvador Dali",
+   "Francisco Goya"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who composed the piano piece 'Fur Elise'?",
+  "a": "Ludwig van Beethoven",
+  "w": [
+   "Wolfgang Amadeus Mozart",
+   "Johann Sebastian Bach",
+   "Frederic Chopin"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which element has the chemical symbol K?",
+  "a": "Potassium",
+  "w": [
+   "Krypton",
+   "Calcium",
+   "Phosphorus"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What does the Mohs scale measure?",
+  "a": "Mineral hardness",
+  "w": [
+   "Earthquake intensity",
+   "Wind speed",
+   "Acidity"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the largest gland in the human body?",
+  "a": "Liver",
+  "w": [
+   "Pancreas",
+   "Thyroid",
+   "Pituitary"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the SI unit of electrical resistance?",
+  "a": "Ohm",
+  "w": [
+   "Volt",
+   "Ampere",
+   "Watt"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who wrote the epic poem 'Paradise Lost'?",
+  "a": "John Milton",
+  "w": [
+   "John Keats",
+   "William Wordsworth",
+   "Geoffrey Chaucer"
+  ],
+  "d": 3
+ }
+]

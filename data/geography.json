@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Which is the longest river in Africa?",
+  "a": "Nile",
+  "w": [
+   "Congo",
+   "Niger",
+   "Zambezi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the largest ocean on Earth?",
+  "a": "Pacific Ocean",
+  "w": [
+   "Atlantic Ocean",
+   "Indian Ocean",
+   "Arctic Ocean"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the largest hot desert in the world?",
+  "a": "Sahara",
+  "w": [
+   "Gobi",
+   "Kalahari",
+   "Thar"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the highest mountain above sea level?",
+  "a": "Mount Everest",
+  "w": [
+   "K2",
+   "Kangchenjunga",
+   "Lhotse"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which country is the Eiffel Tower?",
+  "a": "France",
+  "w": [
+   "Italy",
+   "Belgium",
+   "Spain"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The Pyramids of Giza are in which country?",
+  "a": "Egypt",
+  "w": [
+   "Sudan",
+   "Libya",
+   "Jordan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "On which continent is Brazil?",
+  "a": "South America",
+  "w": [
+   "Africa",
+   "North America",
+   "Europe"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which city is the Statue of Liberty?",
+  "a": "New York",
+  "w": [
+   "Boston",
+   "Washington DC",
+   "Philadelphia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The Great Barrier Reef lies off the coast of which country?",
+  "a": "Australia",
+  "w": [
+   "Indonesia",
+   "Philippines",
+   "New Zealand"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Machu Picchu, the Inca citadel, is in which country?",
+  "a": "Peru",
+  "w": [
+   "Bolivia",
+   "Chile",
+   "Ecuador"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which ocean lies between Africa and Australia?",
+  "a": "Indian Ocean",
+  "w": [
+   "Pacific Ocean",
+   "Atlantic Ocean",
+   "Arctic Ocean"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which city is the Colosseum?",
+  "a": "Rome",
+  "w": [
+   "Athens",
+   "Florence",
+   "Naples"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the largest continent by area?",
+  "a": "Asia",
+  "w": [
+   "Africa",
+   "North America",
+   "Europe"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Most of the Amazon rainforest lies in which country?",
+  "a": "Brazil",
+  "w": [
+   "Peru",
+   "Colombia",
+   "Venezuela"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which river flows through London?",
+  "a": "Thames",
+  "w": [
+   "Seine",
+   "Severn",
+   "Danube"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Mount Kilimanjaro is in which country?",
+  "a": "Tanzania",
+  "w": [
+   "Kenya",
+   "Uganda",
+   "Ethiopia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which river flows through Baghdad?",
+  "a": "Tigris",
+  "w": [
+   "Euphrates",
+   "Jordan",
+   "Nile"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The famous Angel Falls is in which country?",
+  "a": "Venezuela",
+  "w": [
+   "Brazil",
+   "Guyana",
+   "Colombia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Petra, the ancient city carved into rock, is in which country?",
+  "a": "Jordan",
+  "w": [
+   "Egypt",
+   "Saudi Arabia",
+   "Syria"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which strait separates Spain from Morocco?",
+  "a": "Strait of Gibraltar",
+  "w": [
+   "Bosphorus",
+   "Strait of Hormuz",
+   "Strait of Messina"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Lake Titicaca lies on the border of Peru and which country?",
+  "a": "Bolivia",
+  "w": [
+   "Chile",
+   "Ecuador",
+   "Argentina"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which mountain range in Russia is a traditional Europe-Asia boundary?",
+  "a": "Ural Mountains",
+  "w": [
+   "Altai Mountains",
+   "Carpathians",
+   "Pyrenees"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which river flows through Vienna, Budapest and Belgrade?",
+  "a": "Danube",
+  "w": [
+   "Rhine",
+   "Elbe",
+   "Vistula"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the deepest lake in the world?",
+  "a": "Lake Baikal",
+  "w": [
+   "Lake Tanganyika",
+   "Lake Superior",
+   "Lake Victoria"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Iguazu Falls lie on the border of Argentina and which country?",
+  "a": "Brazil",
+  "w": [
+   "Bolivia",
+   "Uruguay",
+   "Chile"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The lowest land point on Earth is on the shore of which water body?",
+  "a": "Dead Sea",
+  "w": [
+   "Red Sea",
+   "Caspian Sea",
+   "Sea of Galilee"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Table Mountain overlooks a city in which country?",
+  "a": "South Africa",
+  "w": [
+   "Namibia",
+   "Kenya",
+   "Botswana"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Victoria Falls is on which river?",
+  "a": "Zambezi",
+  "w": [
+   "Limpopo",
+   "Congo",
+   "Orange"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the largest island in the world, not counting Australia?",
+  "a": "Greenland",
+  "w": [
+   "New Guinea",
+   "Borneo",
+   "Madagascar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Mariana Trench, the deepest ocean trench, is in which ocean?",
+  "a": "Pacific Ocean",
+  "w": [
+   "Atlantic Ocean",
+   "Indian Ocean",
+   "Southern Ocean"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the second-highest mountain in the world?",
+  "a": "K2",
+  "w": [
+   "Kangchenjunga",
+   "Lhotse",
+   "Makalu"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which is the longest river in Europe?",
+  "a": "Volga",
+  "w": [
+   "Danube",
+   "Dnieper",
+   "Rhine"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which strait separates Asia from North America?",
+  "a": "Bering Strait",
+  "w": [
+   "Davis Strait",
+   "Strait of Magellan",
+   "Torres Strait"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Mount Kosciuszko is the highest peak of which country?",
+  "a": "Australia",
+  "w": [
+   "New Zealand",
+   "Poland",
+   "Papua New Guinea"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country is completely surrounded by South Africa?",
+  "a": "Lesotho",
+  "w": [
+   "Eswatini",
+   "Botswana",
+   "Malawi"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the highest mountain in South America?",
+  "a": "Aconcagua",
+  "w": [
+   "Chimborazo",
+   "Huascaran",
+   "Cotopaxi"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Mekong River flows into the sea in which country?",
+  "a": "Vietnam",
+  "w": [
+   "Cambodia",
+   "Thailand",
+   "Myanmar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which desert covers much of Botswana?",
+  "a": "Kalahari",
+  "w": [
+   "Namib",
+   "Karoo",
+   "Danakil"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Atlas Mountains run through Morocco, Tunisia and which country?",
+  "a": "Algeria",
+  "w": [
+   "Libya",
+   "Egypt",
+   "Mauritania"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The volcano Chimborazo is in which country?",
+  "a": "Ecuador",
+  "w": [
+   "Peru",
+   "Bolivia",
+   "Colombia"
+  ],
+  "d": 3
+ }
+]

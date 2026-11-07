@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is the name of Mario's brother?",
+  "a": "Luigi",
+  "w": [
+   "Wario",
+   "Toad",
+   "Yoshi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What colour is Sonic the Hedgehog?",
+  "a": "Blue",
+  "w": [
+   "Red",
+   "Green",
+   "Yellow"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which company makes the PlayStation?",
+  "a": "Sony",
+  "w": [
+   "Nintendo",
+   "Microsoft",
+   "Sega"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which company makes the Xbox?",
+  "a": "Microsoft",
+  "w": [
+   "Sony",
+   "Nintendo",
+   "Sega"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Minecraft, which green creature sneaks up and explodes?",
+  "a": "Creeper",
+  "w": [
+   "Zombie",
+   "Enderman",
+   "Skeleton"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Angry Birds, the birds are launched at which animals?",
+  "a": "Pigs",
+  "w": [
+   "Cats",
+   "Wolves",
+   "Snakes"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of Mario's green dinosaur friend?",
+  "a": "Yoshi",
+  "w": [
+   "Bowser",
+   "Toad",
+   "Kirby"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What type of Pokemon is Pikachu?",
+  "a": "Electric",
+  "w": [
+   "Fire",
+   "Water",
+   "Grass"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Temple Run, what chases the explorer?",
+  "a": "Demon monkeys",
+  "w": [
+   "Giant spiders",
+   "Angry bees",
+   "Stone golems"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who is the spiky turtle king and Mario's arch-enemy?",
+  "a": "Bowser",
+  "w": [
+   "Wario",
+   "Ganon",
+   "Eggman"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Lara Croft is the hero of which game series?",
+  "a": "Tomb Raider",
+  "w": [
+   "Uncharted",
+   "Resident Evil",
+   "Prince of Persia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Among Us, the hidden saboteurs are called what?",
+  "a": "Impostors",
+  "w": [
+   "Traitors",
+   "Spies",
+   "Mimics"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of Minecraft's classic default male character?",
+  "a": "Steve",
+  "w": [
+   "Alex",
+   "Herobrine",
+   "Notch"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Subway Surfers, who chases the runner along the tracks?",
+  "a": "Inspector and his dog",
+  "w": [
+   "A police helicopter",
+   "A pack of wolves",
+   "A giant robot"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which 2017 Nintendo console works on a TV and as a handheld?",
+  "a": "Nintendo Switch",
+  "w": [
+   "Wii U",
+   "Nintendo 3DS",
+   "GameCube"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Tetris was first created in 1984 in which country?",
+  "a": "Soviet Union",
+  "w": [
+   "Japan",
+   "USA",
+   "UK"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Pac-Man ghost is red?",
+  "a": "Blinky",
+  "w": [
+   "Pinky",
+   "Inky",
+   "Clyde"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Master Chief is the hero of which franchise?",
+  "a": "Halo",
+  "w": [
+   "Gears of War",
+   "Doom",
+   "Destiny"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Kratos is the hero of which game series?",
+  "a": "God of War",
+  "w": [
+   "Devil May Cry",
+   "Dark Souls",
+   "Assassin's Creed"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company makes the Grand Theft Auto series?",
+  "a": "Rockstar Games",
+  "w": [
+   "Ubisoft",
+   "Electronic Arts",
+   "Activision"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company bought Minecraft's maker Mojang in 2014?",
+  "a": "Microsoft",
+  "w": [
+   "Sony",
+   "Google",
+   "Nintendo"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does the game name BGMI stand for?",
+  "a": "Battlegrounds Mobile India",
+  "w": [
+   "Battle Games Mobile India",
+   "Battlegrounds Multiplayer India",
+   "Battle Ground Mission India"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company publishes the mobile game Free Fire?",
+  "a": "Garena",
+  "w": [
+   "Tencent",
+   "Krafton",
+   "Supercell"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Finnish company made Clash of Clans?",
+  "a": "Supercell",
+  "w": [
+   "Rovio",
+   "King",
+   "Zynga"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company makes Candy Crush Saga?",
+  "a": "King",
+  "w": [
+   "Zynga",
+   "Rovio",
+   "Supercell"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the Fire-type starter in Pokemon Red and Blue?",
+  "a": "Charmander",
+  "w": [
+   "Bulbasaur",
+   "Squirtle",
+   "Pikachu"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company developed Fortnite?",
+  "a": "Epic Games",
+  "w": [
+   "Valve",
+   "Blizzard",
+   "Riot Games"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Japanese company released Pac-Man in 1980?",
+  "a": "Namco",
+  "w": [
+   "Atari",
+   "Sega",
+   "Nintendo"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In The Legend of Zelda, what is the kingdom called?",
+  "a": "Hyrule",
+  "w": [
+   "Mushroom Kingdom",
+   "Tamriel",
+   "Midgar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who is the monster-hunting hero of The Witcher games?",
+  "a": "Geralt",
+  "w": [
+   "Ezio",
+   "Arthur",
+   "Kratos"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What was Mario called in his 1981 Donkey Kong debut?",
+  "a": "Jumpman",
+  "w": [
+   "Plumber Man",
+   "Mustache Man",
+   "Super Guy"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which designer created Mario and The Legend of Zelda?",
+  "a": "Shigeru Miyamoto",
+  "w": [
+   "Hideo Kojima",
+   "Satoru Iwata",
+   "Yuji Naka"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which game designer created the Metal Gear series?",
+  "a": "Hideo Kojima",
+  "w": [
+   "Shigeru Miyamoto",
+   "Hironobu Sakaguchi",
+   "Yu Suzuki"
+  ],
+  "d": 3
+ },
+ {
+  "q": "When Nintendo began in 1889, what did it make?",
+  "a": "Playing cards",
+  "w": [
+   "Toys",
+   "Radios",
+   "Bicycles"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which company released Space Invaders in 1978?",
+  "a": "Taito",
+  "w": [
+   "Atari",
+   "Namco",
+   "Konami"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which studio originally developed Halo?",
+  "a": "Bungie",
+  "w": [
+   "343 Industries",
+   "Valve",
+   "id Software"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who is the main hero of Red Dead Redemption 2?",
+  "a": "Arthur Morgan",
+  "w": [
+   "John Marston",
+   "Dutch van der Linde",
+   "Micah Bell"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which game designer created The Sims?",
+  "a": "Will Wright",
+  "w": [
+   "Sid Meier",
+   "Peter Molyneux",
+   "John Romero"
+  ],
+  "d": 3
+ },
+ {
+  "q": "GTA: Vice City's setting is based on which real city?",
+  "a": "Miami",
+  "w": [
+   "Los Angeles",
+   "New York",
+   "Las Vegas"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Mortal Kombat fighter shouts 'Get over here!'?",
+  "a": "Scorpion",
+  "w": [
+   "Sub-Zero",
+   "Raiden",
+   "Liu Kang"
+  ],
+  "d": 3
+ }
+]

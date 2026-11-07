@@ -1,0 +1,402 @@
+[
+ {
+  "q": "In which city is the Taj Mahal?",
+  "a": "Agra",
+  "w": [
+   "Delhi",
+   "Jaipur",
+   "Lucknow"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the national animal of India?",
+  "a": "Bengal tiger",
+  "w": [
+   "Asiatic lion",
+   "Indian elephant",
+   "Snow leopard"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the national bird of India?",
+  "a": "Indian peafowl",
+  "w": [
+   "Sarus crane",
+   "Indian roller",
+   "Common myna"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which festival is known as the festival of lights?",
+  "a": "Diwali",
+  "w": [
+   "Holi",
+   "Navratri",
+   "Onam"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Kerala?",
+  "a": "Thiruvananthapuram",
+  "w": [
+   "Kochi",
+   "Kozhikode",
+   "Thrissur"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who wrote India's national anthem, Jana Gana Mana?",
+  "a": "Rabindranath Tagore",
+  "w": [
+   "Bankim Chandra Chatterjee",
+   "Sarojini Naidu",
+   "Subramania Bharati"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which festival is known as the festival of colours?",
+  "a": "Holi",
+  "w": [
+   "Diwali",
+   "Pongal",
+   "Baisakhi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which city is the Gateway of India?",
+  "a": "Mumbai",
+  "w": [
+   "Delhi",
+   "Kolkata",
+   "Chennai"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who is called the Father of the Nation in India?",
+  "a": "Mahatma Gandhi",
+  "w": [
+   "Jawaharlal Nehru",
+   "Sardar Patel",
+   "B. R. Ambedkar"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which city is India Gate?",
+  "a": "New Delhi",
+  "w": [
+   "Mumbai",
+   "Kolkata",
+   "Chennai"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Rajasthan?",
+  "a": "Jaipur",
+  "w": [
+   "Jodhpur",
+   "Udaipur",
+   "Jaisalmer"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which river flows past the ghats of Varanasi?",
+  "a": "Ganga",
+  "w": [
+   "Yamuna",
+   "Godavari",
+   "Narmada"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Tamil Nadu?",
+  "a": "Chennai",
+  "w": [
+   "Madurai",
+   "Coimbatore",
+   "Tiruchirappalli"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Onam is the harvest festival of which state?",
+  "a": "Kerala",
+  "w": [
+   "Karnataka",
+   "Tamil Nadu",
+   "Goa"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which city is the Charminar?",
+  "a": "Hyderabad",
+  "w": [
+   "Lucknow",
+   "Bhopal",
+   "Ahmedabad"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many spokes does the Ashoka Chakra on India's flag have?",
+  "a": "24",
+  "w": [
+   "12",
+   "16",
+   "32"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who wrote the national song Vande Mataram?",
+  "a": "Bankim Chandra Chatterjee",
+  "w": [
+   "Rabindranath Tagore",
+   "Muhammad Iqbal",
+   "Subramania Bharati"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Arunachal Pradesh?",
+  "a": "Itanagar",
+  "w": [
+   "Shillong",
+   "Kohima",
+   "Aizawl"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Konark Sun Temple is in which state?",
+  "a": "Odisha",
+  "w": [
+   "West Bengal",
+   "Andhra Pradesh",
+   "Madhya Pradesh"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Khajuraho group of temples is in which state?",
+  "a": "Madhya Pradesh",
+  "w": [
+   "Uttar Pradesh",
+   "Rajasthan",
+   "Chhattisgarh"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Hornbill Festival is held in which state?",
+  "a": "Nagaland",
+  "w": [
+   "Manipur",
+   "Mizoram",
+   "Meghalaya"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Bihu is the main festival of which state?",
+  "a": "Assam",
+  "w": [
+   "Bihar",
+   "Odisha",
+   "Tripura"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Kuchipudi dance form comes from which state?",
+  "a": "Andhra Pradesh",
+  "w": [
+   "Tamil Nadu",
+   "Karnataka",
+   "Odisha"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who is popularly known as the Missile Man of India?",
+  "a": "A. P. J. Abdul Kalam",
+  "w": [
+   "Vikram Sarabhai",
+   "Homi Bhabha",
+   "C. V. Raman"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Victoria Memorial is in which city?",
+  "a": "Kolkata",
+  "w": [
+   "Mumbai",
+   "Chennai",
+   "Delhi"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which city is the Qutub Minar?",
+  "a": "Delhi",
+  "w": [
+   "Agra",
+   "Lucknow",
+   "Hyderabad"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Golden Temple (Harmandir Sahib) is in which city?",
+  "a": "Amritsar",
+  "w": [
+   "Ludhiana",
+   "Patiala",
+   "Jalandhar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Meenakshi Amman Temple is in which city?",
+  "a": "Madurai",
+  "w": [
+   "Thanjavur",
+   "Kanchipuram",
+   "Rameswaram"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is India's national aquatic animal?",
+  "a": "Ganges river dolphin",
+  "w": [
+   "Olive ridley turtle",
+   "Mahseer fish",
+   "Dugong"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Indian part of the Sundarbans is in which state?",
+  "a": "West Bengal",
+  "w": [
+   "Odisha",
+   "Assam",
+   "Jharkhand"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Ajanta and Ellora caves are in which state?",
+  "a": "Maharashtra",
+  "w": [
+   "Karnataka",
+   "Madhya Pradesh",
+   "Gujarat"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Hampi was the capital of which empire?",
+  "a": "Vijayanagara Empire",
+  "w": [
+   "Chola Empire",
+   "Maurya Empire",
+   "Mughal Empire"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the capital of Mizoram?",
+  "a": "Aizawl",
+  "w": [
+   "Imphal",
+   "Agartala",
+   "Kohima"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who is credited with designing India's national flag?",
+  "a": "Pingali Venkayya",
+  "w": [
+   "Bhikaiji Cama",
+   "Nandalal Bose",
+   "Abanindranath Tagore"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Mohiniyattam dance form comes from which state?",
+  "a": "Kerala",
+  "w": [
+   "Tamil Nadu",
+   "Odisha",
+   "Manipur"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Lingaraj Temple is in which city?",
+  "a": "Bhubaneswar",
+  "w": [
+   "Puri",
+   "Cuttack",
+   "Konark"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Loktak Lake, with its floating islands, is in which state?",
+  "a": "Manipur",
+  "w": [
+   "Mizoram",
+   "Assam",
+   "Tripura"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which ruler founded the city of Jaipur?",
+  "a": "Sawai Jai Singh II",
+  "w": [
+   "Maharana Pratap",
+   "Man Singh I",
+   "Prithviraj Chauhan"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who wrote the poem Saare Jahan Se Achha?",
+  "a": "Muhammad Iqbal",
+  "w": [
+   "Rabindranath Tagore",
+   "Faiz Ahmed Faiz",
+   "Mirza Ghalib"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Rann of Kutch is in which state?",
+  "a": "Gujarat",
+  "w": [
+   "Rajasthan",
+   "Maharashtra",
+   "Punjab"
+  ],
+  "d": 3
+ }
+]

@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is the chemical symbol for gold?",
+  "a": "Au",
+  "w": [
+   "Ag",
+   "Go",
+   "Gd"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the largest organ of the human body?",
+  "a": "Skin",
+  "w": [
+   "Liver",
+   "Brain",
+   "Lungs"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many bones does an adult human body have?",
+  "a": "206",
+  "w": [
+   "201",
+   "212",
+   "196"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which gas do plants absorb from the air for photosynthesis?",
+  "a": "Carbon dioxide",
+  "w": [
+   "Oxygen",
+   "Nitrogen",
+   "Hydrogen"
+  ],
+  "d": 1
+ },
+ {
+  "q": "At sea level, water boils at what temperature in Celsius?",
+  "a": "100 degrees",
+  "w": [
+   "90 degrees",
+   "110 degrees",
+   "120 degrees"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the chemical formula of water?",
+  "a": "H2O",
+  "w": [
+   "CO2",
+   "H2O2",
+   "HO2"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who gave the theory of relativity?",
+  "a": "Albert Einstein",
+  "w": [
+   "Isaac Newton",
+   "Niels Bohr",
+   "Galileo Galilei"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which organ pumps blood around the human body?",
+  "a": "Heart",
+  "w": [
+   "Liver",
+   "Kidney",
+   "Lungs"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which part of the cell is called its powerhouse?",
+  "a": "Mitochondria",
+  "w": [
+   "Nucleus",
+   "Ribosome",
+   "Golgi body"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the SI unit of electric current?",
+  "a": "Ampere",
+  "w": [
+   "Volt",
+   "Ohm",
+   "Watt"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the hardest naturally occurring substance?",
+  "a": "Diamond",
+  "w": [
+   "Quartz",
+   "Granite",
+   "Topaz"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which blood cells mainly fight infections?",
+  "a": "White blood cells",
+  "w": [
+   "Red blood cells",
+   "Platelets",
+   "Plasma"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which vitamin does our skin make when exposed to sunlight?",
+  "a": "Vitamin D",
+  "w": [
+   "Vitamin A",
+   "Vitamin C",
+   "Vitamin K"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which gas makes up most of Earth's atmosphere?",
+  "a": "Nitrogen",
+  "w": [
+   "Oxygen",
+   "Argon",
+   "Carbon dioxide"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who discovered penicillin in 1928?",
+  "a": "Alexander Fleming",
+  "w": [
+   "Louis Pasteur",
+   "Edward Jenner",
+   "Joseph Lister"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The chemical symbol Na stands for which element?",
+  "a": "Sodium",
+  "w": [
+   "Nitrogen",
+   "Neon",
+   "Nickel"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the smallest bone in the human body?",
+  "a": "Stapes",
+  "w": [
+   "Incus",
+   "Malleus",
+   "Lacrimal"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the pH of pure water at 25 degrees Celsius?",
+  "a": "7",
+  "w": [
+   "5",
+   "9",
+   "1"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Indian won the 1930 Nobel Prize in Physics for work on light scattering?",
+  "a": "C. V. Raman",
+  "w": [
+   "Homi Bhabha",
+   "S. N. Bose",
+   "J. C. Bose"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Roughly how fast does light travel in a vacuum?",
+  "a": "300,000 km per second",
+  "w": [
+   "30,000 km per second",
+   "3,000,000 km per second",
+   "150,000 km per second"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which element has atomic number 1?",
+  "a": "Hydrogen",
+  "w": [
+   "Helium",
+   "Lithium",
+   "Oxygen"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the SI unit of force?",
+  "a": "Newton",
+  "w": [
+   "Joule",
+   "Pascal",
+   "Watt"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which blood group is known as the universal donor?",
+  "a": "O negative",
+  "w": [
+   "AB positive",
+   "A negative",
+   "B positive"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who published the first widely accepted periodic table in 1869?",
+  "a": "Dmitri Mendeleev",
+  "w": [
+   "John Dalton",
+   "Antoine Lavoisier",
+   "Robert Boyle"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which organ produces insulin?",
+  "a": "Pancreas",
+  "w": [
+   "Liver",
+   "Kidney",
+   "Spleen"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which metal is a liquid at room temperature?",
+  "a": "Mercury",
+  "w": [
+   "Lead",
+   "Tin",
+   "Zinc"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many chromosomes does a normal human body cell have?",
+  "a": "46",
+  "w": [
+   "23",
+   "44",
+   "48"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which instrument measures atmospheric pressure?",
+  "a": "Barometer",
+  "w": [
+   "Hygrometer",
+   "Thermometer",
+   "Anemometer"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which gas is commonly known as laughing gas?",
+  "a": "Nitrous oxide",
+  "w": [
+   "Nitric oxide",
+   "Carbon monoxide",
+   "Methane"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the first woman to win a Nobel Prize?",
+  "a": "Marie Curie",
+  "w": [
+   "Rosalind Franklin",
+   "Lise Meitner",
+   "Dorothy Hodgkin"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the chemical symbol for tungsten?",
+  "a": "W",
+  "w": [
+   "Tu",
+   "Tn",
+   "Tg"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which part of the brain mainly controls balance and coordination?",
+  "a": "Cerebellum",
+  "w": [
+   "Medulla",
+   "Hypothalamus",
+   "Thalamus"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the most abundant element in Earth's crust?",
+  "a": "Oxygen",
+  "w": [
+   "Silicon",
+   "Aluminium",
+   "Iron"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who discovered the electron in 1897?",
+  "a": "J. J. Thomson",
+  "w": [
+   "Ernest Rutherford",
+   "James Chadwick",
+   "Niels Bohr"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who discovered the neutron in 1932?",
+  "a": "James Chadwick",
+  "w": [
+   "J. J. Thomson",
+   "Ernest Rutherford",
+   "Enrico Fermi"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the approximate value of Avogadro's number?",
+  "a": "6.022 x 10^23",
+  "w": [
+   "3.0 x 10^8",
+   "6.626 x 10^-34",
+   "1.6 x 10^-19"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Bosons are named after which Indian physicist?",
+  "a": "Satyendra Nath Bose",
+  "w": [
+   "C. V. Raman",
+   "Meghnad Saha",
+   "Homi Bhabha"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Deficiency of vitamin B1 (thiamine) causes which disease?",
+  "a": "Beriberi",
+  "w": [
+   "Pellagra",
+   "Scurvy",
+   "Rickets"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Indian-born scientist shared the 2009 Chemistry Nobel for ribosome work?",
+  "a": "Venkatraman Ramakrishnan",
+  "w": [
+   "Har Gobind Khorana",
+   "S. Chandrasekhar",
+   "C. N. R. Rao"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Absolute zero is equal to what temperature in Celsius?",
+  "a": "-273.15 degrees",
+  "w": [
+   "-100 degrees",
+   "-459.67 degrees",
+   "-373.15 degrees"
+  ],
+  "d": 3
+ }
+]

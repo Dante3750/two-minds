@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is the name of Simba's father in The Lion King?",
+  "a": "Mufasa",
+  "w": [
+   "Scar",
+   "Rafiki",
+   "Zazu"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of the cowboy doll in Toy Story?",
+  "a": "Woody",
+  "w": [
+   "Rex",
+   "Hamm",
+   "Slinky"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Frozen, what is the name of Elsa's younger sister?",
+  "a": "Anna",
+  "w": [
+   "Belle",
+   "Ariel",
+   "Moana"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is Iron Man's real name?",
+  "a": "Tony Stark",
+  "w": [
+   "Steve Rogers",
+   "Bruce Banner",
+   "Peter Parker"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which city does Batman protect?",
+  "a": "Gotham City",
+  "w": [
+   "Metropolis",
+   "Star City",
+   "Central City"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who directed Titanic (1997)?",
+  "a": "James Cameron",
+  "w": [
+   "Steven Spielberg",
+   "Ridley Scott",
+   "Ron Howard"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of Harry Potter's school of magic?",
+  "a": "Hogwarts",
+  "w": [
+   "Durmstrang",
+   "Beauxbatons",
+   "Ilvermorny"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Finding Nemo, what kind of fish is Nemo?",
+  "a": "Clownfish",
+  "w": [
+   "Blue tang",
+   "Angelfish",
+   "Pufferfish"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of Thor's hammer?",
+  "a": "Mjolnir",
+  "w": [
+   "Gungnir",
+   "Excalibur",
+   "Anduril"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who does Shrek marry?",
+  "a": "Princess Fiona",
+  "w": [
+   "Princess Aurora",
+   "Rapunzel",
+   "Princess Jasmine"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who directed Jurassic Park (1993)?",
+  "a": "Steven Spielberg",
+  "w": [
+   "James Cameron",
+   "George Lucas",
+   "Robert Zemeckis"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Star Wars, Darth Vader reveals he is Luke's what?",
+  "a": "Father",
+  "w": [
+   "Uncle",
+   "Brother",
+   "Old master"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is Superman's home planet?",
+  "a": "Krypton",
+  "w": [
+   "Daxam",
+   "Oa",
+   "Apokolips"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Pixar's Up, what lifts Carl's house into the sky?",
+  "a": "Balloons",
+  "w": [
+   "Kites",
+   "Umbrellas",
+   "Rockets"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of Aladdin's pet monkey?",
+  "a": "Abu",
+  "w": [
+   "Iago",
+   "Rajah",
+   "Pascal"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who voiced Woody in the Toy Story films?",
+  "a": "Tom Hanks",
+  "w": [
+   "Tim Allen",
+   "Billy Crystal",
+   "Robin Williams"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Robin Williams voiced which character in Aladdin (1992)?",
+  "a": "Genie",
+  "w": [
+   "Jafar",
+   "Iago",
+   "Sultan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the name of Black Panther's African nation?",
+  "a": "Wakanda",
+  "w": [
+   "Genovia",
+   "Latveria",
+   "Sokovia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Christopher Nolan film is about stealing ideas through dreams?",
+  "a": "Inception",
+  "w": [
+   "Interstellar",
+   "Tenet",
+   "Memento"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed The Godfather (1972)?",
+  "a": "Francis Ford Coppola",
+  "w": [
+   "Martin Scorsese",
+   "Brian De Palma",
+   "Sidney Lumet"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the name of the robot WALL-E falls in love with?",
+  "a": "EVE",
+  "w": [
+   "M-O",
+   "AUTO",
+   "BB-8"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Inside Out, which emotion is coloured blue?",
+  "a": "Sadness",
+  "w": [
+   "Fear",
+   "Disgust",
+   "Anger"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Pixar film takes a boy to the Land of the Dead in Mexico?",
+  "a": "Coco",
+  "w": [
+   "Encanto",
+   "Onward",
+   "Soul"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the name of the rat chef in Ratatouille?",
+  "a": "Remy",
+  "w": [
+   "Emile",
+   "Linguini",
+   "Gusteau"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many Infinity Stones does Thanos seek?",
+  "a": "Six",
+  "w": [
+   "Four",
+   "Five",
+   "Seven"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played the Joker in The Dark Knight (2008)?",
+  "a": "Heath Ledger",
+  "w": [
+   "Joaquin Phoenix",
+   "Jared Leto",
+   "Jack Nicholson"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What was Disney's first full-length animated feature film?",
+  "a": "Snow White and the Seven Dwarfs",
+  "w": [
+   "Pinocchio",
+   "Fantasia",
+   "Bambi"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed Psycho (1960)?",
+  "a": "Alfred Hitchcock",
+  "w": [
+   "Orson Welles",
+   "Stanley Kubrick",
+   "Billy Wilder"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who composed the film scores for Star Wars and Jaws?",
+  "a": "John Williams",
+  "w": [
+   "Hans Zimmer",
+   "Howard Shore",
+   "Danny Elfman"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The line 'Here's looking at you, kid' is from which film?",
+  "a": "Casablanca",
+  "w": [
+   "Gone with the Wind",
+   "Citizen Kane",
+   "The Maltese Falcon"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the famous dying word in Citizen Kane?",
+  "a": "Rosebud",
+  "w": [
+   "Xanadu",
+   "Daisy",
+   "Marigold"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which film won the first-ever Oscar for Best Animated Feature?",
+  "a": "Shrek",
+  "w": [
+   "Monsters, Inc.",
+   "Spirited Away",
+   "Finding Nemo"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Toy Story, the first fully computer-animated feature film, came out in which year?",
+  "a": "1995",
+  "w": [
+   "1993",
+   "1997",
+   "1999"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which 1928 short with synchronised sound made Mickey Mouse famous?",
+  "a": "Steamboat Willie",
+  "w": [
+   "The Skeleton Dance",
+   "Flowers and Trees",
+   "The Band Concert"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was The Wizard of Oz with Judy Garland released?",
+  "a": "1939",
+  "w": [
+   "1935",
+   "1942",
+   "1946"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the name of the computer in 2001: A Space Odyssey?",
+  "a": "HAL 9000",
+  "w": [
+   "Skynet",
+   "WOPR",
+   "MU-TH-UR"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who directed Parasite, the first non-English Best Picture winner?",
+  "a": "Bong Joon-ho",
+  "w": [
+   "Park Chan-wook",
+   "Kim Jee-woon",
+   "Hirokazu Kore-eda"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In Back to the Future, how many gigawatts does the time machine need?",
+  "a": "1.21",
+  "w": [
+   "2.21",
+   "1.12",
+   "12.1"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the name of Wonder Woman's home island?",
+  "a": "Themyscira",
+  "w": [
+   "Atlantis",
+   "Avalon",
+   "Krakoa"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Shawshank Redemption is based on a novella by which author?",
+  "a": "Stephen King",
+  "w": [
+   "John Grisham",
+   "Michael Crichton",
+   "Dean Koontz"
+  ],
+  "d": 3
+ }
+]

@@ -1,0 +1,402 @@
+[
+ {
+  "q": "How many players does each football team have on the pitch?",
+  "a": "11",
+  "w": [
+   "9",
+   "10",
+   "12"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In tennis, what word is used for a score of zero?",
+  "a": "Love",
+  "w": [
+   "Nil",
+   "Duck",
+   "Blank"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How often are the Summer Olympics normally held?",
+  "a": "Every 4 years",
+  "w": [
+   "Every 2 years",
+   "Every 3 years",
+   "Every 5 years"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many rings are on the Olympic flag?",
+  "a": "5",
+  "w": [
+   "4",
+   "6",
+   "7"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which chess piece moves in an L-shape?",
+  "a": "Knight",
+  "w": [
+   "Bishop",
+   "Rook",
+   "Queen"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Badminton is played with a racket and a what?",
+  "a": "Shuttlecock",
+  "w": [
+   "Puck",
+   "Ball",
+   "Disc"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many players per team are on a kabaddi court?",
+  "a": "7",
+  "w": [
+   "5",
+   "6",
+   "9"
+  ],
+  "d": 1
+ },
+ {
+  "q": "'Birdie' and 'eagle' are scoring terms in which sport?",
+  "a": "Golf",
+  "w": [
+   "Tennis",
+   "Badminton",
+   "Polo"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Wimbledon is played on which surface?",
+  "a": "Grass",
+  "w": [
+   "Clay",
+   "Hard court",
+   "Carpet"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which flag is waved to end a Formula 1 race?",
+  "a": "Chequered flag",
+  "w": [
+   "Red flag",
+   "Yellow flag",
+   "Blue flag"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Neeraj Chopra won Olympic gold at Tokyo in which event?",
+  "a": "Javelin throw",
+  "w": [
+   "Shot put",
+   "Discus throw",
+   "Hammer throw"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many points for a basketball shot from beyond the arc?",
+  "a": "3",
+  "w": [
+   "2",
+   "4",
+   "5"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In chess, a king under attack with no escape is in?",
+  "a": "Checkmate",
+  "w": [
+   "Stalemate",
+   "Castling",
+   "En passant"
+  ],
+  "d": 1
+ },
+ {
+  "q": "PV Sindhu is a star player of which sport?",
+  "a": "Badminton",
+  "w": [
+   "Tennis",
+   "Table tennis",
+   "Squash"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Mary Kom is a world champion in which sport?",
+  "a": "Boxing",
+  "w": [
+   "Wrestling",
+   "Judo",
+   "Weightlifting"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country hosted and won the first FIFA World Cup in 1930?",
+  "a": "Uruguay",
+  "w": [
+   "Brazil",
+   "Italy",
+   "Argentina"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The French Open tennis tournament is played on which surface?",
+  "a": "Clay",
+  "w": [
+   "Grass",
+   "Hard court",
+   "Carpet"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Abhinav Bindra won India's 2008 Olympic gold in which sport?",
+  "a": "Shooting",
+  "w": [
+   "Archery",
+   "Wrestling",
+   "Boxing"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which city hosted the 2012 Summer Olympics?",
+  "a": "London",
+  "w": [
+   "Beijing",
+   "Paris",
+   "Sydney"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who became India's first chess Grandmaster?",
+  "a": "Viswanathan Anand",
+  "w": [
+   "Pentala Harikrishna",
+   "Koneru Humpy",
+   "Dibyendu Barua"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country won the 2014 FIFA World Cup?",
+  "a": "Germany",
+  "w": [
+   "Argentina",
+   "Spain",
+   "Brazil"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country hosted the first modern Olympics in 1896?",
+  "a": "Greece",
+  "w": [
+   "France",
+   "England",
+   "USA"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Football legend Pele played for which national team?",
+  "a": "Brazil",
+  "w": [
+   "Argentina",
+   "Portugal",
+   "Uruguay"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many players per team are on a volleyball court?",
+  "a": "6",
+  "w": [
+   "5",
+   "7",
+   "8"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In tennis, the point won after deuce gives a player the?",
+  "a": "Advantage",
+  "w": [
+   "Break",
+   "Set point",
+   "Love"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The chess move involving the king and a rook is called?",
+  "a": "Castling",
+  "w": [
+   "En passant",
+   "Promotion",
+   "Fork"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In kabaddi, the player who enters the opponents' half is the?",
+  "a": "Raider",
+  "w": [
+   "Striker",
+   "Chaser",
+   "Defender"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Indian sprinter was nicknamed 'The Flying Sikh'?",
+  "a": "Milkha Singh",
+  "w": [
+   "PT Usha",
+   "Gurbachan Randhawa",
+   "Ajmer Singh"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Indian hockey legend is known as 'The Wizard'?",
+  "a": "Dhyan Chand",
+  "w": [
+   "Balbir Singh",
+   "Dhanraj Pillay",
+   "Roop Singh"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which player scored the 'Hand of God' goal in 1986?",
+  "a": "Diego Maradona",
+  "w": [
+   "Pele",
+   "Zinedine Zidane",
+   "Michel Platini"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the official length of a marathon?",
+  "a": "42.195 km",
+  "w": [
+   "40.000 km",
+   "41.250 km",
+   "45.500 km"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who was the first Indian woman to win an Olympic medal?",
+  "a": "Karnam Malleswari",
+  "w": [
+   "PT Usha",
+   "Saina Nehwal",
+   "Mary Kom"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year did India win its first Olympic hockey gold?",
+  "a": "1928",
+  "w": [
+   "1920",
+   "1936",
+   "1948"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country won the first Women's FIFA World Cup in 1991?",
+  "a": "USA",
+  "w": [
+   "Norway",
+   "Germany",
+   "China"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was the first Formula 1 World Championship held?",
+  "a": "1950",
+  "w": [
+   "1946",
+   "1955",
+   "1962"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Olympic motto 'Citius, Altius, Fortius' is in which language?",
+  "a": "Latin",
+  "w": [
+   "Greek",
+   "French",
+   "Italian"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which city hosted the first Asian Games in 1951?",
+  "a": "New Delhi",
+  "w": [
+   "Tokyo",
+   "Manila",
+   "Bangkok"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In 2022, India won which badminton team title for the first time?",
+  "a": "Thomas Cup",
+  "w": [
+   "Uber Cup",
+   "Sudirman Cup",
+   "Davis Cup"
+  ],
+  "d": 3
+ },
+ {
+  "q": "How far is the football penalty spot from the goal line?",
+  "a": "12 yards",
+  "w": [
+   "10 yards",
+   "15 yards",
+   "18 yards"
+  ],
+  "d": 3
+ },
+ {
+  "q": "At most, how many sets are played in a men's Grand Slam singles match?",
+  "a": "5",
+  "w": [
+   "3",
+   "4",
+   "7"
+  ],
+  "d": 3
+ }
+]

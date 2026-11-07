@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is the largest animal known to have ever lived?",
+  "a": "Blue whale",
+  "w": [
+   "African elephant",
+   "Whale shark",
+   "Sperm whale"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the fastest land animal?",
+  "a": "Cheetah",
+  "w": [
+   "Lion",
+   "Leopard",
+   "Pronghorn"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a baby kangaroo called?",
+  "a": "Joey",
+  "w": [
+   "Cub",
+   "Kit",
+   "Calf"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the tallest animal in the world?",
+  "a": "Giraffe",
+  "w": [
+   "Elephant",
+   "Ostrich",
+   "Camel"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a group of lions called?",
+  "a": "Pride",
+  "w": [
+   "Pack",
+   "Herd",
+   "Troop"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a baby dog called?",
+  "a": "Puppy",
+  "w": [
+   "Kitten",
+   "Cub",
+   "Foal"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which animal is known as the king of the jungle?",
+  "a": "Lion",
+  "w": [
+   "Tiger",
+   "Elephant",
+   "Gorilla"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which animal is called the ship of the desert?",
+  "a": "Camel",
+  "w": [
+   "Horse",
+   "Donkey",
+   "Yak"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many legs does a spider have?",
+  "a": "8",
+  "w": [
+   "6",
+   "10",
+   "12"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a baby frog called?",
+  "a": "Tadpole",
+  "w": [
+   "Cygnet",
+   "Fry",
+   "Pup"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the largest living bird?",
+  "a": "Ostrich",
+  "w": [
+   "Emu",
+   "Albatross",
+   "Condor"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a baby cow called?",
+  "a": "Calf",
+  "w": [
+   "Foal",
+   "Kid",
+   "Lamb"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What do giant pandas mainly eat?",
+  "a": "Bamboo",
+  "w": [
+   "Eucalyptus",
+   "Grass",
+   "Fruit"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the largest living land animal?",
+  "a": "African elephant",
+  "w": [
+   "Indian rhinoceros",
+   "Hippopotamus",
+   "Giraffe"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which lizard is famous for changing its skin colour?",
+  "a": "Chameleon",
+  "w": [
+   "Iguana",
+   "Gecko",
+   "Monitor lizard"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the only mammal capable of true powered flight?",
+  "a": "Bat",
+  "w": [
+   "Flying squirrel",
+   "Sugar glider",
+   "Colugo"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many hearts does an octopus have?",
+  "a": "3",
+  "w": [
+   "1",
+   "2",
+   "4"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Emperor penguins live in the wild only on which continent?",
+  "a": "Antarctica",
+  "w": [
+   "Australia",
+   "South America",
+   "Africa"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a baby owl called?",
+  "a": "Owlet",
+  "w": [
+   "Eaglet",
+   "Gosling",
+   "Leveret"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which of these mammals lays eggs?",
+  "a": "Platypus",
+  "w": [
+   "Koala",
+   "Kangaroo",
+   "Wombat"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a baby swan called?",
+  "a": "Cygnet",
+  "w": [
+   "Gosling",
+   "Duckling",
+   "Eaglet"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Koalas feed almost entirely on the leaves of which tree?",
+  "a": "Eucalyptus",
+  "w": [
+   "Bamboo",
+   "Acacia",
+   "Banyan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which bird is the fastest animal when diving?",
+  "a": "Peregrine falcon",
+  "w": [
+   "Golden eagle",
+   "Swift",
+   "Kingfisher"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the largest fish in the world?",
+  "a": "Whale shark",
+  "w": [
+   "Basking shark",
+   "Great white shark",
+   "Manta ray"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many chambers does a cow's stomach have?",
+  "a": "4",
+  "w": [
+   "2",
+   "3",
+   "6"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Spiders belong to which group of animals?",
+  "a": "Arachnids",
+  "w": [
+   "Insects",
+   "Crustaceans",
+   "Myriapods"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Gujarat's Gir Forest is famous as the home of which big cat?",
+  "a": "Asiatic lion",
+  "w": [
+   "Bengal tiger",
+   "Snow leopard",
+   "Clouded leopard"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The one-horned rhino is the star of which national park?",
+  "a": "Kaziranga",
+  "w": [
+   "Jim Corbett",
+   "Gir",
+   "Ranthambore"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the longest venomous snake in the world?",
+  "a": "King cobra",
+  "w": [
+   "Black mamba",
+   "Russell's viper",
+   "Common krait"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a female deer called?",
+  "a": "Doe",
+  "w": [
+   "Mare",
+   "Ewe",
+   "Sow"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a group of crows called?",
+  "a": "Murder",
+  "w": [
+   "Parliament",
+   "Gaggle",
+   "Pod"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which mammal has the longest pregnancy, about 22 months?",
+  "a": "Elephant",
+  "w": [
+   "Giraffe",
+   "Rhinoceros",
+   "Blue whale"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which animal has fingerprints remarkably similar to humans?",
+  "a": "Koala",
+  "w": [
+   "Sloth",
+   "Kangaroo",
+   "Red panda"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What colour is the blood of a horseshoe crab?",
+  "a": "Blue",
+  "w": [
+   "Green",
+   "Yellow",
+   "Black"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The axolotl is a type of what animal?",
+  "a": "Salamander",
+  "w": [
+   "Lizard",
+   "Fish",
+   "Frog"
+  ],
+  "d": 3
+ },
+ {
+  "q": "How many eyes does a honeybee have?",
+  "a": "5",
+  "w": [
+   "2",
+   "3",
+   "8"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The extinct dodo bird was native to which island?",
+  "a": "Mauritius",
+  "w": [
+   "Madagascar",
+   "Sri Lanka",
+   "Fiji"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is a male honeybee called?",
+  "a": "Drone",
+  "w": [
+   "Worker",
+   "Soldier",
+   "Scout"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which bird has the largest wingspan of any living bird?",
+  "a": "Wandering albatross",
+  "w": [
+   "Andean condor",
+   "Marabou stork",
+   "Golden eagle"
+  ],
+  "d": 3
+ },
+ {
+  "q": "A shark's skeleton is made of what?",
+  "a": "Cartilage",
+  "w": [
+   "Bone",
+   "Chitin",
+   "Keratin"
+  ],
+  "d": 3
+ }
+]

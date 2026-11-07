@@ -1,0 +1,402 @@
+[
+ {
+  "q": "In Tangled, who falls in love with Rapunzel?",
+  "a": "Flynn Rider",
+  "w": [
+   "Kristoff",
+   "Aladdin",
+   "Prince Naveen"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In The Little Mermaid, Ariel falls for which prince?",
+  "a": "Prince Eric",
+  "w": [
+   "Prince Phillip",
+   "Prince Charming",
+   "Prince Florian"
+  ],
+  "d": 1
+ },
+ {
+  "q": "On which date is Valentine's Day celebrated?",
+  "a": "February 14",
+  "w": [
+   "February 12",
+   "March 14",
+   "February 2"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Roman god of love shoots arrows at hearts?",
+  "a": "Cupid",
+  "w": [
+   "Mars",
+   "Apollo",
+   "Mercury"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In the Ramayana, who is Rama's wife?",
+  "a": "Sita",
+  "w": [
+   "Radha",
+   "Draupadi",
+   "Rukmini"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which milkmaid of Vrindavan is Krishna's beloved?",
+  "a": "Radha",
+  "w": [
+   "Sita",
+   "Parvati",
+   "Damayanti"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which goddess is the wife of Lord Shiva?",
+  "a": "Parvati",
+  "w": [
+   "Lakshmi",
+   "Saraswati",
+   "Sita"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In DDLJ, Shah Rukh Khan's Raj falls in love with whom?",
+  "a": "Simran",
+  "w": [
+   "Anjali",
+   "Pooja",
+   "Naina"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Titanic (1997), Jack falls in love with whom?",
+  "a": "Rose",
+  "w": [
+   "Daisy",
+   "Grace",
+   "Emma"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which flower is the classic Valentine's Day gift?",
+  "a": "Red rose",
+  "w": [
+   "Marigold",
+   "Sunflower",
+   "Lotus"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many rounds of the sacred fire are taken in 'saat phere'?",
+  "a": "Seven",
+  "w": [
+   "Four",
+   "Five",
+   "Nine"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Beauty and the Beast, who falls in love with the Beast?",
+  "a": "Belle",
+  "w": [
+   "Ariel",
+   "Aurora",
+   "Jasmine"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does Cinderella leave behind at the royal ball?",
+  "a": "A glass slipper",
+  "w": [
+   "A pearl necklace",
+   "A silk glove",
+   "A gold ring"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Bridal rhyme: something old, new, borrowed and something ___?",
+  "a": "Blue",
+  "w": [
+   "Gold",
+   "White",
+   "Pink"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Mehendi designs are drawn with paste from which plant?",
+  "a": "Henna",
+  "w": [
+   "Turmeric",
+   "Neem",
+   "Tulsi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who is the Greek goddess of love?",
+  "a": "Aphrodite",
+  "w": [
+   "Athena",
+   "Hera",
+   "Artemis"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Hindu god shoots flower arrows to spark love?",
+  "a": "Kamadeva",
+  "w": [
+   "Indra",
+   "Varuna",
+   "Agni"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who is Laila's lover in the famous legend?",
+  "a": "Majnu",
+  "w": [
+   "Ranjha",
+   "Mahiwal",
+   "Farhad"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In the Punjabi legend, who is Heer's beloved?",
+  "a": "Ranjha",
+  "w": [
+   "Majnu",
+   "Mahiwal",
+   "Farhad"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Greek musician went to the underworld for his wife Eurydice?",
+  "a": "Orpheus",
+  "w": [
+   "Apollo",
+   "Hermes",
+   "Odysseus"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who waited 20 years for Odysseus to come home?",
+  "a": "Penelope",
+  "w": [
+   "Helen",
+   "Medea",
+   "Ariadne"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Helen ran away with which Trojan prince, starting the Trojan War?",
+  "a": "Paris",
+  "w": [
+   "Hector",
+   "Achilles",
+   "Aeneas"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which devoted wife won back her husband Satyavan from Yama?",
+  "a": "Savitri",
+  "w": [
+   "Sita",
+   "Damayanti",
+   "Anasuya"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Mughal-e-Azam, Prince Salim loves which court dancer?",
+  "a": "Anarkali",
+  "w": [
+   "Mastani",
+   "Umrao Jaan",
+   "Paro"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Devdas, what is the name of his childhood sweetheart?",
+  "a": "Paro",
+  "w": [
+   "Chandramukhi",
+   "Simran",
+   "Anarkali"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Pride and Prejudice, Elizabeth Bennet marries whom?",
+  "a": "Mr. Darcy",
+  "w": [
+   "Mr. Bingley",
+   "Mr. Wickham",
+   "Mr. Collins"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Sir Lancelot loved which queen, the wife of King Arthur?",
+  "a": "Guinevere",
+  "w": [
+   "Isolde",
+   "Morgana",
+   "Elaine"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Shakespeare paired Antony with which queen in a tragedy?",
+  "a": "Cleopatra",
+  "w": [
+   "Nefertiti",
+   "Dido",
+   "Boudica"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In a love note signed 'XOXO', what does the X stand for?",
+  "a": "A kiss",
+  "w": [
+   "A hug",
+   "A wink",
+   "A heart"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Jab We Met, where do Aditya and Geet first meet?",
+  "a": "On a train",
+  "w": [
+   "At a wedding",
+   "On a flight",
+   "In college"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which poet is often credited with first linking Valentine's Day to romance?",
+  "a": "Geoffrey Chaucer",
+  "w": [
+   "William Shakespeare",
+   "John Milton",
+   "Lord Byron"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In Japan, on which day do men return Valentine's gifts?",
+  "a": "White Day",
+  "w": [
+   "Red Day",
+   "Black Day",
+   "Rose Day"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Carved wooden 'lovespoons' are a romantic tradition of which country?",
+  "a": "Wales",
+  "w": [
+   "Scotland",
+   "Ireland",
+   "Norway"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Pyramus and Thisbe whispered their love through what?",
+  "a": "A crack in a wall",
+  "w": [
+   "A hollow tree",
+   "A deep well",
+   "A keyhole"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In the Mahabharata, which bird carried messages between Nala and Damayanti?",
+  "a": "A swan",
+  "w": [
+   "A parrot",
+   "A peacock",
+   "A pigeon"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who wrote the Sanskrit play about Shakuntala and Dushyanta?",
+  "a": "Kalidasa",
+  "w": [
+   "Tulsidas",
+   "Valmiki",
+   "Banabhatta"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Prithviraj Chauhan famously eloped with which princess?",
+  "a": "Sanyogita",
+  "w": [
+   "Padmini",
+   "Mastani",
+   "Rupmati"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which singer did Sultan Baz Bahadur of Malwa love?",
+  "a": "Rupmati",
+  "w": [
+   "Anarkali",
+   "Mastani",
+   "Sanyogita"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In the Persian tale, who dug through a mountain for Shirin?",
+  "a": "Farhad",
+  "w": [
+   "Majnu",
+   "Khusrau",
+   "Rustam"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Sohni swam across the Chenab river to meet whom?",
+  "a": "Mahiwal",
+  "w": [
+   "Ranjha",
+   "Majnu",
+   "Mirza"
+  ],
+  "d": 3
+ }
+]

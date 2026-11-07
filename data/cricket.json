@@ -1,0 +1,402 @@
+[
+ {
+  "q": "How many players does each cricket team have on the field?",
+  "a": "11",
+  "w": [
+   "9",
+   "10",
+   "12"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many legal balls make up a standard over?",
+  "a": "6",
+  "w": [
+   "5",
+   "8",
+   "10"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country won the 1983 Cricket World Cup?",
+  "a": "India",
+  "w": [
+   "West Indies",
+   "Australia",
+   "England"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which batter is nicknamed the 'Master Blaster'?",
+  "a": "Sachin Tendulkar",
+  "w": [
+   "Virender Sehwag",
+   "Sunil Gavaskar",
+   "Brian Lara"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Indian captain is nicknamed 'Captain Cool'?",
+  "a": "MS Dhoni",
+  "w": [
+   "Sourav Ganguly",
+   "Kapil Dev",
+   "Anil Kumble"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country won the 2011 Cricket World Cup?",
+  "a": "India",
+  "w": [
+   "Sri Lanka",
+   "Australia",
+   "Pakistan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does LBW stand for?",
+  "a": "Leg before wicket",
+  "w": [
+   "Leg beside wicket",
+   "Long ball wide",
+   "Late bat wicket"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many runs for a ball hit over the boundary without bouncing?",
+  "a": "6",
+  "w": [
+   "4",
+   "5",
+   "8"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many stumps make up one wicket?",
+  "a": "3",
+  "w": [
+   "2",
+   "4",
+   "5"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who captained India to the 1983 World Cup title?",
+  "a": "Kapil Dev",
+  "w": [
+   "Sunil Gavaskar",
+   "Mohinder Amarnath",
+   "Ravi Shastri"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is it called when a batter is out for zero runs?",
+  "a": "Duck",
+  "w": [
+   "Golden egg",
+   "Blank",
+   "Nil ball"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which year was the first IPL season played?",
+  "a": "2008",
+  "w": [
+   "2006",
+   "2010",
+   "2012"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many overs does each side bat in a T20 match?",
+  "a": "20",
+  "w": [
+   "10",
+   "25",
+   "50"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which team won the first Cricket World Cup in 1975?",
+  "a": "West Indies",
+  "w": [
+   "Australia",
+   "England",
+   "India"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which former India captain is fondly called 'Dada'?",
+  "a": "Sourav Ganguly",
+  "w": [
+   "Rahul Dravid",
+   "MS Dhoni",
+   "Kapil Dev"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which fast bowler was nicknamed the 'Rawalpindi Express'?",
+  "a": "Shoaib Akhtar",
+  "w": [
+   "Wasim Akram",
+   "Waqar Younis",
+   "Imran Khan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Indian batter is known as 'The Wall'?",
+  "a": "Rahul Dravid",
+  "w": [
+   "VVS Laxman",
+   "Sachin Tendulkar",
+   "Gautam Gambhir"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which bowler is called the 'Sultan of Swing'?",
+  "a": "Wasim Akram",
+  "w": [
+   "Shoaib Akhtar",
+   "Zaheer Khan",
+   "Glenn McGrath"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country won the 2019 Cricket World Cup?",
+  "a": "England",
+  "w": [
+   "New Zealand",
+   "India",
+   "Australia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country won the 2023 Cricket World Cup?",
+  "a": "Australia",
+  "w": [
+   "India",
+   "South Africa",
+   "New Zealand"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country won the first T20 World Cup in 2007?",
+  "a": "India",
+  "w": [
+   "Pakistan",
+   "Australia",
+   "Sri Lanka"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Ashes is a Test series between England and which country?",
+  "a": "Australia",
+  "w": [
+   "New Zealand",
+   "South Africa",
+   "West Indies"
+  ],
+  "d": 2
+ },
+ {
+  "q": "A bowler taking wickets on three straight balls achieves a?",
+  "a": "Hat-trick",
+  "w": [
+   "Treble",
+   "Triple crown",
+   "Maiden"
+  ],
+  "d": 2
+ },
+ {
+  "q": "A full ball aimed at the batter's toes is called a?",
+  "a": "Yorker",
+  "w": [
+   "Bouncer",
+   "Googly",
+   "Beamer"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the first man to score a double century in an ODI?",
+  "a": "Sachin Tendulkar",
+  "w": [
+   "Virender Sehwag",
+   "Rohit Sharma",
+   "Chris Gayle"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which team won the first IPL title in 2008?",
+  "a": "Rajasthan Royals",
+  "w": [
+   "Chennai Super Kings",
+   "Mumbai Indians",
+   "Deccan Chargers"
+  ],
+  "d": 2
+ },
+ {
+  "q": "An over in which the bowler concedes no runs is called a?",
+  "a": "Maiden",
+  "w": [
+   "Dead over",
+   "Blank over",
+   "Duck over"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who bowled the famous 'Ball of the Century' in 1993?",
+  "a": "Shane Warne",
+  "w": [
+   "Muttiah Muralitharan",
+   "Anil Kumble",
+   "Abdul Qadir"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How long is a cricket pitch between the stumps?",
+  "a": "22 yards",
+  "w": [
+   "20 yards",
+   "24 yards",
+   "26 yards"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who hit six sixes in an over at the 2007 T20 World Cup?",
+  "a": "Yuvraj Singh",
+  "w": [
+   "MS Dhoni",
+   "Virender Sehwag",
+   "Yusuf Pathan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What was Don Bradman's career Test batting average?",
+  "a": "99.94",
+  "w": [
+   "89.94",
+   "95.14",
+   "101.20"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which South African fast bowler was nicknamed 'White Lightning'?",
+  "a": "Allan Donald",
+  "w": [
+   "Shaun Pollock",
+   "Dale Steyn",
+   "Makhaya Ntini"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Australian fast bowler was nicknamed 'Pigeon'?",
+  "a": "Glenn McGrath",
+  "w": [
+   "Brett Lee",
+   "Jason Gillespie",
+   "Merv Hughes"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which city was the first-ever Test match played in 1877?",
+  "a": "Melbourne",
+  "w": [
+   "London",
+   "Sydney",
+   "Manchester"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Indian took all 10 wickets in a Test innings in 1999?",
+  "a": "Anil Kumble",
+  "w": [
+   "Harbhajan Singh",
+   "Javagal Srinath",
+   "Kapil Dev"
+  ],
+  "d": 3
+ },
+ {
+  "q": "At which stadium was the 2011 World Cup final played?",
+  "a": "Wankhede Stadium",
+  "w": [
+   "Eden Gardens",
+   "Chinnaswamy Stadium",
+   "Chepauk Stadium"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country won the 1996 Cricket World Cup?",
+  "a": "Sri Lanka",
+  "w": [
+   "Australia",
+   "Pakistan",
+   "India"
+  ],
+  "d": 3
+ },
+ {
+  "q": "A leg-spinner's ball that turns the opposite way is called a?",
+  "a": "Googly",
+  "w": [
+   "Doosra",
+   "Yorker",
+   "Bouncer"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who was India's captain in its first-ever Test match in 1932?",
+  "a": "CK Nayudu",
+  "w": [
+   "Lala Amarnath",
+   "Vijay Hazare",
+   "Vinoo Mankad"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who captained England in the 1932-33 'Bodyline' series?",
+  "a": "Douglas Jardine",
+  "w": [
+   "Len Hutton",
+   "Wally Hammond",
+   "Gubby Allen"
+  ],
+  "d": 3
+ }
+]

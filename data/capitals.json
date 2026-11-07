@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is the capital of Japan?",
+  "a": "Tokyo",
+  "w": [
+   "Osaka",
+   "Kyoto",
+   "Yokohama"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of France?",
+  "a": "Paris",
+  "w": [
+   "Lyon",
+   "Marseille",
+   "Nice"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Italy?",
+  "a": "Rome",
+  "w": [
+   "Milan",
+   "Venice",
+   "Naples"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Germany?",
+  "a": "Berlin",
+  "w": [
+   "Munich",
+   "Frankfurt",
+   "Hamburg"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Spain?",
+  "a": "Madrid",
+  "w": [
+   "Barcelona",
+   "Seville",
+   "Valencia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Russia?",
+  "a": "Moscow",
+  "w": [
+   "Saint Petersburg",
+   "Kazan",
+   "Novosibirsk"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of China?",
+  "a": "Beijing",
+  "w": [
+   "Shanghai",
+   "Hong Kong",
+   "Guangzhou"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Nepal?",
+  "a": "Kathmandu",
+  "w": [
+   "Pokhara",
+   "Lalitpur",
+   "Biratnagar"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Bangladesh?",
+  "a": "Dhaka",
+  "w": [
+   "Chittagong",
+   "Khulna",
+   "Sylhet"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Thailand?",
+  "a": "Bangkok",
+  "w": [
+   "Phuket",
+   "Chiang Mai",
+   "Pattaya"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of the United States?",
+  "a": "Washington DC",
+  "w": [
+   "New York",
+   "Philadelphia",
+   "Boston"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Pakistan?",
+  "a": "Islamabad",
+  "w": [
+   "Karachi",
+   "Lahore",
+   "Rawalpindi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is white with a red circle in the centre?",
+  "a": "Japan",
+  "w": [
+   "South Korea",
+   "China",
+   "Bangladesh"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag shows a red maple leaf?",
+  "a": "Canada",
+  "w": [
+   "Switzerland",
+   "Austria",
+   "Denmark"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country has a square red flag with a white cross?",
+  "a": "Switzerland",
+  "w": [
+   "Austria",
+   "Sweden",
+   "Norway"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Australia?",
+  "a": "Canberra",
+  "w": [
+   "Sydney",
+   "Melbourne",
+   "Perth"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Canada?",
+  "a": "Ottawa",
+  "w": [
+   "Toronto",
+   "Montreal",
+   "Vancouver"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Brazil?",
+  "a": "Brasilia",
+  "w": [
+   "Rio de Janeiro",
+   "Sao Paulo",
+   "Salvador"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Turkey?",
+  "a": "Ankara",
+  "w": [
+   "Istanbul",
+   "Izmir",
+   "Antalya"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of New Zealand?",
+  "a": "Wellington",
+  "w": [
+   "Auckland",
+   "Christchurch",
+   "Dunedin"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Nigeria?",
+  "a": "Abuja",
+  "w": [
+   "Lagos",
+   "Kano",
+   "Ibadan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Kenya?",
+  "a": "Nairobi",
+  "w": [
+   "Mombasa",
+   "Kisumu",
+   "Nakuru"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Argentina?",
+  "a": "Buenos Aires",
+  "w": [
+   "Cordoba",
+   "Rosario",
+   "Mendoza"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Bhutan?",
+  "a": "Thimphu",
+  "w": [
+   "Paro",
+   "Punakha",
+   "Phuentsholing"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Portugal?",
+  "a": "Lisbon",
+  "w": [
+   "Porto",
+   "Braga",
+   "Coimbra"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Vietnam?",
+  "a": "Hanoi",
+  "w": [
+   "Ho Chi Minh City",
+   "Da Nang",
+   "Hue"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Norway?",
+  "a": "Oslo",
+  "w": [
+   "Bergen",
+   "Stavanger",
+   "Trondheim"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is green with a red circle?",
+  "a": "Bangladesh",
+  "w": [
+   "Japan",
+   "Pakistan",
+   "Nigeria"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Whose flag has plain vertical green, white and red stripes?",
+  "a": "Italy",
+  "w": [
+   "Ireland",
+   "Hungary",
+   "Mexico"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country has the only non-rectangular national flag?",
+  "a": "Nepal",
+  "w": [
+   "Bhutan",
+   "Brunei",
+   "Qatar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Mongolia?",
+  "a": "Ulaanbaatar",
+  "w": [
+   "Erdenet",
+   "Darkhan",
+   "Choibalsan"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the capital of Morocco?",
+  "a": "Rabat",
+  "w": [
+   "Casablanca",
+   "Marrakesh",
+   "Fez"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the capital of Ghana?",
+  "a": "Accra",
+  "w": [
+   "Kumasi",
+   "Tamale",
+   "Takoradi"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the capital of Ethiopia?",
+  "a": "Addis Ababa",
+  "w": [
+   "Gondar",
+   "Dire Dawa",
+   "Mekelle"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the capital of Laos?",
+  "a": "Vientiane",
+  "w": [
+   "Luang Prabang",
+   "Pakse",
+   "Savannakhet"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the capital of Uruguay?",
+  "a": "Montevideo",
+  "w": [
+   "Punta del Este",
+   "Salto",
+   "Colonia"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the capital of Iceland?",
+  "a": "Reykjavik",
+  "w": [
+   "Akureyri",
+   "Keflavik",
+   "Hafnarfjordur"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag features a green cedar tree?",
+  "a": "Lebanon",
+  "w": [
+   "Cyprus",
+   "Syria",
+   "Jordan"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag shows a map of the island itself?",
+  "a": "Cyprus",
+  "w": [
+   "Malta",
+   "Sri Lanka",
+   "Jamaica"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag shows a golden lion holding a sword?",
+  "a": "Sri Lanka",
+  "w": [
+   "Bhutan",
+   "Myanmar",
+   "Cambodia"
+  ],
+  "d": 3
+ }
+]

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Two Minds</title>
+<meta name="description" content="Head-to-head trivia for two. Duel on one phone or challenge each other by link.">
+<meta name="theme-color" content="#0e1430">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="Two Minds · trivia duel">
+<meta property="og:description" content="I challenged you! Same 7 questions, 10 seconds each. Can you beat me?">
+<meta property="og:image" content="icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Lexend:wght@400;500;700&display=swap">
+<style>
+/*CSS*/
+</style>
+</head>
+<body>
+<main>
+  <section class="screen" id="home"></section>
+  <section class="screen" id="topics" hidden></section>
+  <section class="screen" id="topic" hidden></section>
+  <section class="screen" id="couple" hidden></section>
+  <section class="screen" id="me" hidden></section>
+  <section class="screen full" id="us" hidden></section>
+  <section class="screen full" id="results" hidden></section>
+  <section class="screen full" id="incoming" hidden></section>
+  <section class="screen full" id="coupleRes" hidden></section>
+  <section class="screen full" id="history" hidden></section>
+</main>
+
+<nav class="tabs" id="tabbar" aria-label="Main">
+  <button class="tab" type="button" data-go="home"><span class="ti">⌂</span>Play</button>
+  <button class="tab" type="button" data-go="topics"><span class="ti">▦</span>Topics</button>
+  <button class="tab" type="button" data-go="couple"><span class="ti">❦</span>Couple</button>
+  <button class="tab" type="button" data-go="me"><span class="ti">☺</span>Profiles</button>
+</nav>
+
+<!-- VS intro -->
+<div class="vs" id="vs" hidden></div>
+
+<!-- split-screen duel -->
+<section id="duel" class="face" hidden>
+  <div class="half p2" id="h1">
+    <div class="hd"><span class="who"></span><span class="bar"><i></i></span><span class="pts">0<span class="gain"></span></span></div>
+    <div class="q"></div>
+    <div class="timer"><i></i></div>
+    <div class="opts hide"></div>
+  </div>
+  <div class="band">
+    <span class="lab flip" id="labTop">Round 1</span>
+    <div class="rdots" id="rdots"></div>
+    <span class="lab" id="labBot">Round 1</span>
+    <button class="quit" id="quitBtn" type="button">Quit</button>
+    <div class="splash"><span></span></div>
+  </div>
+  <div class="half p1" id="h0">
+    <div class="hd"><span class="who"></span><span class="bar"><i></i></span><span class="pts">0<span class="gain"></span></span></div>
+    <div class="q"></div>
+    <div class="timer"><i></i></div>
+    <div class="opts hide"></div>
+  </div>
+</section>
+
+<!-- solo: link challenge, reply, bot, daily -->
+<section id="solo" hidden>
+  <div class="vbar l" id="vbarL"><i></i></div>
+  <div class="vbar r" id="vbarR"><i></i></div>
+  <button class="squit" id="squit" type="button">Quit</button>
+  <div class="shead">
+    <div class="sp" id="soloMe"></div>
+    <div class="ring" id="ring"><svg viewBox="0 0 62 62" aria-hidden="true"><circle class="bgc" cx="31" cy="31" r="27"></circle><circle class="fgc" id="ringFg" cx="31" cy="31" r="27"></circle></svg><b id="ringNum">10</b></div>
+    <div class="sp r" id="soloOpp"></div>
+  </div>
+  <div class="slabel" id="sLabel">Round 1 of 7</div>
+  <div class="qcard" id="sQ"></div>
+  <div class="olist opts hide" id="sOpts"></div>
+  <div class="splash"><span></span></div>
+</section>
+
+<!-- couple mode -->
+<div class="cover" id="ccover" hidden></div>
+<div class="cq" id="cplay" hidden></div>
+
+<div class="modal" id="modal" hidden></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>window.QB = /*DATA*/;</script>
+<script>
+/*JS*/
+</script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Which planet is known as the Red Planet?",
+  "a": "Mars",
+  "w": [
+   "Jupiter",
+   "Venus",
+   "Mercury"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the largest planet in our solar system?",
+  "a": "Jupiter",
+  "w": [
+   "Saturn",
+   "Neptune",
+   "Uranus"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the first person to walk on the Moon?",
+  "a": "Neil Armstrong",
+  "w": [
+   "Buzz Aldrin",
+   "Yuri Gagarin",
+   "Michael Collins"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which planet is closest to the Sun?",
+  "a": "Mercury",
+  "w": [
+   "Venus",
+   "Mars",
+   "Earth"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which planet is best known for its bright, wide rings?",
+  "a": "Saturn",
+  "w": [
+   "Jupiter",
+   "Uranus",
+   "Neptune"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of India's national space agency?",
+  "a": "ISRO",
+  "w": [
+   "DRDO",
+   "BARC",
+   "HAL"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the first human to travel into space?",
+  "a": "Yuri Gagarin",
+  "w": [
+   "Alan Shepard",
+   "John Glenn",
+   "Neil Armstrong"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the first Indian citizen to travel to space, in 1984?",
+  "a": "Rakesh Sharma",
+  "w": [
+   "Kalpana Chawla",
+   "Sunita Williams",
+   "Ravish Malhotra"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of the galaxy that contains our solar system?",
+  "a": "Milky Way",
+  "w": [
+   "Andromeda",
+   "Triangulum",
+   "Sombrero"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What was the name of India's first satellite, launched in 1975?",
+  "a": "Aryabhata",
+  "w": [
+   "Bhaskara",
+   "Rohini",
+   "INSAT-1A"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which planet is often called Earth's twin because of its similar size?",
+  "a": "Venus",
+  "w": [
+   "Mars",
+   "Mercury",
+   "Neptune"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which element makes up most of the Sun?",
+  "a": "Hydrogen",
+  "w": [
+   "Helium",
+   "Oxygen",
+   "Carbon"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which planet is the farthest from the Sun?",
+  "a": "Neptune",
+  "w": [
+   "Uranus",
+   "Saturn",
+   "Jupiter"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who is known as the father of the Indian space programme?",
+  "a": "Vikram Sarabhai",
+  "w": [
+   "Homi Bhabha",
+   "A. P. J. Abdul Kalam",
+   "Satish Dhawan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the first woman to travel into space?",
+  "a": "Valentina Tereshkova",
+  "w": [
+   "Sally Ride",
+   "Svetlana Savitskaya",
+   "Kalpana Chawla"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the hottest planet in our solar system?",
+  "a": "Venus",
+  "w": [
+   "Mercury",
+   "Mars",
+   "Jupiter"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which year did Apollo 11 land on the Moon?",
+  "a": "1969",
+  "w": [
+   "1967",
+   "1971",
+   "1965"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the popular name of India's first mission to Mars?",
+  "a": "Mangalyaan",
+  "w": [
+   "Chandrayaan-1",
+   "Aditya-L1",
+   "Gaganyaan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which planet spins tilted almost on its side?",
+  "a": "Uranus",
+  "w": [
+   "Neptune",
+   "Saturn",
+   "Jupiter"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Sunlight takes about how long to reach Earth?",
+  "a": "About 8 minutes",
+  "w": [
+   "About 8 seconds",
+   "About 8 hours",
+   "About 80 minutes"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What was the first artificial satellite, launched in 1957?",
+  "a": "Sputnik 1",
+  "w": [
+   "Explorer 1",
+   "Vostok 1",
+   "Telstar 1"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The giant volcano Olympus Mons is found on which planet?",
+  "a": "Mars",
+  "w": [
+   "Venus",
+   "Jupiter",
+   "Mercury"
+  ],
+  "d": 2
+ },
+ {
+  "q": "India's Aditya-L1 mission was sent to study what?",
+  "a": "The Sun",
+  "w": [
+   "The Moon",
+   "Mars",
+   "Venus"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Great Red Spot is a giant storm on which planet?",
+  "a": "Jupiter",
+  "w": [
+   "Saturn",
+   "Mars",
+   "Neptune"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Kalpana Chawla died in 2003 aboard which space shuttle?",
+  "a": "Columbia",
+  "w": [
+   "Challenger",
+   "Discovery",
+   "Atlantis"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the largest moon of Saturn?",
+  "a": "Titan",
+  "w": [
+   "Enceladus",
+   "Rhea",
+   "Iapetus"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Chandrayaan-3 made India the first to land near which part of the Moon?",
+  "a": "South pole region",
+  "w": [
+   "North pole region",
+   "Lunar equator",
+   "Far side centre"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What was the name of Chandrayaan-3's lander?",
+  "a": "Vikram",
+  "w": [
+   "Pragyan",
+   "Aryabhata",
+   "Kalam"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the second person to walk on the Moon?",
+  "a": "Buzz Aldrin",
+  "w": [
+   "Michael Collins",
+   "Pete Conrad",
+   "Alan Bean"
+  ],
+  "d": 2
+ },
+ {
+  "q": "ISRO's main rocket launch centre is located at which place?",
+  "a": "Sriharikota",
+  "w": [
+   "Chennai",
+   "Bengaluru",
+   "Ahmedabad"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the largest moon in our solar system?",
+  "a": "Ganymede",
+  "w": [
+   "Titan",
+   "Callisto",
+   "Io"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who discovered Jupiter's four largest moons in 1610?",
+  "a": "Galileo Galilei",
+  "w": [
+   "Johannes Kepler",
+   "Nicolaus Copernicus",
+   "Tycho Brahe"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What are the names of the two moons of Mars?",
+  "a": "Phobos and Deimos",
+  "w": [
+   "Io and Europa",
+   "Titan and Rhea",
+   "Triton and Nereid"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which rocket launched Chandrayaan-3?",
+  "a": "LVM3",
+  "w": [
+   "PSLV",
+   "GSLV Mk II",
+   "SSLV"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What name was given to Chandrayaan-3's landing site?",
+  "a": "Shiv Shakti Point",
+  "w": [
+   "Tiranga Point",
+   "Jawahar Point",
+   "Vikram Point"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was India's Mars Orbiter Mission launched?",
+  "a": "2013",
+  "w": [
+   "2014",
+   "2012",
+   "2015"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was the Hubble Space Telescope launched?",
+  "a": "1990",
+  "w": [
+   "1985",
+   "1995",
+   "2000"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which planet takes the longest to spin once on its axis?",
+  "a": "Venus",
+  "w": [
+   "Mercury",
+   "Mars",
+   "Uranus"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which dwarf planet lies in the asteroid belt between Mars and Jupiter?",
+  "a": "Ceres",
+  "w": [
+   "Eris",
+   "Makemake",
+   "Haumea"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was Pluto reclassified as a dwarf planet?",
+  "a": "2006",
+  "w": [
+   "2003",
+   "2009",
+   "2012"
+  ],
+  "d": 3
+ }
+]

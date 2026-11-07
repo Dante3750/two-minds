@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Who was the first Prime Minister of India?",
+  "a": "Jawaharlal Nehru",
+  "w": [
+   "Sardar Patel",
+   "Rajendra Prasad",
+   "Lal Bahadur Shastri"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which year did India gain independence?",
+  "a": "1947",
+  "w": [
+   "1945",
+   "1950",
+   "1942"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the first President of independent India?",
+  "a": "Rajendra Prasad",
+  "w": [
+   "S. Radhakrishnan",
+   "Zakir Husain",
+   "V. V. Giri"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Mughal emperor built the Taj Mahal?",
+  "a": "Shah Jahan",
+  "w": [
+   "Akbar",
+   "Aurangzeb",
+   "Jahangir"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the first President of the United States?",
+  "a": "George Washington",
+  "w": [
+   "Abraham Lincoln",
+   "Thomas Jefferson",
+   "John Adams"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which year did World War II end?",
+  "a": "1945",
+  "w": [
+   "1944",
+   "1946",
+   "1939"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The Great Wall was built mainly to protect which country?",
+  "a": "China",
+  "w": [
+   "Japan",
+   "Mongolia",
+   "Korea"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which ancient civilization built the pyramids of Giza?",
+  "a": "Egyptians",
+  "w": [
+   "Romans",
+   "Greeks",
+   "Mayans"
+  ],
+  "d": 1
+ },
+ {
+  "q": "India became a republic on 26 January of which year?",
+  "a": "1950",
+  "w": [
+   "1947",
+   "1949",
+   "1952"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the first woman Prime Minister of India?",
+  "a": "Indira Gandhi",
+  "w": [
+   "Pratibha Patil",
+   "Sarojini Naidu",
+   "Sonia Gandhi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which explorer reached India by sea from Europe in 1498?",
+  "a": "Vasco da Gama",
+  "w": [
+   "Christopher Columbus",
+   "Ferdinand Magellan",
+   "Bartolomeu Dias"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which year did the Berlin Wall fall?",
+  "a": "1989",
+  "w": [
+   "1991",
+   "1985",
+   "1979"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which ruler founded the Maratha Empire?",
+  "a": "Shivaji",
+  "w": [
+   "Bajirao I",
+   "Sambhaji",
+   "Tipu Sultan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which French leader was defeated at Waterloo in 1815?",
+  "a": "Napoleon Bonaparte",
+  "w": [
+   "Louis XIV",
+   "Charles de Gaulle",
+   "Louis XVI"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which emperor embraced Buddhism after the Kalinga War?",
+  "a": "Ashoka",
+  "w": [
+   "Chandragupta Maurya",
+   "Bindusara",
+   "Harsha"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Gandhi's Salt March of 1930 ended at which coastal village?",
+  "a": "Dandi",
+  "w": [
+   "Porbandar",
+   "Sabarmati",
+   "Surat"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which year did the Jallianwala Bagh massacre take place?",
+  "a": "1919",
+  "w": [
+   "1920",
+   "1915",
+   "1922"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who founded the Mughal Empire in India?",
+  "a": "Babur",
+  "w": [
+   "Humayun",
+   "Akbar",
+   "Sher Shah Suri"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The First Battle of Panipat was fought in which year?",
+  "a": "1526",
+  "w": [
+   "1556",
+   "1761",
+   "1527"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who wrote the ancient treatise 'Arthashastra'?",
+  "a": "Chanakya",
+  "w": [
+   "Kalidasa",
+   "Banabhatta",
+   "Valmiki"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the first Governor-General of independent India?",
+  "a": "Lord Mountbatten",
+  "w": [
+   "Lord Wavell",
+   "Lord Linlithgow",
+   "Lord Irwin"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which year did World War I begin?",
+  "a": "1914",
+  "w": [
+   "1912",
+   "1916",
+   "1918"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the first Emperor of Rome?",
+  "a": "Augustus",
+  "w": [
+   "Julius Caesar",
+   "Nero",
+   "Caligula"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which famous ship sank on its maiden voyage in 1912?",
+  "a": "Titanic",
+  "w": [
+   "Lusitania",
+   "Britannic",
+   "Bismarck"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who introduced movable-type printing to Europe around 1440?",
+  "a": "Johannes Gutenberg",
+  "w": [
+   "William Caxton",
+   "Galileo Galilei",
+   "Martin Luther"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who said 'Give me blood, and I will give you freedom'?",
+  "a": "Subhas Chandra Bose",
+  "w": [
+   "Bhagat Singh",
+   "Bal Gangadhar Tilak",
+   "Lala Lajpat Rai"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which year was the Quit India Movement launched?",
+  "a": "1942",
+  "w": [
+   "1940",
+   "1930",
+   "1945"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who founded the Maurya Empire?",
+  "a": "Chandragupta Maurya",
+  "w": [
+   "Ashoka",
+   "Bindusara",
+   "Bimbisara"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which queen of Jhansi fought the British in the 1857 revolt?",
+  "a": "Rani Lakshmibai",
+  "w": [
+   "Rani Durgavati",
+   "Rani Chennamma",
+   "Ahilyabai Holkar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Columbus's 1492 voyage was sponsored by which country?",
+  "a": "Spain",
+  "w": [
+   "Portugal",
+   "Italy",
+   "England"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Third Battle of Panipat was fought in which year?",
+  "a": "1761",
+  "w": [
+   "1757",
+   "1764",
+   "1739"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was the Battle of Plassey fought?",
+  "a": "1757",
+  "w": [
+   "1764",
+   "1761",
+   "1857"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who founded the Arya Samaj in 1875?",
+  "a": "Swami Dayananda Saraswati",
+  "w": [
+   "Raja Ram Mohan Roy",
+   "Swami Vivekananda",
+   "Ramakrishna Paramahamsa"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who was the last Mughal emperor?",
+  "a": "Bahadur Shah Zafar",
+  "w": [
+   "Aurangzeb",
+   "Shah Alam II",
+   "Akbar II"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was the Magna Carta sealed in England?",
+  "a": "1215",
+  "w": [
+   "1066",
+   "1315",
+   "1415"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who was the only woman to rule the Delhi Sultanate?",
+  "a": "Razia Sultana",
+  "w": [
+   "Nur Jahan",
+   "Chand Bibi",
+   "Mumtaz Mahal"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Chola king built the Brihadeeswarar Temple at Thanjavur?",
+  "a": "Rajaraja Chola I",
+  "w": [
+   "Rajendra Chola I",
+   "Karikala Chola",
+   "Kulothunga Chola I"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was the Battle of Hastings fought?",
+  "a": "1066",
+  "w": [
+   "1086",
+   "1166",
+   "1016"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Viceroy ordered the Partition of Bengal in 1905?",
+  "a": "Lord Curzon",
+  "w": [
+   "Lord Minto",
+   "Lord Ripon",
+   "Lord Dalhousie"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The ancient site of Harappa lies in which present-day country?",
+  "a": "Pakistan",
+  "w": [
+   "India",
+   "Afghanistan",
+   "Iran"
+  ],
+  "d": 3
+ }
+]

@@ -1,0 +1,15 @@
+{
+  "name": "Two Minds",
+  "short_name": "Two Minds",
+  "description": "Head-to-head trivia for two. Duel on one phone or challenge each other by link.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e1430",
+  "theme_color": "#0e1430",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

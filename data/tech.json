@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What does 'WWW' stand for?",
+  "a": "World Wide Web",
+  "w": [
+   "World Wide Wire",
+   "Wide World Web",
+   "Web World Wide"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who co-founded Microsoft with Paul Allen?",
+  "a": "Bill Gates",
+  "w": [
+   "Steve Jobs",
+   "Larry Page",
+   "Steve Wozniak"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'PDF' stand for?",
+  "a": "Portable Document Format",
+  "w": [
+   "Printable Data File",
+   "Personal Document File",
+   "Public Document Format"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which company makes the iPhone?",
+  "a": "Apple",
+  "w": [
+   "Samsung",
+   "Google",
+   "Nokia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'USB' stand for?",
+  "a": "Universal Serial Bus",
+  "w": [
+   "Unified System Bus",
+   "Universal Signal Board",
+   "United Serial Bridge"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'CPU' stand for?",
+  "a": "Central Processing Unit",
+  "w": [
+   "Computer Power Unit",
+   "Central Program Utility",
+   "Core Processing Unit"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who launched Facebook from his Harvard dorm in 2004?",
+  "a": "Mark Zuckerberg",
+  "w": [
+   "Jack Dorsey",
+   "Larry Page",
+   "Elon Musk"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which shortcut copies selected text on Windows?",
+  "a": "Ctrl + C",
+  "w": [
+   "Ctrl + V",
+   "Ctrl + X",
+   "Ctrl + Z"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In computing, what does 'AI' stand for?",
+  "a": "Artificial Intelligence",
+  "w": [
+   "Automated Interface",
+   "Advanced Internet",
+   "Analog Instruction"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which company did Jeff Bezos start as an online bookstore?",
+  "a": "Amazon",
+  "w": [
+   "eBay",
+   "Flipkart",
+   "Alibaba"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'OTP' stand for in banking SMS messages?",
+  "a": "One-Time Password",
+  "w": [
+   "Online Transfer PIN",
+   "Open Token Process",
+   "One-Touch Payment"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many bits make up one byte?",
+  "a": "8",
+  "w": [
+   "4",
+   "10",
+   "16"
+  ],
+  "d": 1
+ },
+ {
+  "q": "QWERTY is the name of a common layout for what?",
+  "a": "Keyboard",
+  "w": [
+   "Mobile screen",
+   "Circuit board",
+   "Web page"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which company bought YouTube in 2006?",
+  "a": "Google",
+  "w": [
+   "Yahoo",
+   "Microsoft",
+   "Facebook"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which company makes the Windows operating system?",
+  "a": "Microsoft",
+  "w": [
+   "Apple",
+   "IBM",
+   "Intel"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'RAM' stand for?",
+  "a": "Random Access Memory",
+  "w": [
+   "Read Access Memory",
+   "Rapid Action Memory",
+   "Run Allocation Module"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In email, what does 'CC' stand for?",
+  "a": "Carbon copy",
+  "w": [
+   "Common copy",
+   "Closed copy",
+   "Central copy"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Larry Page co-founded Google with whom?",
+  "a": "Sergey Brin",
+  "w": [
+   "Paul Allen",
+   "Steve Wozniak",
+   "Jeff Bezos"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does 'HTML' stand for?",
+  "a": "HyperText Markup Language",
+  "w": [
+   "HyperText Machine Language",
+   "High Transfer Markup Language",
+   "HyperLink Text Main Language"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which year was Apple founded?",
+  "a": "1976",
+  "w": [
+   "1972",
+   "1980",
+   "1984"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which year was Google founded?",
+  "a": "1998",
+  "w": [
+   "1994",
+   "2001",
+   "2004"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who invented the World Wide Web?",
+  "a": "Tim Berners-Lee",
+  "w": [
+   "Vint Cerf",
+   "Alan Turing",
+   "Bill Gates"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does 'URL' stand for?",
+  "a": "Uniform Resource Locator",
+  "w": [
+   "Universal Record Link",
+   "Uniform Routing Link",
+   "Universal Resource Library"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does 'GPS' stand for?",
+  "a": "Global Positioning System",
+  "w": [
+   "General Position Service",
+   "Global Path Satellite",
+   "Geo Positioning Signal"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which engineer co-founded Apple with Steve Jobs?",
+  "a": "Steve Wozniak",
+  "w": [
+   "Paul Allen",
+   "Larry Ellison",
+   "Gordon Moore"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which programming language is named after a British comedy group?",
+  "a": "Python",
+  "w": [
+   "Ruby",
+   "Perl",
+   "Java"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who founded the Indian payments company Paytm?",
+  "a": "Vijay Shekhar Sharma",
+  "w": [
+   "Kunal Shah",
+   "Sachin Bansal",
+   "Nandan Nilekani"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who founded the hotel chain OYO?",
+  "a": "Ritesh Agarwal",
+  "w": [
+   "Kunal Shah",
+   "Bhavish Aggarwal",
+   "Deepinder Goyal"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company bought WhatsApp in 2014?",
+  "a": "Facebook",
+  "w": [
+   "Google",
+   "Microsoft",
+   "Twitter"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In 'SIM card', what does SIM stand for?",
+  "a": "Subscriber Identity Module",
+  "w": [
+   "System Info Memory",
+   "Secure Internet Module",
+   "Signal Identity Modem"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which mathematician proposed a famous test of machine intelligence in 1950?",
+  "a": "Alan Turing",
+  "w": [
+   "John von Neumann",
+   "Charles Babbage",
+   "Claude Shannon"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who designed the Analytical Engine in the 1830s?",
+  "a": "Charles Babbage",
+  "w": [
+   "Alan Turing",
+   "Blaise Pascal",
+   "Herman Hollerith"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who is often called the first computer programmer?",
+  "a": "Ada Lovelace",
+  "w": [
+   "Grace Hopper",
+   "Marie Curie",
+   "Hedy Lamarr"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who sent the first network email in 1971 and chose the @ sign?",
+  "a": "Ray Tomlinson",
+  "w": [
+   "Vint Cerf",
+   "Tim Berners-Lee",
+   "Dennis Ritchie"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who created the Linux kernel in 1991?",
+  "a": "Linus Torvalds",
+  "w": [
+   "Richard Stallman",
+   "Dennis Ritchie",
+   "Ken Thompson"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which language did Dennis Ritchie create at Bell Labs?",
+  "a": "C",
+  "w": [
+   "Java",
+   "Python",
+   "Fortran"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Indian-born entrepreneur co-founded Hotmail?",
+  "a": "Sabeer Bhatia",
+  "w": [
+   "Vinod Khosla",
+   "Nandan Nilekani",
+   "Ajay Bhatt"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Indian-American engineer at Intel co-invented USB?",
+  "a": "Ajay Bhatt",
+  "w": [
+   "Sabeer Bhatia",
+   "Vinod Dham",
+   "Narinder Kapany"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Java was created by James Gosling at which company?",
+  "a": "Sun Microsystems",
+  "w": [
+   "IBM",
+   "Microsoft",
+   "Apple"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who invented the computer mouse?",
+  "a": "Douglas Engelbart",
+  "w": [
+   "Steve Jobs",
+   "Alan Kay",
+   "Ted Nelson"
+  ],
+  "d": 3
+ }
+]

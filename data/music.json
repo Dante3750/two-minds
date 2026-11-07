@@ -1,0 +1,402 @@
+[
+ {
+  "q": "How many keys does a standard modern piano have?",
+  "a": "88",
+  "w": [
+   "76",
+   "84",
+   "92"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many lines are there in a standard musical staff?",
+  "a": "Five",
+  "w": [
+   "Four",
+   "Six",
+   "Seven"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Pandit Ravi Shankar was a world-famous player of which instrument?",
+  "a": "Sitar",
+  "w": [
+   "Sarod",
+   "Veena",
+   "Santoor"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Ustad Zakir Hussain was famous for playing which instrument?",
+  "a": "Tabla",
+  "w": [
+   "Mridangam",
+   "Dholak",
+   "Ghatam"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Freddie Mercury was the lead singer of which band?",
+  "a": "Queen",
+  "w": [
+   "The Who",
+   "Led Zeppelin",
+   "Aerosmith"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which singer is known as the 'King of Pop'?",
+  "a": "Michael Jackson",
+  "w": [
+   "Elvis Presley",
+   "Prince",
+   "Stevie Wonder"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The Beatles came from which English city?",
+  "a": "Liverpool",
+  "w": [
+   "Manchester",
+   "London",
+   "Birmingham"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which legendary playback singer was Asha Bhosle's elder sister?",
+  "a": "Lata Mangeshkar",
+  "w": [
+   "Geeta Dutt",
+   "Shamshad Begum",
+   "Suman Kalyanpur"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many strings does a standard acoustic guitar have?",
+  "a": "Six",
+  "w": [
+   "Four",
+   "Five",
+   "Eight"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which composer wrote his Ninth Symphony while almost totally deaf?",
+  "a": "Beethoven",
+  "w": [
+   "Mozart",
+   "Bach",
+   "Haydn"
+  ],
+  "d": 1
+ },
+ {
+  "q": "A. R. Rahman won two Oscars for which film?",
+  "a": "Slumdog Millionaire",
+  "w": [
+   "Lagaan",
+   "Life of Pi",
+   "Lion"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the first note of the Indian sargam?",
+  "a": "Sa",
+  "w": [
+   "Re",
+   "Pa",
+   "Ni"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Bob Marley is most associated with which music genre?",
+  "a": "Reggae",
+  "w": [
+   "Calypso",
+   "Salsa",
+   "Bossa nova"
+  ],
+  "d": 1
+ },
+ {
+  "q": "RM, Jimin and Jungkook are members of which K-pop group?",
+  "a": "BTS",
+  "w": [
+   "EXO",
+   "Big Bang",
+   "Seventeen"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The pop group ABBA came from which country?",
+  "a": "Sweden",
+  "w": [
+   "Norway",
+   "Denmark",
+   "Finland"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Pandit Hariprasad Chaurasia is a maestro of which instrument?",
+  "a": "Bansuri (flute)",
+  "w": [
+   "Shehnai",
+   "Santoor",
+   "Sarangi"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Ustad Bismillah Khan was a legend of which instrument?",
+  "a": "Shehnai",
+  "w": [
+   "Bansuri",
+   "Sarangi",
+   "Nadaswaram"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Pandit Shivkumar Sharma was famous for which instrument?",
+  "a": "Santoor",
+  "w": [
+   "Sarod",
+   "Sitar",
+   "Veena"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Hindustani and which other are India's two classical music traditions?",
+  "a": "Carnatic",
+  "w": [
+   "Dhrupad",
+   "Thumri",
+   "Sufi"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who composed The Four Seasons?",
+  "a": "Antonio Vivaldi",
+  "w": [
+   "George Frideric Handel",
+   "J. S. Bach",
+   "Arcangelo Corelli"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which band released the album The Dark Side of the Moon?",
+  "a": "Pink Floyd",
+  "w": [
+   "Led Zeppelin",
+   "The Who",
+   "Genesis"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which family of ragas is traditionally linked with the monsoon?",
+  "a": "Malhar",
+  "w": [
+   "Bhairav",
+   "Yaman",
+   "Darbari"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In 2016, Bob Dylan won the Nobel Prize in which field?",
+  "a": "Literature",
+  "w": [
+   "Peace",
+   "Chemistry",
+   "Medicine"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Pakistani singer took qawwali to global audiences?",
+  "a": "Nusrat Fateh Ali Khan",
+  "w": [
+   "Ghulam Ali",
+   "Mehdi Hassan",
+   "Atif Aslam"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Composer R. D. Burman was the son of which composer?",
+  "a": "S. D. Burman",
+  "w": [
+   "Naushad",
+   "Madan Mohan",
+   "Salil Chowdhury"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Beatle studied the sitar under Ravi Shankar?",
+  "a": "George Harrison",
+  "w": [
+   "John Lennon",
+   "Paul McCartney",
+   "Ringo Starr"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Tansen was a court musician of which Mughal emperor?",
+  "a": "Akbar",
+  "w": [
+   "Babur",
+   "Jahangir",
+   "Shah Jahan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which musical term means gradually getting louder?",
+  "a": "Crescendo",
+  "w": [
+   "Diminuendo",
+   "Staccato",
+   "Legato"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Kurt Cobain was the frontman of which band?",
+  "a": "Nirvana",
+  "w": [
+   "Pearl Jam",
+   "Soundgarden",
+   "Foo Fighters"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Ustad Amjad Ali Khan is a maestro of which instrument?",
+  "a": "Sarod",
+  "w": [
+   "Sitar",
+   "Sarangi",
+   "Santoor"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the first musician to be awarded the Bharat Ratna?",
+  "a": "M. S. Subbulakshmi",
+  "w": [
+   "Lata Mangeshkar",
+   "Bhimsen Joshi",
+   "Bismillah Khan"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which orchestral instrument has 47 strings and 7 pedals?",
+  "a": "Harp",
+  "w": [
+   "Zither",
+   "Lute",
+   "Dulcimer"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Hindustani tala has 16 beats?",
+  "a": "Teentaal",
+  "w": [
+   "Rupak",
+   "Jhaptaal",
+   "Ektaal"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the standard tuning frequency of the A above middle C?",
+  "a": "440 Hz",
+  "w": [
+   "432 Hz",
+   "256 Hz",
+   "512 Hz"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which instrument traditionally gives the tuning note to an orchestra?",
+  "a": "Oboe",
+  "w": [
+   "Flute",
+   "Clarinet",
+   "Trumpet"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which 1992 film was A. R. Rahman's debut as a film composer?",
+  "a": "Roja",
+  "w": [
+   "Bombay",
+   "Rangeela",
+   "Dil Se.."
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who is revered as the 'father of Carnatic music'?",
+  "a": "Purandara Dasa",
+  "w": [
+   "Tyagaraja",
+   "Muthuswami Dikshitar",
+   "Syama Sastri"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Pandit Bhimsen Joshi belonged to which gharana?",
+  "a": "Kirana",
+  "w": [
+   "Gwalior",
+   "Patiala",
+   "Agra"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The treble clef is also known as which clef?",
+  "a": "G clef",
+  "w": [
+   "F clef",
+   "C clef",
+   "D clef"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Singer-composer Bhupen Hazarika hailed from which Indian state?",
+  "a": "Assam",
+  "w": [
+   "West Bengal",
+   "Manipur",
+   "Odisha"
+  ],
+  "d": 3
+ }
+]

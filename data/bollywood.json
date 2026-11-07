@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Which film features the friends Jai and Veeru?",
+  "a": "Sholay",
+  "w": [
+   "Deewaar",
+   "Zanjeer",
+   "Don"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played the villain Gabbar Singh in Sholay?",
+  "a": "Amjad Khan",
+  "w": [
+   "Pran",
+   "Amrish Puri",
+   "Prem Chopra"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played Raj in Dilwale Dulhania Le Jayenge (1995)?",
+  "a": "Shah Rukh Khan",
+  "w": [
+   "Salman Khan",
+   "Aamir Khan",
+   "Saif Ali Khan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which actor played Rancho in 3 Idiots?",
+  "a": "Aamir Khan",
+  "w": [
+   "R. Madhavan",
+   "Sharman Joshi",
+   "Shah Rukh Khan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The villain Mogambo appears in which film?",
+  "a": "Mr. India",
+  "w": [
+   "Karma",
+   "Tridev",
+   "Ram Lakhan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which city is the Hindi film industry mainly based?",
+  "a": "Mumbai",
+  "w": [
+   "Delhi",
+   "Kolkata",
+   "Hyderabad"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The film Lagaan revolves around which sport?",
+  "a": "Cricket",
+  "w": [
+   "Hockey",
+   "Football",
+   "Kabaddi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Aamir Khan film is about a wrestler training his daughters?",
+  "a": "Dangal",
+  "w": [
+   "Sultan",
+   "Mary Kom",
+   "Chak De! India"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Chak De! India is about which sport?",
+  "a": "Hockey",
+  "w": [
+   "Cricket",
+   "Football",
+   "Kabaddi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who directed the Baahubali films?",
+  "a": "S. S. Rajamouli",
+  "w": [
+   "Mani Ratnam",
+   "Shankar",
+   "Rohit Shetty"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which actor is popularly called 'Big B'?",
+  "a": "Amitabh Bachchan",
+  "w": [
+   "Dharmendra",
+   "Rajesh Khanna",
+   "Shah Rukh Khan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played the scientist Vaseegaran and robot Chitti in Enthiran?",
+  "a": "Rajinikanth",
+  "w": [
+   "Kamal Haasan",
+   "Vijay",
+   "Mohanlal"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which film does Kareena Kapoor play the bubbly Geet?",
+  "a": "Jab We Met",
+  "w": [
+   "Chameli",
+   "Golmaal 3",
+   "Kurbaan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played the title role in Munna Bhai M.B.B.S.?",
+  "a": "Sanjay Dutt",
+  "w": [
+   "Arshad Warsi",
+   "Suniel Shetty",
+   "Govinda"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played the title role in Devdas (2002)?",
+  "a": "Shah Rukh Khan",
+  "w": [
+   "Salman Khan",
+   "Hrithik Roshan",
+   "Ajay Devgn"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The song 'Chaiyya Chaiyya', filmed on a train roof, is from which film?",
+  "a": "Dil Se..",
+  "w": [
+   "Bombay",
+   "Roja",
+   "Taal"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed Kabhi Khushi Kabhie Gham?",
+  "a": "Karan Johar",
+  "w": [
+   "Aditya Chopra",
+   "Farah Khan",
+   "Yash Chopra"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Andhadhun, Ayushmann's pianist pretends to have which disability?",
+  "a": "Blindness",
+  "w": [
+   "Deafness",
+   "Muteness",
+   "Amnesia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Oscar-winning song 'Naatu Naatu' is from which film?",
+  "a": "RRR",
+  "w": [
+   "Baahubali 2",
+   "Pushpa",
+   "KGF Chapter 2"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What was India's first full-length feature film (1913)?",
+  "a": "Raja Harishchandra",
+  "w": [
+   "Alam Ara",
+   "Kisan Kanya",
+   "Achhut Kanya"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed Devdas (2002)?",
+  "a": "Sanjay Leela Bhansali",
+  "w": [
+   "Karan Johar",
+   "Ashutosh Gowariker",
+   "Farah Khan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Taare Zameen Par, young Ishaan struggles with which condition?",
+  "a": "Dyslexia",
+  "w": [
+   "Autism",
+   "Stammering",
+   "Colour blindness"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Zindagi Na Milegi Dobara is mainly set in which country?",
+  "a": "Spain",
+  "w": [
+   "Italy",
+   "Portugal",
+   "Greece"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Queen (2014), Rani travels to Paris and which other city?",
+  "a": "Amsterdam",
+  "w": [
+   "Berlin",
+   "Rome",
+   "Prague"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played Circuit in the Munna Bhai films?",
+  "a": "Arshad Warsi",
+  "w": [
+   "Boman Irani",
+   "Jimmy Shergill",
+   "Rajpal Yadav"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Deepika Padukone made her Hindi film debut in which movie?",
+  "a": "Om Shanti Om",
+  "w": [
+   "Bachna Ae Haseeno",
+   "Love Aaj Kal",
+   "Race"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The famous 'Mere paas maa hai' scene is from which film?",
+  "a": "Deewaar",
+  "w": [
+   "Trishul",
+   "Zanjeer",
+   "Kaala Patthar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Vishal Bhardwaj's Haider is based on which Shakespeare play?",
+  "a": "Hamlet",
+  "w": [
+   "Macbeth",
+   "Othello",
+   "King Lear"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played Mastani in Bajirao Mastani?",
+  "a": "Deepika Padukone",
+  "w": [
+   "Priyanka Chopra",
+   "Katrina Kaif",
+   "Aishwarya Rai"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Malayalam superstar starred in the original Drishyam (2013)?",
+  "a": "Mohanlal",
+  "w": [
+   "Mammootty",
+   "Prithviraj",
+   "Fahadh Faasil"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which was India's first sound (talkie) feature film?",
+  "a": "Alam Ara",
+  "w": [
+   "Kisan Kanya",
+   "Sant Tukaram",
+   "Achhut Kanya"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year did Satyajit Ray receive an honorary Oscar?",
+  "a": "1992",
+  "w": [
+   "1985",
+   "1989",
+   "1995"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who composed the music for Sholay?",
+  "a": "R. D. Burman",
+  "w": [
+   "S. D. Burman",
+   "Laxmikant-Pyarelal",
+   "Kalyanji-Anandji"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which is the third film of Satyajit Ray's Apu Trilogy?",
+  "a": "Apur Sansar",
+  "w": [
+   "Aparajito",
+   "Charulata",
+   "Jalsaghar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which 1957 classic did Guru Dutt direct and star in?",
+  "a": "Pyaasa",
+  "w": [
+   "Awaara",
+   "Shree 420",
+   "Naya Daur"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which legendary actor's real name was Yusuf Khan?",
+  "a": "Dilip Kumar",
+  "w": [
+   "Dev Anand",
+   "Raaj Kumar",
+   "Ashok Kumar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who directed Mughal-e-Azam?",
+  "a": "K. Asif",
+  "w": [
+   "Mehboob Khan",
+   "Bimal Roy",
+   "Kamal Amrohi"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who was the first recipient of the Dadasaheb Phalke Award?",
+  "a": "Devika Rani",
+  "w": [
+   "Prithviraj Kapoor",
+   "Nargis",
+   "Durga Khote"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who starred opposite Dev Anand in Guide (1965)?",
+  "a": "Waheeda Rehman",
+  "w": [
+   "Madhubala",
+   "Nutan",
+   "Mala Sinha"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which was the first Indian film nominated for the Foreign Language Oscar?",
+  "a": "Mother India",
+  "w": [
+   "Mughal-e-Azam",
+   "Do Bigha Zamin",
+   "Shree 420"
+  ],
+  "d": 3
+ }
+]

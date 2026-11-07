@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Sushi and sashimi are classic dishes of which country?",
+  "a": "Japan",
+  "w": [
+   "China",
+   "Korea",
+   "Thailand"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the main ingredient of guacamole?",
+  "a": "Avocado",
+  "w": [
+   "Cucumber",
+   "Green peas",
+   "Spinach"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Paneer is a fresh type of what?",
+  "a": "Cheese",
+  "w": [
+   "Bread",
+   "Lentil",
+   "Butter"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Dhokla is a famous snack from which Indian state?",
+  "a": "Gujarat",
+  "w": [
+   "Punjab",
+   "Kerala",
+   "Bihar"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Pizza originated in which country?",
+  "a": "Italy",
+  "w": [
+   "France",
+   "Greece",
+   "Spain"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Raisins are made by drying which fruit?",
+  "a": "Grapes",
+  "w": [
+   "Plums",
+   "Figs",
+   "Dates"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Tofu is made from which bean?",
+  "a": "Soybean",
+  "w": [
+   "Chickpea",
+   "Kidney bean",
+   "Mung bean"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Vada pav is a famous street food of which city?",
+  "a": "Mumbai",
+  "w": [
+   "Kolkata",
+   "Chennai",
+   "Delhi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Kimchi is a fermented dish from which country?",
+  "a": "Korea",
+  "w": [
+   "Japan",
+   "China",
+   "Vietnam"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Baingan bharta is made mainly from which vegetable?",
+  "a": "Brinjal",
+  "w": [
+   "Potato",
+   "Pumpkin",
+   "Okra"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Indian sweet is a deep-fried spiral soaked in sugar syrup?",
+  "a": "Jalebi",
+  "w": [
+   "Ladoo",
+   "Barfi",
+   "Peda"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Matcha is a fine powder made from which leaves?",
+  "a": "Green tea",
+  "w": [
+   "Black tea",
+   "Mint",
+   "Basil"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Hummus is made mainly from which legume?",
+  "a": "Chickpeas",
+  "w": [
+   "Lentils",
+   "Kidney beans",
+   "Green peas"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Paella is a classic rice dish from which country?",
+  "a": "Spain",
+  "w": [
+   "Italy",
+   "Portugal",
+   "Mexico"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Rogan josh is a famous dish from which region?",
+  "a": "Kashmir",
+  "w": [
+   "Goa",
+   "Assam",
+   "Rajasthan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Saffron comes from which part of the crocus flower?",
+  "a": "Stigma",
+  "w": [
+   "Petal",
+   "Root",
+   "Leaf"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Marzipan is made mainly from sugar and which nut?",
+  "a": "Almond",
+  "w": [
+   "Cashew",
+   "Walnut",
+   "Peanut"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Litti chokha is a famous dish from which state?",
+  "a": "Bihar",
+  "w": [
+   "Odisha",
+   "Punjab",
+   "Goa"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Mysore pak, a ghee-rich sweet, comes from which state?",
+  "a": "Karnataka",
+  "w": [
+   "Tamil Nadu",
+   "Kerala",
+   "Maharashtra"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which city is famous for the translucent sweet petha?",
+  "a": "Agra",
+  "w": [
+   "Lucknow",
+   "Varanasi",
+   "Jaipur"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Pho is a noodle soup from which country?",
+  "a": "Vietnam",
+  "w": [
+   "Thailand",
+   "Cambodia",
+   "Indonesia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In tiramisu, the ladyfinger biscuits are dipped in what?",
+  "a": "Coffee",
+  "w": [
+   "Milk",
+   "Tea",
+   "Orange juice"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Briefly boiling food, then plunging it in cold water, is called?",
+  "a": "Blanching",
+  "w": [
+   "Braising",
+   "Searing",
+   "Poaching"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Indian cooking step 'tadka' is known in English as?",
+  "a": "Tempering",
+  "w": [
+   "Marinating",
+   "Kneading",
+   "Steaming"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Japanese soba noodles are made mainly from which flour?",
+  "a": "Buckwheat",
+  "w": [
+   "Rice flour",
+   "Corn flour",
+   "Chickpea flour"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Greek tzatziki is made from yogurt and which vegetable?",
+  "a": "Cucumber",
+  "w": [
+   "Carrot",
+   "Onion",
+   "Beetroot"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which nuts are used in classic Italian basil pesto?",
+  "a": "Pine nuts",
+  "w": [
+   "Cashews",
+   "Peanuts",
+   "Hazelnuts"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which spice comes from the inner bark of a tree?",
+  "a": "Cinnamon",
+  "w": [
+   "Clove",
+   "Nutmeg",
+   "Cardamom"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is 'jeera' called in English?",
+  "a": "Cumin",
+  "w": [
+   "Coriander",
+   "Fennel",
+   "Mustard"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Cooking biryani in a pot sealed with dough is called what?",
+  "a": "Dum",
+  "w": [
+   "Tandoor",
+   "Bhuna",
+   "Tawa"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Mace is the red outer covering of which spice?",
+  "a": "Nutmeg",
+  "w": [
+   "Clove",
+   "Cardamom",
+   "Black pepper"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Wasabi belongs to which plant family?",
+  "a": "Mustard family",
+  "w": [
+   "Ginger family",
+   "Mint family",
+   "Onion family"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The fiery bhut jolokia chilli comes from which region?",
+  "a": "Northeast India",
+  "w": [
+   "Kerala",
+   "Rajasthan",
+   "Kashmir"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is 'ajwain' called in English?",
+  "a": "Carom seeds",
+  "w": [
+   "Fennel seeds",
+   "Nigella seeds",
+   "Fenugreek seeds"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is 'kalonji' called in English?",
+  "a": "Nigella seeds",
+  "w": [
+   "Carom seeds",
+   "Fennel seeds",
+   "Mustard seeds"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which French sauce is made of egg yolk, butter and lemon?",
+  "a": "Hollandaise",
+  "w": [
+   "Bechamel",
+   "Veloute",
+   "Espagnole"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Flour and fat cooked together to thicken sauces is called?",
+  "a": "Roux",
+  "w": [
+   "Glaze",
+   "Brine",
+   "Zest"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Bengali shorshe ilish is hilsa cooked in which paste?",
+  "a": "Mustard",
+  "w": [
+   "Coconut",
+   "Tamarind",
+   "Cashew"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Pootharekulu, the paper-thin sweet, comes from which state?",
+  "a": "Andhra Pradesh",
+  "w": [
+   "Odisha",
+   "Kerala",
+   "Gujarat"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The melt-in-the-mouth galouti kebab is a specialty of which city?",
+  "a": "Lucknow",
+  "w": [
+   "Hyderabad",
+   "Amritsar",
+   "Kolkata"
+  ],
+  "d": 3
+ }
+]
