@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Which singer released the albums Fearless and 1989?",
+  "a": "Taylor Swift",
+  "w": [
+   "Katy Perry",
+   "Ariana Grande",
+   "Selena Gomez"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Elvis Presley is famously called the 'King of' what?",
+  "a": "Rock and Roll",
+  "w": [
+   "Jazz",
+   "Country",
+   "Blues"
+  ],
+  "d": 1
+ },
+ {
+  "q": "John, Paul, George and Ringo were members of which band?",
+  "a": "The Beatles",
+  "w": [
+   "The Rolling Stones",
+   "The Who",
+   "The Kinks"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Louis Armstrong was famous for playing which instrument?",
+  "a": "Trumpet",
+  "w": [
+   "Saxophone",
+   "Piano",
+   "Clarinet"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which singer is known as the 'Queen of Pop'?",
+  "a": "Madonna",
+  "w": [
+   "Cher",
+   "Whitney Houston",
+   "Celine Dion"
+  ],
+  "d": 1
+ },
+ {
+  "q": "A duet is performed by how many musicians?",
+  "a": "Two",
+  "w": [
+   "Three",
+   "Four",
+   "One"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Kenny G is famous for playing which instrument?",
+  "a": "Saxophone",
+  "w": [
+   "Trumpet",
+   "Violin",
+   "Guitar"
+  ],
+  "d": 1
+ },
+ {
+  "q": "K-pop music comes from which country?",
+  "a": "South Korea",
+  "w": [
+   "Japan",
+   "China",
+   "Thailand"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Samba music originated in which country?",
+  "a": "Brazil",
+  "w": [
+   "Mexico",
+   "Cuba",
+   "Argentina"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Flamenco music and dance come from which country?",
+  "a": "Spain",
+  "w": [
+   "Italy",
+   "Portugal",
+   "Mexico"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the title of Michael Jackson's 1982 album?",
+  "a": "Thriller",
+  "w": [
+   "Bad",
+   "Dangerous",
+   "Off the Wall"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Bhangra music originated in which Indian state?",
+  "a": "Punjab",
+  "w": [
+   "Gujarat",
+   "Rajasthan",
+   "Haryana"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which brass instrument uses a sliding tube to change pitch?",
+  "a": "Trombone",
+  "w": [
+   "Trumpet",
+   "Tuba",
+   "French horn"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Mozart was born in which present-day country?",
+  "a": "Austria",
+  "w": [
+   "Germany",
+   "Italy",
+   "France"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the highest standard female singing voice?",
+  "a": "Soprano",
+  "w": [
+   "Alto",
+   "Mezzo-soprano",
+   "Contralto"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who composed the music for the ballet The Nutcracker?",
+  "a": "Tchaikovsky",
+  "w": [
+   "Stravinsky",
+   "Prokofiev",
+   "Rachmaninoff"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Mick Jagger is the lead singer of which band?",
+  "a": "The Rolling Stones",
+  "w": [
+   "The Beatles",
+   "Led Zeppelin",
+   "The Doors"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which plucked string instrument is linked with Goddess Saraswati?",
+  "a": "Veena",
+  "w": [
+   "Sitar",
+   "Sarod",
+   "Santoor"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which singer was known as the 'Queen of Soul'?",
+  "a": "Aretha Franklin",
+  "w": [
+   "Diana Ross",
+   "Tina Turner",
+   "Etta James"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which musical term means 'very soft'?",
+  "a": "Pianissimo",
+  "w": [
+   "Fortissimo",
+   "Staccato",
+   "Legato"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who composed the waltz The Blue Danube?",
+  "a": "Johann Strauss II",
+  "w": [
+   "Franz Schubert",
+   "Johannes Brahms",
+   "Richard Wagner"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Bono is the lead singer of which band?",
+  "a": "U2",
+  "w": [
+   "Coldplay",
+   "Oasis",
+   "R.E.M."
+  ],
+  "d": 2
+ },
+ {
+  "q": "The ghatam, a Carnatic percussion instrument, is made of what?",
+  "a": "Clay",
+  "w": [
+   "Wood",
+   "Brass",
+   "Coconut shell"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many basic notes (swaras) are there in the Indian sargam?",
+  "a": "Seven",
+  "w": [
+   "Five",
+   "Eight",
+   "Twelve"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which tabla maestro was the father of Zakir Hussain?",
+  "a": "Ustad Alla Rakha",
+  "w": [
+   "Ustad Ahmed Jan Thirakwa",
+   "Pandit Kishan Maharaj",
+   "Pandit Samta Prasad"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who composed the opera Carmen?",
+  "a": "Georges Bizet",
+  "w": [
+   "Giuseppe Verdi",
+   "Giacomo Puccini",
+   "Claude Debussy"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which singer was nicknamed 'Ol' Blue Eyes'?",
+  "a": "Frank Sinatra",
+  "w": [
+   "Dean Martin",
+   "Bing Crosby",
+   "Elvis Presley"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Shreya Ghoshal made her Bollywood playback debut in which 2002 film?",
+  "a": "Devdas",
+  "w": [
+   "Saathiya",
+   "Kaante",
+   "Jism"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In music, the tempo marking 'allegro' means what?",
+  "a": "Fast and lively",
+  "w": [
+   "Slow and stately",
+   "Very soft",
+   "Gradually slower"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Cellist Yo-Yo Ma is famous for playing which instrument?",
+  "a": "Cello",
+  "w": [
+   "Violin",
+   "Viola",
+   "Double bass"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many symphonies did Beethoven complete?",
+  "a": "Nine",
+  "w": [
+   "Seven",
+   "Ten",
+   "Twelve"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who composed the Brandenburg Concertos?",
+  "a": "J. S. Bach",
+  "w": [
+   "G. F. Handel",
+   "Antonio Vivaldi",
+   "Joseph Haydn"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Tyagaraja, Dikshitar and who form the Carnatic 'Trinity'?",
+  "a": "Syama Sastri",
+  "w": [
+   "Purandara Dasa",
+   "Swathi Thirunal",
+   "Annamacharya"
+  ],
+  "d": 3
+ },
+ {
+  "q": "How many beats are there in Jhaptaal?",
+  "a": "Ten",
+  "w": [
+   "Eight",
+   "Twelve",
+   "Fourteen"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who composed the opera The Barber of Seville (1816)?",
+  "a": "Gioachino Rossini",
+  "w": [
+   "Giuseppe Verdi",
+   "W. A. Mozart",
+   "Gaetano Donizetti"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is a group of nine musicians called?",
+  "a": "Nonet",
+  "w": [
+   "Octet",
+   "Septet",
+   "Decet"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Grammy-winning singer is a daughter of Ravi Shankar?",
+  "a": "Norah Jones",
+  "w": [
+   "Alicia Keys",
+   "Diana Krall",
+   "Sade"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who composed The Rite of Spring?",
+  "a": "Igor Stravinsky",
+  "w": [
+   "Sergei Prokofiev",
+   "Maurice Ravel",
+   "Gustav Mahler"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Pandit Ram Narayan was a maestro of which bowed instrument?",
+  "a": "Sarangi",
+  "w": [
+   "Esraj",
+   "Violin",
+   "Dilruba"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who composed the oratorio Messiah?",
+  "a": "G. F. Handel",
+  "w": [
+   "J. S. Bach",
+   "Joseph Haydn",
+   "Henry Purcell"
+  ],
+  "d": 3
+ }
+]

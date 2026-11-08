@@ -1,0 +1,402 @@
+[
+ {
+  "q": "In Aladdin, which princess does Aladdin fall in love with?",
+  "a": "Jasmine",
+  "w": [
+   "Aurora",
+   "Ariel",
+   "Belle"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Frozen, who does Anna end up with?",
+  "a": "Kristoff",
+  "w": [
+   "Hans",
+   "Olaf",
+   "Sven"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Disney's Sleeping Beauty, what breaks Aurora's spell?",
+  "a": "True love's kiss",
+  "w": [
+   "A magic rose",
+   "A golden key",
+   "A fairy's song"
+  ],
+  "d": 1
+ },
+ {
+  "q": "On which festival do wives fast for their husbands' long life?",
+  "a": "Karva Chauth",
+  "w": [
+   "Raksha Bandhan",
+   "Bhai Dooj",
+   "Makar Sankranti"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which European city is often called the 'City of Love'?",
+  "a": "Paris",
+  "w": [
+   "Rome",
+   "Vienna",
+   "Prague"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What red powder do many married Hindu women wear in their hair parting?",
+  "a": "Sindoor",
+  "w": [
+   "Haldi",
+   "Chandan",
+   "Gulal"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the groom's wedding procession called in North India?",
+  "a": "Baraat",
+  "w": [
+   "Vidaai",
+   "Sangeet",
+   "Mehendi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "A golden wedding anniversary marks how many years?",
+  "a": "50",
+  "w": [
+   "25",
+   "40",
+   "60"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Lady and the Tramp, the two dogs share a plate of what?",
+  "a": "Spaghetti",
+  "w": [
+   "Pizza",
+   "Sausages",
+   "Meatloaf"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which goddess of wealth is the wife of Lord Vishnu?",
+  "a": "Lakshmi",
+  "w": [
+   "Saraswati",
+   "Durga",
+   "Kali"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who is the Roman goddess of love?",
+  "a": "Venus",
+  "w": [
+   "Juno",
+   "Minerva",
+   "Diana"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which small parrots are named for their close pair bonds?",
+  "a": "Lovebirds",
+  "w": [
+   "Budgies",
+   "Cockatiels",
+   "Macaws"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Disney's Cinderella, who does Cinderella marry?",
+  "a": "Prince Charming",
+  "w": [
+   "Prince Phillip",
+   "Prince Eric",
+   "Prince Adam"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In the film Up, what is the name of Carl's beloved wife?",
+  "a": "Ellie",
+  "w": [
+   "Annie",
+   "Lucy",
+   "Mary"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Mulan (1998), which army captain falls for Mulan?",
+  "a": "Li Shang",
+  "w": [
+   "Chien-Po",
+   "Ling",
+   "Yao"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Romeo and Juliet, Romeo belongs to which family?",
+  "a": "Montague",
+  "w": [
+   "Capulet",
+   "Medici",
+   "Borgia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which Italian city is Romeo and Juliet set?",
+  "a": "Verona",
+  "w": [
+   "Venice",
+   "Florence",
+   "Milan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Shah Jahan built the Taj Mahal in memory of which wife?",
+  "a": "Mumtaz Mahal",
+  "w": [
+   "Nur Jahan",
+   "Jodha Bai",
+   "Roshanara"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In The Princess and the Frog, Tiana falls in love with whom?",
+  "a": "Prince Naveen",
+  "w": [
+   "Prince Florian",
+   "Prince Charming",
+   "Prince Adam"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Disney's Pocahontas, she falls for which English explorer?",
+  "a": "John Smith",
+  "w": [
+   "John Rolfe",
+   "Walter Raleigh",
+   "Francis Drake"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Disney's Hercules (1997), who wins Hercules' heart?",
+  "a": "Megara",
+  "w": [
+   "Helen",
+   "Athena",
+   "Calliope"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Wuthering Heights, who is Catherine Earnshaw's great love?",
+  "a": "Heathcliff",
+  "w": [
+   "Edgar Linton",
+   "Mr. Rochester",
+   "Hindley"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In The Great Gatsby, Jay Gatsby is in love with whom?",
+  "a": "Daisy Buchanan",
+  "w": [
+   "Jordan Baker",
+   "Myrtle Wilson",
+   "Nick Carraway"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In the medieval legend, Tristan falls in love with whom?",
+  "a": "Isolde",
+  "w": [
+   "Guinevere",
+   "Elaine",
+   "Morgana"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Krishna eloped with which princess of Vidarbha?",
+  "a": "Rukmini",
+  "w": [
+   "Satyabhama",
+   "Subhadra",
+   "Draupadi"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which goddess, Shiva's first wife, was reborn as Parvati?",
+  "a": "Sati",
+  "w": [
+   "Ganga",
+   "Tara",
+   "Rati"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Greek myth, which mortal princess did Eros fall in love with?",
+  "a": "Psyche",
+  "w": [
+   "Helen",
+   "Andromeda",
+   "Daphne"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which nymph pined away for love of Narcissus?",
+  "a": "Echo",
+  "w": [
+   "Daphne",
+   "Calypso",
+   "Galatea"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Kalidasa's play, Dushyanta gives Shakuntala what token?",
+  "a": "A ring",
+  "w": [
+   "A necklace",
+   "A bangle",
+   "An anklet"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The poet-saint Mirabai devoted her love to which god?",
+  "a": "Krishna",
+  "w": [
+   "Shiva",
+   "Rama",
+   "Ganesha"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who is the Norse goddess of love?",
+  "a": "Freyja",
+  "w": [
+   "Sif",
+   "Hel",
+   "Skadi"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who is the ancient Egyptian goddess of love and joy?",
+  "a": "Hathor",
+  "w": [
+   "Isis",
+   "Bastet",
+   "Nut"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which sculptor in Greek myth fell in love with his own statue?",
+  "a": "Pygmalion",
+  "w": [
+   "Daedalus",
+   "Phidias",
+   "Narcissus"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Leander swam the Hellespont each night to meet whom?",
+  "a": "Hero",
+  "w": [
+   "Ariadne",
+   "Thisbe",
+   "Phaedra"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who wrote 'How do I love thee? Let me count the ways'?",
+  "a": "Elizabeth Barrett Browning",
+  "w": [
+   "Emily Dickinson",
+   "Christina Rossetti",
+   "Jane Austen"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Punjabi poet wrote the famous 1766 version of Heer Ranjha?",
+  "a": "Waris Shah",
+  "w": [
+   "Bulleh Shah",
+   "Baba Farid",
+   "Amrita Pritam"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In the Sindhi folk tale, Sassui loves whom?",
+  "a": "Punnhun",
+  "w": [
+   "Mahiwal",
+   "Ranjha",
+   "Majnu"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In Jane Austen's novel Emma, who does Emma Woodhouse marry?",
+  "a": "Mr. Knightley",
+  "w": [
+   "Frank Churchill",
+   "Mr. Elton",
+   "Mr. Darcy"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In Little Women, who does Jo March marry?",
+  "a": "Professor Bhaer",
+  "w": [
+   "Laurie",
+   "John Brooke",
+   "Mr. Lawrence"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In the Mahabharata, Arjuna married which sister of Krishna?",
+  "a": "Subhadra",
+  "w": [
+   "Uttara",
+   "Rukmini",
+   "Kunti"
+  ],
+  "d": 3
+ }
+]

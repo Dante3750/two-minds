@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Which ancient city was buried by Mount Vesuvius in AD 79?",
+  "a": "Pompeii",
+  "w": [
+   "Athens",
+   "Carthage",
+   "Troy"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Prime Minister gave the slogan 'Jai Jawan Jai Kisan'?",
+  "a": "Lal Bahadur Shastri",
+  "w": [
+   "Jawaharlal Nehru",
+   "Indira Gandhi",
+   "Morarji Desai"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which US President delivered the Gettysburg Address?",
+  "a": "Abraham Lincoln",
+  "w": [
+   "Thomas Jefferson",
+   "Ulysses S. Grant",
+   "Andrew Jackson"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was Britain's Prime Minister for most of World War II?",
+  "a": "Winston Churchill",
+  "w": [
+   "Neville Chamberlain",
+   "Clement Attlee",
+   "Anthony Eden"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which city was hit by the first atomic bomb used in war, in 1945?",
+  "a": "Hiroshima",
+  "w": [
+   "Nagasaki",
+   "Tokyo",
+   "Osaka"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What was the name of Mahatma Gandhi's wife?",
+  "a": "Kasturba Gandhi",
+  "w": [
+   "Kamala Nehru",
+   "Sarojini Naidu",
+   "Annie Besant"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which country did Gandhi first fight racial discrimination?",
+  "a": "South Africa",
+  "w": [
+   "Britain",
+   "Kenya",
+   "Burma"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the first woman President of India?",
+  "a": "Pratibha Patil",
+  "w": [
+   "Sarojini Naidu",
+   "Sushma Swaraj",
+   "Sonia Gandhi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was known as 'The Lady with the Lamp'?",
+  "a": "Florence Nightingale",
+  "w": [
+   "Mother Teresa",
+   "Clara Barton",
+   "Marie Curie"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Mother Teresa founded the Missionaries of Charity in which city?",
+  "a": "Kolkata",
+  "w": [
+   "Mumbai",
+   "Delhi",
+   "Chennai"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who made the first powered aeroplane flight in 1903?",
+  "a": "Wright brothers",
+  "w": [
+   "Montgolfier brothers",
+   "Lumiere brothers",
+   "Grimm brothers"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the chief architect of the Indian Constitution?",
+  "a": "B. R. Ambedkar",
+  "w": [
+   "Jawaharlal Nehru",
+   "Rajendra Prasad",
+   "Sardar Patel"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who led India's Non-Cooperation Movement of 1920?",
+  "a": "Mahatma Gandhi",
+  "w": [
+   "Bal Gangadhar Tilak",
+   "Jawaharlal Nehru",
+   "Subhas Chandra Bose"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which country did the Renaissance begin?",
+  "a": "Italy",
+  "w": [
+   "France",
+   "England",
+   "Spain"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which South African leader spent 27 years in prison?",
+  "a": "Nelson Mandela",
+  "w": [
+   "Desmond Tutu",
+   "Kofi Annan",
+   "Robert Mugabe"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which year did the French Revolution begin?",
+  "a": "1789",
+  "w": [
+   "1776",
+   "1804",
+   "1815"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which ancient wonder stood at Alexandria in Egypt?",
+  "a": "The Lighthouse (Pharos)",
+  "w": [
+   "The Colossus",
+   "The Hanging Gardens",
+   "The Mausoleum"
+  ],
+  "d": 2
+ },
+ {
+  "q": "At which place did Gautama Buddha attain enlightenment?",
+  "a": "Bodh Gaya",
+  "w": [
+   "Sarnath",
+   "Lumbini",
+   "Kushinagar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the father of the Mughal emperor Akbar?",
+  "a": "Humayun",
+  "w": [
+   "Babur",
+   "Jahangir",
+   "Sher Shah Suri"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which British monarch reigned when India came under Crown rule in 1858?",
+  "a": "Queen Victoria",
+  "w": [
+   "George III",
+   "Edward VII",
+   "William IV"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the first Indian to win a Nobel Prize, in 1913?",
+  "a": "Rabindranath Tagore",
+  "w": [
+   "C. V. Raman",
+   "Amartya Sen",
+   "Mother Teresa"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Mughal emperor built the Red Fort in Delhi?",
+  "a": "Shah Jahan",
+  "w": [
+   "Akbar",
+   "Aurangzeb",
+   "Humayun"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was known as the 'Maid of Orleans'?",
+  "a": "Joan of Arc",
+  "w": [
+   "Marie Antoinette",
+   "Catherine de' Medici",
+   "Eleanor of Aquitaine"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which town was Mahatma Gandhi born?",
+  "a": "Porbandar",
+  "w": [
+   "Ahmedabad",
+   "Rajkot",
+   "Surat"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which year was the Indian National Congress founded?",
+  "a": "1885",
+  "w": [
+   "1857",
+   "1905",
+   "1920"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Sikh Guru founded the Khalsa in 1699?",
+  "a": "Guru Gobind Singh",
+  "w": [
+   "Guru Nanak",
+   "Guru Arjan Dev",
+   "Guru Tegh Bahadur"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Cold War was mainly between the USA and which country?",
+  "a": "Soviet Union",
+  "w": [
+   "China",
+   "Germany",
+   "Japan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Genghis Khan founded which empire?",
+  "a": "Mongol Empire",
+  "w": [
+   "Ottoman Empire",
+   "Persian Empire",
+   "Timurid Empire"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In the Battle of Haldighati (1576), who fought Akbar's army?",
+  "a": "Maharana Pratap",
+  "w": [
+   "Rana Sanga",
+   "Prithviraj Chauhan",
+   "Shivaji"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Mughal emperor founded the city of Fatehpur Sikri?",
+  "a": "Akbar",
+  "w": [
+   "Babur",
+   "Jahangir",
+   "Aurangzeb"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which retired British official founded the Indian National Congress?",
+  "a": "A. O. Hume",
+  "w": [
+   "Lord Curzon",
+   "Lord Ripon",
+   "Annie Besant"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who was the first Governor-General of Bengal?",
+  "a": "Warren Hastings",
+  "w": [
+   "Robert Clive",
+   "Lord Cornwallis",
+   "Lord Wellesley"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who was the only Indian Governor-General of independent India?",
+  "a": "C. Rajagopalachari",
+  "w": [
+   "Rajendra Prasad",
+   "Sarojini Naidu",
+   "B. R. Ambedkar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Gupta ruler is often called the 'Napoleon of India'?",
+  "a": "Samudragupta",
+  "w": [
+   "Chandragupta II",
+   "Skandagupta",
+   "Kumaragupta I"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Greek ambassador lived at Chandragupta Maurya's court?",
+  "a": "Megasthenes",
+  "w": [
+   "Herodotus",
+   "Ptolemy",
+   "Plutarch"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Chinese pilgrim visited India during Harsha's reign?",
+  "a": "Xuanzang (Hiuen Tsang)",
+  "w": [
+   "Faxian (Fa-Hien)",
+   "Yijing (I-Tsing)",
+   "Marco Polo"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which 1919 treaty formally ended World War I with Germany?",
+  "a": "Treaty of Versailles",
+  "w": [
+   "Treaty of Paris",
+   "Treaty of Ghent",
+   "Treaty of Utrecht"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was the Battle of Talikota fought?",
+  "a": "1565",
+  "w": [
+   "1526",
+   "1556",
+   "1576"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Vijayanagara king wrote the Telugu poem 'Amuktamalyada'?",
+  "a": "Krishnadevaraya",
+  "w": [
+   "Harihara I",
+   "Bukka Raya I",
+   "Achyuta Deva Raya"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year was the Battle of Buxar fought?",
+  "a": "1764",
+  "w": [
+   "1757",
+   "1761",
+   "1775"
+  ],
+  "d": 3
+ }
+]

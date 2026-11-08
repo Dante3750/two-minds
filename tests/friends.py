@@ -54,15 +54,23 @@ async def main():
         # 4. live with a friend: invite pops up, one tap to join
         await him.click('#results [data-go="home"]'); await him.click('.tab[data-go="friends"]'); await him.click('#friends [data-flive]')
         await him.click('#topics [data-topic="music"]'); await him.click('#tpFLive'); await him.wait_for_selector('#lobby:not([hidden])')
-        await her.click('#results [data-go="home"]')
         await her.wait_for_selector('#ivGo', timeout=10000); await her.screenshot(path=f'{SHOTS}/f_invite.png'); await him.screenshot(path=f'{SHOTS}/f_lobby.png')
         await her.click('#ivGo')
         await him.wait_for_selector('#solo:not([hidden])', timeout=12000); await her.wait_for_selector('#solo:not([hidden])', timeout=12000); print('live with friend started on both')
-        await asyncio.gather(answer(him), answer(her, gap=700))
+        async def react():
+            await him.wait_for_selector('#emoBar:not([hidden]) [data-e]', timeout=15000); await him.wait_for_timeout(1200)
+            await him.dispatch_event('#emoBar [data-e="1"]', 'pointerdown')
+            await her.wait_for_selector('.emo.opp', timeout=6000); print('reaction arrived: yes')
+            await her.screenshot(path=f'{SHOTS}/r_emo.png')
+        await asyncio.gather(answer(him), answer(her, gap=700), react())
         await him.wait_for_selector('#results:not([hidden])', timeout=20000); await her.wait_for_selector('#results:not([hidden])', timeout=20000)
         a = [await him.get_attribute('#results .board b >> nth=0','data-count'), await him.get_attribute('#results .board b >> nth=1','data-count')]
         bb = [await her.get_attribute('#results .board b >> nth=0','data-count'), await her.get_attribute('#results .board b >> nth=1','data-count')]
         print('live scores consistent:', a == bb[::-1], a)
+        await her.click('#chatBox [data-q="0"]'); await him.wait_for_function("document.querySelector('#chatList') && document.querySelector('#chatList').innerText.includes('GG!')", timeout=8000)
+        await him.fill('#chatIn', 'rematch tomorrow ❤️'); await him.click('#chatForm .pillbtn')
+        await her.wait_for_function("document.querySelector('#chatList').innerText.includes('rematch tomorrow')", timeout=8000); print('chat both ways: yes')
+        await him.wait_for_timeout(300); await him.screenshot(path=f'{SHOTS}/r_chat.png', full_page=True)
         await him.click('#lvHome'); await him.click('.tab[data-go="friends"]'); await him.wait_for_timeout(400); await him.screenshot(path=f'{SHOTS}/f_list.png')
         await b.close()
     print('ERRORS:', errs or 'none')

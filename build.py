@@ -5,12 +5,17 @@ import json, os, re, shutil, hashlib
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC, DATA, DIST = (os.path.join(ROOT, d) for d in ('src', 'data', 'dist'))
 TOPICS = ['gk','brain','history','science','space','animals','tech','bollywood','hollywood','music','love',
-          'geography','capitals','india','food','cricket','sports','gaming']
+          'geography','capitals','india','food','cricket','sports','gaming',
+          'emoji','flags','mythology','books']   # append only: links refer to topics by position
 
 qb = {'topics': {}, 'couple': None}
 for t in TOPICS:
     path = os.path.join(DATA, t + '.json')
+    if not os.path.exists(path):
+        print(f'  (skipping {t}: no data yet)'); qb['topics'][t] = []; continue
     rows = json.load(open(path, encoding='utf-8'))
+    extra = os.path.join(DATA, t + '_2.json')     # round-2 questions are appended, so old indices stay valid
+    if os.path.exists(extra): rows += json.load(open(extra, encoding='utf-8'))
     out = []
     for r in rows:
         assert len(r['w']) == 3 and len({r['a'], *r['w']}) == 4, (t, r)

@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Which star is closest to Earth?",
+  "a": "The Sun",
+  "w": [
+   "Proxima Centauri",
+   "Sirius",
+   "Polaris"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many planets are in our solar system?",
+  "a": "8",
+  "w": [
+   "7",
+   "9",
+   "10"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which NASA programme landed astronauts on the Moon?",
+  "a": "Apollo",
+  "w": [
+   "Gemini",
+   "Mercury",
+   "Skylab"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which star is commonly called the North Star?",
+  "a": "Polaris",
+  "w": [
+   "Sirius",
+   "Vega",
+   "Betelgeuse"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What causes day and night on Earth?",
+  "a": "Earth's rotation",
+  "w": [
+   "Earth's revolution",
+   "The Moon's orbit",
+   "The Sun's rotation"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Earth is which planet in order from the Sun?",
+  "a": "Third",
+  "w": [
+   "Second",
+   "Fourth",
+   "Fifth"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a Russian space traveller traditionally called?",
+  "a": "Cosmonaut",
+  "w": [
+   "Astronaut",
+   "Taikonaut",
+   "Vyomanaut"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of India's human spaceflight programme?",
+  "a": "Gaganyaan",
+  "w": [
+   "Chandrayaan",
+   "Mangalyaan",
+   "Shukrayaan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "A 'shooting star' is actually what?",
+  "a": "A meteor",
+  "w": [
+   "A comet",
+   "A dying star",
+   "A satellite"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the path a planet takes around the Sun called?",
+  "a": "Orbit",
+  "w": [
+   "Axis",
+   "Equator",
+   "Eclipse"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is it called when the Moon blocks the Sun from view?",
+  "a": "Solar eclipse",
+  "w": [
+   "Lunar eclipse",
+   "Equinox",
+   "Solstice"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which space telescope, launched in 2021, is Hubble's successor?",
+  "a": "James Webb",
+  "w": [
+   "Kepler",
+   "Spitzer",
+   "Chandra"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What was the name of the dog that orbited Earth in 1957?",
+  "a": "Laika",
+  "w": [
+   "Belka",
+   "Strelka",
+   "Ham"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of the USA's space agency?",
+  "a": "NASA",
+  "w": [
+   "ESA",
+   "ISRO",
+   "JAXA"
+  ],
+  "d": 1
+ },
+ {
+  "q": "A huge system of stars, gas and dust held by gravity is called a?",
+  "a": "Galaxy",
+  "w": [
+   "Nebula",
+   "Constellation",
+   "Comet"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who was the first American to travel into space, in 1961?",
+  "a": "Alan Shepard",
+  "w": [
+   "John Glenn",
+   "Gus Grissom",
+   "Scott Carpenter"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the first woman of Indian origin to go to space?",
+  "a": "Kalpana Chawla",
+  "w": [
+   "Sunita Williams",
+   "Sirisha Bandla",
+   "Valentina Tereshkova"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Gravity on the Moon is roughly what fraction of Earth's?",
+  "a": "One-sixth",
+  "w": [
+   "One-half",
+   "One-third",
+   "One-tenth"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the brightest star in the night sky?",
+  "a": "Sirius",
+  "w": [
+   "Polaris",
+   "Vega",
+   "Betelgeuse"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Halley's Comet returns to the inner solar system roughly every?",
+  "a": "76 years",
+  "w": [
+   "25 years",
+   "50 years",
+   "120 years"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which large spiral galaxy is the nearest to the Milky Way?",
+  "a": "Andromeda",
+  "w": [
+   "Triangulum",
+   "Whirlpool",
+   "Sombrero"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What was the name of Apollo 11's lunar module?",
+  "a": "Eagle",
+  "w": [
+   "Falcon",
+   "Intrepid",
+   "Snoopy"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which gas makes up most of the atmosphere of Mars?",
+  "a": "Carbon dioxide",
+  "w": [
+   "Nitrogen",
+   "Oxygen",
+   "Methane"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Indian mission helped confirm water molecules on the Moon in 2009?",
+  "a": "Chandrayaan-1",
+  "w": [
+   "Chandrayaan-2",
+   "Mangalyaan",
+   "Aryabhata"
+  ],
+  "d": 2
+ },
+ {
+  "q": "A light-year is a unit used to measure what?",
+  "a": "Distance",
+  "w": [
+   "Time",
+   "Brightness",
+   "Speed"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The moon Triton orbits which planet?",
+  "a": "Neptune",
+  "w": [
+   "Uranus",
+   "Saturn",
+   "Jupiter"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which planet is less dense than water?",
+  "a": "Saturn",
+  "w": [
+   "Jupiter",
+   "Neptune",
+   "Mars"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which was the first spacecraft to enter interstellar space, in 2012?",
+  "a": "Voyager 1",
+  "w": [
+   "Voyager 2",
+   "Pioneer 10",
+   "New Horizons"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The tilt of Earth's axis is the main cause of what?",
+  "a": "Seasons",
+  "w": [
+   "Tides",
+   "Day and night",
+   "Eclipses"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Sun's outer atmosphere, seen in a total eclipse, is called?",
+  "a": "Corona",
+  "w": [
+   "Photosphere",
+   "Chromosphere",
+   "Core"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the boundary around a black hole beyond which nothing escapes?",
+  "a": "Event horizon",
+  "w": [
+   "Accretion disc",
+   "Singularity",
+   "Photon sphere"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What was the world's first space station, launched in 1971?",
+  "a": "Salyut 1",
+  "w": [
+   "Mir",
+   "Skylab",
+   "Tiangong-1"
+  ],
+  "d": 3
+ },
+ {
+  "q": "William Herschel discovered which planet in 1781?",
+  "a": "Uranus",
+  "w": [
+   "Neptune",
+   "Saturn",
+   "Pluto"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who made the first ever spacewalk, in 1965?",
+  "a": "Alexei Leonov",
+  "w": [
+   "Ed White",
+   "Yuri Gagarin",
+   "Gherman Titov"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Indian-born astrophysicist won the 1983 Nobel Prize in Physics?",
+  "a": "S. Chandrasekhar",
+  "w": [
+   "Meghnad Saha",
+   "Homi Bhabha",
+   "Jayant Narlikar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Long-period comets are thought to come from which distant region?",
+  "a": "Oort cloud",
+  "w": [
+   "Kuiper belt",
+   "Asteroid belt",
+   "Magellanic Clouds"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What will our Sun finally end its life as?",
+  "a": "White dwarf",
+  "w": [
+   "Neutron star",
+   "Black hole",
+   "Pulsar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Philae lander made the first comet landing as part of which mission?",
+  "a": "Rosetta",
+  "w": [
+   "Giotto",
+   "Stardust",
+   "Deep Impact"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the name of India's first dedicated astronomy satellite, from 2015?",
+  "a": "AstroSat",
+  "w": [
+   "XPoSat",
+   "Cartosat",
+   "Oceansat"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who put forward the Sun-centred model of the solar system in 1543?",
+  "a": "Nicolaus Copernicus",
+  "w": [
+   "Galileo Galilei",
+   "Ptolemy",
+   "Johannes Kepler"
+  ],
+  "d": 3
+ }
+]

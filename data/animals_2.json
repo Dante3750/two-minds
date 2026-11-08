@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is a baby cat called?",
+  "a": "Kitten",
+  "w": [
+   "Cub",
+   "Pup",
+   "Foal"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a baby horse called?",
+  "a": "Foal",
+  "w": [
+   "Calf",
+   "Kid",
+   "Lamb"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which bird is famous for copying human speech?",
+  "a": "Parrot",
+  "w": [
+   "Crow",
+   "Pigeon",
+   "Sparrow"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a baby duck called?",
+  "a": "Duckling",
+  "w": [
+   "Gosling",
+   "Cygnet",
+   "Eaglet"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which African grazing animal has black-and-white stripes?",
+  "a": "Zebra",
+  "w": [
+   "Gnu",
+   "Donkey",
+   "Antelope"
+  ],
+  "d": 1
+ },
+ {
+  "q": "A caterpillar grows up to become which insect?",
+  "a": "Butterfly",
+  "w": [
+   "Beetle",
+   "Dragonfly",
+   "Grasshopper"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which big cat do the males have a large mane?",
+  "a": "Lion",
+  "w": [
+   "Tiger",
+   "Leopard",
+   "Jaguar"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which insect makes honey?",
+  "a": "Honeybee",
+  "w": [
+   "Wasp",
+   "Ant",
+   "Housefly"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which sea creature has eight arms?",
+  "a": "Octopus",
+  "w": [
+   "Starfish",
+   "Crab",
+   "Jellyfish"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the largest member of the cat family?",
+  "a": "Tiger",
+  "w": [
+   "Lion",
+   "Jaguar",
+   "Leopard"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a baby sheep called?",
+  "a": "Lamb",
+  "w": [
+   "Kid",
+   "Calf",
+   "Foal"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which flightless bird is a national symbol of New Zealand?",
+  "a": "Kiwi",
+  "w": [
+   "Emu",
+   "Ostrich",
+   "Penguin"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which tree-dwelling mammal is famous for moving very slowly?",
+  "a": "Sloth",
+  "w": [
+   "Lemur",
+   "Monkey",
+   "Squirrel"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which animal is often called man's best friend?",
+  "a": "Dog",
+  "w": [
+   "Cat",
+   "Horse",
+   "Parrot"
+  ],
+  "d": 1
+ },
+ {
+  "q": "A penguin is a type of what?",
+  "a": "Bird",
+  "w": [
+   "Mammal",
+   "Fish",
+   "Reptile"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is a group of wolves called?",
+  "a": "Pack",
+  "w": [
+   "Herd",
+   "Pride",
+   "Flock"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a baby goat called?",
+  "a": "Kid",
+  "w": [
+   "Lamb",
+   "Calf",
+   "Cub"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which bird is able to fly backwards?",
+  "a": "Hummingbird",
+  "w": [
+   "Swallow",
+   "Sparrow",
+   "Kingfisher"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a male duck called?",
+  "a": "Drake",
+  "w": [
+   "Gander",
+   "Cob",
+   "Tom"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What tiny shrimp-like animals are the blue whale's main food?",
+  "a": "Krill",
+  "w": [
+   "Squid",
+   "Sardines",
+   "Seaweed"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which insect spreads malaria?",
+  "a": "Anopheles mosquito",
+  "w": [
+   "Aedes mosquito",
+   "Housefly",
+   "Tsetse fly"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a group of fish swimming together called?",
+  "a": "School",
+  "w": [
+   "Pack",
+   "Herd",
+   "Pride"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the largest living reptile?",
+  "a": "Saltwater crocodile",
+  "w": [
+   "Komodo dragon",
+   "Leatherback turtle",
+   "Green anaconda"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the largest living lizard?",
+  "a": "Komodo dragon",
+  "w": [
+   "Green iguana",
+   "Gila monster",
+   "Frilled lizard"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which rodent defends itself with sharp quills?",
+  "a": "Porcupine",
+  "w": [
+   "Armadillo",
+   "Mole",
+   "Beaver"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the largest species of penguin?",
+  "a": "Emperor penguin",
+  "w": [
+   "King penguin",
+   "Adelie penguin",
+   "Gentoo penguin"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is an animal that eats only plants called?",
+  "a": "Herbivore",
+  "w": [
+   "Carnivore",
+   "Omnivore",
+   "Insectivore"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a baby bear called?",
+  "a": "Cub",
+  "w": [
+   "Pup",
+   "Kit",
+   "Joey"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Dolphins breathe through what?",
+  "a": "Blowhole",
+  "w": [
+   "Gills",
+   "Mouth",
+   "Skin pores"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Australian bird is famous for its loud laughing call?",
+  "a": "Kookaburra",
+  "w": [
+   "Cockatoo",
+   "Emu",
+   "Lyrebird"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which big cat cannot fully retract its claws?",
+  "a": "Cheetah",
+  "w": [
+   "Leopard",
+   "Jaguar",
+   "Tiger"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is a group of owls called?",
+  "a": "Parliament",
+  "w": [
+   "Gaggle",
+   "Pod",
+   "Murder"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the only marsupial native to the USA and Canada?",
+  "a": "Virginia opossum",
+  "w": [
+   "Raccoon",
+   "Skunk",
+   "Armadillo"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is a baby hare called?",
+  "a": "Leveret",
+  "w": [
+   "Joey",
+   "Fawn",
+   "Cygnet"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which mammal is also known as the scaly anteater?",
+  "a": "Pangolin",
+  "w": [
+   "Armadillo",
+   "Aardvark",
+   "Echidna"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the largest species of deer?",
+  "a": "Moose",
+  "w": [
+   "Reindeer",
+   "Red deer",
+   "Sambar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Flamingos get their pink colour from what?",
+  "a": "Their diet",
+  "w": [
+   "Their genes",
+   "Sunlight",
+   "Mud baths"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which great ape is, along with the bonobo, closest to humans?",
+  "a": "Chimpanzee",
+  "w": [
+   "Gorilla",
+   "Orangutan",
+   "Gibbon"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which mammal has the densest fur in the animal kingdom?",
+  "a": "Sea otter",
+  "w": [
+   "Polar bear",
+   "Arctic fox",
+   "Musk ox"
+  ],
+  "d": 3
+ },
+ {
+  "q": "An animal mostly active at dawn and dusk is described as what?",
+  "a": "Crepuscular",
+  "w": [
+   "Nocturnal",
+   "Diurnal",
+   "Arboreal"
+  ],
+  "d": 3
+ }
+]

@@ -15,7 +15,9 @@ const META = [
   ['geography','Geography','⌖','#38d6ff','world'], ['capitals','Capitals & Flags','⚑','#5aa9ff','world'],
   ['india','India','✺','#ff9933','world'], ['food','Food & Drink','◒','#ff8a65','world'],
   ['cricket','Cricket','◍','#a3e635','play'], ['sports','Sports','◉','#2ec4b6','play'],
-  ['gaming','Video Games','◆','#f15bb5','play']
+  ['gaming','Video Games','◆','#f15bb5','play'],
+  ['emoji','Emoji Guess','☺','#ffd166','pop'], ['flags','Flags','⚑','#ff6b6b','world'],
+  ['mythology','Mythology','✧','#f4a259','know'], ['books','Books','▤','#9ad1d4','know']
 ].filter(m => QB.topics[m[0]] && QB.topics[m[0]].length);
 const TOPICS = {};
 META.forEach(([id, name, ic, c, cat]) => TOPICS[id] = {id, name, ic, c, cat, q: QB.topics[id]});
@@ -23,7 +25,7 @@ TOPICS.mixed = {id:'mixed', name:'Mixed Bag', ic:'✳', c:'#f2f4ff', cat:'all', 
 TOPICS.us = {id:'us', name:'Us Two', ic:'❦', c:'#ffb3c1', cat:'all', q:null};
 TOPICS.daily = {id:'daily', name:'Daily Duel', ic:'☀', c:'#ffc53d', cat:'all', q:null};
 const TOPIC_IDS = META.map(m => m[0]);
-const TOPIC_ICON = {gk:'bulb', brain:'puzzle', history:'hourglass', science:'flask', space:'rocket', animals:'paw', tech:'cpu', bollywood:'clapper', hollywood:'film', music:'music', love:'heart', geography:'globe', capitals:'flag', india:'landmark', food:'utensils', cricket:'cricket', sports:'trophy', gaming:'gamepad', mixed:'shuffle', us:'hearts', daily:'sun'};
+const TOPIC_ICON = {gk:'bulb', brain:'puzzle', history:'hourglass', science:'flask', space:'rocket', animals:'paw', tech:'cpu', bollywood:'clapper', hollywood:'film', music:'music', love:'heart', geography:'globe', capitals:'flag', india:'landmark', food:'utensils', cricket:'cricket', sports:'trophy', gaming:'gamepad', mixed:'shuffle', us:'hearts', daily:'sun', emoji:'smile', flags:'flagw', mythology:'trident', books:'book'};
 const CATS = [['all','All'],['know','Knowledge'],['pop','Pop culture'],['world','World'],['play','Sports & games']];
 const COLORS = ['#ff6b5a','#38d6ff','#ffc53d','#3ddc84','#c77dff','#ff8fa3','#f4a259','#8f96ff'];
 const TITLES = [[1,'Rookie'],[3,'Quizzer'],[6,'Brainiac'],[10,'Mastermind'],[15,'Genius'],[22,'Legend'],[30,'Grandmaster']];
@@ -38,6 +40,7 @@ let S = {
   h2h:[0,0,0], history:[], used:{}, us:[], badges:[], fav:[], recent:[],
   daily:{}, settings:{sound:true, vib:true, relaxed:false, seat:'face', botLevel:1, theme:'velvet'},
   rivals:{}, sent:{}, played:{}, code:'', friends:{}, reqIn:{}, reqOut:{}, inbox:[], ibSeen:[],
+  streak:{cur:0, best:0, last:''}, week:{k:'', p:0, g:0}, fweek:{}, lastWeek:null, season:{k:'', p:0}, frames:[], frameOf:{},
   id: Math.random().toString(36).slice(2, 10), onboarded:false, couple:{bestKnow:0, bestLikely:0, played:0}, challenges:{sent:0, played:0, won:0}
 };
 function load(){
@@ -49,6 +52,8 @@ function load(){
       S.stats.partner = Object.assign(blankStats(), d.stats && d.stats.partner);
       S.settings = Object.assign({sound:true, vib:true, relaxed:false, seat:'face', botLevel:1, theme:'velvet'}, d.settings || {});
       S.rivals = d.rivals || {}; S.sent = d.sent || {}; S.played = d.played || {};
+      S.streak = Object.assign({cur:0, best:0, last:''}, d.streak || {}); S.week = Object.assign({k:'', p:0, g:0}, d.week || {});
+      S.fweek = d.fweek || {}; S.lastWeek = d.lastWeek || null; S.season = Object.assign({k:'', p:0}, d.season || {}); S.frames = d.frames || []; S.frameOf = d.frameOf || {};
       S.friends = d.friends || {}; S.reqIn = d.reqIn || {}; S.reqOut = d.reqOut || {}; S.inbox = d.inbox || []; S.ibSeen = d.ibSeen || [];
       if (!d.rivals && d.partner && d.partner.name && Array.isArray(d.h2h) && (d.h2h[0] + d.h2h[1] + d.h2h[2]) > 0)
         S.rivals['local:' + d.partner.name.trim().toLowerCase()] = {n: d.partner.name, c: d.partner.color || '#38d6ff', w: d.h2h[0], l: d.h2h[1], d: d.h2h[2], at: Date.now()};
@@ -121,6 +126,12 @@ const ICON = {
   link:'<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/>',
   copy:'<rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 8.5V6A2.5 2.5 0 0 0 13 3.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/>',
   plus:'<path d="M12 5v14M5 12h14"/>',
+  smile:'<circle cx="12" cy="12" r="9"/><path d="M8 14.5a5 5 0 0 0 8 0"/><circle cx="9" cy="10" r=".9" class="fill"/><circle cx="15" cy="10" r=".9" class="fill"/>',
+  flagw:'<path d="M5 21V4"/><path d="M5 5c3-2 6 2 9 0s4-1 5 0v8c-1-1-2-2-5 0s-6-2-9 0"/>',
+  trident:'<path d="M12 21V6M7 4v4a5 5 0 0 0 10 0V4M12 3v3M9.5 17h5"/>',
+  book:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/>',
+  chat:'<path d="M20.5 12a8 8 0 0 1-11.6 7.2L3.5 20.5l1.3-4.9A8 8 0 1 1 20.5 12z"/>',
+  medal:'<circle cx="12" cy="15" r="6"/><path d="M8.5 9.8 6 3h4l2 4.5L14 3h4l-2.5 6.8"/><path d="m12 12.5.9 1.9 2 .3-1.4 1.4.3 2-1.8-1-1.8 1 .3-2-1.4-1.4 2-.3z"/>',
   users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 20a6.5 6.5 0 0 0-3-5.5"/>',
   useradd:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M19 8v6M16 11h6"/>',
   inbox:'<path d="M3.5 13.5 6 5h12l2.5 8.5V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19z"/><path d="M3.5 13.5H8l1.5 2.5h5l1.5-2.5h4.5"/>', x:'<path d="M6 6l12 12M18 6 6 18"/>', history:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5M12 7.5V12l3 2"/>'
@@ -138,7 +149,15 @@ function today(){ const d = new Date(); return `${d.getFullYear()}-${String(d.ge
 const nameOf = who => (S[who].name || (who === 'me' ? 'You' : 'Partner')).trim();
 const initial = n => (String(n).trim()[0] || '?').toUpperCase();
 const safeColor = c => (typeof c === 'string' && /^#[0-9a-f]{3,8}$/i.test(c)) ? c : '#9aa3d1';
-function avatar(name, color, cls = '', letter){ return `<span class="av ${cls}" style="--c:${safeColor(color)}">${esc(letter || initial(name))}</span>`; }
+const FRAME_IDS = ['bronze','silver','gold','plat','diamond','flame'];
+const validFrame = f => f === undefined || f === '' || FRAME_IDS.includes(f);
+function myFrame(){ return S.me.frame && S.frames.includes(S.me.frame) ? S.me.frame : ''; }
+function frameFor(name, color){
+  if (name === nameOf('me') && color === S.me.color) return myFrame();
+  return S.frameOf[String(name).trim().toLowerCase()] || '';
+}
+function learnFrame(x){ if (x && typeof x.n === 'string' && validFrame(x.f)){ const k = x.n.trim().toLowerCase(); if (x.f) S.frameOf[k] = x.f; else delete S.frameOf[k]; } }
+function avatar(name, color, cls = '', letter){ const f = letter === '?' ? '' : frameFor(name, color); return `<span class="av ${cls} ${f ? 'fr fr-' + f : ''}" style="--c:${safeColor(color)}">${esc(letter || initial(name))}</span>`; }
 const randId = (len = 12) => Array.from(crypto.getRandomValues(new Uint8Array(len)), b => 'abcdefghijkmnpqrstuvwxyz23456789'[b % 32]).join('');
 const whenStr = () => new Date().toLocaleDateString(undefined, {day:'numeric', month:'short'}) + ' ' + new Date().toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
 if (!/^[a-z0-9]{6}$/.test(S.code || '')){ S.code = randId(6); save(); }
@@ -280,6 +299,7 @@ function validPlayer(x){
   if (!/^#[0-9a-f]{3,8}$/i.test(String(x.c))) return false;
   if (x.lv !== undefined && !(Number.isInteger(x.lv) && x.lv >= 0 && x.lv < 1000)) return false;
   if (x.i !== undefined && !(typeof x.i === 'string' && /^[a-z0-9]{1,16}$/.test(x.i))) return false;
+  if (!validFrame(x.f)) return false;
   return Array.isArray(x.p) && x.p.length === ROUNDS && x.p.every(k => Array.isArray(k) && Number.isInteger(k[0]) && k[0] >= -1 && k[0] <= 3 && Number.isFinite(k[1]) && k[1] >= 0 && k[1] <= 20000);
 }
 function validLink(p){
@@ -340,6 +360,7 @@ async function syncChallenges(){
       if (!st.shared || now - st.at > 36*3600e3) continue;
       let list; try{ list = await relayPoll(cid); }catch(e){ continue; }
       for (const x of list){
+        learnFrame(x);
         if (x.i === S.id || st.res[x.i]) continue;
         st.res[x.i] = {n:x.n, c:x.c, s:x.s, p:x.p};
         const r = st.s > x.s ? 'w' : st.s < x.s ? 'l' : 'd';
@@ -377,7 +398,7 @@ addEventListener('online', () => syncChallenges());
 const inboxTopic = code => 'twominds-u-' + code;
 const IB = {es:null};
 const validCode = c => typeof c === 'string' && /^[a-z0-9]{6}$/.test(c);
-const meCard_ = () => ({i: S.id, n: nameOf('me'), c: S.me.color, code: S.code});
+const meCard_ = () => ({i: S.id, n: nameOf('me'), c: S.me.color, code: S.code, f: myFrame() || undefined});
 function sendTo(code, obj){ return postTopic(inboxTopic(code), Object.assign(meCard_(), obj)); }
 function isFriend(i){ return !!S.friends[i]; }
 function friendList(){ return Object.values(S.friends).sort((a, b) => (b.at || 0) - (a.at || 0)); }
@@ -406,6 +427,7 @@ function pendingInbox(){ const now = Date.now(); return S.inbox.filter(it => !it
 
 function onInbox(x, at){
   if (!x || typeof x !== 'object' || x.i === S.id || !validMini(x) || !validCode(x.code)) return;
+  learnFrame(x);
   const known = isFriend(x.i);
   if (x.type === 'freq'){                       // someone asks to be friends
     if (known){ touchFriend(x); sendTo(x.code, {type:'facc'}).catch(() => {}); return; }
@@ -424,6 +446,13 @@ function onInbox(x, at){
   if (x.type === 'fdec'){ delete S.reqOut[x.code]; refreshSocial(); return; }
   if (!known) return;                           // challenges only from friends
   touchFriend(x);
+  if (x.type === 'wk'){
+    if (typeof x.k === 'string' && /^w\d{4}-\d{2}-\d{2}$/.test(x.k) && Number.isInteger(x.p) && x.p >= 0 && x.p < 1e6 && Number.isInteger(x.g) && x.g >= 0 && x.g < 1e4){
+      const cur = S.fweek[x.i]; if (!cur || cur.k !== x.k || x.p >= cur.p) S.fweek[x.i] = {k: x.k, p: x.p, g: x.g};
+      if (current === 'friends') go('friends', {keepScroll:true});
+    }
+    return;
+  }
   if (x.type === 'ch' || x.type === 'lv'){
     if (typeof x.link !== 'string' || x.link.length > 6000) return;
     const pre = x.type === 'ch' ? 'c=' : 'L=';
@@ -497,10 +526,15 @@ document.addEventListener('click', e => {
 
 /* ================= home ================= */
 function meCard(){
+  rollPeriods();
   const xp = totalXp('me') / 3, L = levelOf(xp), lv = L.lv;
   const rv = rivalsList().slice(0, 8);
   return `<div class="mecard" style="--c:${S.me.color}">
     <button type="button" class="mehead" data-go="me"><span class="ring-av" style="--pct:${Math.round(L.into / L.need * 100)}">${avatar(nameOf('me'), S.me.color, 'l')}<span class="lvb">${lv}</span></span><div><div class="hi">Hi, ${esc(nameOf('me'))}</div><div class="lv"><b>${titleFor(lv)}</b> · ${L.need - Math.round(L.into)} XP to level ${lv + 1}</div><div class="xpbar" style="--c:${S.me.color}"><i style="width:${Math.round(L.into / L.need * 100)}%"></i></div></div></button>
+    <div class="chips">
+      <span class="chipx ${S.streak.last === dayKey() ? 'hot' : ''}">${icon('flame','sm')}${S.streak.cur && (S.streak.last === dayKey() || S.streak.last === (() => { const y = new Date(); y.setDate(y.getDate() - 1); return dayKey(y); })()) ? `${S.streak.cur}-day streak${S.streak.last === dayKey() ? '' : ' · play today'}` : 'Start a streak today'}</span>
+      <button type="button" class="chipx tier t-${tierOf(S.season.p)[0]}" data-go="me">${icon('medal','sm')}${tierOf(S.season.p)[1]} · ${S.season.p} pts</button>
+    </div>
     ${rv.length ? `<div class="rivals">${rv.map(r => `<div class="rival">${avatar(r.n, r.c, 's')}<span class="rn">${esc(r.n)}</span><span class="rs"><b class="res-w">${r.w}</b>–<b class="res-l">${r.l}</b></span></div>`).join('')}</div>`
       : `<p class="small">Play a duel or share a challenge link. Everyone you play shows up here with your record.</p>`}
   </div>`;
@@ -788,6 +822,7 @@ function startSolo(o){
   const matchT = o.ms || (S.settings.relaxed ? 15000 : 10000);
   M = {T: matchT, mode:'solo', kind, topic:o.topic, refs, Q, ghost, round:-1, score:0, gscore:0, log:[], phase:'intro', id:Math.random(), link:o.link || null, date:o.date || (o.topic === 'daily' ? today() : null)};
   M.cid = o.cid || null; M.toFriend = o.toFriend || null;
+  $('emoBar').hidden = kind !== 'live';
   const me = {n:nameOf('me'), c:S.me.color}, opp = ghost ? {n:ghost.n, c:ghost.c} : {n:'Anyone', c:'#8b92bf', l:'?'};
   $('soloMe').innerHTML = `${avatar(me.n, me.c, 's')}<div><div class="nm">${esc(me.n)}</div><div class="sc">0<span class="gain"></span></div></div>`;
   $('soloOpp').innerHTML = `${avatar(opp.n, opp.c, 's', opp.l)}<div><div class="nm">${esc(opp.n)}</div><div class="sc">${ghost ? '0' : '–'}<span class="gain"></span></div><div class="state" id="oppState">${ghost ? '' : 'plays your link'}</div></div>`;
@@ -915,7 +950,7 @@ function finishMatch(){
     if (m.ghost && !m.ghost.bot && m.kind !== 'bot'){ S.challenges.played++; if (r === 'w') S.challenges.won++; recordVs(rivalKey(m.ghost.n, m.ghost.i), m.ghost.n, m.ghost.c, r); }
     if (r === 'p'){ m.cid = randId(); S.sent[m.cid] = {t: m.topic, s: s0, at: Date.now(), res: {}, shared: false, url: null}; }
     if (m.kind === 'reply' && m.cid){
-      m.pack = {i: S.id, n: nameOf('me'), c: S.me.color, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
+      m.pack = {i: S.id, n: nameOf('me'), c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
       S.played[m.cid] = {t: m.topic, s: s0, at: Date.now(), A: {i: m.ghost.i, n: m.ghost.n, c: m.ghost.c, s: s1}, pack: m.pack, sent: false};
     }
     if (m.topic === 'daily' && !S.daily[today()] && m.date === today()) S.daily[today()] = {score: s0};
@@ -925,6 +960,7 @@ function finishMatch(){
   const modeName = m.mode === 'duel' ? 'Duel' : m.kind === 'live' ? 'Live' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily' : m.kind === 'reply' ? 'Link reply' : 'Link';
   S.history.unshift({key: r === 'p' ? 'pend:' + m.cid : undefined, t: m.topic, m: modeName, o: r === 'p' ? 'anyone' : oppName, s:[s0, s1 === null ? '?' : s1], r, when: whenStr()});
   S.history = S.history.slice(0, 60);
+  if (m.kind !== 'bot') onPlayed(gained.me, s0); else onPlayed(0, 0);
   const newBadges = checkBadges({m, r, s0, s1});
   save();
   renderResults({m, r, s0, s1, oppName, oppColor, gained, before, xpTopic, newBadges});
@@ -939,6 +975,52 @@ function applyStats(st, r, picks, topic){
   st.topics[topic] = (st.topics[topic] || 0) + 1;
 }
 
+/* ================= streak, weekly board, seasons ================= */
+const TIERS = [['bronze','Bronze',0], ['silver','Silver',400], ['gold','Gold',1200], ['plat','Platinum',2500], ['diamond','Diamond',4500]];
+const FRAME_NAMES = {bronze:'Bronze', silver:'Silver', gold:'Gold', plat:'Platinum', diamond:'Diamond', flame:'Flame'};
+function dayKey(d = new Date()){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function weekKey(d = new Date()){ const x = new Date(d); x.setHours(0,0,0,0); const dow = (x.getDay() + 6) % 7; x.setDate(x.getDate() - dow); return 'w' + dayKey(x); }
+function seasonKey(d = new Date()){ return dayKey(d).slice(0, 7); }
+function weekDaysLeft(){ const d = new Date(), dow = (d.getDay() + 6) % 7; return 7 - dow; }
+function seasonDaysLeft(){ const d = new Date(), end = new Date(d.getFullYear(), d.getMonth() + 1, 0); return end.getDate() - d.getDate() + 1; }
+function tierOf(p){ let t = TIERS[0]; for (const x of TIERS) if (p >= x[2]) t = x; return t; }
+function nextTier(p){ return TIERS.find(x => x[2] > p) || null; }
+function rollPeriods(){
+  const wk = weekKey(), sk = seasonKey();
+  if (S.week.k && S.week.k !== wk){
+    const board = weekBoard(S.week.k);
+    if (board.length > 1 || (board[0] && board[0].p > 0)) S.lastWeek = {k: S.week.k, board: board.slice(0, 5)};
+    S.week = {k: wk, p: 0, g: 0};
+  }
+  if (!S.week.k) S.week.k = wk;
+  if (S.season.k && S.season.k !== sk) S.season = {k: sk, p: 0};
+  if (!S.season.k) S.season.k = sk;
+}
+function weekBoard(k = weekKey()){
+  const rows = [{i: S.id, n: nameOf('me'), c: S.me.color, p: S.week.k === k ? S.week.p : 0, g: S.week.k === k ? S.week.g : 0, me: true}];
+  Object.entries(S.fweek).forEach(([i, w]) => { const f = S.friends[i]; if (f && w.k === k) rows.push({i, n: f.n, c: f.c, p: w.p, g: w.g}); });
+  return rows.sort((a, b) => b.p - a.p);
+}
+function onPlayed(xp, score){
+  rollPeriods();
+  const today = dayKey(), y = new Date(); y.setDate(y.getDate() - 1);
+  const st = S.streak, before = st.cur;
+  if (st.last !== today){ st.cur = st.last === dayKey(y) ? st.cur + 1 : 1; st.last = today; st.best = Math.max(st.best, st.cur); }
+  if (st.cur >= 7 && !S.frames.includes('flame')) S.frames.push('flame');
+  S.week.p += score || 0; S.week.g++;
+  const tBefore = tierOf(S.season.p)[0];
+  S.season.p += xp || 0;
+  TIERS.forEach(t => { if (S.season.p >= t[2] && t[0] !== 'bronze' && !S.frames.includes(t[0])) S.frames.push(t[0]); });
+  if (!S.frames.includes('bronze') && S.season.p > 0) S.frames.push('bronze');
+  const tAfter = tierOf(S.season.p);
+  const notes = [];
+  if (st.cur > before && st.cur > 1) notes.push(`${st.cur}-day streak! Keep it going tomorrow`);
+  if (tAfter[0] !== tBefore) notes.push(`Season rank up: ${tAfter[1]}! New avatar frame unlocked`);
+  notes.forEach((t, k) => setTimeout(() => { toast(t, 2600); SFX.badge(); }, 2600 + k*2800));
+  // tell friends my weekly total so everyone's weekly board stays current
+  friendList().forEach(f => sendTo(f.code, {type:'wk', k: S.week.k, p: S.week.p, g: S.week.g}).catch(() => {}));
+}
+
 /* ================= badges ================= */
 const BADGES = [
   ['first_win','First win','Win any match','✌'], ['win10','On a roll','Win 10 matches','⚡'], ['streak3','Hat-trick','Win 3 in a row','♛'],
@@ -948,7 +1030,8 @@ const BADGES = [
   ['daily7','Week warrior','Daily Duel on 7 days','☼'], ['sent','Gauntlet','Send a challenge link','✉'], ['ldw','Long-distance win','Beat her link ghost','❤'],
   ['us5','Storyteller','Write 5 Us questions','✎'], ['know80','Mind reader','80%+ in How well do you know me','◎'], ['likely80','Same wavelength','80%+ in Who\'s more likely','≈'],
   ['bothard','Beat the machine','Beat the Hard bot','⚙'], ['played25','Regular','Play 25 matches','♺'], ['century','Century','100 correct answers','C'],
-  ['night','Night owl','Play between midnight and 4 am','☾'], ['fast20','Quick draw','20 answers under 2 seconds','⌁'], ['h2h10','Rivals','Play 10 duels on one phone','⚔']
+  ['night','Night owl','Play between midnight and 4 am','☾'], ['fast20','Quick draw','20 answers under 2 seconds','⌁'], ['h2h10','Rivals','Play 10 duels on one phone','⚔'],
+  ['streak7','On fire','7-day play streak','f'], ['streak30','Unstoppable','30-day play streak','f'], ['champ','Weekly champ','Top your friends for a week','m'], ['goldtier','Golden','Reach Gold in a season','m']
 ];
 function checkBadges(ctx = {}){
   const st = S.stats.me, got = new Set(S.badges), add = [];
@@ -964,11 +1047,14 @@ function checkBadges(ctx = {}){
   has('played25', st.played >= 25); has('century', st.correct >= 100);
   has('night', ctx.m && new Date().getHours() < 4); has('fast20', st.fast >= 20);
   has('h2h10', S.h2h[0] + S.h2h[1] + S.h2h[2] >= 10);
+  has('streak7', S.streak.best >= 7); has('streak30', S.streak.best >= 30);
+  has('champ', !!(S.lastWeek && S.lastWeek.board.length > 1 && S.lastWeek.board[0].me && S.lastWeek.board[0].p > 0));
+  has('goldtier', S.frames.includes('gold'));
   S.badges = [...got];
   return add;
 }
 const BADGE_ICON = {first_win:'trophy', win10:'flame', streak3:'crown', perfect:'check', score140:'zap', comeback:'undo', draw:'scale', topics5:'compass', topics12:'globe',
-  lv5:'star', lv10:'award', daily1:'sun', daily7:'calendar', sent:'send', ldw:'heart', us5:'pen', know80:'eye', likely80:'waves', bothard:'bot', played25:'repeat', century:'hundred', night:'moon', fast20:'timer', h2h10:'swords'};
+  lv5:'star', lv10:'award', daily1:'sun', daily7:'calendar', sent:'send', ldw:'heart', us5:'pen', know80:'eye', likely80:'waves', bothard:'bot', played25:'repeat', century:'hundred', night:'moon', fast20:'timer', h2h10:'swords', streak7:'flame', streak30:'flame', champ:'trophy', goldtier:'medal'};
 BADGES.forEach(b => b[3] = icon(BADGE_ICON[b[0]] || 'star'));
 function badgeHtml(ids){ return ids.map(id => { const b = BADGES.find(x => x[0] === id); return b ? `<div class="newb"><span class="bi">${b[3]}</span><div><b>Badge unlocked: ${esc(b[1])}</b><span>${esc(b[2])}</span></div></div>` : ''; }).join(''); }
 function badgeToast(ids){ ids.forEach((id, k) => { const b = BADGES.find(x => x[0] === id); if (b) setTimeout(() => { toast(`Badge unlocked: ${b[1]}`); SFX.badge(); }, 600 + k*2200); }); }
@@ -1027,7 +1113,7 @@ function renderResults(o){
   if (winFx){ SFX.win(); confetti(140, m.mode === 'duel' ? [r === 'w' ? S.me.color : S.partner.color, '#ffc53d', '#f2f4ff'] : undefined); buzz([30,50,30,50,80]); }
   else if (r === 'd'){ SFX.win(); } else { SFX.lose(); buzz([60]); }
 
-  const myPack = {i: S.id, n: myName, c: S.me.color, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
+  const myPack = {i: S.id, n: myName, c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
   if ($('rAgain')) $('rAgain').onclick = () => m.mode === 'duel' ? startDuel(m.topic, true) : startSolo({kind:'bot', topic:m.topic});
   if ($('rShare')) $('rShare').onclick = async () => {
     const st = S.sent[m.cid];
@@ -1175,6 +1261,7 @@ function handleHash(){
   if (!validLink(p)){ toast('That link looks broken or is from an older version'); return false; }
   $('modal').hidden = true;
   const refs = unpackRefs(p.q), T = TOPICS[p.t] || TOPICS.mixed;
+  learnFrame(p.A); if (p.B) learnFrame(p.B);
   const A = p.A, B = p.B;
   if (p.k === 'res' && B){
     // final scoreboard: A played first, B replied
@@ -1239,7 +1326,7 @@ addEventListener('hashchange', () => { if (location.hash.startsWith('#c=') || lo
 const LIVE_GRACE = 6000;
 const LV = {es:null, room:null, seen:new Set(), opp:null, role:null, game:0, buf:{}, started:false, pendingRm:null, ctx:null, errs:0, opened:false};
 const liveTopic = room => 'twominds-live-' + room;
-const validMini = x => x && typeof x.n === 'string' && x.n.trim() && x.n.length <= 24 && /^#[0-9a-f]{3,8}$/i.test(String(x.c)) && typeof x.i === 'string' && /^[a-z0-9]{1,16}$/.test(x.i) && (x.lv === undefined || (Number.isInteger(x.lv) && x.lv >= 0 && x.lv < 1000));
+const validMini = x => x && validFrame(x.f) && typeof x.n === 'string' && x.n.trim() && x.n.length <= 24 && /^#[0-9a-f]{3,8}$/i.test(String(x.c)) && typeof x.i === 'string' && /^[a-z0-9]{1,16}$/.test(x.i) && (x.lv === undefined || (Number.isInteger(x.lv) && x.lv >= 0 && x.lv < 1000));
 function liveOpen(room, onMsg){
   liveClose();
   Object.assign(LV, {room, seen:new Set(), onMsg, errs:0, opened:false});
@@ -1274,6 +1361,7 @@ addEventListener('pagehide', () => {
 function liveAnswer(o, ms){ if (!M) return; M.liveSent = true; livePost({type:'a', r: M.round, o, ms}).catch(() => { setTimeout(() => livePost({type:'a', r: M.round, o, ms}).catch(() => {}), 800); }); }
 
 function liveBegin(refs, t, ms){
+  LV.chat = LV.chat || []; emoCount = 0;
   const picks = []; Object.entries(LV.buf[LV.game] || {}).forEach(([r, v]) => picks[+r] = v);
   startSolo({kind:'live', topic:t, refs, ms, ghost:{n: LV.opp.n, c: LV.opp.c, lv: LV.opp.lv, i: LV.opp.i, picks, live:true}});
 }
@@ -1303,9 +1391,43 @@ function liveCommon(x){
     SFX.badge(); buzz([20, 40, 20]);
     return;
   }
+  if (x.type === 'emo'){ if (Number.isInteger(x.e) && x.e >= 0 && x.e < EMOS.length) showEmo(EMOS[x.e], 'opp'); return; }
+  if (x.type === 'chat'){
+    if (typeof x.t !== 'string' || !x.t.trim() || x.t.length > 80) return;
+    LV.chat.push({me:false, t:x.t.trim()}); renderChat();
+    if (current !== 'results' || !$('chatBox')) toast(`${LV.opp.n}: ${x.t.trim()}`);
+    tone(880, 0.06, 'sine', 0.05); return;
+  }
   if (x.type === 'rmok' && LV.pendingRm && x.id === LV.pendingRm.id){
     const r = LV.pendingRm; LV.pendingRm = null; LV.game++; liveBegin(r.refs, r.t, r.ms);
   }
+}
+const EMOS = ['😂','🔥','😮','👏','😤','❤️'];
+const QUICK = ['GG!', 'Rematch?', 'Lucky guess 😏', 'You\'re too good ❤️', 'Again!', 'So close 😩'];
+let emoLast = 0, emoCount = 0;
+function sendEmo(k){
+  const now = Date.now();
+  if (now - emoLast < 1200 || emoCount >= 25){ return; }
+  emoLast = now; emoCount++;
+  showEmo(EMOS[k], 'me'); livePost({type:'emo', e:k}).catch(() => {}); buzz(8);
+}
+function showEmo(ch, side){
+  const host = $('solo').hidden ? document.body : $('solo');
+  const el = document.createElement('div'); el.className = 'emo ' + side; el.textContent = ch;
+  el.style.left = (side === 'me' ? 18 + Math.random()*14 : 64 + Math.random()*14) + '%';
+  host.appendChild(el); setTimeout(() => el.remove(), 2200);
+  if (side === 'opp') tone(1200, 0.05, 'triangle', 0.04);
+}
+function renderChat(){
+  const box = $('chatList'); if (!box) return;
+  box.innerHTML = LV.chat.length ? LV.chat.map(c => `<div class="msg ${c.me ? 'me' : ''}">${esc(c.t)}</div>`).join('') : `<p class="small">Say something to ${esc(LV.opp ? LV.opp.n : 'them')}</p>`;
+  box.scrollTop = box.scrollHeight;
+}
+function sendChat(t){
+  t = String(t || '').trim().slice(0, 80); if (!t || !LV.opp || LV.opp.gone) return;
+  if (LV.chatSent >= 40) { toast('That is a lot of messages. Rematch?'); return; }
+  LV.chatSent = (LV.chatSent || 0) + 1;
+  LV.chat.push({me:true, t}); renderChat(); livePost({type:'chat', t}).catch(() => toast('Message not sent'));
 }
 function acceptRematch(r){
   LV.offerRm = null;
@@ -1313,6 +1435,14 @@ function acceptRematch(r){
 }
 function liveResultsUI(m){
   const box = $('liveRm'), btn = $('lvRe'); if (!box || !btn) return;
+  if (!$('chatBox')){
+    box.insertAdjacentHTML('beforebegin', `<div class="card chat" id="chatBox"><div class="h" style="margin:0 0 10px">${icon('chat','sm')} Chat</div><div class="chatlist" id="chatList"></div>
+      <div class="quick">${QUICK.map((q, k) => `<button type="button" class="chip" data-q="${k}">${esc(q)}</button>`).join('')}</div>
+      <form class="addrow" id="chatForm" autocomplete="off"><input id="chatIn" maxlength="80" placeholder="Message"><button class="pillbtn" type="submit">Send</button></form></div>`);
+    $('chatBox').querySelectorAll('[data-q]').forEach(b => b.onclick = () => sendChat(QUICK[+b.dataset.q]));
+    $('chatForm').onsubmit = e => { e.preventDefault(); sendChat($('chatIn').value); $('chatIn').value = ''; };
+    renderChat();
+  }
   const opp = LV.opp;
   if (!opp || opp.gone){ box.innerHTML = `<div class="sync">${opp ? esc(opp.n) + ' left the match' : 'The live match has ended'}</div>`; btn.hidden = true; }
   else if (LV.offerRm){
@@ -1334,14 +1464,14 @@ function liveResultsUI(m){
 function startLive(topicId, friendId){
   noteRecent(topicId);
   const refs = pickRefs(topicId), room = randId(), ms = S.settings.relaxed ? 15000 : 10000;
-  const host = {i: S.id, n: nameOf('me'), c: S.me.color, lv: overallLevel('me')};
+  const host = {i: S.id, n: nameOf('me'), c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me')};
   const url = baseUrl() + '#L=' + b64e({v:2, k:'live', r: room, t: topicId, q: packRefs(refs), h: host, ms});
   const F = friendId && S.friends[friendId];
-  Object.assign(LV, {role:'host', game:1, buf:{}, opp:null, started:false, pendingRm:null, offerRm:null, ctx:{room, refs, t: topicId, ms, url, friend: F ? F.i : null}});
+  Object.assign(LV, {chat:[], chatSent:0, role:'host', game:1, buf:{}, opp:null, started:false, pendingRm:null, offerRm:null, ctx:{room, refs, t: topicId, ms, url, friend: F ? F.i : null}});
   if (F) sendTo(F.code, {type:'lv', link: url.split('#')[1]}).then(() => { const e = $('lbState'); if (e && !LV.started){ e.className = 'sync ok'; e.innerHTML = `${icon('check','sm')}Invite sent to ${esc(F.n)}`; } }).catch(() => { const e = $('lbState'); if (e){ e.className = 'sync bad'; e.textContent = `Couldn't reach ${F.n}'s inbox. Share the link instead.`; } });
   liveOpen(room, x => {
     if (x.type === 'join' && !LV.started && validMini(x)){
-      LV.started = true; LV.opp = {i: x.i, n: x.n, c: x.c, lv: x.lv};
+      LV.started = true; LV.opp = {i: x.i, n: x.n, c: x.c, lv: x.lv}; learnFrame(x);
       livePost({type:'go', g: x.i}).then(() => { recordSeen(); liveBegin(refs, topicId, ms); })
         .catch(() => { LV.started = false; LV.opp = null; toast('Connection problem. Ask them to tap Join again'); });
       return;
@@ -1383,7 +1513,7 @@ function handleLiveHash(h){
     && unpackRefs(p.q).every(r => r.c ? (Array.isArray(r.c) && r.c.length === 5 && r.c.every(x => typeof x === 'string' && x.length <= 120)) : Array.isArray(refQ(r)));
   if (!ok){ toast('That live link looks broken'); return false; }
   $('modal').hidden = true;
-  const T = TOPICS[p.t], H = p.h, refs = unpackRefs(p.q);
+  const T = TOPICS[p.t], H = p.h, refs = unpackRefs(p.q); learnFrame(H);
   if (H.i === S.id){ toast('This is your own live link. Send it to someone else'); return false; }
   $('incoming').innerHTML = `<div class="col" style="min-height:70vh;align-content:center">
     <div style="display:grid;justify-items:center;gap:14px;text-align:center">
@@ -1407,7 +1537,7 @@ function handleLiveHash(h){
     S.me.name = n; save();
     const st = $('joinState'); st.hidden = false; st.className = 'sync'; st.innerHTML = `<span class="spin"></span>Joining ${esc(H.n)}…`;
     $('incGo').disabled = true;
-    Object.assign(LV, {role:'guest', game:1, buf:{}, opp:{i: H.i, n: H.n, c: H.c, lv: H.lv}, started:false, pendingRm:null, offerRm:null, ctx:{room: p.r, refs, t: p.t, ms: p.ms}});
+    Object.assign(LV, {chat:[], chatSent:0, role:'guest', game:1, buf:{}, opp:{i: H.i, n: H.n, c: H.c, lv: H.lv}, started:false, pendingRm:null, offerRm:null, ctx:{room: p.r, refs, t: p.t, ms: p.ms}});
     liveOpen(p.r, x => {
       if (x.i !== H.i) return;
       if (x.type === 'go'){
@@ -1418,7 +1548,7 @@ function handleLiveHash(h){
       if (x.type === 'bye' && !LV.started){ clearTimeout(LV.joinT); st.className = 'sync bad'; st.textContent = `${H.n} closed this room. Ask for a new live link.`; liveClose(); return; }
       liveCommon(x);
     });
-    livePost({type:'join', n: S.me.name, c: S.me.color, lv: overallLevel('me')}).catch(() => {
+    livePost({type:'join', n: S.me.name, c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me')}).catch(() => {
       st.className = 'sync bad'; st.textContent = "Couldn't connect. Check your internet and try again."; $('incGo').disabled = false;
     });
     clearTimeout(LV.joinT);
@@ -1438,6 +1568,7 @@ function renderFriends(){
       <button class="cta" type="button" id="shareMe">${icon('useradd','sm')}Invite a friend</button>
       <form class="addrow" id="addForm" autocomplete="off"><input id="addCode" maxlength="9" placeholder="Enter a friend code" autocapitalize="characters" spellcheck="false"><button class="pillbtn" type="submit">Send request</button></form>
     </div>
+    ${fl.length ? weekCard() : ''}
     ${reqs.length ? `<div class="h">Friend requests</div><ul class="list">${reqs.map(r => `<li class="li">${avatar(r.n, r.c, 's')}<div><div class="t1">${esc(r.n)}</div><div class="t2">Code ${fmtCode(r.code)}</div></div><button type="button" class="pillbtn ghost" data-dec="${esc(r.i)}">Decline</button><button type="button" class="pillbtn ok" data-acc="${esc(r.i)}">Accept</button></li>`).join('')}</ul>` : ''}
     ${items.length ? `<div class="h">Waiting for you</div><div class="banners">${items.map(it => { const T = TOPICS[it.t] || TOPICS.mixed; return `<div class="bn ${it.k === 'lv' ? 'live' : ''}">${avatar(it.n, it.c, 's')}<div><b>${esc(it.n)}</b><span>${it.k === 'lv' ? 'is waiting to play live' : 'challenged you'} · ${esc(T.name)}</span></div><button type="button" class="pillbtn" data-ib="${it.id}">${it.k === 'lv' ? 'Join' : 'Play'}</button></div>`; }).join('')}</div>` : ''}
     <div class="h">Your friends · ${fl.length}</div>
@@ -1456,6 +1587,15 @@ function renderFriends(){
     withFriend = b.dataset.flive || b.dataset.fch; topicIntent = b.dataset.flive ? 'live' : 'link'; SFX.tap(); go('topics');
   });
   updateFriendDot();
+}
+function weekCard(){
+  rollPeriods();
+  const b = weekBoard(), lw = S.lastWeek;
+  return `<div class="card week">
+    <div class="h" style="margin:0 0 10px">This week<span class="small" style="text-transform:none;letter-spacing:0">${weekDaysLeft()} day${weekDaysLeft() === 1 ? '' : 's'} left</span></div>
+    <ol class="lb">${b.map((e, k) => `<li class="${e.me ? 'me' : ''}"><span class="rk">${k === 0 && e.p > 0 ? icon('crown','sm') : k + 1}</span>${avatar(e.n, e.c, 's')}<span class="ln">${esc(e.n)}${e.me ? ' <em>you</em>' : ''}<em>${e.g} game${e.g === 1 ? '' : 's'}</em></span><b>${e.p}</b></li>`).join('')}</ol>
+    ${lw && lw.board[0] ? `<p class="small" style="margin-top:10px">${icon('trophy','sm')} Last week's champion: <b style="color:var(--ink)">${esc(lw.board[0].n)}</b> with ${lw.board[0].p} points</p>` : `<p class="small" style="margin-top:10px">Points from every match you play this week. Resets Monday.</p>`}
+  </div>`;
 }
 function wireSocial(root){
   root.querySelectorAll('[data-acc]').forEach(b => b.onclick = () => { const r = S.reqIn[b.dataset.acc]; if (r) acceptFriend(r); });
@@ -1585,7 +1725,7 @@ function coupleResults(){
     const tally = [0, 0]; C.log.forEach(l => { tally[l.a]++; tally[l.b]++; });
     body = `<div class="statg" style="grid-template-columns:1fr 1fr"><div class="st">Votes for ${esc(mN)}<b>${tally[0]}</b></div><div class="st">Votes for ${esc(pN)}<b>${tally[1]}</b></div></div>`;
   }
-  S.couple.played++;
+  S.couple.played++; onPlayed(40, 0);
   const nb = checkBadges(); save();
   $('coupleRes').innerHTML = `<div class="col"><p class="small" style="text-align:center">${C.type === 'know' ? 'How well do you know me?' : "Who's more likely"}</p>
     <div class="big-pct">${pct}%</div><h1 class="winner">${title}</h1>${body}${badgeHtml(nb)}
@@ -1633,6 +1773,17 @@ function applyTheme(){
   document.documentElement.dataset.theme = t;
   const m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = THEMES.find(x => x[0] === t)[2];
 }
+function seasonCard(){
+  rollPeriods();
+  const p = S.season.p, t = tierOf(p), nx = nextTier(p), pct = nx ? Math.round((p - t[2]) / (nx[2] - t[2]) * 100) : 100;
+  return `<div class="card season">
+    <div class="srow"><span class="tierbadge t-${t[0]}">${icon('medal')}</span><div><b>${t[1]}</b><span>${p} season points · ${seasonDaysLeft()} days left</span></div></div>
+    <div class="xpbar t-${t[0]}"><i style="width:${pct}%"></i></div>
+    <p class="small">${nx ? `${nx[2] - p} points to ${nx[1]}. Each rank unlocks an avatar frame you keep forever.` : 'Top rank reached. Legendary!'}</p>
+    <div class="h" style="margin:4px 0 0">Avatar frames</div>
+    <div class="frames">${['', ...FRAME_IDS].map(f => { const have = !f || S.frames.includes(f); return `<button type="button" class="frame-pick" data-frame="${f}" aria-pressed="${(S.me.frame || '') === f}" ${have ? '' : 'disabled'}><span class="av s ${f ? 'fr fr-' + f : ''}" style="--c:${S.me.color}">${esc(initial(nameOf('me')))}</span><span>${f ? FRAME_NAMES[f] : 'None'}</span>${have ? '' : `<small>${f === 'flame' ? '7-day streak' : 'Reach ' + FRAME_NAMES[f]}</small>`}</button>`; }).join('')}</div>
+  </div>`;
+}
 function renderMe(){
   const st = S.stats.me, lm = overallLevel('me');
   const acc = st.answered ? Math.round(st.correct / st.answered * 100) : 0;
@@ -1643,6 +1794,8 @@ function renderMe(){
     <div class="card stack"><div class="pp">${avatar(nameOf('me'), S.me.color, 'l')}<div><div class="nm" style="font-size:19px">${esc(nameOf('me'))}</div><div class="tt">Level ${lm} · ${titleFor(lm)} · code ${fmtCode(S.code)}</div></div></div>
       <div class="field">Your name<input id="meName" maxlength="14" autocomplete="off" value="${esc(S.me.name)}" placeholder="Your name"></div>
       <div class="colors">${COLORS.map(c => `<button type="button" style="--c:${c}" data-col="${c}" aria-pressed="${S.me.color === c}" aria-label="Colour"></button>`).join('')}</div></div>
+    <div class="h">Season · ${new Date().toLocaleDateString(undefined, {month:'long'})}</div>
+    ${seasonCard()}
     <div class="h">Look</div>
     <div class="themes">${THEMES.map(([id, name, bg, a1, a2]) => `<button type="button" class="theme" data-theme-pick="${id}" aria-pressed="${S.settings.theme === id}"><span class="sw" style="background:${bg}"><i style="background:${a1}"></i><i style="background:${a2}"></i></span>${name}</button>`).join('')}</div>
     <div class="h">Rivals</div>
@@ -1669,6 +1822,7 @@ function renderMe(){
     S.me.name = v; save(); renderMe();
   };
   $('me').querySelectorAll('[data-col]').forEach(b => b.onclick = () => { S.me.color = b.dataset.col; save(); SFX.tap(); renderMe(); });
+  $('me').querySelectorAll('[data-frame]').forEach(b => b.onclick = () => { if (b.disabled) return; S.me.frame = b.dataset.frame; save(); SFX.tap(); renderMe(); });
   $('me').querySelectorAll('[data-theme-pick]').forEach(b => b.onclick = () => { S.settings.theme = b.dataset.themePick; save(); applyTheme(); SFX.tap(); renderMe(); });
   $('me').querySelectorAll('[data-set]').forEach(b => b.onclick = () => {
     const k = b.dataset.set, v = b.dataset.v, y = $('me').scrollTop;
@@ -1738,6 +1892,9 @@ function pickOpponent(purpose, then){
 }
 
 /* ================= boot ================= */
+$('emoBar').innerHTML = EMOS.map((e, k) => `<button type="button" data-e="${k}" aria-label="Send ${e}">${e}</button>`).join('');
+$('emoBar').addEventListener('pointerdown', e => { const b = e.target.closest('[data-e]'); if (!b) return; e.preventDefault(); sendEmo(+b.dataset.e); });
+rollPeriods();
 document.querySelectorAll('.tab').forEach(t => { const k = {home:'home', topics:'grid', friends:'users', couple:'heart', me:'user'}[t.dataset.go]; const ti = t.querySelector('.ti'); if (ti && k) ti.outerHTML = icon(k); });
 document.addEventListener('visibilitychange', () => { if (document.hidden && M){ /* timers keep real time; nothing to pause in a live duel */ } });
 applyTheme();

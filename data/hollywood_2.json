@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is the name of the snowman in Frozen?",
+  "a": "Olaf",
+  "w": [
+   "Sven",
+   "Kristoff",
+   "Hans"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of the villain lion in The Lion King?",
+  "a": "Scar",
+  "w": [
+   "Nala",
+   "Rafiki",
+   "Zazu"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is Spider-Man's real name?",
+  "a": "Peter Parker",
+  "w": [
+   "Bruce Wayne",
+   "Clark Kent",
+   "Steve Rogers"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of Batman's loyal butler?",
+  "a": "Alfred",
+  "w": [
+   "Jarvis",
+   "Jeeves",
+   "Lucius"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of the space ranger toy in Toy Story?",
+  "a": "Buzz Lightyear",
+  "w": [
+   "Zurg",
+   "Rex",
+   "Hamm"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What kind of animal is Dumbo?",
+  "a": "Elephant",
+  "w": [
+   "Mouse",
+   "Donkey",
+   "Hippo"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In The Wizard of Oz, what is Dorothy's dog called?",
+  "a": "Toto",
+  "w": [
+   "Rex",
+   "Spot",
+   "Buddy"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which forgetful blue fish helps Marlin search for Nemo?",
+  "a": "Dory",
+  "w": [
+   "Bubbles",
+   "Gill",
+   "Crush"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What colour is the Hulk's skin?",
+  "a": "Green",
+  "w": [
+   "Red",
+   "Blue",
+   "Grey"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of the panda in Kung Fu Panda?",
+  "a": "Po",
+  "w": [
+   "Shifu",
+   "Tai Lung",
+   "Oogway"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which wizard guides Frodo in The Lord of the Rings?",
+  "a": "Gandalf",
+  "w": [
+   "Dumbledore",
+   "Merlin",
+   "Saruman"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played Jack Dawson in Titanic (1997)?",
+  "a": "Leonardo DiCaprio",
+  "w": [
+   "Brad Pitt",
+   "Matt Damon",
+   "Johnny Depp"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is Captain America's real name?",
+  "a": "Steve Rogers",
+  "w": [
+   "Bucky Barnes",
+   "Peter Parker",
+   "Tony Stark"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Monsters, Inc., what is the big blue furry monster called?",
+  "a": "Sulley",
+  "w": [
+   "Mike",
+   "Randall",
+   "Boo"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Madagascar, what kind of animal is Alex?",
+  "a": "Lion",
+  "w": [
+   "Zebra",
+   "Giraffe",
+   "Hippo"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who directed Pulp Fiction?",
+  "a": "Quentin Tarantino",
+  "w": [
+   "Martin Scorsese",
+   "Guy Ritchie",
+   "David Fincher"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played the title role in Forrest Gump?",
+  "a": "Tom Hanks",
+  "w": [
+   "Kevin Costner",
+   "Tom Cruise",
+   "Jim Carrey"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In The Matrix, which colour pill does Neo take?",
+  "a": "Red",
+  "w": [
+   "Blue",
+   "Green",
+   "White"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which actor played Captain Jack Sparrow?",
+  "a": "Johnny Depp",
+  "w": [
+   "Orlando Bloom",
+   "Brad Pitt",
+   "Keanu Reeves"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed The Lord of the Rings film trilogy?",
+  "a": "Peter Jackson",
+  "w": [
+   "Ridley Scott",
+   "Sam Raimi",
+   "Guillermo del Toro"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the name of Han Solo's ship in Star Wars?",
+  "a": "Millennium Falcon",
+  "w": [
+   "Death Star",
+   "Star Destroyer",
+   "X-wing"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played Hermione Granger in the Harry Potter films?",
+  "a": "Emma Watson",
+  "w": [
+   "Emma Stone",
+   "Bonnie Wright",
+   "Keira Knightley"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The line 'I'll be back' is from which film?",
+  "a": "The Terminator",
+  "w": [
+   "RoboCop",
+   "Predator",
+   "Die Hard"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which city is Pixar's Ratatouille set?",
+  "a": "Paris",
+  "w": [
+   "Rome",
+   "London",
+   "Lyon"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played Vito Corleone in The Godfather (1972)?",
+  "a": "Marlon Brando",
+  "w": [
+   "Al Pacino",
+   "Robert De Niro",
+   "James Caan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the name of the great lion in The Chronicles of Narnia?",
+  "a": "Aslan",
+  "w": [
+   "Mufasa",
+   "Leo",
+   "Kovu"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Moana, which demigod joins Moana on her voyage?",
+  "a": "Maui",
+  "w": [
+   "Tamatoa",
+   "Hercules",
+   "Kakamora"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In The Incredibles, what is the family's surname?",
+  "a": "Parr",
+  "w": [
+   "Best",
+   "Stark",
+   "Kent"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Corleone son, played by Al Pacino, becomes the new Don?",
+  "a": "Michael",
+  "w": [
+   "Sonny",
+   "Fredo",
+   "Tom"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Star Wars, what is Luke Skywalker's home planet?",
+  "a": "Tatooine",
+  "w": [
+   "Naboo",
+   "Hoth",
+   "Alderaan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which film won Best Picture at the very first Academy Awards?",
+  "a": "Wings",
+  "w": [
+   "Sunrise",
+   "The Jazz Singer",
+   "Metropolis"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who directed Casablanca (1942)?",
+  "a": "Michael Curtiz",
+  "w": [
+   "John Huston",
+   "Billy Wilder",
+   "Howard Hawks"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the name of the hotel in The Shining (1980)?",
+  "a": "The Overlook Hotel",
+  "w": [
+   "The Bates Motel",
+   "The Stanley Hotel",
+   "The Grand Budapest"
+  ],
+  "d": 3
+ },
+ {
+  "q": "On which fictional island is the park in Jurassic Park (1993)?",
+  "a": "Isla Nublar",
+  "w": [
+   "Isla Sorna",
+   "Skull Island",
+   "Amity Island"
+  ],
+  "d": 3
+ },
+ {
+  "q": "How many Academy Awards did Titanic (1997) win?",
+  "a": "11",
+  "w": [
+   "9",
+   "12",
+   "14"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who played Rick Blaine in Casablanca?",
+  "a": "Humphrey Bogart",
+  "w": [
+   "Clark Gable",
+   "Cary Grant",
+   "James Stewart"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which 1927 film is famed as the first feature-length talkie?",
+  "a": "The Jazz Singer",
+  "w": [
+   "Wings",
+   "Metropolis",
+   "The General"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who composed the score for The Lion King (1994)?",
+  "a": "Hans Zimmer",
+  "w": [
+   "John Williams",
+   "Alan Menken",
+   "James Horner"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who directed Lawrence of Arabia (1962)?",
+  "a": "David Lean",
+  "w": [
+   "Stanley Kubrick",
+   "William Wyler",
+   "John Ford"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the name of the spaceship in Alien (1979)?",
+  "a": "Nostromo",
+  "w": [
+   "Sulaco",
+   "Discovery One",
+   "Event Horizon"
+  ],
+  "d": 3
+ }
+]

@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is the national flower of India?",
+  "a": "Lotus",
+  "w": [
+   "Rose",
+   "Jasmine",
+   "Marigold"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the national fruit of India?",
+  "a": "Mango",
+  "w": [
+   "Banana",
+   "Jackfruit",
+   "Guava"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the national tree of India?",
+  "a": "Banyan",
+  "w": [
+   "Peepal",
+   "Neem",
+   "Mango"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What colour is the top band of India's national flag?",
+  "a": "Saffron",
+  "w": [
+   "Green",
+   "White",
+   "Red"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of West Bengal?",
+  "a": "Kolkata",
+  "w": [
+   "Siliguri",
+   "Durgapur",
+   "Asansol"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Maharashtra?",
+  "a": "Mumbai",
+  "w": [
+   "Pune",
+   "Nagpur",
+   "Nashik"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Uttar Pradesh?",
+  "a": "Lucknow",
+  "w": [
+   "Kanpur",
+   "Varanasi",
+   "Agra"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which festival celebrates the birth of Lord Ganesha?",
+  "a": "Ganesh Chaturthi",
+  "w": [
+   "Navratri",
+   "Janmashtami",
+   "Dussehra"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Lohri is a winter festival chiefly celebrated in which state?",
+  "a": "Punjab",
+  "w": [
+   "Kerala",
+   "Assam",
+   "Gujarat"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The classical dance Bharatanatyam comes from which state?",
+  "a": "Tamil Nadu",
+  "w": [
+   "Kerala",
+   "Odisha",
+   "Manipur"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Madhya Pradesh?",
+  "a": "Bhopal",
+  "w": [
+   "Indore",
+   "Gwalior",
+   "Jabalpur"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which mountain range runs along India's northern border?",
+  "a": "Himalayas",
+  "w": [
+   "Western Ghats",
+   "Aravalli Range",
+   "Vindhya Range"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the longest river in India?",
+  "a": "Ganga",
+  "w": [
+   "Godavari",
+   "Yamuna",
+   "Narmada"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The famous Mysore Palace is in which state?",
+  "a": "Karnataka",
+  "w": [
+   "Tamil Nadu",
+   "Kerala",
+   "Telangana"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which river flows past the Taj Mahal in Agra?",
+  "a": "Yamuna",
+  "w": [
+   "Ganga",
+   "Chambal",
+   "Gomti"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the capital of Gujarat?",
+  "a": "Gandhinagar",
+  "w": [
+   "Ahmedabad",
+   "Surat",
+   "Vadodara"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which animal was declared India's national heritage animal in 2010?",
+  "a": "Elephant",
+  "w": [
+   "Lion",
+   "One-horned rhino",
+   "Snow leopard"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Assam?",
+  "a": "Dispur",
+  "w": [
+   "Shillong",
+   "Silchar",
+   "Jorhat"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Himachal Pradesh?",
+  "a": "Shimla",
+  "w": [
+   "Manali",
+   "Kullu",
+   "Mandi"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which city is the shared capital of Punjab and Haryana?",
+  "a": "Chandigarh",
+  "w": [
+   "Ludhiana",
+   "Amritsar",
+   "Ambala"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Jharkhand?",
+  "a": "Ranchi",
+  "w": [
+   "Jamshedpur",
+   "Dhanbad",
+   "Bokaro"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Sikkim?",
+  "a": "Gangtok",
+  "w": [
+   "Pelling",
+   "Namchi",
+   "Darjeeling"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is India's smallest state by area?",
+  "a": "Goa",
+  "w": [
+   "Sikkim",
+   "Tripura",
+   "Mizoram"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is India's largest state by area?",
+  "a": "Rajasthan",
+  "w": [
+   "Madhya Pradesh",
+   "Maharashtra",
+   "Uttar Pradesh"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Statue of Unity in Gujarat depicts which leader?",
+  "a": "Sardar Vallabhbhai Patel",
+  "w": [
+   "B. R. Ambedkar",
+   "Subhas Chandra Bose",
+   "Jawaharlal Nehru"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the capital of Chhattisgarh?",
+  "a": "Raipur",
+  "w": [
+   "Bilaspur",
+   "Bhilai",
+   "Durg"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Dal Lake, known for its houseboats, is in which city?",
+  "a": "Srinagar",
+  "w": [
+   "Shimla",
+   "Nainital",
+   "Udaipur"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Shillong is the capital of which state?",
+  "a": "Meghalaya",
+  "w": [
+   "Nagaland",
+   "Tripura",
+   "Mizoram"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which town sits at the southern tip of mainland India?",
+  "a": "Kanyakumari",
+  "w": [
+   "Rameswaram",
+   "Kovalam",
+   "Thoothukudi"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The ruins of the ancient Nalanda university are in which state?",
+  "a": "Bihar",
+  "w": [
+   "Uttar Pradesh",
+   "Odisha",
+   "Jharkhand"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which was India's first national park, set up in 1936?",
+  "a": "Jim Corbett National Park",
+  "w": [
+   "Kaziranga National Park",
+   "Kanha National Park",
+   "Gir National Park"
+  ],
+  "d": 3
+ },
+ {
+  "q": "India's national calendar is based on which era?",
+  "a": "Saka era",
+  "w": [
+   "Vikram Samvat",
+   "Kali Yuga",
+   "Gupta era"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The motto Satyameva Jayate is taken from which ancient text?",
+  "a": "Mundaka Upanishad",
+  "w": [
+   "Rigveda",
+   "Bhagavad Gita",
+   "Mahabharata"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Lion Capital in India's national emblem was found at which site?",
+  "a": "Sarnath",
+  "w": [
+   "Sanchi",
+   "Bodh Gaya",
+   "Kushinagar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which river is known as the 'Sorrow of Bihar'?",
+  "a": "Kosi",
+  "w": [
+   "Gandak",
+   "Son",
+   "Damodar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which river is called the 'Dakshin Ganga'?",
+  "a": "Godavari",
+  "w": [
+   "Krishna",
+   "Kaveri",
+   "Tungabhadra"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the capital of Lakshadweep?",
+  "a": "Kavaratti",
+  "w": [
+   "Minicoy",
+   "Agatti",
+   "Silvassa"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Gol Gumbaz mausoleum is in which city?",
+  "a": "Vijayapura",
+  "w": [
+   "Bidar",
+   "Hampi",
+   "Golconda"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who began the construction of the Qutub Minar?",
+  "a": "Qutb-ud-din Aibak",
+  "w": [
+   "Iltutmish",
+   "Alauddin Khilji",
+   "Balban"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Chilika, India's largest coastal lagoon, is in which state?",
+  "a": "Odisha",
+  "w": [
+   "Andhra Pradesh",
+   "Tamil Nadu",
+   "West Bengal"
+  ],
+  "d": 3
+ }
+]

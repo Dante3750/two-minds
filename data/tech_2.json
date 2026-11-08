@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Which company develops the Android operating system?",
+  "a": "Google",
+  "w": [
+   "Samsung",
+   "Microsoft",
+   "Apple"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'LED' stand for?",
+  "a": "Light-Emitting Diode",
+  "w": [
+   "Low-Energy Display",
+   "Light-Enhanced Device",
+   "Linear Electric Diode"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which shortcut pastes copied text on Windows?",
+  "a": "Ctrl + V",
+  "w": [
+   "Ctrl + P",
+   "Ctrl + X",
+   "Ctrl + B"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which shortcut undoes your last action on Windows?",
+  "a": "Ctrl + Z",
+  "w": [
+   "Ctrl + U",
+   "Ctrl + Y",
+   "Ctrl + D"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'SMS' stand for?",
+  "a": "Short Message Service",
+  "w": [
+   "Simple Mobile Signal",
+   "Standard Mail System",
+   "Smart Message Sender"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which company makes the Galaxy range of smartphones?",
+  "a": "Samsung",
+  "w": [
+   "Xiaomi",
+   "Nokia",
+   "Motorola"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'PC' stand for?",
+  "a": "Personal Computer",
+  "w": [
+   "Portable Console",
+   "Private Circuit",
+   "Power Calculator"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'ATM' stand for?",
+  "a": "Automated Teller Machine",
+  "w": [
+   "Any Time Money",
+   "Automatic Transfer Mode",
+   "Account Transaction Machine"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Indian digital payments, what does 'UPI' stand for?",
+  "a": "Unified Payments Interface",
+  "w": [
+   "Universal Pay Index",
+   "United Payment Internet",
+   "Unique Phone Identity"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which app's logo is a white phone in a green speech bubble?",
+  "a": "WhatsApp",
+  "w": [
+   "Telegram",
+   "Signal",
+   "Skype"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which app is famous for photo 'snaps' that disappear?",
+  "a": "Snapchat",
+  "w": [
+   "Pinterest",
+   "Flickr",
+   "Tumblr"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In 'QR code', what does QR stand for?",
+  "a": "Quick Response",
+  "w": [
+   "Quality Reader",
+   "Quick Reference",
+   "Query Result"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of Apple's voice assistant?",
+  "a": "Siri",
+  "w": [
+   "Alexa",
+   "Cortana",
+   "Bixby"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Binary code is written using which two digits?",
+  "a": "0 and 1",
+  "w": [
+   "1 and 2",
+   "0 and 9",
+   "1 and 10"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Indian city is nicknamed the 'Silicon Valley of India'?",
+  "a": "Bengaluru",
+  "w": [
+   "Hyderabad",
+   "Pune",
+   "Chennai"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does 'HTTP' stand for?",
+  "a": "HyperText Transfer Protocol",
+  "w": [
+   "High Tech Transfer Program",
+   "HyperText Transmission Path",
+   "Home Terminal Text Protocol"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does 'LAN' stand for in networking?",
+  "a": "Local Area Network",
+  "w": [
+   "Large Access Node",
+   "Linked Address Number",
+   "Long Antenna Network"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does 'VPN' stand for?",
+  "a": "Virtual Private Network",
+  "w": [
+   "Verified Public Node",
+   "Visual Protocol Network",
+   "Variable Packet Number"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company makes Photoshop?",
+  "a": "Adobe",
+  "w": [
+   "Corel",
+   "Autodesk",
+   "Oracle"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which year was the first iPhone released?",
+  "a": "2007",
+  "w": [
+   "2004",
+   "2005",
+   "2009"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does 'SSD' stand for in computer storage?",
+  "a": "Solid-State Drive",
+  "w": [
+   "Super Speed Disk",
+   "Secure Storage Device",
+   "Static System Drive"
+  ],
+  "d": 2
+ },
+ {
+  "q": "N. R. Narayana Murthy co-founded which Indian IT company in 1981?",
+  "a": "Infosys",
+  "w": [
+   "Wipro",
+   "TCS",
+   "HCL"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company bought Instagram in 2012?",
+  "a": "Facebook",
+  "w": [
+   "Google",
+   "Twitter",
+   "Microsoft"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Sachin Bansal and Binny Bansal co-founded which company?",
+  "a": "Flipkart",
+  "w": [
+   "Snapdeal",
+   "Myntra",
+   "Ola"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Japanese company created the Walkman music player?",
+  "a": "Sony",
+  "w": [
+   "Panasonic",
+   "Toshiba",
+   "Sharp"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which language is mainly used to style the look of web pages?",
+  "a": "CSS",
+  "w": [
+   "SQL",
+   "PHP",
+   "XML"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who co-founded Wikipedia with Larry Sanger?",
+  "a": "Jimmy Wales",
+  "w": [
+   "Larry Page",
+   "Jack Dorsey",
+   "Craig Newmark"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Jack Dorsey was a co-founder of which social network?",
+  "a": "Twitter",
+  "w": [
+   "Instagram",
+   "LinkedIn",
+   "Reddit"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does 'ROM' stand for?",
+  "a": "Read-Only Memory",
+  "w": [
+   "Random Output Module",
+   "Rapid Operating Memory",
+   "Record Of Media"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does 'IoT' stand for?",
+  "a": "Internet of Things",
+  "w": [
+   "Input or Transfer",
+   "Integrated Online Tools",
+   "Internal Operating Tech"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What does 'JPEG' stand for?",
+  "a": "Joint Photographic Experts Group",
+  "w": [
+   "Joint Picture Encoding Graphic",
+   "Java Photo Exchange Group",
+   "Joined Pixel Image Group"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Bluetooth is named after a medieval king of which country?",
+  "a": "Denmark",
+  "w": [
+   "Sweden",
+   "Finland",
+   "Iceland"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Canadian company made BlackBerry phones?",
+  "a": "Research In Motion",
+  "w": [
+   "Nortel",
+   "Corel",
+   "Rogers"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Brendan Eich created JavaScript while working at which company?",
+  "a": "Netscape",
+  "w": [
+   "Sun Microsystems",
+   "IBM",
+   "Microsoft"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What was the name of the US network that grew into the internet?",
+  "a": "ARPANET",
+  "w": [
+   "ETHERNET",
+   "USENET",
+   "NSFLINK"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Moore's Law is named after a co-founder of which company?",
+  "a": "Intel",
+  "w": [
+   "AMD",
+   "IBM",
+   "Texas Instruments"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Martin Cooper made the first handheld mobile call in 1973 for which firm?",
+  "a": "Motorola",
+  "w": [
+   "Nokia",
+   "Ericsson",
+   "Bell Labs"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which year did Google launch Gmail?",
+  "a": "2004",
+  "w": [
+   "2001",
+   "2006",
+   "2008"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What was Google's original name as a research project?",
+  "a": "BackRub",
+  "w": [
+   "PageRank",
+   "Googol",
+   "SearchNet"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which company bought a majority stake in Flipkart in 2018?",
+  "a": "Walmart",
+  "w": [
+   "Amazon",
+   "Alibaba",
+   "SoftBank"
+  ],
+  "d": 3
+ }
+]

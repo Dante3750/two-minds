@@ -1,0 +1,502 @@
+[
+  {
+    "q": "Which monkey god is famed as Rama's most devoted follower?",
+    "a": "Hanuman",
+    "w": [
+      "Sugriva",
+      "Angada",
+      "Jambavan"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who is the ten-headed demon king of Lanka in the Ramayana?",
+    "a": "Ravana",
+    "w": [
+      "Mahishasura",
+      "Bakasura",
+      "Narakasura"
+    ],
+    "d": 1
+  },
+  {
+    "q": "For how many years was Lord Rama exiled to the forest?",
+    "a": "14 years",
+    "w": [
+      "12 years",
+      "13 years",
+      "10 years"
+    ],
+    "d": 1
+  },
+  {
+    "q": "What animal is the vahana (mount) of Lord Ganesha?",
+    "a": "Mouse",
+    "w": [
+      "Peacock",
+      "Swan",
+      "Owl"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who is the king of the gods in Greek mythology?",
+    "a": "Zeus",
+    "w": [
+      "Apollo",
+      "Poseidon",
+      "Hermes"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who is the Greek god of the sea?",
+    "a": "Poseidon",
+    "w": [
+      "Hermes",
+      "Ares",
+      "Apollo"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who is the Norse god of thunder?",
+    "a": "Thor",
+    "w": [
+      "Odin",
+      "Loki",
+      "Baldur"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Which Pandava brother was the greatest archer?",
+    "a": "Arjuna",
+    "w": [
+      "Bhima",
+      "Yudhishthira",
+      "Nakula"
+    ],
+    "d": 1
+  },
+  {
+    "q": "How many Pandava brothers were there?",
+    "a": "Five",
+    "w": [
+      "Three",
+      "Four",
+      "Seven"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Which Greek hero could be wounded only at his heel?",
+    "a": "Achilles",
+    "w": [
+      "Hector",
+      "Ajax",
+      "Perseus"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who gave the teachings of the Bhagavad Gita to Arjuna?",
+    "a": "Krishna",
+    "w": [
+      "Bhishma",
+      "Drona",
+      "Vidura"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who is the sun god of ancient Egypt?",
+    "a": "Ra",
+    "w": [
+      "Anubis",
+      "Osiris",
+      "Set"
+    ],
+    "d": 1
+  },
+  {
+    "q": "What did the Greeks hide soldiers inside to get into Troy?",
+    "a": "A wooden horse",
+    "w": [
+      "A wooden bull",
+      "A giant shield",
+      "A golden chariot"
+    ],
+    "d": 1
+  },
+  {
+    "q": "What is the name of Lord Shiva's sacred bull?",
+    "a": "Nandi",
+    "w": [
+      "Airavata",
+      "Kamadhenu",
+      "Uchchaihshravas"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Lord Rama was the prince of which city?",
+    "a": "Ayodhya",
+    "w": [
+      "Mathura",
+      "Hastinapura",
+      "Mithila"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who flew too close to the sun on wings made of wax?",
+    "a": "Icarus",
+    "w": [
+      "Daedalus",
+      "Narcissus",
+      "Orion"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Which Greek king's touch turned everything into gold?",
+    "a": "Midas",
+    "w": [
+      "Croesus",
+      "Minos",
+      "Priam"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Which mountain was the home of the Greek gods?",
+    "a": "Mount Olympus",
+    "w": [
+      "Mount Etna",
+      "Mount Parnassus",
+      "Mount Ida"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who is traditionally credited as the author of the Sanskrit Ramayana?",
+    "a": "Valmiki",
+    "w": [
+      "Vyasa",
+      "Kalidasa",
+      "Panini"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which brother went with Rama and Sita into forest exile?",
+    "a": "Lakshmana",
+    "w": [
+      "Bharata",
+      "Shatrughna",
+      "Vibhishana"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which brother of Ravana was famous for sleeping for months at a time?",
+    "a": "Kumbhakarna",
+    "w": [
+      "Vibhishana",
+      "Indrajit",
+      "Maricha"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which vulture king fought Ravana while trying to save Sita?",
+    "a": "Jatayu",
+    "w": [
+      "Sampati",
+      "Garuda",
+      "Aruna"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who was the common wife of the five Pandavas?",
+    "a": "Draupadi",
+    "w": [
+      "Kunti",
+      "Gandhari",
+      "Subhadra"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who was the blind king of Hastinapura in the Mahabharata?",
+    "a": "Dhritarashtra",
+    "w": [
+      "Pandu",
+      "Shantanu",
+      "Vidura"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which Mahabharata warrior was born with divine armour and earrings?",
+    "a": "Karna",
+    "w": [
+      "Ashwatthama",
+      "Bhishma",
+      "Drona"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which archer cut off his thumb as a gift to his guru Drona?",
+    "a": "Ekalavya",
+    "w": [
+      "Abhimanyu",
+      "Ghatotkacha",
+      "Barbarika"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which Mahabharata elder took a vow of lifelong celibacy?",
+    "a": "Bhishma",
+    "w": [
+      "Drona",
+      "Vidura",
+      "Shakuni"
+    ],
+    "d": 2
+  },
+  {
+    "q": "How long did the Kurukshetra war last?",
+    "a": "18 days",
+    "w": [
+      "12 days",
+      "14 days",
+      "21 days"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which avatar of Vishnu took the form of a boar?",
+    "a": "Varaha",
+    "w": [
+      "Kurma",
+      "Matsya",
+      "Narasimha"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which demon king was the father of the devotee Prahlada?",
+    "a": "Hiranyakashipu",
+    "w": [
+      "Hiranyaksha",
+      "Mahabali",
+      "Kamsa"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which divine eagle is the mount of Lord Vishnu?",
+    "a": "Garuda",
+    "w": [
+      "Jatayu",
+      "Sampati",
+      "Aruna"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which Titan stole fire from the gods and gave it to humans?",
+    "a": "Prometheus",
+    "w": [
+      "Atlas",
+      "Cronus",
+      "Hyperion"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which hero cut off the head of the Gorgon Medusa?",
+    "a": "Perseus",
+    "w": [
+      "Theseus",
+      "Jason",
+      "Heracles"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who is the Roman equivalent of the Greek god Zeus?",
+    "a": "Jupiter",
+    "w": [
+      "Mars",
+      "Saturn",
+      "Neptune"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which Norse god is famous as a shape-shifting trickster?",
+    "a": "Loki",
+    "w": [
+      "Odin",
+      "Tyr",
+      "Heimdall"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which jackal-headed Egyptian god is linked with mummification?",
+    "a": "Anubis",
+    "w": [
+      "Horus",
+      "Thoth",
+      "Sobek"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which Egyptian god was murdered by his jealous brother Set?",
+    "a": "Osiris",
+    "w": [
+      "Horus",
+      "Anubis",
+      "Thoth"
+    ],
+    "d": 2
+  },
+  {
+    "q": "What is the name of Arjuna's divine bow?",
+    "a": "Gandiva",
+    "w": [
+      "Pinaka",
+      "Sharanga",
+      "Vijaya"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Who was given divine sight to narrate the Kurukshetra war to the king?",
+    "a": "Sanjaya",
+    "w": [
+      "Vidura",
+      "Shakuni",
+      "Kripa"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Which serpent was used as the rope in the churning of the ocean?",
+    "a": "Vasuki",
+    "w": [
+      "Shesha",
+      "Kaliya",
+      "Takshaka"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Which mountain was used as the churning rod in Samudra Manthan?",
+    "a": "Mandara",
+    "w": [
+      "Meru",
+      "Kailash",
+      "Govardhan"
+    ],
+    "d": 3
+  },
+  {
+    "q": "What animal is the vahana of Yama, the god of death?",
+    "a": "Buffalo",
+    "w": [
+      "Bull",
+      "Horse",
+      "Elephant"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Ravana's son Meghnad is better known by which title?",
+    "a": "Indrajit",
+    "w": [
+      "Akshayakumara",
+      "Atikaya",
+      "Prahasta"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Which giant tree connects the nine worlds in Norse mythology?",
+    "a": "Yggdrasil",
+    "w": [
+      "Asgard",
+      "Midgard",
+      "Valhalla"
+    ],
+    "d": 3
+  },
+  {
+    "q": "What is the rainbow bridge to Asgard called in Norse myth?",
+    "a": "Bifrost",
+    "w": [
+      "Gjallarhorn",
+      "Valhalla",
+      "Jotunheim"
+    ],
+    "d": 3
+  },
+  {
+    "q": "What is the name of Odin's eight-legged horse?",
+    "a": "Sleipnir",
+    "w": [
+      "Fenrir",
+      "Gungnir",
+      "Huginn"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Which ibis-headed Egyptian god is linked with writing and wisdom?",
+    "a": "Thoth",
+    "w": [
+      "Horus",
+      "Anubis",
+      "Ptah"
+    ],
+    "d": 3
+  },
+  {
+    "q": "In Egyptian myth, a dead person's heart was weighed against what?",
+    "a": "A feather",
+    "w": [
+      "A scarab",
+      "A gold coin",
+      "A lotus flower"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Which Egyptian goddess was usually shown as a cat or cat-headed?",
+    "a": "Bastet",
+    "w": [
+      "Hathor",
+      "Nut",
+      "Isis"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Which two-faced Roman god gave his name to the month of January?",
+    "a": "Janus",
+    "w": [
+      "Vulcan",
+      "Saturn",
+      "Mercury"
+    ],
+    "d": 3
+  }
+]

@@ -1,0 +1,402 @@
+[
+ {
+  "q": "How many sides does an octagon have?",
+  "a": "8",
+  "w": [
+   "6",
+   "7",
+   "10"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who wrote 'The Jungle Book'?",
+  "a": "Rudyard Kipling",
+  "w": [
+   "Lewis Carroll",
+   "Mark Twain",
+   "Roald Dahl"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which colour do you get by mixing red and white?",
+  "a": "Pink",
+  "w": [
+   "Orange",
+   "Purple",
+   "Peach"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many weeks are there in a year?",
+  "a": "52",
+  "w": [
+   "48",
+   "50",
+   "54"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who wrote 'Alice's Adventures in Wonderland'?",
+  "a": "Lewis Carroll",
+  "w": [
+   "Roald Dahl",
+   "Enid Blyton",
+   "Hans Christian Andersen"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many letters are there in the English alphabet?",
+  "a": "26",
+  "w": [
+   "24",
+   "25",
+   "28"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many cards are in a standard deck, without jokers?",
+  "a": "52",
+  "w": [
+   "48",
+   "54",
+   "56"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which month has the fewest days?",
+  "a": "February",
+  "w": [
+   "April",
+   "June",
+   "November"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of Peter Pan's fairy friend?",
+  "a": "Tinker Bell",
+  "w": [
+   "Silvermist",
+   "Fairy Godmother",
+   "Navi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many degrees are there in a right angle?",
+  "a": "90",
+  "w": [
+   "45",
+   "60",
+   "180"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Whose nose grows longer every time he tells a lie?",
+  "a": "Pinocchio",
+  "w": [
+   "Peter Pan",
+   "Aladdin",
+   "Hansel"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which bird is widely seen as a symbol of peace?",
+  "a": "Dove",
+  "w": [
+   "Eagle",
+   "Parrot",
+   "Crow"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Kangaroos are found in the wild in which country?",
+  "a": "Australia",
+  "w": [
+   "South Africa",
+   "Brazil",
+   "India"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many squares are there on a chessboard?",
+  "a": "64",
+  "w": [
+   "36",
+   "49",
+   "100"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many days make a fortnight?",
+  "a": "14",
+  "w": [
+   "7",
+   "10",
+   "15"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who wrote the novel 'Oliver Twist'?",
+  "a": "Charles Dickens",
+  "w": [
+   "Thomas Hardy",
+   "Mark Twain",
+   "Jane Austen"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who wrote the novel 'Treasure Island'?",
+  "a": "Robert Louis Stevenson",
+  "w": [
+   "Jules Verne",
+   "Daniel Defoe",
+   "Jonathan Swift"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many months of the year have 31 days?",
+  "a": "7",
+  "w": [
+   "5",
+   "6",
+   "8"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many hours are there in a week?",
+  "a": "168",
+  "w": [
+   "148",
+   "158",
+   "178"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the currency of South Africa?",
+  "a": "Rand",
+  "w": [
+   "Dinar",
+   "Peso",
+   "Shilling"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the currency of Russia?",
+  "a": "Ruble",
+  "w": [
+   "Lira",
+   "Krona",
+   "Zloty"
+  ],
+  "d": 2
+ },
+ {
+  "q": "On an invitation, what does 'RSVP' ask you to do?",
+  "a": "Please reply",
+  "w": [
+   "Please arrive early",
+   "Please dress formally",
+   "Please bring a gift"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who painted 'The Last Supper'?",
+  "a": "Leonardo da Vinci",
+  "w": [
+   "Michelangelo",
+   "Raphael",
+   "Titian"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which author created the detective Hercule Poirot?",
+  "a": "Agatha Christie",
+  "w": [
+   "Arthur Conan Doyle",
+   "Dorothy L. Sayers",
+   "P. D. James"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What number does the Roman numeral L stand for?",
+  "a": "50",
+  "w": [
+   "5",
+   "100",
+   "500"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Shakespeare play has the line 'To be, or not to be'?",
+  "a": "Hamlet",
+  "w": [
+   "Macbeth",
+   "Othello",
+   "King Lear"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the currency of Bangladesh?",
+  "a": "Taka",
+  "w": [
+   "Rupee",
+   "Rupiah",
+   "Ringgit"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who wrote 'The Adventures of Tom Sawyer'?",
+  "a": "Mark Twain",
+  "w": [
+   "Charles Dickens",
+   "Jack London",
+   "O. Henry"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who wrote 'Malgudi Days'?",
+  "a": "R. K. Narayan",
+  "w": [
+   "Ruskin Bond",
+   "Mulk Raj Anand",
+   "Vikram Seth"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is a word opposite in meaning to another called?",
+  "a": "Antonym",
+  "w": [
+   "Synonym",
+   "Homonym",
+   "Acronym"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many sides does a dodecagon have?",
+  "a": "12",
+  "w": [
+   "10",
+   "11",
+   "20"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who wrote the Spanish classic 'Don Quixote'?",
+  "a": "Miguel de Cervantes",
+  "w": [
+   "Lope de Vega",
+   "Dante Alighieri",
+   "Federico Garcia Lorca"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who wrote the epic poem 'The Divine Comedy'?",
+  "a": "Dante Alighieri",
+  "w": [
+   "Petrarch",
+   "Boccaccio",
+   "Virgil"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who painted 'The Persistence of Memory', with its melting clocks?",
+  "a": "Salvador Dali",
+  "w": [
+   "Rene Magritte",
+   "Joan Miro",
+   "Max Ernst"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who painted 'The Scream'?",
+  "a": "Edvard Munch",
+  "w": [
+   "Gustav Klimt",
+   "Egon Schiele",
+   "Wassily Kandinsky"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who composed the opera 'The Magic Flute'?",
+  "a": "Wolfgang Amadeus Mozart",
+  "w": [
+   "Joseph Haydn",
+   "Ludwig van Beethoven",
+   "George Frideric Handel"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who wrote 'One Hundred Years of Solitude'?",
+  "a": "Gabriel Garcia Marquez",
+  "w": [
+   "Jorge Luis Borges",
+   "Pablo Neruda",
+   "Mario Vargas Llosa"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who wrote the Hindi novel 'Godaan'?",
+  "a": "Munshi Premchand",
+  "w": [
+   "Jaishankar Prasad",
+   "Harivansh Rai Bachchan",
+   "Sarat Chandra Chattopadhyay"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who wrote the novel 'Les Miserables'?",
+  "a": "Victor Hugo",
+  "w": [
+   "Alexandre Dumas",
+   "Gustave Flaubert",
+   "Emile Zola"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The abbreviation 'e.g.' comes from which Latin phrase?",
+  "a": "Exempli gratia",
+  "w": [
+   "Id est",
+   "Et cetera",
+   "Nota bene"
+  ],
+  "d": 3
+ }
+]

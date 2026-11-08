@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is the chemical symbol for iron?",
+  "a": "Fe",
+  "w": [
+   "Ir",
+   "In",
+   "I"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is liquid water turning slowly into vapour called?",
+  "a": "Evaporation",
+  "w": [
+   "Condensation",
+   "Melting",
+   "Freezing"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which force pulls objects towards the ground on Earth?",
+  "a": "Gravity",
+  "w": [
+   "Magnetism",
+   "Friction",
+   "Inertia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many teeth does a full adult set usually have, including wisdom teeth?",
+  "a": "32",
+  "w": [
+   "28",
+   "30",
+   "36"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the chemical symbol for oxygen?",
+  "a": "O",
+  "w": [
+   "Ox",
+   "Os",
+   "Om"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which organs do humans use to breathe?",
+  "a": "Lungs",
+  "w": [
+   "Liver",
+   "Kidneys",
+   "Stomach"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who gave the three laws of motion?",
+  "a": "Isaac Newton",
+  "w": [
+   "Galileo Galilei",
+   "Albert Einstein",
+   "Johannes Kepler"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Steam is water in which state of matter?",
+  "a": "Gas",
+  "w": [
+   "Liquid",
+   "Solid",
+   "Plasma"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which coloured part of the eye surrounds the pupil?",
+  "a": "Iris",
+  "w": [
+   "Retina",
+   "Cornea",
+   "Lens"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which positively charged particle is found in an atom's nucleus?",
+  "a": "Proton",
+  "w": [
+   "Electron",
+   "Neutron",
+   "Photon"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which instrument is used to measure body temperature?",
+  "a": "Thermometer",
+  "w": [
+   "Barometer",
+   "Hygrometer",
+   "Ammeter"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Sodium chloride is better known as what?",
+  "a": "Table salt",
+  "w": [
+   "Baking soda",
+   "Chalk",
+   "Vinegar"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Oranges and lemons are rich in which vitamin?",
+  "a": "Vitamin C",
+  "w": [
+   "Vitamin A",
+   "Vitamin D",
+   "Vitamin K"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which part of a plant does most photosynthesis happen?",
+  "a": "Leaves",
+  "w": [
+   "Roots",
+   "Stem",
+   "Flowers"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the SI unit of length?",
+  "a": "Metre",
+  "w": [
+   "Foot",
+   "Inch",
+   "Yard"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the longest bone in the human body?",
+  "a": "Femur",
+  "w": [
+   "Tibia",
+   "Humerus",
+   "Fibula"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the chemical symbol for calcium?",
+  "a": "Ca",
+  "w": [
+   "C",
+   "Cl",
+   "Cm"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the SI unit of energy?",
+  "a": "Joule",
+  "w": [
+   "Watt",
+   "Pascal",
+   "Volt"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which element has atomic number 6?",
+  "a": "Carbon",
+  "w": [
+   "Nitrogen",
+   "Oxygen",
+   "Boron"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who proposed the theory of evolution by natural selection in 1859?",
+  "a": "Charles Darwin",
+  "w": [
+   "Gregor Mendel",
+   "Louis Pasteur",
+   "Jean-Baptiste Lamarck"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who is known as the father of genetics for his pea plant experiments?",
+  "a": "Gregor Mendel",
+  "w": [
+   "Charles Darwin",
+   "Louis Pasteur",
+   "Robert Hooke"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which tiny blood cell fragments help blood to clot?",
+  "a": "Platelets",
+  "w": [
+   "Red blood cells",
+   "White blood cells",
+   "Haemoglobin"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which gas has the chemical formula CH4?",
+  "a": "Methane",
+  "w": [
+   "Ethane",
+   "Propane",
+   "Ammonia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the SI unit of power?",
+  "a": "Watt",
+  "w": [
+   "Joule",
+   "Newton",
+   "Ohm"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which organ filters the blood to make urine?",
+  "a": "Kidney",
+  "w": [
+   "Liver",
+   "Bladder",
+   "Spleen"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which ancient Greek shouted 'Eureka' on discovering buoyancy?",
+  "a": "Archimedes",
+  "w": [
+   "Pythagoras",
+   "Euclid",
+   "Aristotle"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the chemical symbol for silver?",
+  "a": "Ag",
+  "w": [
+   "Si",
+   "Sl",
+   "Sr"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which acid is produced in the human stomach?",
+  "a": "Hydrochloric acid",
+  "w": [
+   "Sulphuric acid",
+   "Nitric acid",
+   "Citric acid"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which type of lens corrects short-sightedness?",
+  "a": "Concave lens",
+  "w": [
+   "Convex lens",
+   "Prism",
+   "Plane glass"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which element is added to salt to prevent goitre?",
+  "a": "Iodine",
+  "w": [
+   "Iron",
+   "Calcium",
+   "Zinc"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the chemical symbol for lead?",
+  "a": "Pb",
+  "w": [
+   "Ld",
+   "Pd",
+   "Le"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who first described and named cells after viewing cork in 1665?",
+  "a": "Robert Hooke",
+  "w": [
+   "Antonie van Leeuwenhoek",
+   "Robert Brown",
+   "Matthias Schleiden"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who formulated the uncertainty principle in quantum mechanics?",
+  "a": "Werner Heisenberg",
+  "w": [
+   "Niels Bohr",
+   "Erwin Schrodinger",
+   "Max Planck"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which noble gas is the most abundant in Earth's atmosphere?",
+  "a": "Argon",
+  "w": [
+   "Neon",
+   "Helium",
+   "Krypton"
+  ],
+  "d": 3
+ },
+ {
+  "q": "What is the SI unit of magnetic flux?",
+  "a": "Weber",
+  "w": [
+   "Tesla",
+   "Henry",
+   "Gauss"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who discovered radioactivity in 1896?",
+  "a": "Henri Becquerel",
+  "w": [
+   "Marie Curie",
+   "Ernest Rutherford",
+   "Wilhelm Rontgen"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Har Gobind Khorana won the 1968 Nobel Prize in which field?",
+  "a": "Physiology or Medicine",
+  "w": [
+   "Chemistry",
+   "Physics",
+   "Peace"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which is the most electronegative element?",
+  "a": "Fluorine",
+  "w": [
+   "Oxygen",
+   "Chlorine",
+   "Nitrogen"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Whose gold foil experiment revealed the atomic nucleus?",
+  "a": "Ernest Rutherford",
+  "w": [
+   "Niels Bohr",
+   "J. J. Thomson",
+   "James Chadwick"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Night blindness is linked to a lack of which vitamin?",
+  "a": "Vitamin A",
+  "w": [
+   "Vitamin B12",
+   "Vitamin C",
+   "Vitamin K"
+  ],
+  "d": 3
+ }
+]

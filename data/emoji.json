@@ -1,0 +1,602 @@
+[
+ {
+  "q": "Which movie is this? 🦁👑🌅",
+  "a": "The Lion King",
+  "w": [
+   "The Jungle Book",
+   "Madagascar",
+   "Tarzan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which movie is this? 🐟🔍🌊",
+  "a": "Finding Nemo",
+  "w": [
+   "Shark Tale",
+   "The Little Mermaid",
+   "Moana"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which movie is this? 🚢🧊💔",
+  "a": "Titanic",
+  "w": [
+   "Pearl Harbor",
+   "The Notebook",
+   "Atonement"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which movie is this? ❄️👸⛄",
+  "a": "Frozen",
+  "w": [
+   "Tangled",
+   "Brave",
+   "Cinderella"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which movie is this? 🦖🏝️🧬",
+  "a": "Jurassic Park",
+  "w": [
+   "Godzilla",
+   "Ice Age",
+   "The Land Before Time"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which film series is this? 🧙⚡👓",
+  "a": "Harry Potter",
+  "w": [
+   "The Lord of the Rings",
+   "Percy Jackson",
+   "The Chronicles of Narnia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which film series is this? 💍🌋🧝",
+  "a": "The Lord of the Rings",
+  "w": [
+   "Willow",
+   "Eragon",
+   "The Chronicles of Narnia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which movie is this? 🕷️🧑🕸️",
+  "a": "Spider-Man",
+  "w": [
+   "Batman",
+   "Ant-Man",
+   "Iron Man"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which movie is this? 🐼🥋",
+  "a": "Kung Fu Panda",
+  "w": [
+   "The Karate Kid",
+   "Madagascar",
+   "Zootopia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which movie is this? 🏠🎈👴",
+  "a": "Up",
+  "w": [
+   "Coco",
+   "Ratatouille",
+   "Cars"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which movie is this? 🐀🍲🥖",
+  "a": "Ratatouille",
+  "w": [
+   "Stuart Little",
+   "Zootopia",
+   "Up"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which movie is this? 🤠🚀🧸",
+  "a": "Toy Story",
+  "w": [
+   "Cars",
+   "Monsters, Inc.",
+   "WALL-E"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which movie is this? 🟢👹👸🐴",
+  "a": "Shrek",
+  "w": [
+   "Hotel Transylvania",
+   "Puss in Boots",
+   "Tangled"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which movie is this? 🧞🐒🐯🏜️",
+  "a": "Aladdin",
+  "w": [
+   "Mulan",
+   "Pocahontas",
+   "Hercules"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which movie is this? 🌊⛵👧🐓",
+  "a": "Moana",
+  "w": [
+   "Lilo & Stitch",
+   "The Little Mermaid",
+   "Brave"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which movie is this? ⏰🚗⚡🔙",
+  "a": "Back to the Future",
+  "w": [
+   "The Terminator",
+   "Groundhog Day",
+   "Looper"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which movie is this? 🏃🍫🦐",
+  "a": "Forrest Gump",
+  "w": [
+   "Cast Away",
+   "The Green Mile",
+   "Big"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which movie is this? 👽📞🏠",
+  "a": "E.T.",
+  "w": [
+   "Close Encounters",
+   "Alien",
+   "Men in Black"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which movie is this? 🐘❄️🐿️🌰",
+  "a": "Ice Age",
+  "w": [
+   "Madagascar",
+   "Happy Feet",
+   "Brother Bear"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which movie is this? 🎩🍫🏭",
+  "a": "Charlie and the Chocolate Factory",
+  "w": [
+   "Matilda",
+   "The BFG",
+   "James and the Giant Peach"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? 🏏🌾👑💰",
+  "a": "Lagaan",
+  "w": [
+   "Iqbal",
+   "Chak De! India",
+   "Swades"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? 🏑👧🏆",
+  "a": "Chak De! India",
+  "w": [
+   "Dangal",
+   "Mary Kom",
+   "Panga"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Bollywood film is this? 🚽❤️📖",
+  "a": "Toilet: Ek Prem Katha",
+  "w": [
+   "Pad Man",
+   "Swades",
+   "Jab We Met"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Bollywood film is this? 3️⃣🤪🎓",
+  "a": "3 Idiots",
+  "w": [
+   "Chhichhore",
+   "Munna Bhai MBBS",
+   "Student of the Year"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Bollywood film is this? 🚂🌴🥥",
+  "a": "Chennai Express",
+  "w": [
+   "Dilwale",
+   "Kal Ho Naa Ho",
+   "Main Hoon Na"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? ⭐🌍🎨👦",
+  "a": "Taare Zameen Par",
+  "w": [
+   "Iqbal",
+   "Stanley Ka Dabba",
+   "Paa"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? 👽🙏📿❓",
+  "a": "PK",
+  "w": [
+   "Oh My God",
+   "Munna Bhai MBBS",
+   "Lage Raho Munna Bhai"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? 🚂🌼👰",
+  "a": "Dilwale Dulhania Le Jayenge",
+  "w": [
+   "Kuch Kuch Hota Hai",
+   "Kabhi Khushi Kabhie Gham",
+   "Pardes"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Bollywood film is this? 🏀💔👧",
+  "a": "Kuch Kuch Hota Hai",
+  "w": [
+   "Kal Ho Naa Ho",
+   "Mohabbatein",
+   "Main Hoon Na"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? 😊😢🏠",
+  "a": "Kabhi Khushi Kabhie Gham",
+  "w": [
+   "Hum Saath-Saath Hain",
+   "Kal Ho Naa Ho",
+   "Baghban"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Bollywood film is this? 🏘️🎤🔥",
+  "a": "Gully Boy",
+  "w": [
+   "Rock On!!",
+   "Aashiqui 2",
+   "Rockstar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Bollywood film is this? 👑👰✈️",
+  "a": "Queen",
+  "w": [
+   "English Vinglish",
+   "Jab We Met",
+   "Piku"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? 😎🩺🏥",
+  "a": "Munna Bhai MBBS",
+  "w": [
+   "Golmaal",
+   "Hera Pheri",
+   "Dhamaal"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? 🏍️💨💰",
+  "a": "Dhoom",
+  "w": [
+   "Race",
+   "Don",
+   "Bang Bang!"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Bollywood film is this? 🚀🏡💡",
+  "a": "Swades",
+  "w": [
+   "Lagaan",
+   "Pad Man",
+   "Rang De Basanti"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Bollywood film is this? 🥃💔🪔",
+  "a": "Devdas",
+  "w": [
+   "Saawariya",
+   "Bajirao Mastani",
+   "Umrao Jaan"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Bollywood film is this? 🚗🍅🤿",
+  "a": "Zindagi Na Milegi Dobara",
+  "w": [
+   "Dil Chahta Hai",
+   "Yeh Jawaani Hai Deewani",
+   "Rock On!!"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? 🎹🕶️🔪",
+  "a": "Andhadhun",
+  "w": [
+   "Drishyam",
+   "Badla",
+   "Talaash"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Bollywood film is this? 🏃⏱️🏅",
+  "a": "Bhaag Milkha Bhaag",
+  "w": [
+   "Sultan",
+   "Mary Kom",
+   "Lagaan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Bollywood film is this? 🕉️☮️🕉️",
+  "a": "Om Shanti Om",
+  "w": [
+   "Main Hoon Na",
+   "Kal Ho Naa Ho",
+   "Rab Ne Bana Di Jodi"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Beatles song is this? 👧🌌💎",
+  "a": "Lucy in the Sky with Diamonds",
+  "w": [
+   "Here Comes the Sun",
+   "Yellow Submarine",
+   "Hey Jude"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which song is this? 🐢🎶💃",
+  "a": "Despacito",
+  "w": [
+   "Gasolina",
+   "Bailando",
+   "Havana"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Michael Jackson song is this? 🧟🌙💃",
+  "a": "Thriller",
+  "w": [
+   "Bad",
+   "Beat It",
+   "Billie Jean"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which kids' song is this? 👶🦈🎶",
+  "a": "Baby Shark",
+  "w": [
+   "Old MacDonald",
+   "Wheels on the Bus",
+   "Five Little Ducks"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which nursery rhyme is this? ✨✨🤏⭐",
+  "a": "Twinkle Twinkle Little Star",
+  "w": [
+   "Baa Baa Black Sheep",
+   "Humpty Dumpty",
+   "Rain Rain Go Away"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Bollywood song is this? 🚂💃🎶",
+  "a": "Chaiyya Chaiyya",
+  "w": [
+   "Kajra Re",
+   "Munni Badnaam",
+   "Sheila Ki Jawani"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which classic novel is this? 🐋🦵⛵",
+  "a": "Moby-Dick",
+  "w": [
+   "Treasure Island",
+   "Robinson Crusoe",
+   "The Old Man and the Sea"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which novel is this? 🐭🐭👨👨",
+  "a": "Of Mice and Men",
+  "w": [
+   "Animal Farm",
+   "Lord of the Flies",
+   "The Grapes of Wrath"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which novel is this? 🐷🐴🐔🏡",
+  "a": "Animal Farm",
+  "w": [
+   "Lord of the Flies",
+   "1984",
+   "Brave New World"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which novel is this? 🌍8️⃣0️⃣📅",
+  "a": "Around the World in 80 Days",
+  "w": [
+   "Gulliver's Travels",
+   "Treasure Island",
+   "Journey to the Centre of the Earth"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which play is this? 👦❤️👧☠️",
+  "a": "Romeo and Juliet",
+  "w": [
+   "Hamlet",
+   "Macbeth",
+   "Othello"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Sherlock Holmes story is this? 🐕🌫️🔎",
+  "a": "The Hound of the Baskervilles",
+  "w": [
+   "The Sign of Four",
+   "A Study in Scarlet",
+   "The Valley of Fear"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which phrase is this? 🌧️🐱🐶",
+  "a": "Raining cats and dogs",
+  "w": [
+   "Under the weather",
+   "Right as rain",
+   "A storm in a teacup"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which phrase is this? 🧩🍰",
+  "a": "Piece of cake",
+  "w": [
+   "Cherry on top",
+   "Icing on the cake",
+   "Easy as pie"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which phrase is this? 💔🦵",
+  "a": "Break a leg",
+  "w": [
+   "Cost an arm and a leg",
+   "Pull someone's leg",
+   "Break the ice"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which phrase is this? 1️⃣🔵🌙",
+  "a": "Once in a blue moon",
+  "w": [
+   "Over the moon",
+   "Shoot for the moon",
+   "Moonlighting"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which famous monument is this? 🕌🤍💑",
+  "a": "Taj Mahal",
+  "w": [
+   "Qutub Minar",
+   "Red Fort",
+   "Charminar"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which city is this? 🎰🎲🌃",
+  "a": "Las Vegas",
+  "w": [
+   "Miami",
+   "Orlando",
+   "Dubai"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which city is this? 🚣🎭🏛️",
+  "a": "Venice",
+  "w": [
+   "Rome",
+   "Florence",
+   "Milan"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Indian state is this? 🛶🌴🐘",
+  "a": "Kerala",
+  "w": [
+   "Goa",
+   "Assam",
+   "Karnataka"
+  ],
+  "d": 2
+ }
+]

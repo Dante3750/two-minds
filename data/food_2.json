@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Which Italian dish has layered pasta sheets, sauce and cheese?",
+  "a": "Lasagne",
+  "w": [
+   "Risotto",
+   "Ravioli",
+   "Gnocchi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Popcorn is made by heating kernels of which grain?",
+  "a": "Maize",
+  "w": [
+   "Wheat",
+   "Rice",
+   "Barley"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Sambar is a lentil stew from which part of India?",
+  "a": "South India",
+  "w": [
+   "North India",
+   "East India",
+   "Northeast India"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The baguette is a long bread famous in which country?",
+  "a": "France",
+  "w": [
+   "Italy",
+   "Germany",
+   "Belgium"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Chocolate is made from the beans of which plant?",
+  "a": "Cacao",
+  "w": [
+   "Coffee",
+   "Vanilla",
+   "Carob"
+  ],
+  "d": 1
+ },
+ {
+  "q": "French fries are made from which vegetable?",
+  "a": "Potato",
+  "w": [
+   "Sweet corn",
+   "Carrot",
+   "Yam"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Indian bread is traditionally baked in a tandoor?",
+  "a": "Naan",
+  "w": [
+   "Puri",
+   "Chapati",
+   "Bhatura"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Ghee is the clarified form of what?",
+  "a": "Butter",
+  "w": [
+   "Cream",
+   "Curd",
+   "Coconut oil"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Tacos and enchiladas come from which country's cuisine?",
+  "a": "Mexico",
+  "w": [
+   "Spain",
+   "Brazil",
+   "Peru"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Prunes are made by drying which fruit?",
+  "a": "Plum",
+  "w": [
+   "Grape",
+   "Apricot",
+   "Fig"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Lassi is a drink made mainly from what?",
+  "a": "Yogurt",
+  "w": [
+   "Milk",
+   "Lemon juice",
+   "Coconut water"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which yellow spice is called 'haldi' in Hindi?",
+  "a": "Turmeric",
+  "w": [
+   "Saffron",
+   "Mustard",
+   "Cumin"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Dim sum is a style of food from which country?",
+  "a": "China",
+  "w": [
+   "Japan",
+   "Korea",
+   "Thailand"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Pad thai is a noodle dish from which country?",
+  "a": "Thailand",
+  "w": [
+   "Vietnam",
+   "Malaysia",
+   "Indonesia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Mishti doi, a sweet yogurt, is a specialty of which state?",
+  "a": "West Bengal",
+  "w": [
+   "Punjab",
+   "Gujarat",
+   "Kerala"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Idli batter is made from rice and which lentil?",
+  "a": "Urad dal",
+  "w": [
+   "Moong dal",
+   "Masoor dal",
+   "Chana dal"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Japanese sake is brewed from which grain?",
+  "a": "Rice",
+  "w": [
+   "Barley",
+   "Wheat",
+   "Millet"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Feta cheese originally comes from which country?",
+  "a": "Greece",
+  "w": [
+   "Italy",
+   "France",
+   "Turkey"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Ragi is also known by which English name?",
+  "a": "Finger millet",
+  "w": [
+   "Pearl millet",
+   "Foxtail millet",
+   "Sorghum"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Dal baati churma is a classic dish of which state?",
+  "a": "Rajasthan",
+  "w": [
+   "Gujarat",
+   "Madhya Pradesh",
+   "Punjab"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Tahini is a paste made from which seeds?",
+  "a": "Sesame",
+  "w": [
+   "Sunflower",
+   "Pumpkin",
+   "Flax"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Avial, a coconut-based mixed vegetable dish, is from which state?",
+  "a": "Kerala",
+  "w": [
+   "Punjab",
+   "Gujarat",
+   "Odisha"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Bebinca, a layered dessert, comes from which state?",
+  "a": "Goa",
+  "w": [
+   "Kerala",
+   "Punjab",
+   "Assam"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Goulash is a classic stew from which country?",
+  "a": "Hungary",
+  "w": [
+   "Austria",
+   "Poland",
+   "Czech Republic"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The word 'pav' comes from the language of which Europeans?",
+  "a": "Portuguese",
+  "w": [
+   "British",
+   "Dutch",
+   "French"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which spice is a dried flower bud?",
+  "a": "Clove",
+  "w": [
+   "Star anise",
+   "Cardamom",
+   "Bay leaf"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which spice is known as the 'queen of spices'?",
+  "a": "Cardamom",
+  "w": [
+   "Saffron",
+   "Clove",
+   "Cinnamon"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Chettinad cuisine comes from which state?",
+  "a": "Tamil Nadu",
+  "w": [
+   "Kerala",
+   "Karnataka",
+   "Andhra Pradesh"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which soft Italian cheese is used in classic tiramisu?",
+  "a": "Mascarpone",
+  "w": [
+   "Ricotta",
+   "Mozzarella",
+   "Parmesan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Rasgulla balls are made from which dairy product?",
+  "a": "Chhena",
+  "w": [
+   "Khoya",
+   "Ghee",
+   "Condensed milk"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which pasta's name means 'little tongues' in Italian?",
+  "a": "Linguine",
+  "w": [
+   "Fettuccine",
+   "Penne",
+   "Farfalle"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Goan dish's name comes from Portuguese for wine and garlic?",
+  "a": "Vindaloo",
+  "w": [
+   "Xacuti",
+   "Cafreal",
+   "Sorpotel"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Baklava is made with layers of which thin pastry?",
+  "a": "Filo",
+  "w": [
+   "Puff pastry",
+   "Shortcrust",
+   "Choux"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which French phrase means having all ingredients prepped and ready?",
+  "a": "Mise en place",
+  "w": [
+   "Sous vide",
+   "Au jus",
+   "Bon appetit"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Vanilla pods come from which type of plant?",
+  "a": "Orchid",
+  "w": [
+   "Lily",
+   "Palm",
+   "Legume"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Fugu, a Japanese delicacy, is which kind of fish?",
+  "a": "Pufferfish",
+  "w": [
+   "Eel",
+   "Mackerel",
+   "Tuna"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Chhena poda, a baked cheese dessert, is from which state?",
+  "a": "Odisha",
+  "w": [
+   "West Bengal",
+   "Assam",
+   "Bihar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Gruyere cheese originally comes from which country?",
+  "a": "Switzerland",
+  "w": [
+   "Netherlands",
+   "Belgium",
+   "Denmark"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The name 'mulligatawny' comes from Tamil words meaning what?",
+  "a": "Pepper water",
+  "w": [
+   "Rice water",
+   "Lentil soup",
+   "Spicy broth"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Ceviche, raw fish cured in citrus juice, is the national dish of?",
+  "a": "Peru",
+  "w": [
+   "Mexico",
+   "Chile",
+   "Spain"
+  ],
+  "d": 3
+ }
+]

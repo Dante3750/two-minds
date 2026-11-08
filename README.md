@@ -23,7 +23,12 @@ People you play are remembered automatically under Rivals with your win–loss r
 - **Us Two**: write your own questions about your story, play them as a duel or send them by link.
 
 ## Content
-18 topics × 40 fact-checked questions (720 total): General Knowledge, Brain Teasers, History, Science, Space, Animals, Tech & Internet, Bollywood, Hollywood, Music, Love & Romance, Geography, Capitals & Flags, India, Food & Drink, Cricket, Sports, Video Games. Plus Mixed Bag, 60 "know me" prompts and 40 "more likely" prompts.
+22 topics, 1,650 fact-checked questions: General Knowledge, Brain Teasers, History, Science, Space, Animals, Tech & Internet, Bollywood, Hollywood, Music, Love & Romance, Geography, Capitals & Flags, India, Food & Drink, Cricket, Sports, Video Games (80 each), plus Emoji Guess (60), Flags (50), Mythology (50) and Books (50). Plus Mixed Bag, 60 "know me" prompts and 40 "more likely" prompts.
+
+## Friends, chat and seasons
+- Friend requests by code or invite link; challenge or play live from the Friends tab, no links.
+- Live matches: emoji reactions during play, chat with quick replies afterwards.
+- Daily play streak, weekly leaderboard with your friends (resets Monday), monthly seasons (Bronze → Diamond) that unlock avatar frames.
 
 ## Look
 Four themes in Profile: Velvet (default), Midnight, Lagoon and Blush (light).

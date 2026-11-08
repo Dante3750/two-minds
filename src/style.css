@@ -676,3 +676,59 @@ body::before,body::after{opacity:.45}
 /* notification dot on a tab */
 .tab.has-note::before{content:"";position:absolute;top:8px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:var(--bad);box-shadow:0 0 0 2px var(--s1)}
 .btn:has(.tx){flex-direction:row;justify-content:flex-start}
+
+/* ================= streak + season chips ================= */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chipx{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font:600 12px var(--f);color:var(--muted)}
+.chipx.hot{color:#ff9f43;border-color:color-mix(in srgb,#ff9f43 40%,transparent)}
+.chipx.tier{color:var(--tc)}
+.t-bronze{--tc:#d08a5b} .t-silver{--tc:#b9c3d6} .t-gold{--tc:#ffc53d} .t-plat{--tc:#7fe0d6} .t-diamond{--tc:#9fb7ff}
+
+/* ================= season card + frames ================= */
+.season{display:grid;gap:12px}
+.srow{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
+.srow b{display:block;font:800 20px var(--f);letter-spacing:-.02em;color:var(--tc)}
+.srow span{font-size:12.5px;color:var(--muted)}
+.tierbadge{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--tc) 18%,transparent);color:var(--tc);border:1px solid color-mix(in srgb,var(--tc) 40%,transparent)}
+.season .xpbar i{background:var(--tc)}
+.frames{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.frame-pick{display:grid;justify-items:center;gap:6px;padding:10px 4px;border-radius:14px;background:var(--bg);border:1px solid var(--line);font:600 11px var(--f);color:var(--ink-2)}
+.frame-pick small{font:500 9.5px var(--f);color:var(--muted);text-align:center;line-height:1.2}
+.frame-pick[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.frame-pick:disabled{opacity:.45}
+.frame-pick .av{margin:4px}
+/* frames: a ring outside the avatar */
+.av.fr{position:relative}
+.av.fr::after{content:"";position:absolute;inset:-6px;border-radius:50%;padding:3px;pointer-events:none;
+  background:var(--fr);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.av.s.fr::after{inset:-5px;padding:2.5px}
+.av.l.fr::after{inset:-9px;padding:4px}
+.fr-bronze{--fr:linear-gradient(135deg,#f1b48a,#9a5a32,#f1b48a)}
+.fr-silver{--fr:linear-gradient(135deg,#ffffff,#8f9bb3,#e6ebf5)}
+.fr-gold{--fr:linear-gradient(135deg,#fff2b0,#e0a400,#ffe27a,#b07d00)}
+.fr-plat{--fr:conic-gradient(from 0deg,#bff7f0,#5fd3c6,#e8fffd,#5fd3c6,#bff7f0)}
+.fr-diamond{--fr:conic-gradient(from 0deg,#ff7aa2,#ffc53d,#3ddc84,#38d6ff,#9f8bff,#ff7aa2)}
+.fr-flame{--fr:conic-gradient(from 200deg,#ffd166,#ff6b3d,#ff2e63,#ff9f43,#ffd166)}
+.fr-diamond::after,.fr-flame::after{animation:spinr 6s linear infinite}
+@keyframes spinr{to{transform:rotate(360deg)}}
+
+/* ================= weekly board ================= */
+.week .lb .ln em:last-child{display:block;margin:2px 0 0;font-size:11px}
+.week .lb .rk .i{color:var(--gold-text);width:16px;height:16px}
+
+/* ================= live reactions + chat ================= */
+.emobar{display:flex;justify-content:center;gap:6px;margin-top:12px;flex:none}
+.emobar button{width:44px;height:44px;border-radius:14px;background:var(--s1);border:1px solid var(--line);font-size:22px;line-height:1;display:grid;place-items:center;transition:transform .1s}
+.emobar button:active{transform:scale(.88)}
+.emo{position:absolute;top:120px;font-size:38px;pointer-events:none;z-index:5;animation:emoUp 2.2s cubic-bezier(.2,.8,.3,1) forwards}
+.emo.opp{top:100px}
+@keyframes emoUp{0%{opacity:0;transform:translateY(10px) scale(.6)}12%{opacity:1;transform:translateY(0) scale(1.15)}100%{opacity:0;transform:translateY(-90px) scale(1)}}
+.chat{display:grid;gap:10px}
+.chatlist{display:flex;flex-direction:column;gap:6px;max-height:190px;overflow-y:auto}
+.msg{align-self:flex-start;max-width:80%;padding:8px 12px;border-radius:16px 16px 16px 4px;background:var(--bg);font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+.msg.me{align-self:flex-end;border-radius:16px 16px 4px 16px;background:color-mix(in srgb,var(--gold) 22%,var(--s1));color:var(--ink)}
+.quick{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
+.quick::-webkit-scrollbar{display:none}
+.quick .chip{min-height:36px;font-size:12.5px}
+/* emoji + flag questions render the same on every device (Windows shows flags as letters otherwise) */
+.qcard,.half .q,.opt,.rv{font-family:"Lexend","Noto Color Emoji",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}

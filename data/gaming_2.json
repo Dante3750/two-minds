@@ -1,0 +1,402 @@
+[
+ {
+  "q": "What is the name of the princess Mario often rescues?",
+  "a": "Princess Peach",
+  "w": [
+   "Princess Daisy",
+   "Princess Zelda",
+   "Princess Rosalina"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is the name of Sonic's two-tailed fox friend?",
+  "a": "Tails",
+  "w": [
+   "Knuckles",
+   "Shadow",
+   "Amy"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What colour is Mario's cap?",
+  "a": "Red",
+  "w": [
+   "Green",
+   "Blue",
+   "Yellow"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Super Mario games, which item makes Mario grow bigger?",
+  "a": "Super Mushroom",
+  "w": [
+   "Fire Flower",
+   "Super Star",
+   "Green Shell"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which pink, round Nintendo hero inhales his enemies?",
+  "a": "Kirby",
+  "w": [
+   "Jigglypuff",
+   "Yoshi",
+   "Toad"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Pokemon, what is the basic red-and-white catching device?",
+  "a": "Poke Ball",
+  "w": [
+   "Great Ball",
+   "Master Ball",
+   "Ultra Ball"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which game has sunflowers and peashooters fighting off zombies?",
+  "a": "Plants vs. Zombies",
+  "w": [
+   "Zombie Tsunami",
+   "Dead Trigger",
+   "Left 4 Dead"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Nintendo gorilla wears a red tie marked 'DK'?",
+  "a": "Donkey Kong",
+  "w": [
+   "Diddy Kong",
+   "King K. Rool",
+   "Cranky Kong"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Minecraft, which tool do you need to mine stone?",
+  "a": "Pickaxe",
+  "w": [
+   "Shovel",
+   "Axe",
+   "Hoe"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which game do players jump out of a flying 'Battle Bus'?",
+  "a": "Fortnite",
+  "w": [
+   "PUBG",
+   "Apex Legends",
+   "Free Fire"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which green-clad Nintendo hero wields the Master Sword?",
+  "a": "Link",
+  "w": [
+   "Luigi",
+   "Ness",
+   "Pit"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is Mario's job?",
+  "a": "Plumber",
+  "w": [
+   "Carpenter",
+   "Chef",
+   "Postman"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which company created Sonic the Hedgehog?",
+  "a": "Sega",
+  "w": [
+   "Nintendo",
+   "Atari",
+   "Capcom"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Among Us, the players who complete tasks are called what?",
+  "a": "Crewmates",
+  "w": [
+   "Shipmates",
+   "Astronauts",
+   "Workers"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which 2006 Nintendo console used a motion-sensing remote?",
+  "a": "Wii",
+  "w": [
+   "GameCube",
+   "Nintendo 64",
+   "Nintendo DS"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Minecraft, which block is used to build a Nether portal?",
+  "a": "Obsidian",
+  "w": [
+   "Bedrock",
+   "Netherrack",
+   "Diamond"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Mario Kart, which shell homes in on the race leader?",
+  "a": "Blue Shell",
+  "w": [
+   "Red Shell",
+   "Green Shell",
+   "Bob-omb"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company made the long-running FIFA football games?",
+  "a": "EA Sports",
+  "w": [
+   "Konami",
+   "2K Sports",
+   "Ubisoft"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company publishes the Call of Duty series?",
+  "a": "Activision",
+  "w": [
+   "Electronic Arts",
+   "Ubisoft",
+   "Bethesda"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What is the made-up language spoken in The Sims called?",
+  "a": "Simlish",
+  "w": [
+   "Simspeak",
+   "Plumbob",
+   "Simtalk"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Minecraft, the Ender Dragon lives in which dimension?",
+  "a": "The End",
+  "w": [
+   "The Nether",
+   "The Void",
+   "The Overworld"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company runs the Steam PC game store?",
+  "a": "Valve",
+  "w": [
+   "Epic Games",
+   "Blizzard",
+   "Ubisoft"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who gives you your first Pokemon in Pokemon Red and Blue?",
+  "a": "Professor Oak",
+  "w": [
+   "Professor Elm",
+   "Professor Birch",
+   "Professor Rowan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Pokemon is number 001 in the National Pokedex?",
+  "a": "Bulbasaur",
+  "w": [
+   "Pikachu",
+   "Mew",
+   "Charmander"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who is Sonic the Hedgehog's arch-enemy?",
+  "a": "Dr. Eggman",
+  "w": [
+   "Dr. Wily",
+   "Bowser",
+   "Ganon"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which 1972 arcade hit was a simple table tennis game?",
+  "a": "Pong",
+  "w": [
+   "Breakout",
+   "Asteroids",
+   "Galaxian"
+  ],
+  "d": 2
+ },
+ {
+  "q": "How many playable main characters does GTA V have?",
+  "a": "Three",
+  "w": [
+   "One",
+   "Two",
+   "Four"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Treasure hunter Nathan Drake is the hero of which series?",
+  "a": "Uncharted",
+  "w": [
+   "Far Cry",
+   "Tomb Raider",
+   "Just Cause"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Japanese company created Street Fighter?",
+  "a": "Capcom",
+  "w": [
+   "Konami",
+   "Namco",
+   "Square Enix"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which company developed Pokemon Go?",
+  "a": "Niantic",
+  "w": [
+   "Game Freak",
+   "Rovio",
+   "Zynga"
+  ],
+  "d": 2
+ },
+ {
+  "q": "What are the four-square pieces in Tetris called?",
+  "a": "Tetrominoes",
+  "w": [
+   "Quadrangles",
+   "Tetrablocks",
+   "Polycubes"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Scientist Gordon Freeman is the hero of which game series?",
+  "a": "Half-Life",
+  "w": [
+   "Portal",
+   "Doom",
+   "Quake"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Polish studio developed The Witcher games?",
+  "a": "CD Projekt Red",
+  "w": [
+   "Techland",
+   "People Can Fly",
+   "11 bit studios"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which game is set in the underwater city of Rapture?",
+  "a": "BioShock",
+  "w": [
+   "Subnautica",
+   "Dead Space",
+   "Prey"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who is the main villain of the Crash Bandicoot games?",
+  "a": "Dr. Neo Cortex",
+  "w": [
+   "Dr. Wily",
+   "Dr. Eggman",
+   "Dr. N. Gin"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who is the main villain of the original Mega Man games?",
+  "a": "Dr. Wily",
+  "w": [
+   "Dr. Light",
+   "Dr. Eggman",
+   "Dr. Neo Cortex"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Nolan Bushnell co-founded which early video game company?",
+  "a": "Atari",
+  "w": [
+   "Sega",
+   "Activision",
+   "Commodore"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Indian company makes the mobile game Ludo King?",
+  "a": "Gametion",
+  "w": [
+   "Nazara",
+   "Dream11",
+   "Octro"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Cloud Strife is the hero of which game?",
+  "a": "Final Fantasy VII",
+  "w": [
+   "Dragon Quest VIII",
+   "Chrono Trigger",
+   "Persona 5"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Street Fighter character is a sumo wrestler?",
+  "a": "E. Honda",
+  "w": [
+   "Zangief",
+   "Dhalsim",
+   "Balrog"
+  ],
+  "d": 3
+ }
+]

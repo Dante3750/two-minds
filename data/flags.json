@@ -1,0 +1,502 @@
+[
+ {
+  "q": "Which country's flag is this? 🇬🇧",
+  "a": "United Kingdom",
+  "w": [
+   "Australia",
+   "New Zealand",
+   "Iceland"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇩🇪",
+  "a": "Germany",
+  "w": [
+   "Belgium",
+   "Austria",
+   "Spain"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇫🇷",
+  "a": "France",
+  "w": [
+   "Netherlands",
+   "Italy",
+   "Russia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇮🇪",
+  "a": "Ireland",
+  "w": [
+   "Italy",
+   "Ivory Coast",
+   "India"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇨🇮",
+  "a": "Ivory Coast",
+  "w": [
+   "Ireland",
+   "Italy",
+   "Niger"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇳🇪",
+  "a": "Niger",
+  "w": [
+   "India",
+   "Ivory Coast",
+   "Ireland"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇮🇩",
+  "a": "Indonesia",
+  "w": [
+   "Poland",
+   "Singapore",
+   "Austria"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇵🇱",
+  "a": "Poland",
+  "w": [
+   "Indonesia",
+   "Monaco",
+   "Austria"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇦🇹",
+  "a": "Austria",
+  "w": [
+   "Latvia",
+   "Poland",
+   "Denmark"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇱🇻",
+  "a": "Latvia",
+  "w": [
+   "Austria",
+   "Lebanon",
+   "Peru"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇳🇱",
+  "a": "Netherlands",
+  "w": [
+   "Luxembourg",
+   "Russia",
+   "France"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇱🇺",
+  "a": "Luxembourg",
+  "w": [
+   "Netherlands",
+   "Russia",
+   "Paraguay"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇷🇺",
+  "a": "Russia",
+  "w": [
+   "Slovenia",
+   "Serbia",
+   "Netherlands"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇷🇴",
+  "a": "Romania",
+  "w": [
+   "Belgium",
+   "Moldova",
+   "Andorra"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇸🇪",
+  "a": "Sweden",
+  "w": [
+   "Finland",
+   "Norway",
+   "Denmark"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇳🇴",
+  "a": "Norway",
+  "w": [
+   "Iceland",
+   "Denmark",
+   "Finland"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇮🇸",
+  "a": "Iceland",
+  "w": [
+   "Norway",
+   "Finland",
+   "Sweden"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇩🇰",
+  "a": "Denmark",
+  "w": [
+   "Switzerland",
+   "Norway",
+   "Austria"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇬🇷",
+  "a": "Greece",
+  "w": [
+   "Uruguay",
+   "Finland",
+   "Israel"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇺🇾",
+  "a": "Uruguay",
+  "w": [
+   "Greece",
+   "Argentina",
+   "Malaysia"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇦🇷",
+  "a": "Argentina",
+  "w": [
+   "Uruguay",
+   "Nicaragua",
+   "El Salvador"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇪🇸",
+  "a": "Spain",
+  "w": [
+   "Portugal",
+   "Colombia",
+   "Germany"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇵🇹",
+  "a": "Portugal",
+  "w": [
+   "Spain",
+   "Brazil",
+   "Morocco"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇹🇳",
+  "a": "Tunisia",
+  "w": [
+   "Turkey",
+   "Algeria",
+   "Morocco"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇵🇰",
+  "a": "Pakistan",
+  "w": [
+   "Algeria",
+   "Maldives",
+   "Saudi Arabia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇰🇷",
+  "a": "South Korea",
+  "w": [
+   "Japan",
+   "North Korea",
+   "Mongolia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇿🇦",
+  "a": "South Africa",
+  "w": [
+   "Zimbabwe",
+   "Kenya",
+   "Namibia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇰🇪",
+  "a": "Kenya",
+  "w": [
+   "Uganda",
+   "Tanzania",
+   "Ghana"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇯🇲",
+  "a": "Jamaica",
+  "w": [
+   "Tanzania",
+   "South Africa",
+   "Brazil"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇦🇺",
+  "a": "Australia",
+  "w": [
+   "New Zealand",
+   "United Kingdom",
+   "Fiji"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇳🇿",
+  "a": "New Zealand",
+  "w": [
+   "Australia",
+   "United Kingdom",
+   "Fiji"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇮🇱",
+  "a": "Israel",
+  "w": [
+   "Greece",
+   "Finland",
+   "Argentina"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇸🇦",
+  "a": "Saudi Arabia",
+  "w": [
+   "Pakistan",
+   "Algeria",
+   "Oman"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇪🇬",
+  "a": "Egypt",
+  "w": [
+   "Syria",
+   "Iraq",
+   "Yemen"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇸🇬",
+  "a": "Singapore",
+  "w": [
+   "Indonesia",
+   "Poland",
+   "Malaysia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇺🇦",
+  "a": "Ukraine",
+  "w": [
+   "Sweden",
+   "Romania",
+   "Kazakhstan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's flag is this? 🇧🇪",
+  "a": "Belgium",
+  "w": [
+   "Germany",
+   "Romania",
+   "France"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇭🇺",
+  "a": "Hungary",
+  "w": [
+   "Bulgaria",
+   "Italy",
+   "Iran"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇨🇴",
+  "a": "Colombia",
+  "w": [
+   "Ecuador",
+   "Venezuela",
+   "Bolivia"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇳🇬",
+  "a": "Nigeria",
+  "w": [
+   "Ireland",
+   "Italy",
+   "Senegal"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇹🇭",
+  "a": "Thailand",
+  "w": [
+   "Costa Rica",
+   "Laos",
+   "North Korea"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇨🇺",
+  "a": "Cuba",
+  "w": [
+   "Chile",
+   "Philippines",
+   "Panama"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇵🇭",
+  "a": "Philippines",
+  "w": [
+   "Cuba",
+   "Kuwait",
+   "Sudan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇨🇱",
+  "a": "Chile",
+  "w": [
+   "Cuba",
+   "Panama",
+   "Liberia"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇵🇪",
+  "a": "Peru",
+  "w": [
+   "Canada",
+   "Austria",
+   "Latvia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇧🇬",
+  "a": "Bulgaria",
+  "w": [
+   "Hungary",
+   "Lithuania",
+   "Iran"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇶🇦",
+  "a": "Qatar",
+  "w": [
+   "Bahrain",
+   "Latvia",
+   "Oman"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇰🇿",
+  "a": "Kazakhstan",
+  "w": [
+   "Uzbekistan",
+   "Kyrgyzstan",
+   "Argentina"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country's flag is this? 🇮🇷",
+  "a": "Iran",
+  "w": [
+   "Hungary",
+   "Tajikistan",
+   "India"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which country's flag is this? 🇰🇭",
+  "a": "Cambodia",
+  "w": [
+   "Laos",
+   "Thailand",
+   "Myanmar"
+  ],
+  "d": 2
+ }
+]

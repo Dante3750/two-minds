@@ -1,0 +1,502 @@
+[
+  {
+    "q": "Which author created the detective Sherlock Holmes?",
+    "a": "Arthur Conan Doyle",
+    "w": [
+      "Agatha Christie",
+      "Charles Dickens",
+      "Edgar Allan Poe"
+    ],
+    "d": 1
+  },
+  {
+    "q": "What is the name of Harry Potter's snowy owl?",
+    "a": "Hedwig",
+    "w": [
+      "Errol",
+      "Fawkes",
+      "Crookshanks"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Which dark wizard is Harry Potter's arch-enemy?",
+    "a": "Lord Voldemort",
+    "w": [
+      "Gellert Grindelwald",
+      "Lucius Malfoy",
+      "Sirius Black"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Into which Hogwarts house is Harry Potter sorted?",
+    "a": "Gryffindor",
+    "w": [
+      "Slytherin",
+      "Hufflepuff",
+      "Ravenclaw"
+    ],
+    "d": 1
+  },
+  {
+    "q": "In Harry Potter, who is the half-giant gamekeeper of Hogwarts?",
+    "a": "Rubeus Hagrid",
+    "w": [
+      "Argus Filch",
+      "Remus Lupin",
+      "Severus Snape"
+    ],
+    "d": 1
+  },
+  {
+    "q": "In The Jungle Book, what kind of animal is Bagheera?",
+    "a": "Black panther",
+    "w": [
+      "Bear",
+      "Tiger",
+      "Wolf"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who wrote the Famous Five and Secret Seven books?",
+    "a": "Enid Blyton",
+    "w": [
+      "Roald Dahl",
+      "Beatrix Potter",
+      "R. L. Stine"
+    ],
+    "d": 1
+  },
+  {
+    "q": "In a Panchatantra tale, which animal wanted to eat the monkey's heart?",
+    "a": "Crocodile",
+    "w": [
+      "Lion",
+      "Jackal",
+      "Tiger"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Which witty courtier of Akbar stars in many famous folk tales?",
+    "a": "Birbal",
+    "w": [
+      "Todar Mal",
+      "Abul Fazl",
+      "Man Singh"
+    ],
+    "d": 1
+  },
+  {
+    "q": "The Panchatantra is a famous collection of what?",
+    "a": "Animal fables",
+    "w": [
+      "Love poems",
+      "War chronicles",
+      "Temple hymns"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who is Sherlock Holmes's doctor friend and companion?",
+    "a": "Dr. John Watson",
+    "w": [
+      "Inspector Lestrade",
+      "Mycroft Holmes",
+      "Dr. James Mortimer"
+    ],
+    "d": 1
+  },
+  {
+    "q": "In which C. S. Lewis series do children reach a magic land via a wardrobe?",
+    "a": "The Chronicles of Narnia",
+    "w": [
+      "His Dark Materials",
+      "The Wizard of Oz",
+      "The Earthsea Cycle"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who wrote The Lord of the Rings?",
+    "a": "J. R. R. Tolkien",
+    "w": [
+      "C. S. Lewis",
+      "Roald Dahl",
+      "Philip Pullman"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Which hobbit carries the One Ring to Mordor?",
+    "a": "Frodo Baggins",
+    "w": [
+      "Bilbo Baggins",
+      "Samwise Gamgee",
+      "Peregrin Took"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Which Dr. Seuss character tried to steal Christmas?",
+    "a": "The Grinch",
+    "w": [
+      "The Lorax",
+      "The Cat in the Hat",
+      "Sam-I-Am"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Which Dickens miser is visited by ghosts on Christmas Eve?",
+    "a": "Ebenezer Scrooge",
+    "w": [
+      "Uriah Heep",
+      "Fagin",
+      "Jacob Marley"
+    ],
+    "d": 1
+  },
+  {
+    "q": "Who wrote the novel Nineteen Eighty-Four (1984)?",
+    "a": "George Orwell",
+    "w": [
+      "Aldous Huxley",
+      "H. G. Wells",
+      "Ray Bradbury"
+    ],
+    "d": 1
+  },
+  {
+    "q": "What is the name of Tintin's faithful white dog?",
+    "a": "Snowy",
+    "w": [
+      "Pluto",
+      "Scooby",
+      "Toto"
+    ],
+    "d": 1
+  },
+  {
+    "q": "For which work did Tagore win the 1913 Nobel Prize in Literature?",
+    "a": "Gitanjali",
+    "w": [
+      "Gora",
+      "Chokher Bali",
+      "Kabuliwala"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which R. K. Narayan novel follows Raju, a tour guide turned holy man?",
+    "a": "The Guide",
+    "w": [
+      "Swami and Friends",
+      "The English Teacher",
+      "The Financial Expert"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Which Bengali detective was created by Satyajit Ray?",
+    "a": "Feluda",
+    "w": [
+      "Byomkesh Bakshi",
+      "Kiriti Roy",
+      "Karamchand"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote the Winnie-the-Pooh stories?",
+    "a": "A. A. Milne",
+    "w": [
+      "Beatrix Potter",
+      "Kenneth Grahame",
+      "Roald Dahl"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote the Booker-winning novel The God of Small Things?",
+    "a": "Arundhati Roy",
+    "w": [
+      "Kiran Desai",
+      "Anita Desai",
+      "Jhumpa Lahiri"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote the novel Midnight's Children?",
+    "a": "Salman Rushdie",
+    "w": [
+      "V. S. Naipaul",
+      "Amitav Ghosh",
+      "Vikram Seth"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote the long novel A Suitable Boy?",
+    "a": "Vikram Seth",
+    "w": [
+      "Amitav Ghosh",
+      "Salman Rushdie",
+      "Rohinton Mistry"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote Train to Pakistan, a novel about Partition?",
+    "a": "Khushwant Singh",
+    "w": [
+      "Mulk Raj Anand",
+      "Raja Rao",
+      "R. K. Narayan"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote the IIT campus novel Five Point Someone?",
+    "a": "Chetan Bhagat",
+    "w": [
+      "Amish Tripathi",
+      "Ravinder Singh",
+      "Durjoy Datta"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote The Room on the Roof, set in Dehradun?",
+    "a": "Ruskin Bond",
+    "w": [
+      "R. K. Narayan",
+      "Anita Desai",
+      "Khushwant Singh"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who is Sherlock Holmes's criminal arch-enemy?",
+    "a": "Professor Moriarty",
+    "w": [
+      "Inspector Lestrade",
+      "Mycroft Holmes",
+      "Irene Adler"
+    ],
+    "d": 2
+  },
+  {
+    "q": "In Moby-Dick, who is the captain who hunts the white whale?",
+    "a": "Captain Ahab",
+    "w": [
+      "Captain Nemo",
+      "Captain Hook",
+      "Captain Flint"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote the novel Frankenstein?",
+    "a": "Mary Shelley",
+    "w": [
+      "Emily Bronte",
+      "Jane Austen",
+      "Bram Stoker"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote the vampire novel Dracula?",
+    "a": "Bram Stoker",
+    "w": [
+      "Mary Shelley",
+      "Oscar Wilde",
+      "Edgar Allan Poe"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote The Immortals of Meluha, about Lord Shiva?",
+    "a": "Amish Tripathi",
+    "w": [
+      "Ashwin Sanghi",
+      "Devdutt Pattanaik",
+      "Chetan Bhagat"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote The Alchemist, about the shepherd boy Santiago?",
+    "a": "Paulo Coelho",
+    "w": [
+      "Gabriel Garcia Marquez",
+      "Jorge Luis Borges",
+      "Isabel Allende"
+    ],
+    "d": 2
+  },
+  {
+    "q": "In Gulliver's Travels, what is the land of tiny people called?",
+    "a": "Lilliput",
+    "w": [
+      "Brobdingnag",
+      "Laputa",
+      "Narnia"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote To Kill a Mockingbird?",
+    "a": "Harper Lee",
+    "w": [
+      "Toni Morrison",
+      "Maya Angelou",
+      "Louisa May Alcott"
+    ],
+    "d": 2
+  },
+  {
+    "q": "Who wrote The Three Musketeers?",
+    "a": "Alexandre Dumas",
+    "w": [
+      "Victor Hugo",
+      "Jules Verne",
+      "Gustave Flaubert"
+    ],
+    "d": 2
+  },
+  {
+    "q": "What was the real name of the writer Premchand?",
+    "a": "Dhanpat Rai",
+    "w": [
+      "Harivansh Rai",
+      "Jaishankar Prasad",
+      "Sumitranandan Pant"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Who wrote the 1935 novel Untouchable?",
+    "a": "Mulk Raj Anand",
+    "w": [
+      "Raja Rao",
+      "Khushwant Singh",
+      "Nirad C. Chaudhuri"
+    ],
+    "d": 3
+  },
+  {
+    "q": "The Panchatantra is traditionally credited to which scholar?",
+    "a": "Vishnu Sharma",
+    "w": [
+      "Kalidasa",
+      "Banabhatta",
+      "Bhartrihari"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Who created the detective Byomkesh Bakshi?",
+    "a": "Sharadindu Bandyopadhyay",
+    "w": [
+      "Satyajit Ray",
+      "Saratchandra Chattopadhyay",
+      "Sunil Gangopadhyay"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Who wrote the Bengali novel Pather Panchali?",
+    "a": "Bibhutibhushan Bandyopadhyay",
+    "w": [
+      "Tarashankar Bandyopadhyay",
+      "Manik Bandyopadhyay",
+      "Saratchandra Chattopadhyay"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Who wrote the Nigerian classic Things Fall Apart?",
+    "a": "Chinua Achebe",
+    "w": [
+      "Wole Soyinka",
+      "Ngugi wa Thiong'o",
+      "Ben Okri"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Who wrote the 1938 novel Kanthapura?",
+    "a": "Raja Rao",
+    "w": [
+      "Mulk Raj Anand",
+      "R. K. Narayan",
+      "Nirad C. Chaudhuri"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Who wrote and illustrated The Little Prince?",
+    "a": "Antoine de Saint-Exupery",
+    "w": [
+      "Albert Camus",
+      "Jules Verne",
+      "Victor Hugo"
+    ],
+    "d": 3
+  },
+  {
+    "q": "In Kafka's The Metamorphosis, Gregor Samsa wakes up as what?",
+    "a": "A giant insect",
+    "w": [
+      "A wolf",
+      "A stone statue",
+      "A small bird"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Who won the 2006 Booker Prize for The Inheritance of Loss?",
+    "a": "Kiran Desai",
+    "w": [
+      "Arundhati Roy",
+      "Anita Desai",
+      "Jhumpa Lahiri"
+    ],
+    "d": 3
+  },
+  {
+    "q": "What is the Weasley family's home called in Harry Potter?",
+    "a": "The Burrow",
+    "w": [
+      "The Nest",
+      "Shell Cottage",
+      "Grimmauld Place"
+    ],
+    "d": 3
+  },
+  {
+    "q": "Tenali Rama was a witty court poet of which king?",
+    "a": "Krishnadevaraya",
+    "w": [
+      "Akbar",
+      "Harshavardhana",
+      "Raja Bhoja"
+    ],
+    "d": 3
+  },
+  {
+    "q": "In which fictional county are Thomas Hardy's novels set?",
+    "a": "Wessex",
+    "w": [
+      "Middlemarch",
+      "Barsetshire",
+      "Loamshire"
+    ],
+    "d": 3
+  }
+]

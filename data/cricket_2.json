@@ -1,0 +1,402 @@
+[
+ {
+  "q": "When an umpire raises one index finger, what does it mean?",
+  "a": "Batter is out",
+  "w": [
+   "Four runs",
+   "No-ball",
+   "Bye"
+  ],
+  "d": 1
+ },
+ {
+  "q": "How many runs for a ball that bounces before crossing the boundary?",
+  "a": "4",
+  "w": [
+   "2",
+   "3",
+   "5"
+  ],
+  "d": 1
+ },
+ {
+  "q": "A Test match is scheduled for up to how many days?",
+  "a": "5",
+  "w": [
+   "3",
+   "4",
+   "7"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What colour ball is used in day-night Test matches?",
+  "a": "Pink",
+  "w": [
+   "White",
+   "Orange",
+   "Yellow"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The IPL team Sunrisers is based in which city?",
+  "a": "Hyderabad",
+  "w": [
+   "Pune",
+   "Kolkata",
+   "Ahmedabad"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Eden Gardens cricket stadium is in which city?",
+  "a": "Kolkata",
+  "w": [
+   "Mumbai",
+   "Chennai",
+   "Delhi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's cricket team is nicknamed the 'Black Caps'?",
+  "a": "New Zealand",
+  "w": [
+   "West Indies",
+   "Zimbabwe",
+   "Afghanistan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which Indian batter is nicknamed 'Hitman'?",
+  "a": "Rohit Sharma",
+  "w": [
+   "Virat Kohli",
+   "Shikhar Dhawan",
+   "Suresh Raina"
+  ],
+  "d": 1
+ },
+ {
+  "q": "An extra given when the bowler oversteps the crease is a?",
+  "a": "No-ball",
+  "w": [
+   "Wide",
+   "Bye",
+   "Leg bye"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Scoring 100 runs in an innings is called a?",
+  "a": "Century",
+  "w": [
+   "Half-century",
+   "Hat-trick",
+   "Maiden"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The two small pieces of wood on top of the stumps are called?",
+  "a": "Bails",
+  "w": [
+   "Pegs",
+   "Caps",
+   "Grips"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What does ODI stand for in cricket?",
+  "a": "One Day International",
+  "w": [
+   "Open Day Innings",
+   "One Delivery Innings",
+   "Official Day Inning"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who hit the winning six in the 2011 World Cup final?",
+  "a": "MS Dhoni",
+  "w": [
+   "Gautam Gambhir",
+   "Yuvraj Singh",
+   "Virat Kohli"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which London ground is known as the 'Home of Cricket'?",
+  "a": "Lord's",
+  "w": [
+   "The Oval",
+   "Edgbaston",
+   "Old Trafford"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which trophy do India and Australia play for in Test series?",
+  "a": "Border-Gavaskar Trophy",
+  "w": [
+   "Pataudi Trophy",
+   "Ashes Trophy",
+   "Wisden Trophy"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which country's cricket team is nicknamed the 'Proteas'?",
+  "a": "South Africa",
+  "w": [
+   "Australia",
+   "Sri Lanka",
+   "Zimbabwe"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which country won the 2015 Cricket World Cup?",
+  "a": "Australia",
+  "w": [
+   "New Zealand",
+   "India",
+   "South Africa"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who captained Pakistan to the 1992 World Cup title?",
+  "a": "Imran Khan",
+  "w": [
+   "Javed Miandad",
+   "Wasim Akram",
+   "Inzamam-ul-Haq"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Kapil Dev's famous 175* in 1983 came against which team?",
+  "a": "Zimbabwe",
+  "w": [
+   "West Indies",
+   "Australia",
+   "England"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Indian spinner is nicknamed the 'Turbanator'?",
+  "a": "Harbhajan Singh",
+  "w": [
+   "Anil Kumble",
+   "Ravindra Jadeja",
+   "Pragyan Ojha"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which spinner finished his Test career with exactly 800 wickets?",
+  "a": "Muttiah Muralitharan",
+  "w": [
+   "Shane Warne",
+   "Anil Kumble",
+   "Rangana Herath"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the first Indian to score a Test triple century?",
+  "a": "Virender Sehwag",
+  "w": [
+   "Sunil Gavaskar",
+   "Rahul Dravid",
+   "VVS Laxman"
+  ],
+  "d": 2
+ },
+ {
+  "q": "India beat which team in the 2011 World Cup final?",
+  "a": "Sri Lanka",
+  "w": [
+   "Pakistan",
+   "Australia",
+   "New Zealand"
+  ],
+  "d": 2
+ },
+ {
+  "q": "India beat which team in the 2007 T20 World Cup final?",
+  "a": "Pakistan",
+  "w": [
+   "Australia",
+   "Sri Lanka",
+   "South Africa"
+  ],
+  "d": 2
+ },
+ {
+  "q": "A keeper breaking the wicket while the batter is out of the crease is?",
+  "a": "Stumped",
+  "w": [
+   "Run out",
+   "Bowled",
+   "Hit wicket"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which Indian bowler was nicknamed 'Jumbo'?",
+  "a": "Anil Kumble",
+  "w": [
+   "Javagal Srinath",
+   "Zaheer Khan",
+   "Ishant Sharma"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Close catchers standing beside the wicketkeeper field in the?",
+  "a": "Slips",
+  "w": [
+   "Point",
+   "Mid-on",
+   "Fine leg"
+  ],
+  "d": 2
+ },
+ {
+  "q": "A batter out on the very first ball they face gets a?",
+  "a": "Golden duck",
+  "w": [
+   "Silver duck",
+   "Black duck",
+   "Pair"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which team won the 2013 ICC Champions Trophy?",
+  "a": "India",
+  "w": [
+   "England",
+   "Australia",
+   "Pakistan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which team won the first World Test Championship final in 2021?",
+  "a": "New Zealand",
+  "w": [
+   "India",
+   "Australia",
+   "England"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who was the first batter to reach 10,000 Test runs?",
+  "a": "Sunil Gavaskar",
+  "w": [
+   "Allan Border",
+   "Viv Richards",
+   "Geoffrey Boycott"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who took the first Test hat-trick by an Indian bowler, in 2001?",
+  "a": "Harbhajan Singh",
+  "w": [
+   "Kapil Dev",
+   "Irfan Pathan",
+   "Anil Kumble"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who bowled the final over of the 2007 T20 World Cup final?",
+  "a": "Joginder Sharma",
+  "w": [
+   "RP Singh",
+   "Irfan Pathan",
+   "S Sreesanth"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who was Man of the Match in the 1983 World Cup final?",
+  "a": "Mohinder Amarnath",
+  "w": [
+   "Kapil Dev",
+   "Kris Srikkanth",
+   "Madan Lal"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The 'doosra' is a delivery bowled by which type of bowler?",
+  "a": "Off-spinner",
+  "w": [
+   "Leg-spinner",
+   "Fast bowler",
+   "Left-arm spinner"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Ranjitsinhji, of Ranji Trophy fame, played Tests for which team?",
+  "a": "England",
+  "w": [
+   "India",
+   "Australia",
+   "South Africa"
+  ],
+  "d": 3
+ },
+ {
+  "q": "India won its first-ever Test match in 1952 against which team?",
+  "a": "England",
+  "w": [
+   "Pakistan",
+   "Australia",
+   "New Zealand"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who scored the first double century in women's ODIs, in 1997?",
+  "a": "Belinda Clark",
+  "w": [
+   "Mithali Raj",
+   "Charlotte Edwards",
+   "Debbie Hockley"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which city was the 1996 World Cup final played?",
+  "a": "Lahore",
+  "w": [
+   "Karachi",
+   "Colombo",
+   "Kolkata"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who was the first bowler to take all 10 wickets in a Test innings?",
+  "a": "Jim Laker",
+  "w": [
+   "Sydney Barnes",
+   "Richard Hadlee",
+   "Fred Trueman"
+  ],
+  "d": 3
+ }
+]

@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Who played Chulbul Pandey in Dabangg?",
+  "a": "Salman Khan",
+  "w": [
+   "Ajay Devgn",
+   "Akshay Kumar",
+   "Sunny Deol"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who directed 3 Idiots?",
+  "a": "Rajkumar Hirani",
+  "w": [
+   "Karan Johar",
+   "Rohit Shetty",
+   "Imtiaz Ali"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played the title role in the Baahubali films?",
+  "a": "Prabhas",
+  "w": [
+   "Rana Daggubati",
+   "Mahesh Babu",
+   "Ram Charan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which film does Salman Khan help a mute Pakistani girl get home?",
+  "a": "Bajrangi Bhaijaan",
+  "w": [
+   "Sultan",
+   "Ek Tha Tiger",
+   "Bharat"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which actress played Rani in Queen (2014)?",
+  "a": "Kangana Ranaut",
+  "w": [
+   "Vidya Balan",
+   "Anushka Sharma",
+   "Taapsee Pannu"
+  ],
+  "d": 1
+ },
+ {
+  "q": "What is Shah Rukh Khan's character's name in Kuch Kuch Hota Hai?",
+  "a": "Rahul",
+  "w": [
+   "Raj",
+   "Aman",
+   "Rohit"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Gully Boy, Ranveer Singh's character dreams of being a what?",
+  "a": "Rapper",
+  "w": [
+   "Boxer",
+   "Cricketer",
+   "Dancer"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Sushant Singh Rajput played which cricketer in a 2016 biopic?",
+  "a": "MS Dhoni",
+  "w": [
+   "Sachin Tendulkar",
+   "Kapil Dev",
+   "Virat Kohli"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Priyanka Chopra played which boxer in a 2014 biopic?",
+  "a": "Mary Kom",
+  "w": [
+   "Nikhat Zareen",
+   "Lovlina Borgohain",
+   "Sarita Devi"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played Milkha Singh in Bhaag Milkha Bhaag?",
+  "a": "Farhan Akhtar",
+  "w": [
+   "Ranveer Singh",
+   "Shahid Kapoor",
+   "Sidharth Malhotra"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In Hera Pheri, what is Paresh Rawal's character's name?",
+  "a": "Baburao",
+  "w": [
+   "Raju",
+   "Shyam",
+   "Kabira"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which actor is popularly called the 'Khiladi' of Bollywood?",
+  "a": "Akshay Kumar",
+  "w": [
+   "Ajay Devgn",
+   "Suniel Shetty",
+   "Govinda"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played Alauddin Khilji in Padmaavat?",
+  "a": "Ranveer Singh",
+  "w": [
+   "Shahid Kapoor",
+   "Ranbir Kapoor",
+   "Hrithik Roshan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "In which film does Hrithik Roshan befriend an alien named Jadoo?",
+  "a": "Koi... Mil Gaya",
+  "w": [
+   "Krrish",
+   "Kaho Naa Pyaar Hai",
+   "Lakshya"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Who played the title role in Pushpa: The Rise?",
+  "a": "Allu Arjun",
+  "w": [
+   "Prabhas",
+   "Jr NTR",
+   "Mahesh Babu"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Kabir Singh is a Hindi remake of which Telugu film?",
+  "a": "Arjun Reddy",
+  "w": [
+   "Magadheera",
+   "Pokiri",
+   "Geetha Govindam"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played Bhallaladeva in the Baahubali films?",
+  "a": "Rana Daggubati",
+  "w": [
+   "Sathyaraj",
+   "Nassar",
+   "Prabhas"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played Tina in Kuch Kuch Hota Hai?",
+  "a": "Rani Mukerji",
+  "w": [
+   "Kajol",
+   "Preity Zinta",
+   "Karisma Kapoor"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Aamir and Salman play Amar and Prem in which 1994 comedy?",
+  "a": "Andaz Apna Apna",
+  "w": [
+   "Hum Aapke Hain Koun",
+   "Hera Pheri",
+   "Raja Hindustani"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed Lagaan?",
+  "a": "Ashutosh Gowariker",
+  "w": [
+   "Rajkumar Hirani",
+   "Aamir Khan",
+   "Farhan Akhtar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed Gangs of Wasseypur?",
+  "a": "Anurag Kashyap",
+  "w": [
+   "Vishal Bhardwaj",
+   "Dibakar Banerjee",
+   "Tigmanshu Dhulia"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Vishal Bhardwaj's Omkara is based on which Shakespeare play?",
+  "a": "Othello",
+  "w": [
+   "Macbeth",
+   "King Lear",
+   "Julius Caesar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed Zindagi Na Milegi Dobara?",
+  "a": "Zoya Akhtar",
+  "w": [
+   "Farah Khan",
+   "Gauri Shinde",
+   "Meghna Gulzar"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Sholay, what is the name of Basanti's horse?",
+  "a": "Dhanno",
+  "w": [
+   "Bijli",
+   "Rani",
+   "Chameli"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In which 1973 film did Amitabh play Inspector Vijay Khanna?",
+  "a": "Zanjeer",
+  "w": [
+   "Deewaar",
+   "Don",
+   "Trishul"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed Rang De Basanti?",
+  "a": "Rakeysh Omprakash Mehra",
+  "w": [
+   "Rajkumar Santoshi",
+   "Ashutosh Gowariker",
+   "Kabir Khan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "In Swades, Shah Rukh Khan's character works for which agency?",
+  "a": "NASA",
+  "w": [
+   "ISRO",
+   "CERN",
+   "ESA"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played the pregnant woman searching Kolkata in Kahaani?",
+  "a": "Vidya Balan",
+  "w": [
+   "Rani Mukerji",
+   "Konkona Sen Sharma",
+   "Tabu"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who played Farhan, one of the three friends in 3 Idiots?",
+  "a": "R. Madhavan",
+  "w": [
+   "Sharman Joshi",
+   "Boman Irani",
+   "Omi Vaidya"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Who directed Sholay?",
+  "a": "Ramesh Sippy",
+  "w": [
+   "Yash Chopra",
+   "Manmohan Desai",
+   "Prakash Mehra"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Vishal Bhardwaj's Maqbool is based on which Shakespeare play?",
+  "a": "Macbeth",
+  "w": [
+   "Othello",
+   "Hamlet",
+   "King Lear"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who directed Mother India (1957)?",
+  "a": "Mehboob Khan",
+  "w": [
+   "Bimal Roy",
+   "Raj Kapoor",
+   "V. Shantaram"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who directed Pakeezah (1972)?",
+  "a": "Kamal Amrohi",
+  "w": [
+   "K. Asif",
+   "Guru Dutt",
+   "Hrishikesh Mukherjee"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who directed Do Bigha Zamin (1953)?",
+  "a": "Bimal Roy",
+  "w": [
+   "Mehboob Khan",
+   "Satyajit Ray",
+   "Chetan Anand"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which 1951 film did Raj Kapoor play a vagabond named Raj?",
+  "a": "Awaara",
+  "w": [
+   "Shree 420",
+   "Barsaat",
+   "Aah"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which Indian film won the top prize at the first Cannes festival (1946)?",
+  "a": "Neecha Nagar",
+  "w": [
+   "Do Bigha Zamin",
+   "Mother India",
+   "Pather Panchali"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who directed Salaam Bombay! (1988)?",
+  "a": "Mira Nair",
+  "w": [
+   "Shyam Benegal",
+   "Deepa Mehta",
+   "Govind Nihalani"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Kishore Kumar's elder brother, an actor called 'Dadamoni', was?",
+  "a": "Ashok Kumar",
+  "w": [
+   "Anoop Kumar",
+   "Raj Kumar",
+   "Pradeep Kumar"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Who directed Umrao Jaan (1981)?",
+  "a": "Muzaffar Ali",
+  "w": [
+   "Kamal Amrohi",
+   "Shyam Benegal",
+   "Yash Chopra"
+  ],
+  "d": 3
+ },
+ {
+  "q": "In which 1969 film did Amitabh Bachchan make his debut?",
+  "a": "Saat Hindustani",
+  "w": [
+   "Anand",
+   "Zanjeer",
+   "Bombay to Goa"
+  ],
+  "d": 3
+ }
+]

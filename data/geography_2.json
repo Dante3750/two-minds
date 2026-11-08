@@ -1,0 +1,402 @@
+[
+ {
+  "q": "Which ocean lies between Europe and North America?",
+  "a": "Atlantic Ocean",
+  "w": [
+   "Pacific Ocean",
+   "Indian Ocean",
+   "Arctic Ocean"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the smallest continent by area?",
+  "a": "Australia",
+  "w": [
+   "Europe",
+   "Antarctica",
+   "South America"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the coldest continent on Earth?",
+  "a": "Antarctica",
+  "w": [
+   "Asia",
+   "Europe",
+   "North America"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The famous Leaning Tower is in which Italian city?",
+  "a": "Pisa",
+  "w": [
+   "Florence",
+   "Venice",
+   "Milan"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The Big Ben clock tower is in which city?",
+  "a": "London",
+  "w": [
+   "Paris",
+   "Dublin",
+   "Edinburgh"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which river flows through Paris?",
+  "a": "Seine",
+  "w": [
+   "Rhine",
+   "Loire",
+   "Rhone"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The Christ the Redeemer statue overlooks which city?",
+  "a": "Rio de Janeiro",
+  "w": [
+   "Sao Paulo",
+   "Buenos Aires",
+   "Lima"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which European country is shaped like a boot?",
+  "a": "Italy",
+  "w": [
+   "Spain",
+   "Greece",
+   "Portugal"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Mount Fuji is in which country?",
+  "a": "Japan",
+  "w": [
+   "China",
+   "South Korea",
+   "Nepal"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The Grand Canyon is in which country?",
+  "a": "United States",
+  "w": [
+   "Canada",
+   "Mexico",
+   "Australia"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which imaginary line divides Earth into Northern and Southern halves?",
+  "a": "Equator",
+  "w": [
+   "Tropic of Cancer",
+   "Prime Meridian",
+   "Arctic Circle"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Stonehenge, the ancient stone circle, is in which country?",
+  "a": "England",
+  "w": [
+   "Ireland",
+   "Scotland",
+   "France"
+  ],
+  "d": 1
+ },
+ {
+  "q": "The Acropolis stands in which city?",
+  "a": "Athens",
+  "w": [
+   "Rome",
+   "Istanbul",
+   "Cairo"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Niagara Falls lies on the border of the USA and which country?",
+  "a": "Canada",
+  "w": [
+   "Mexico",
+   "Cuba",
+   "Greenland"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the longest river in South America?",
+  "a": "Amazon",
+  "w": [
+   "Parana",
+   "Orinoco",
+   "Magdalena"
+  ],
+  "d": 1
+ },
+ {
+  "q": "Which is the second-largest country in the world by area?",
+  "a": "Canada",
+  "w": [
+   "United States",
+   "China",
+   "Brazil"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the largest country in Africa by area?",
+  "a": "Algeria",
+  "w": [
+   "DR Congo",
+   "Nigeria",
+   "Libya"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which river flows through Rome?",
+  "a": "Tiber",
+  "w": [
+   "Arno",
+   "Po",
+   "Seine"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which mountain range separates France and Spain?",
+  "a": "Pyrenees",
+  "w": [
+   "Alps",
+   "Apennines",
+   "Carpathians"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which sea lies between southern Europe and North Africa?",
+  "a": "Mediterranean Sea",
+  "w": [
+   "Red Sea",
+   "Black Sea",
+   "Caspian Sea"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the largest lake in Africa?",
+  "a": "Lake Victoria",
+  "w": [
+   "Lake Tanganyika",
+   "Lake Malawi",
+   "Lake Chad"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which canal links the Mediterranean Sea and the Red Sea?",
+  "a": "Suez Canal",
+  "w": [
+   "Panama Canal",
+   "Kiel Canal",
+   "Corinth Canal"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the smallest country in the world by area?",
+  "a": "Vatican City",
+  "w": [
+   "Monaco",
+   "San Marino",
+   "Liechtenstein"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Matterhorn sits on the border of Switzerland and which country?",
+  "a": "Italy",
+  "w": [
+   "France",
+   "Austria",
+   "Germany"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Rhine river flows into the North Sea in which country?",
+  "a": "Netherlands",
+  "w": [
+   "Germany",
+   "Belgium",
+   "France"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the largest lake in the world by area?",
+  "a": "Caspian Sea",
+  "w": [
+   "Lake Superior",
+   "Lake Victoria",
+   "Lake Baikal"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Mount Etna, an active volcano, is on which island?",
+  "a": "Sicily",
+  "w": [
+   "Sardinia",
+   "Corsica",
+   "Crete"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which South American desert is one of the driest places on Earth?",
+  "a": "Atacama",
+  "w": [
+   "Gobi",
+   "Namib",
+   "Mojave"
+  ],
+  "d": 2
+ },
+ {
+  "q": "The Gobi Desert lies in China and which other country?",
+  "a": "Mongolia",
+  "w": [
+   "Kazakhstan",
+   "Russia",
+   "Afghanistan"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the longest continental mountain range in the world?",
+  "a": "Andes",
+  "w": [
+   "Himalayas",
+   "Rocky Mountains",
+   "Ural Mountains"
+  ],
+  "d": 2
+ },
+ {
+  "q": "Which is the longest river in Asia?",
+  "a": "Yangtze",
+  "w": [
+   "Yellow River",
+   "Mekong",
+   "Ganges"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which is the highest mountain in North America?",
+  "a": "Denali",
+  "w": [
+   "Mount Logan",
+   "Mount Rainier",
+   "Pico de Orizaba"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which river forms much of the border between the USA and Mexico?",
+  "a": "Rio Grande",
+  "w": [
+   "Colorado River",
+   "Mississippi",
+   "Missouri River"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which strait near South America's tip links the Atlantic and Pacific?",
+  "a": "Strait of Magellan",
+  "w": [
+   "Bass Strait",
+   "Strait of Hormuz",
+   "Bosphorus"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Bosphorus strait runs through which city?",
+  "a": "Istanbul",
+  "w": [
+   "Athens",
+   "Ankara",
+   "Cairo"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which is the largest country lying entirely within Europe?",
+  "a": "Ukraine",
+  "w": [
+   "France",
+   "Spain",
+   "Germany"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which is the second-deepest lake in the world?",
+  "a": "Lake Tanganyika",
+  "w": [
+   "Lake Victoria",
+   "Lake Superior",
+   "Lake Titicaca"
+  ],
+  "d": 3
+ },
+ {
+  "q": "Which is the second-longest river in Africa?",
+  "a": "Congo",
+  "w": [
+   "Niger",
+   "Zambezi",
+   "Orange"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Danube river empties into which sea?",
+  "a": "Black Sea",
+  "w": [
+   "Caspian Sea",
+   "Adriatic Sea",
+   "Baltic Sea"
+  ],
+  "d": 3
+ },
+ {
+  "q": "The Strait of Hormuz links the Persian Gulf to which gulf?",
+  "a": "Gulf of Oman",
+  "w": [
+   "Gulf of Aden",
+   "Gulf of Suez",
+   "Gulf of Aqaba"
+  ],
+  "d": 3
+ }
+]
