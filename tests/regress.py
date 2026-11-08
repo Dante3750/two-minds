@@ -19,8 +19,8 @@ async def main():
         ]
         for i,o in enumerate(bad):
             await pg.goto(URL+'#c='+enc(o)); await pg.wait_for_timeout(700)
-            onhome = await pg.evaluate("!document.getElementById('home').hidden")
-            print('bad link', i, 'rejected ->home' if onhome else 'NOT REJECTED')
+            opened = await pg.evaluate("!document.getElementById('incoming').hidden || !document.getElementById('board').hidden")
+            print('bad link', i, 'NOT REJECTED' if opened else 'rejected')
         # valid 15s link opened by a 10s-setting phone: ghost keeps the sender's score
         good={'v':2,'k':'ch','t':'gk','q':q,'ms':15000,'A':{'i':'abc','n':'Rohan','c':'#38d6ff','s':0,'p':[[0,11500]]+[[-1,0]]*6}}
         good['A']['s']=0

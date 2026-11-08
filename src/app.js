@@ -36,7 +36,8 @@ let S = {
   me:{name:'', color:'#ff6b5a'}, partner:{name:'', color:'#38d6ff'},
   xp:{me:{}, partner:{}}, stats:{me:blankStats(), partner:blankStats()},
   h2h:[0,0,0], history:[], used:{}, us:[], badges:[], fav:[], recent:[],
-  daily:{}, settings:{sound:true, vib:true, relaxed:false, seat:'face', botLevel:1},
+  daily:{}, settings:{sound:true, vib:true, relaxed:false, seat:'face', botLevel:1, theme:'velvet'},
+  rivals:{}, sent:{}, played:{},
   id: Math.random().toString(36).slice(2, 10), onboarded:false, couple:{bestKnow:0, bestLikely:0, played:0}, challenges:{sent:0, played:0, won:0}
 };
 function load(){
@@ -46,7 +47,10 @@ function load(){
       S = Object.assign(S, d);
       S.stats.me = Object.assign(blankStats(), d.stats && d.stats.me);
       S.stats.partner = Object.assign(blankStats(), d.stats && d.stats.partner);
-      S.settings = Object.assign({sound:true, vib:true, relaxed:false, seat:'face', botLevel:1}, d.settings || {});
+      S.settings = Object.assign({sound:true, vib:true, relaxed:false, seat:'face', botLevel:1, theme:'velvet'}, d.settings || {});
+      S.rivals = d.rivals || {}; S.sent = d.sent || {}; S.played = d.played || {};
+      if (!d.rivals && d.partner && d.partner.name && Array.isArray(d.h2h) && (d.h2h[0] + d.h2h[1] + d.h2h[2]) > 0)
+        S.rivals['local:' + d.partner.name.trim().toLowerCase()] = {n: d.partner.name, c: d.partner.color || '#38d6ff', w: d.h2h[0], l: d.h2h[1], d: d.h2h[2], at: Date.now()};
       S.xp = Object.assign({me:{}, partner:{}}, d.xp || {});
       S.couple = Object.assign({bestKnow:0, bestLikely:0, played:0}, d.couple || {});
       S.challenges = Object.assign({sent:0, played:0, won:0}, d.challenges || {});
@@ -130,7 +134,26 @@ function today(){ const d = new Date(); return `${d.getFullYear()}-${String(d.ge
 const nameOf = who => (S[who].name || (who === 'me' ? 'You' : 'Partner')).trim();
 const initial = n => (String(n).trim()[0] || '?').toUpperCase();
 const safeColor = c => (typeof c === 'string' && /^#[0-9a-f]{3,8}$/i.test(c)) ? c : '#9aa3d1';
-function avatar(name, color, cls = ''){ return `<span class="av ${cls}" style="--c:${safeColor(color)}">${esc(initial(name))}</span>`; }
+function avatar(name, color, cls = '', letter){ return `<span class="av ${cls}" style="--c:${safeColor(color)}">${esc(letter || initial(name))}</span>`; }
+const randId = (len = 12) => Array.from(crypto.getRandomValues(new Uint8Array(len)), b => 'abcdefghijkmnpqrstuvwxyz23456789'[b % 32]).join('');
+const whenStr = () => new Date().toLocaleDateString(undefined, {day:'numeric', month:'short'}) + ' ' + new Date().toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
+function rivalKey(name, id){ return id ? 'id:' + id : 'local:' + String(name).trim().toLowerCase(); }
+function recordVs(key, n, c, res){
+  // one person, one record: merge a same-name entry from the other kind (duel on this phone vs links)
+  const low = String(n).trim().toLowerCase();
+  const twin = Object.keys(S.rivals).find(k => k !== key && S.rivals[k].n.trim().toLowerCase() === low);
+  if (twin){
+    const keepId = key.startsWith('id:') ? key : (twin.startsWith('id:') ? twin : key);
+    const other = keepId === key ? twin : key, a = S.rivals[keepId] || {n, c, w:0, l:0, d:0, at:0}, b = S.rivals[other];
+    if (b){ a.w += b.w; a.l += b.l; a.d += b.d; delete S.rivals[other]; }
+    S.rivals[keepId] = a; key = keepId;
+  }
+  const r = S.rivals[key] || (S.rivals[key] = {n, c: safeColor(c), w:0, l:0, d:0, at:0});
+  r.n = n; r.c = safeColor(c); r.at = Date.now();
+  if (res === 'w') r.w++; else if (res === 'l') r.l++; else if (res === 'd') r.d++;
+}
+function rivalsList(){ return Object.entries(S.rivals).map(([k, v]) => Object.assign({k}, v)).sort((a, b) => b.at - a.at); }
+function freeColor(avoid){ return COLORS.find(c => !avoid.includes(c)) || COLORS[1]; }
 function levelOf(xp){ let lv = 1, need = 150, left = xp || 0; while (left >= need){ left -= need; lv++; need = Math.round(need*1.18); } return {lv, into:left, need}; }
 function totalXp(who){ return Object.values(S.xp[who] || {}).reduce((a, b) => a + b, 0); }
 function overallLevel(who){ return levelOf(totalXp(who) / 3).lv; }
@@ -235,8 +258,9 @@ function baseUrl(){ return location.href.split('#')[0]; }
 function packRefs(refs){ return refs.map(r => r.c ? {c: r.c} : [TOPIC_IDS.indexOf(r.t), r.i]); }
 function unpackRefs(arr){ return arr.map(x => Array.isArray(x) ? {t: TOPIC_IDS[x[0]], i: x[1]} : {c: x.c}); }
 function playerPack(who, res){ return {n: nameOf(who), c: S[who].color, lv: overallLevel(who), p: res.picks, s: res.score}; }
-function linkFor(kind, topic, refs, A, B, date, ms){
+function linkFor(kind, topic, refs, A, B, date, ms, cid){
   const payload = {v:2, k:kind, t:topic, q:packRefs(refs), A, ms: (M && M.T) || (S.settings.relaxed ? 15000 : 10000)};
+  if (cid) payload.x = cid;
   if (B) payload.B = B;
   if (date) payload.d = date;
   if (ms) payload.ms = ms;
@@ -257,6 +281,7 @@ function validLink(p){
   if (!TOPICS[p.t]) return false;
   if (p.ms !== undefined && p.ms !== 10000 && p.ms !== 15000) return false;
   if (p.d !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(String(p.d))) return false;
+  if (p.x !== undefined && !validCid(p.x)) return false;
   return unpackRefs(p.q).every(r => { if (r.c) return Array.isArray(r.c) && r.c.length === 5 && r.c.every(x => typeof x === 'string' && x.length <= 120); const q = refQ(r); return Array.isArray(q) && q.length >= 5; });
 }
 
@@ -270,35 +295,115 @@ async function shareLink(url, text){
   catch(e){ return 'manual'; }
 }
 
+/* ================= relay: results travel back automatically ================= */
+// A tiny public message relay (ntfy.sh). Each challenge has a random topic; players post their score,
+// the challenger's phone polls for new scores. Messages stay on the relay for about 12 hours.
+const RELAY = 'https://ntfy.sh/';
+const relayTopic = cid => 'twominds-' + cid;
+const validCid = x => typeof x === 'string' && /^[a-z0-9]{8,24}$/.test(x);
+async function relayPost(cid, obj){
+  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 9000);
+  try{ const r = await fetch(RELAY + relayTopic(cid), {method:'POST', body: JSON.stringify(obj), signal: ctl.signal}); if (!r.ok) throw new Error('relay ' + r.status); }
+  finally{ clearTimeout(t); }
+}
+async function relayPoll(cid){
+  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 9000);
+  try{
+    const r = await fetch(RELAY + relayTopic(cid) + '/json?poll=1&since=all', {cache:'no-store', signal: ctl.signal});
+    if (!r.ok) throw new Error('relay ' + r.status);
+    const out = [];
+    for (const line of (await r.text()).split('\n')){
+      if (!line.trim()) continue;
+      let m; try{ m = JSON.parse(line); }catch(e){ continue; }
+      if (!m || m.event !== 'message' || typeof m.message !== 'string') continue;
+      let x; try{ x = JSON.parse(m.message); }catch(e){ continue; }
+      if (validPlayer(x) && x.i) out.push(x);
+    }
+    return out;
+  } finally{ clearTimeout(t); }
+}
+let syncing = false;
+async function syncChallenges(){
+  if (syncing || M || (navigator.onLine === false)) return;
+  syncing = true;
+  const now = Date.now(), fresh = [];
+  try{
+    for (const [cid, st] of Object.entries(S.sent)){
+      if (!st.shared || now - st.at > 36*3600e3) continue;
+      let list; try{ list = await relayPoll(cid); }catch(e){ continue; }
+      for (const x of list){
+        if (x.i === S.id || st.res[x.i]) continue;
+        st.res[x.i] = {n:x.n, c:x.c, s:x.s, p:x.p};
+        const r = st.s > x.s ? 'w' : st.s < x.s ? 'l' : 'd';
+        recordVs('id:' + x.i, x.n, x.c, r);
+        S.history = S.history.filter(h => h.key !== 'pend:' + cid);
+        S.history.unshift({key:'rl:' + cid + x.i, cid, t: st.t, m:'Link', o: x.n, s:[st.s, x.s], r, when: whenStr()});
+        if (r === 'w') S.challenges.won++;
+        fresh.push({cid, st, x, r});
+      }
+    }
+    // retry any score of mine that failed to send earlier
+    for (const [cid, pl] of Object.entries(S.played)){
+      if (pl.sent || !pl.pack || now - pl.at > 24*3600e3) continue;
+      try{ await relayPost(cid, pl.pack); pl.sent = true; save(); }catch(e){}
+    }
+  } finally{ syncing = false; }
+  if (!fresh.length) return;
+  S.history = S.history.slice(0, 60);
+  const nb = checkBadges(); save();
+  fresh.forEach((f, k) => setTimeout(() => {
+    const T = TOPICS[f.st.t] || TOPICS.mixed;
+    toast(`${f.x.n} played your ${T.name} challenge · ${f.r === 'w' ? 'you won' : f.r === 'l' ? f.x.n + ' won' : 'draw'} ${f.st.s}–${f.x.s}`, 3200);
+    f.r === 'w' ? SFX.win() : SFX.badge(); buzz([20, 40, 20]);
+  }, k*3400));
+  badgeToast(nb);
+  if (current === 'home' || current === 'board') go(current, {keepScroll:true, cid: boardCid});
+}
+setInterval(() => { if (!document.hidden) syncChallenges(); }, 25000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) syncChallenges(); });
+addEventListener('online', () => syncChallenges());
+
 /* ================= router ================= */
-const APP_SCREENS = ['home','topics','topic','couple','me','us','results','incoming','coupleRes','history'];
+const APP_SCREENS = ['welcome','home','topics','topic','couple','me','us','results','incoming','coupleRes','history','board'];
+let boardCid = null;
 let current = 'home', topicSel = 'gk';
 function go(id, opts = {}){
   current = id;
+  if (id !== 'results' && id !== 'coupleRes' && id !== 'incoming'){ parts = []; }
   for (const s of APP_SCREENS) $(s).hidden = s !== id;
   const tabbed = ['home','topics','topic','couple','me'].includes(id);
   $('tabbar').hidden = !tabbed;
   document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-current', t.dataset.go === id || (id === 'topic' && t.dataset.go === 'topics') ? 'page' : 'false'));
-  ({home:renderHome, topics:renderTopics, topic:renderTopic, couple:renderCouple, me:renderMe, us:renderUs, history:renderHistory}[id] || (() => {}))(opts);
+  ({welcome:renderWelcome, home:renderHome, topics:renderTopics, topic:renderTopic, couple:renderCouple, me:renderMe, us:renderUs, history:renderHistory, board:renderBoard}[id] || (() => {}))(opts);
   const el = $(id); if (el && !opts.keepScroll) el.scrollTop = 0;
 }
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-go]'); if (t){ SFX.tap(); go(t.dataset.go); return; }
   const tp = e.target.closest('[data-topic]'); if (tp){ SFX.tap(); topicSel = tp.dataset.topic; go('topic'); return; }
+  const bd = e.target.closest('[data-board]'); if (bd){ SFX.tap(); go('board', {cid: bd.dataset.board}); return; }
 });
 
 /* ================= home ================= */
-function pairStrip(){
-  const lm = overallLevel('me'), lp = overallLevel('partner');
-  return `<div class="pair">
-    <div class="pp">${avatar(nameOf('me'), S.me.color)}<div><div class="nm">${esc(nameOf('me'))}</div><div class="tt">Lv ${lm} ${titleFor(lm)}</div></div></div>
-    <div class="rec"><span style="color:${S.me.color}">${S.h2h[0]}</span>–<span style="color:${S.partner.color}">${S.h2h[1]}</span><small>head to head</small></div>
-    <div class="pp r">${avatar(nameOf('partner'), S.partner.color)}<div><div class="nm">${esc(nameOf('partner'))}</div><div class="tt">Lv ${lp} ${titleFor(lp)}</div></div></div>
+function meCard(){
+  const xp = totalXp('me') / 3, L = levelOf(xp), lv = L.lv;
+  const rv = rivalsList().slice(0, 8);
+  return `<div class="mecard">
+    <button type="button" class="mehead" data-go="me">${avatar(nameOf('me'), S.me.color, 'l')}<div><div class="hi">Hi, ${esc(nameOf('me'))}</div><div class="lv">Level ${lv} · ${titleFor(lv)}</div><div class="xpbar" style="--c:${S.me.color}"><i style="width:${Math.round(L.into / L.need * 100)}%"></i></div></div></button>
+    ${rv.length ? `<div class="rivals">${rv.map(r => `<div class="rival">${avatar(r.n, r.c, 's')}<span class="rn">${esc(r.n)}</span><span class="rs"><b class="res-w">${r.w}</b>–<b class="res-l">${r.l}</b></span></div>`).join('')}</div>`
+      : `<p class="small">Play a duel or share a challenge link. Everyone you play shows up here with your record.</p>`}
   </div>`;
+}
+function challengeRows(){
+  const now = Date.now();
+  return Object.entries(S.sent).filter(([cid, st]) => st.shared && now - st.at < 7*24*3600e3).sort((a, b) => b[1].at - a[1].at).slice(0, 4).map(([cid, st]) => {
+    const T = TOPICS[st.t] || TOPICS.mixed, res = Object.values(st.res || {});
+    const sub = res.length ? res.slice(0, 3).map(x => `${x.n} ${x.s}`).join(' · ') + (res.length > 3 ? ` +${res.length - 3}` : '') : (now - st.at < 36*3600e3 ? 'Waiting for players…' : 'No one played yet');
+    return `<li><button type="button" class="li" data-board="${cid}"><span class="tic" style="--c:${T.c}">${T.ic}</span><div><div class="t1">${esc(T.name)} · you scored ${st.s}</div><div class="t2">${esc(sub)}</div></div><span class="cnt">${res.length ? res.length + ' played' : ''}${icon('chev','sm')}</span></button></li>`;
+  }).join('');
 }
 function topicTile(id){
   const T = TOPICS[id];
-  const lv = Math.max(topicLevel('me', id).lv, topicLevel('partner', id).lv);
+  const lv = topicLevel('me', id).lv;
   const sub = id === 'us' ? `${S.us.length} written` : id === 'mixed' ? 'All topics' : `Lv ${lv} · ${T.q.length} Qs`;
   return `<button type="button" class="tp" data-topic="${id}" style="--c:${T.c}">${S.fav.includes(id) ? `<span class="star">${icon('starf','sm')}</span>` : ''}<span class="ic">${T.ic}</span><span><b>${esc(T.name)}</b><small>${sub}</small></span></button>`;
 }
@@ -307,14 +412,15 @@ function renderHome(){
   const recent = [...new Set([...S.fav, ...S.recent])].filter(id => TOPICS[id] && id !== 'daily').slice(0, 6);
   const show = recent.length ? recent : ['gk','bollywood','love','cricket','india','mixed'];
   $('home').innerHTML = `<div class="col">
-    <div class="top"><h1 class="logo"><span class="a">Two</span> <span class="b">Minds</span></h1><button class="iconbtn" type="button" data-go="me" aria-label="Profiles">${icon('user')}</button></div>
-    ${pairStrip()}
+    <div class="top"><h1 class="logo"><span class="a">Two</span> <span class="b">Minds</span></h1><button class="iconbtn" type="button" data-go="me" aria-label="Profile">${icon('user')}</button></div>
+    ${meCard()}
     <div class="modes">
+      <button class="mode m-link" type="button" id="hmLink"><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play 7 questions, share the link. Anyone can play it.</span></div></button>
       <button class="mode m-duel" type="button" id="hmDuel"><span class="mi">${icon('swords')}</span><div><b>Duel on this phone</b><span class="d">Face to face. Same question, fastest tap wins.</span></div></button>
-      <button class="mode m-link" type="button" id="hmLink"><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play now. She plays your ghost later.</span></div></button>
-      <button class="mode m-daily wide" type="button" id="hmDaily"><span class="mi">${icon('sun')}</span><div><b>Daily Duel</b><span class="d">7 mixed questions, the same for both of you</span></div><span class="go">${dDone ? 'Score ' + dDone.score : 'Play'}${icon('chev','sm')}</span></button>
+      <button class="mode m-daily wide" type="button" id="hmDaily"><span class="mi">${icon('sun')}</span><div><b>Daily Duel</b><span class="d">7 mixed questions, the same for everyone today</span></div><span class="go">${dDone ? 'Score ' + dDone.score : 'Play'}${icon('chev','sm')}</span></button>
       <button class="mode m-couple wide" type="button" data-go="couple"><span class="mi">${icon('heart')}</span><div><b>Couple corner</b><span class="d">How well do you know me? Who's more likely?</span></div><span class="go">Open${icon('chev','sm')}</span></button>
     </div>
+    ${challengeRows() ? `<div class="h">Your challenges</div><ul class="list">${challengeRows()}</ul>` : ''}
     <div class="h">${S.fav.length || S.recent.length ? 'Your topics' : 'Popular topics'}<button type="button" data-go="topics">All ${TOPIC_IDS.length} topics</button></div>
     <div class="tgrid">${show.map(topicTile).join('')}</div>
     ${S.history.length ? `<div class="h">Recent matches<button type="button" data-go="history">See all</button></div><ul class="list">${S.history.slice(0, 3).map(histRow).join('')}</ul>` : ''}
@@ -360,10 +466,10 @@ function renderTopics(opts = {}){
 
 function renderTopic(){
   const T = TOPICS[topicSel] || TOPICS.gk, id = T.id;
-  const lm = topicLevel('me', id), lp = topicLevel('partner', id);
+  const lm = topicLevel('me', id);
   const fav = S.fav.includes(id);
   const count = id === 'us' ? S.us.length : id === 'mixed' ? TOPIC_IDS.reduce((a, t) => a + QB.topics[t].length, 0) : T.q.length;
-  const usNote = id === 'us' ? (S.us.length < 3 ? `<p class="small">Write at least 3 questions about you two to play this topic. With fewer than 7, the rest come from Mixed Bag.</p>` : `<p class="small">${S.us.length} questions written. Send them as a link and she answers questions about you two.</p>`) : '';
+  const usNote = id === 'us' ? (S.us.length < 3 ? `<p class="small">Write at least 3 questions about you two to play this topic. With fewer than 7, the rest come from Mixed Bag.</p>` : `<p class="small">${S.us.length} questions written. Share them as a link and see who knows your story best.</p>`) : '';
   const lvRow = (who, L) => `<div class="lvrow">${avatar(nameOf(who), S[who].color, 's')}<div><div class="meta"><b>${esc(nameOf(who))}</b><span>Lv ${L.lv} · ${titleFor(L.lv, TOPIC_TITLES)}</span></div><div class="xpbar" style="--c:${S[who].color}"><i style="width:${Math.round(L.into / L.need * 100)}%"></i></div></div></div>`;
   $('topic').innerHTML = `<div class="col">
     <div class="top"><button class="iconbtn" type="button" data-go="topics" aria-label="All topics">${icon('back')}</button><span class="small">${topicIntent === 'duel' ? 'Duel on this phone' : topicIntent === 'link' ? 'Challenge by link' : 'Topic'}</span></div>
@@ -371,10 +477,10 @@ function renderTopic(){
       ${id !== 'us' && id !== 'mixed' ? `<button type="button" class="fav" id="favBtn" aria-pressed="${fav}">${icon(fav ? 'starf' : 'star', 'sm')}${fav ? 'Favourite' : 'Favourite'}</button>` : ''}</div>
     ${usNote}
     ${id === 'us' ? `<button class="btn" type="button" data-go="us">${icon('pen','sm')}Write questions about us</button>` : ''}
-    <div class="card lvls"><div class="h" style="margin:0 0 -2px">Your levels</div>${lvRow('me', lm)}${lvRow('partner', lp)}</div>
+    <div class="card lvls"><div class="h" style="margin:0 0 -2px">Your level</div>${lvRow('me', lm)}</div>
     <div class="stack">
-    <button class="cta" type="button" id="tpDuel" style="--c:${S.me.color}">Duel on this phone<small>Phone flat between you, race to tap</small></button>
-    <button class="cta" type="button" id="tpLink" style="--c:${S.partner.color}">Challenge ${esc(nameOf('partner'))} by link<small>Play now, she plays your ghost later</small></button>
+    <button class="cta" type="button" id="tpLink">Challenge by link<small>Play now, share the link, anyone can play</small></button>
+    <button class="cta p1" type="button" id="tpDuel">Duel on this phone<small>Phone flat between you, race to tap</small></button>
     <button class="btn" type="button" id="tpBot">Practice against a bot<small>${['Easy','Normal','Hard'][S.settings.botLevel]} · change in Profiles</small></button></div>
   </div>`;
   if ($('favBtn')) $('favBtn').onclick = () => { S.fav = fav ? S.fav.filter(x => x !== id) : [id, ...S.fav]; save(); SFX.tap(); renderTopic(); };
@@ -392,7 +498,7 @@ function vsIntro(a, b, topicId, face, then){
   const el = $('vs');
   el.className = 'vs' + (face ? ' face' : '');
   el.style.setProperty('--ca', safeColor(a.c)); el.style.setProperty('--cb', safeColor(b.c));
-  el.innerHTML = `<div class="side b">${avatar(b.n, b.c, 'l')}<div class="nm">${esc(b.n)}</div><div class="tt">${esc(b.sub)}</div></div>
+  el.innerHTML = `<div class="side b">${avatar(b.n, b.c, 'l', b.l)}<div class="nm">${esc(b.n)}</div><div class="tt">${esc(b.sub)}</div></div>
     <div class="mid"><div class="big">VS</div><span class="pill topic" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)}</span></div>
     <div class="side a">${avatar(a.n, a.c, 'l')}<div class="nm">${esc(a.n)}</div><div class="tt">${esc(a.sub)}</div></div>`;
   el.hidden = false;
@@ -408,8 +514,8 @@ function wakeLock(){ try{ navigator.wakeLock && navigator.wakeLock.request('scre
 /* ================= split-screen duel ================= */
 let M = null, raf = 0;
 const H = [$('h0'), $('h1')];
-function startDuel(topicId){
-  if (!S.partner.name){ askNames(() => startDuel(topicId)); return; }
+function startDuel(topicId, ready){
+  if (!ready){ pickOpponent('duel', () => startDuel(topicId, true)); return; }
   noteRecent(topicId);
   const refs = pickRefs(topicId);
   const Q = refs.map(materialize);
@@ -422,8 +528,8 @@ function startDuel(topicId){
   H.forEach((h, p) => { h.style.setProperty('--c', col[p]); h.querySelector('.who').textContent = nm[p]; h.querySelector('.pts').firstChild.nodeValue = '0'; h.querySelector('.bar i').style.width = '0%'; h.querySelector('.q').textContent = ''; h.querySelector('.opts').innerHTML = ''; });
   armQuit($('quitBtn'), true);
   hideApp(); $('duel').hidden = false; wakeLock();
-  const lm = topicLevel('me', topicId).lv, lp = topicLevel('partner', topicId).lv;
-  vsIntro({n:nm[0], c:col[0], sub:`Lv ${lm} · ${titleFor(lm, TOPIC_TITLES)}`}, {n:nm[1], c:col[1], sub:`Lv ${lp} · ${titleFor(lp, TOPIC_TITLES)}`}, topicId, face, () => duelNext());
+  const lm = topicLevel('me', topicId).lv, rv = S.rivals[rivalKey(nm[1])];
+  vsIntro({n:nm[0], c:col[0], sub:`Lv ${lm} · ${titleFor(lm, TOPIC_TITLES)}`}, {n:nm[1], c:col[1], sub: rv ? `Your record ${rv.w}–${rv.l}` : 'First duel'}, topicId, face, () => duelNext());
 }
 function hideApp(){ for (const s of APP_SCREENS) $(s).hidden = true; $('tabbar').hidden = true; }
 function splash(el, text, ms, then){
@@ -541,17 +647,18 @@ function startSolo(o){
   M = null;
   const matchT = o.ms || (S.settings.relaxed ? 15000 : 10000);
   M = {T: matchT, mode:'solo', kind, topic:o.topic, refs, Q, ghost, round:-1, score:0, gscore:0, log:[], phase:'intro', id:Math.random(), link:o.link || null, date:o.date || (o.topic === 'daily' ? today() : null)};
-  const me = {n:nameOf('me'), c:S.me.color}, opp = ghost ? {n:ghost.n, c:ghost.c} : {n:nameOf('partner'), c:S.partner.color};
+  M.cid = o.cid || null;
+  const me = {n:nameOf('me'), c:S.me.color}, opp = ghost ? {n:ghost.n, c:ghost.c} : {n:'Anyone', c:'#8b92bf', l:'?'};
   $('soloMe').innerHTML = `${avatar(me.n, me.c, 's')}<div><div class="nm">${esc(me.n)}</div><div class="sc">0<span class="gain"></span></div></div>`;
-  $('soloOpp').innerHTML = `${avatar(opp.n, opp.c, 's')}<div><div class="nm">${esc(opp.n)}</div><div class="sc">${ghost ? '0' : '–'}<span class="gain"></span></div><div class="state" id="oppState">${ghost ? '' : 'plays later'}</div></div>`;
+  $('soloOpp').innerHTML = `${avatar(opp.n, opp.c, 's', opp.l)}<div><div class="nm">${esc(opp.n)}</div><div class="sc">${ghost ? '0' : '–'}<span class="gain"></span></div><div class="state" id="oppState">${ghost ? '' : 'plays your link'}</div></div>`;
   $('vbarL').style.setProperty('--c', me.c); $('vbarR').style.setProperty('--c', opp.c);
   $('vbarL').querySelector('i').style.height = '0%'; $('vbarR').querySelector('i').style.height = '0%';
   $('sQ').textContent = ''; $('sOpts').innerHTML = '';
   armQuit($('squit'), false);
   hideApp(); $('solo').hidden = false; wakeLock();
   const lvMe = o.topic === 'daily' ? overallLevel('me') : topicLevel('me', o.topic).lv;
-  const oppSub = ghost ? (ghost.bot ? 'Practice bot' : `Lv ${ghost.lv || 1} · already played`) : 'Gets your link after';
-  vsIntro({n:me.n, c:me.c, sub:`Lv ${lvMe}`}, {n:opp.n, c:opp.c, sub:oppSub}, o.topic, false, () => soloNext());
+  const oppSub = ghost ? (ghost.bot ? 'Practice bot' : `Lv ${ghost.lv || 1} · already played`) : 'Whoever opens your link';
+  vsIntro({n:me.n, c:me.c, sub:`Lv ${lvMe}`}, {n:opp.n, c:opp.c, sub:oppSub, l:opp.l}, o.topic, false, () => soloNext());
 }
 function soloNext(){
   if (!M || M.mode !== 'solo') return;
@@ -634,35 +741,39 @@ function finishMatch(){
   const m = M; m.phase = 'done'; cancelAnimationFrame(raf);
   $('duel').hidden = true; $('solo').hidden = true;
   const res = {topic: m.topic, mode: m.mode, kind: m.kind};
-  const me = S.stats.me, pa = S.stats.partner;
-  const gained = {me:0, partner:0}, before = {me: topicLevel('me', m.topic === 'daily' ? 'mixed' : m.topic).lv, partner: topicLevel('partner', m.topic === 'daily' ? 'mixed' : m.topic).lv};
+  const me = S.stats.me;
+  const gained = {me:0, partner:0}, before = {me: topicLevel('me', m.topic === 'daily' ? 'mixed' : m.topic).lv};
   const xpTopic = m.topic === 'daily' ? 'mixed' : m.topic;
   let s0, s1, oppName, oppColor, r;   // r from my side: w / l / d / p (played, no opponent yet)
   if (m.mode === 'duel'){
     [s0, s1] = m.scores; oppName = nameOf('partner'); oppColor = S.partner.color;
     r = s0 > s1 ? 'w' : s1 > s0 ? 'l' : 'd';
     S.h2h[r === 'w' ? 0 : r === 'l' ? 1 : 2]++;
-    const rp = r === 'w' ? 'l' : r === 'l' ? 'w' : 'd';
+    recordVs(rivalKey(S.partner.name), S.partner.name, S.partner.color, r);
     applyStats(me, r, m.log.map(l => [l.orig[0], l.ms[0]]), m.topic);
-    applyStats(pa, rp, m.log.map(l => [l.orig[1], l.ms[1]]), m.topic);
-    gained.me = s0 + (r === 'w' ? 50 : r === 'd' ? 20 : 0); gained.partner = s1 + (rp === 'w' ? 50 : rp === 'd' ? 20 : 0);
+    gained.me = s0 + (r === 'w' ? 50 : r === 'd' ? 20 : 0);
   } else {
-    s0 = m.score; s1 = m.ghost ? m.gscore : null; oppName = m.ghost ? m.ghost.n : nameOf('partner'); oppColor = m.ghost ? m.ghost.c : S.partner.color;
+    s0 = m.score; s1 = m.ghost ? m.gscore : null; oppName = m.ghost ? m.ghost.n : 'Anyone'; oppColor = m.ghost ? m.ghost.c : '#8b92bf';
     r = s1 === null ? 'p' : s0 > s1 ? 'w' : s1 > s0 ? 'l' : 'd';
     applyStats(me, r, m.log.map(l => [l.orig[0], l.ms[0]]), m.topic);
     gained.me = s0 + (r === 'w' ? 50 : r === 'd' ? 20 : 0);
-    if (m.ghost && !m.ghost.bot && m.kind !== 'bot'){ S.challenges.played++; if (r === 'w') S.challenges.won++; }
+    if (m.ghost && !m.ghost.bot && m.kind !== 'bot'){ S.challenges.played++; if (r === 'w') S.challenges.won++; recordVs(rivalKey(m.ghost.n, m.ghost.i), m.ghost.n, m.ghost.c, r); }
+    if (r === 'p'){ m.cid = randId(); S.sent[m.cid] = {t: m.topic, s: s0, at: Date.now(), res: {}, shared: false, url: null}; }
+    if (m.kind === 'reply' && m.cid){
+      m.pack = {i: S.id, n: nameOf('me'), c: S.me.color, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
+      S.played[m.cid] = {t: m.topic, s: s0, at: Date.now(), A: {i: m.ghost.i, n: m.ghost.n, c: m.ghost.c, s: s1}, pack: m.pack, sent: false};
+    }
     if (m.topic === 'daily' && !S.daily[today()] && m.date === today()) S.daily[today()] = {score: s0};
   }
   S.xp.me[xpTopic] = (S.xp.me[xpTopic] || 0) + gained.me;
-  if (gained.partner) S.xp.partner[xpTopic] = (S.xp.partner[xpTopic] || 0) + gained.partner;
   m.trailedBeforeBonus = (() => { const pre = m.log.slice(0, ROUNDS - 1).reduce((a, l) => [a[0] + l.g[0], a[1] + l.g[1]], [0, 0]); return pre[0] <= pre[1]; })();
   const modeName = m.mode === 'duel' ? 'Duel' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily' : m.kind === 'reply' ? 'Link reply' : 'Link';
-  S.history.unshift({t: m.topic, m: modeName, o: oppName, s:[s0, s1 === null ? '?' : s1], r, when: new Date().toLocaleDateString(undefined, {day:'numeric', month:'short'}) + ' ' + new Date().toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'})});
-  S.history = S.history.slice(0, 40);
+  S.history.unshift({key: r === 'p' ? 'pend:' + m.cid : undefined, t: m.topic, m: modeName, o: r === 'p' ? 'anyone' : oppName, s:[s0, s1 === null ? '?' : s1], r, when: whenStr()});
+  S.history = S.history.slice(0, 60);
   const newBadges = checkBadges({m, r, s0, s1});
   save();
   renderResults({m, r, s0, s1, oppName, oppColor, gained, before, xpTopic, newBadges});
+  if (m.kind === 'reply' && m.cid) autoSend(m.cid);
   M = null;
 }
 function applyStats(st, r, picks, topic){
@@ -714,8 +825,8 @@ function renderResults(o){
   const T = TOPICS[m.topic];
   const myName = nameOf('me');
   let head;
-  if (m.mode === 'duel') head = r === 'd' ? "It's a draw!" : `<span style="color:${r === 'w' ? S.me.color : S.partner.color}">${esc(r === 'w' ? myName : oppName)}</span> wins!`;
-  else if (r === 'p') head = m.topic === 'daily' ? 'Daily done!' : 'Now send it to her';
+  if (m.mode === 'duel') head = r === 'd' ? "It's a draw!" : `<span style="color:${r === 'w' ? S.me.color : safeColor(S.partner.color)}">${esc(r === 'w' ? myName : oppName)}</span> wins!`;
+  else if (r === 'p') head = m.topic === 'daily' ? 'Daily done!' : 'Challenge ready';
   else head = r === 'w' ? 'You win!' : r === 'l' ? `${esc(oppName)} wins` : "It's a draw!";
   const showOpp = s1 !== null;
   const rows = m.log.map((l, i) => {
@@ -723,24 +834,29 @@ function renderResults(o){
     const cell = (p) => { if (p === 1 && !showOpp) return '<span class="c">?</span>'; const g = l.g[p], o = l.orig[p]; return `<span class="c ${g ? 'ok' : ''} ${best === p ? 'best' : ''}">${g ? '+' + g : o === -1 || o === null ? 'too slow' : '✗'}</span>`; };
     return `<div class="rr"><span class="n">${i === ROUNDS - 1 ? 'Bonus' : 'R' + (i + 1)}</span>${cell(0)}${cell(1)}</div>`;
   }).join('');
-  const xpRow = who => { if (!gained[who]) return ''; const L = topicLevel(who, xpTopic); const up = L.lv > before[who];
-    return `<div class="lvrow">${avatar(nameOf(who), S[who].color, 's')}<div><div class="meta"><b>${esc(nameOf(who))} · +${gained[who]} XP</b><span class="${up ? 'lvup' : ''}">${up ? 'Level up! ' : ''}Lv ${L.lv}</span></div><div class="xpbar" style="--c:${S[who].color}"><i style="width:0%" data-w="${Math.round(L.into / L.need * 100)}"></i></div></div></div>`; };
-  // buttons by mode
-  let actions = '';
+  const L = topicLevel('me', xpTopic), up = L.lv > before.me;
+  const xpRow = `<div class="lvrow">${avatar(myName, S.me.color, 's')}<div><div class="meta"><b>+${gained.me} XP</b><span class="${up ? 'lvup' : ''}">${up ? 'Level up! ' : ''}Lv ${L.lv} · ${titleFor(L.lv, TOPIC_TITLES)}</span></div><div class="xpbar" style="--c:${S.me.color}"><i style="width:0%" data-w="${Math.round(L.into / L.need * 100)}"></i></div></div></div>`;
+  let actions = '', extra = '';
   if (m.mode === 'duel') actions = `<button class="cta" id="rAgain" type="button">Rematch</button><div class="row"><button class="btn" type="button" data-go="topics">New topic</button><button class="btn" type="button" data-go="home">Home</button></div>`;
   else if (m.kind === 'bot') actions = `<button class="cta" id="rAgain" type="button">Play again</button><div class="row"><button class="btn" type="button" data-go="topics">New topic</button><button class="btn" type="button" data-go="home">Home</button></div>`;
-  else if (r === 'p') actions = `<button class="cta" id="rShare" type="button">Send challenge to ${esc(nameOf('partner'))}<small>She plays the same 7 questions against your ghost</small></button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
-  else actions = `<button class="cta" id="rShare" type="button">Send your result back<small>Shows the full scoreboard on their phone</small></button><button class="btn" type="button" id="rBack">Challenge back with new questions</button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
+  else if (r === 'p'){
+    actions = `<button class="cta" id="rShare" type="button">Share challenge link<small>Anyone with the link can play. Scores come back here automatically.</small></button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
+    extra = `<div class="card" id="liveBoard" hidden></div>`;
+  } else {
+    extra = `<div class="sync" id="syncState"><span class="spin"></span>Sending your score to ${esc(oppName)}…</div><div class="card" id="liveBoard" hidden></div>`;
+    actions = `<button class="cta" type="button" id="rBack">Challenge ${esc(oppName)} back<small>New questions in ${esc(m.topic === 'daily' ? 'Mixed Bag' : T.name)}</small></button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
+  }
   $('results').innerHTML = `<div class="col">
     <div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${m.topic === 'daily' ? '' : esc(T.name) + ' · '}${m.mode === 'duel' ? 'Duel' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily Duel · ' + esc(m.date || today()) : 'Link challenge'}</span></div>
     <h1 class="winner">${head}</h1>
     <div class="card board">
       <div class="sb">${showOpp && s0 > s1 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(myName, S.me.color, 'l')}<b style="color:${S.me.color}">${s0}</b><span>${esc(myName)}</span></div><em>VS</em>
-      <div class="sb">${showOpp && s1 > s0 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(oppName, oppColor, 'l')}<b style="color:${safeColor(oppColor)}">${showOpp ? s1 : '?'}</b><span>${esc(oppName)}</span></div></div>
-    ${badgeHtml(newBadges)}
-    <div class="card rounds"><div class="rr head"><span class="n"></span><span class="c" style="color:${S.me.color}">${esc(myName)}</span><span class="c" style="color:${oppColor}">${esc(oppName)}</span></div>${rows}</div>
-    <div class="card lvls">${xpRow('me')}${xpRow('partner')}</div>
+      <div class="sb">${showOpp && s1 > s0 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(oppName, oppColor, 'l', showOpp ? '' : '?')}<b style="color:${safeColor(oppColor)}">${showOpp ? s1 : '?'}</b><span>${esc(oppName)}</span></div></div>
+    ${extra}
     ${actions}
+    ${badgeHtml(newBadges)}
+    <div class="card rounds"><div class="rr head"><span class="n"></span><span class="c" style="color:${S.me.color}">${esc(myName)}</span><span class="c" style="color:${safeColor(oppColor)}">${esc(oppName)}</span></div>${rows}</div>
+    <div class="card lvls">${xpRow}</div>
     <details class="card"><summary>Review the answers</summary><div class="review">${m.log.map((l, i) => `<div class="rv">${i + 1}. ${esc(l.q)}<div class="a">✓ ${esc(l.a)}</div></div>`).join('')}</div></details>
   </div>`;
   go('results');
@@ -750,23 +866,106 @@ function renderResults(o){
   else if (r === 'd'){ SFX.win(); } else { SFX.lose(); buzz([60]); }
 
   const myPack = {i: S.id, n: myName, c: S.me.color, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
-  if ($('rAgain')) $('rAgain').onclick = () => m.mode === 'duel' ? startDuel(m.topic) : startSolo({kind:'bot', topic:m.topic});
+  if ($('rAgain')) $('rAgain').onclick = () => m.mode === 'duel' ? startDuel(m.topic, true) : startSolo({kind:'bot', topic:m.topic});
   if ($('rShare')) $('rShare').onclick = async () => {
-    let url, text;
-    if (r === 'p'){
-      url = linkFor('ch', m.topic, m.refs, myPack, null, m.date, m.T);
-      text = `${myName} challenged you on Two Minds: ${T.name}. ${s0} points to beat!`;
-      S.challenges.sent++; const nb = checkBadges(); save(); badgeToast(nb);
-    } else {
-      const ghostPack = {i: m.ghost.i, n: m.ghost.n, c: m.ghost.c, lv: m.ghost.lv, p: m.ghost.picks, s: s1};
-      url = linkFor('res', m.topic, m.refs, ghostPack, myPack, m.date, m.T);
-      text = `Two Minds result: ${myName} ${s0} vs ${m.ghost.n} ${s1} in ${T.name}`;
-    }
+    const st = S.sent[m.cid];
+    const url = (st && st.url) || linkFor('ch', m.topic, m.refs, myPack, null, m.date, m.T, m.cid);
+    const text = `${myName} challenged you on Two Minds: ${T.name}. ${s0} points to beat!`;
+    if (st && !st.shared){ st.shared = true; st.url = url; S.challenges.sent++; const nb = checkBadges(); save(); badgeToast(nb); }
     showLinkBox(url, text);
+    liveBoard(m.cid, 'sender');
     const how = await shareLink(url, text);
-    if (how === 'shared') toast('Sent!');
+    if (how === 'shared') toast('Shared! Scores will show up here');
   };
   if ($('rBack')) $('rBack').onclick = () => startSolo({kind:'new', topic: m.topic === 'daily' ? 'mixed' : m.topic});
+  if (m.kind === 'reply' && m.cid) liveBoard(m.cid, 'player');
+  results_ctx = {m, s1, myPack};
+}
+let results_ctx = null;
+
+/* automatic send for the person who played a link */
+async function autoSend(cid){
+  const pl = S.played[cid]; if (!pl) return;
+  const el = () => $('syncState');
+  try{
+    await relayPost(cid, pl.pack);
+    pl.sent = true; save();
+    if (el()) el().innerHTML = `${icon('check','sm')}Score sent to ${esc(pl.A.n)} automatically`;
+    if (el()) el().className = 'sync ok';
+    liveBoard(cid, 'player');
+  }catch(e){
+    if (!el()) return;
+    el().className = 'sync bad';
+    el().innerHTML = `<span>Couldn't send automatically (no connection?).</span><button type="button" class="btn" id="manualRes">${icon('link','sm')}Send result link instead</button>`;
+    $('manualRes').onclick = async () => {
+      const ctx = results_ctx; if (!ctx) return;
+      const m = ctx.m, ghostPack = {i: m.ghost.i, n: m.ghost.n, c: m.ghost.c, lv: m.ghost.lv, p: m.ghost.picks, s: ctx.s1};
+      const url = linkFor('res', m.topic, m.refs, ghostPack, ctx.myPack, m.date, m.T);
+      const text = `Two Minds result: ${ctx.myPack.n} ${ctx.myPack.s} vs ${m.ghost.n} ${ctx.s1} in ${TOPICS[m.topic].name}`;
+      showLinkBox(url, text); await shareLink(url, text);
+    };
+  }
+}
+
+/* live leaderboard for a challenge (on the results screen) */
+let liveTimer = 0;
+function boardEntries(cid, role){
+  const out = {};
+  if (role === 'sender'){
+    const st = S.sent[cid]; if (!st) return [];
+    out[S.id] = {i: S.id, n: nameOf('me'), c: S.me.color, s: st.s, me: true, host: true};
+    Object.entries(st.res || {}).forEach(([i, x]) => out[i] = {i, n: x.n, c: x.c, s: x.s});
+  } else {
+    const pl = S.played[cid]; if (!pl) return [];
+    if (pl.A) out[pl.A.i || 'host'] = {i: pl.A.i, n: pl.A.n, c: pl.A.c, s: pl.A.s, host: true};
+    Object.entries(pl.others || {}).forEach(([i, x]) => out[i] = {i, n: x.n, c: x.c, s: x.s});
+    out[S.id] = {i: S.id, n: nameOf('me'), c: S.me.color, s: pl.s, me: true};
+  }
+  return Object.values(out).sort((a, b) => b.s - a.s);
+}
+function boardList(entries){
+  return `<ol class="lb">${entries.map((e, k) => `<li class="${e.me ? 'me' : ''}"><span class="rk">${k + 1}</span>${avatar(e.n, e.c, 's')}<span class="ln">${esc(e.n)}${e.me ? ' <em>you</em>' : ''}${e.host ? ' <em>sent it</em>' : ''}</span><b>${e.s}</b></li>`).join('')}</ol>`;
+}
+function liveBoard(cid, role){
+  const box = $('liveBoard'); if (!box) return;
+  const draw = () => {
+    const b = $('liveBoard'); if (!b) return;
+    const es = boardEntries(cid, role);
+    b.hidden = false;
+    b.innerHTML = `<div class="h" style="margin:0 0 10px">Leaderboard<span class="live"><i></i>live</span></div>${es.length > 1 ? boardList(es) : `<p class="small">Waiting for players… Scores appear here as soon as someone finishes your link.</p>${boardList(es)}`}`;
+  };
+  draw();
+  clearInterval(liveTimer);
+  const pull = async () => {
+    if (current !== 'results' || !$('liveBoard')){ clearInterval(liveTimer); return; }
+    try{
+      const list = await relayPoll(cid);
+      if (role === 'sender'){ await syncChallenges(); }
+      else { const pl = S.played[cid]; if (pl){ pl.others = pl.others || {}; list.forEach(x => { if (x.i !== S.id && (!pl.A || x.i !== pl.A.i)) pl.others[x.i] = {n:x.n, c:x.c, s:x.s}; }); save(); } }
+    }catch(e){}
+    draw();
+  };
+  pull(); liveTimer = setInterval(pull, 8000);
+}
+
+/* leaderboard screen for a challenge you sent */
+function renderBoard(opts = {}){
+  if (opts.cid) boardCid = opts.cid;
+  const cid = boardCid, st = S.sent[cid] || null, pl = S.played[cid] || null;
+  const role = st ? 'sender' : 'player', T = TOPICS[(st || pl || {}).t] || TOPICS.mixed;
+  const es = boardEntries(cid, role);
+  const age = Date.now() - (st || pl || {at: Date.now()}).at;
+  $('board').innerHTML = `<div class="col">
+    <div class="top"><button class="iconbtn" type="button" data-go="home" aria-label="Back">${icon('back')}</button><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)}</span></div>
+    <h1 class="winner" style="text-align:left">${role === 'sender' ? 'Your challenge' : 'You already played this'}</h1>
+    <div class="card">${es.length > 1 ? boardList(es) : `<p class="small" style="margin-bottom:10px">No one has finished it yet.</p>${boardList(es)}`}</div>
+    ${role === 'sender' && st.url ? `<button class="cta" type="button" id="bdShare">Share the link again<small>Anyone with the link can play</small></button>` : ''}
+    ${role === 'player' && pl.A ? `<button class="cta" type="button" id="bdBack">Challenge ${esc(pl.A.n)} back</button>` : ''}
+    <p class="small">${age < 36*3600e3 ? 'Scores sync automatically while the challenge is fresh (about 12 hours after each play).' : 'This challenge is older than a day, so new scores no longer sync automatically.'}</p>
+  </div>`;
+  if ($('bdShare')) $('bdShare').onclick = () => shareLink(st.url, `${nameOf('me')} challenged you on Two Minds: ${T.name}. ${st.s} points to beat!`);
+  if ($('bdBack')) $('bdBack').onclick = () => startSolo({kind:'new', topic: pl.t === 'daily' ? 'mixed' : pl.t});
+  if (role === 'sender' && !opts.keepScroll) syncChallenges();
 }
 function showLinkBox(url, text){
   const box = $('lbox'); if (!box) return;
@@ -811,6 +1010,12 @@ function handleHash(){
     return true;
   }
   // a challenge to play
+  if (p.x && (A.i === S.id || S.played[p.x])){
+    if (A.i === S.id && !S.sent[p.x]) S.sent[p.x] = {t: p.t, s: A.s, at: Date.now(), res: {}, shared: true, url: baseUrl() + h};
+    go('board', {cid: p.x});
+    if (A.i === S.id) toast('This is your own challenge. Here is who played it');
+    return true;
+  }
   $('incoming').innerHTML = `<div class="col" style="min-height:70vh;align-content:center">
     <div style="display:grid;justify-items:center;gap:14px;text-align:center">
       ${avatar(A.n, A.c, 'l')}
@@ -820,17 +1025,17 @@ function handleHash(){
     </div>
     <div class="card stack"><div class="field">Your name<input id="incName" maxlength="14" autocomplete="off" value="${esc(S.me.name)}" placeholder="Type your name"></div>
       <div class="colors" id="incColors">${COLORS.map(c => `<button type="button" style="--c:${c}" data-c="${c}" aria-pressed="${S.me.color === c}" aria-label="Colour"></button>`).join('')}</div></div>
+    <p class="small" style="text-align:center">Your score goes back to ${esc(A.n)} automatically when you finish.</p>
     <button class="cta" type="button" id="incGo">Accept challenge</button>
     <button class="btn" type="button" data-go="home">Not now</button></div>`;
   go('incoming');
-  if (S.me.color === A.c){ S.me.color = COLORS.find(c => c !== A.c && c !== S.partner.color) || COLORS[1]; save(); $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.c === S.me.color)); }
+  if (S.me.color === A.c){ S.me.color = freeColor([A.c]); save(); $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.c === S.me.color)); }
   $('incColors').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; S.me.color = b.dataset.c; save(); $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); };
   $('incGo').onclick = () => {
     const n = $('incName').value.trim(); if (!n){ toast('Type your name first'); $('incName').focus(); return; }
     S.me.name = n;
-    if (!S.partner.name || S.partner.name === 'Partner') S.partner.name = A.n;
     save();
-    startSolo({kind:'reply', topic: p.t, refs, ghost:{n:A.n, c:A.c, lv:A.lv, i:A.i, picks:A.p}, date:p.d, ms:p.ms});
+    startSolo({kind:'reply', topic: p.t, refs, ghost:{n:A.n, c:A.c, lv:A.lv, i:A.i, picks:A.p}, date:p.d, ms:p.ms, cid: p.x});
   };
   return true;
 }
@@ -848,7 +1053,7 @@ function renderCouple(){
     <button class="mode m-us wide" type="button" id="cUs"><span class="mi">${icon('pen')}</span><div><b>Quiz about us</b><span class="d">Write questions about your story and race to answer.</span></div><span class="go">${S.us.length} Qs${icon('chev','sm')}</span></button>
     <div class="statg"><div class="st">Best read<b>${pk.bestKnow}%</b></div><div class="st">Best sync<b>${pk.bestLikely}%</b></div><div class="st">Played<b>${pk.played}</b></div></div>
   </div>`;
-  const need = fn => () => { if (!S.me.name || !S.partner.name){ askNames(fn); return; } fn(); };
+  const need = fn => () => pickOpponent('couple', fn);
   $('cKnow').onclick = need(() => startKnow());
   $('cLikely').onclick = need(() => startLikely());
   $('cUs').onclick = () => { topicSel = 'us'; go('topic'); };
@@ -974,16 +1179,29 @@ function renderUs(){
 }
 
 /* ================= profiles / me ================= */
+const THEMES = [
+  ['velvet','Velvet','#1a1129','#ffb37a','#ff7aa2'], ['midnight','Midnight','#0a0e22','#ffc53d','#38d6ff'],
+  ['ocean','Lagoon','#06181d','#ffd166','#3fe0c5'], ['blush','Blush','#fff4f1','#ff8a65','#c77dff']
+];
+function applyTheme(){
+  const t = THEMES.find(x => x[0] === S.settings.theme) ? S.settings.theme : 'velvet';
+  document.documentElement.dataset.theme = t;
+  const m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = THEMES.find(x => x[0] === t)[2];
+}
 function renderMe(){
   const st = S.stats.me, lm = overallLevel('me');
   const acc = st.answered ? Math.round(st.correct / st.answered * 100) : 0;
   const topTopics = TOPIC_IDS.map(id => ({id, L: topicLevel('me', id), xp: S.xp.me[id] || 0})).filter(x => x.xp > 0).sort((a, b) => b.xp - a.xp).slice(0, 5);
-  const prof = whoK => `<div class="card stack"><div class="pp">${avatar(nameOf(whoK), S[whoK].color, 'l')}<div><div class="nm" style="font-size:18px">${esc(nameOf(whoK))}</div><div class="tt">Lv ${overallLevel(whoK)} · ${titleFor(overallLevel(whoK))}${whoK === 'me' ? ' · this phone' : ''}</div></div></div>
-    <div class="field">${whoK === 'me' ? 'Your name' : 'Partner name'}<input data-name="${whoK}" maxlength="14" autocomplete="off" value="${esc(S[whoK].name)}" placeholder="${whoK === 'me' ? 'Your name' : 'Her name'}"></div>
-    <div class="colors">${COLORS.map(c => `<button type="button" style="--c:${c}" data-col="${whoK}" data-c="${c}" aria-pressed="${S[whoK].color === c}" aria-label="Colour"></button>`).join('')}</div></div>`;
+  const rv = rivalsList();
   $('me').innerHTML = `<div class="col">
-    <div class="top"><h1 class="title">Profiles</h1></div>
-    ${prof('me')}${prof('partner')}
+    <div class="top"><h1 class="title">Profile</h1></div>
+    <div class="card stack"><div class="pp">${avatar(nameOf('me'), S.me.color, 'l')}<div><div class="nm" style="font-size:19px">${esc(nameOf('me'))}</div><div class="tt">Level ${lm} · ${titleFor(lm)}</div></div></div>
+      <div class="field">Your name<input id="meName" maxlength="14" autocomplete="off" value="${esc(S.me.name)}" placeholder="Your name"></div>
+      <div class="colors">${COLORS.map(c => `<button type="button" style="--c:${c}" data-col="${c}" aria-pressed="${S.me.color === c}" aria-label="Colour"></button>`).join('')}</div></div>
+    <div class="h">Look</div>
+    <div class="themes">${THEMES.map(([id, name, bg, a1, a2]) => `<button type="button" class="theme" data-theme-pick="${id}" aria-pressed="${S.settings.theme === id}"><span class="sw" style="background:${bg}"><i style="background:${a1}"></i><i style="background:${a2}"></i></span>${name}</button>`).join('')}</div>
+    <div class="h">Rivals</div>
+    ${rv.length ? `<ul class="list">${rv.map(r => `<li class="li">${avatar(r.n, r.c, 's')}<div><div class="t1">${esc(r.n)}</div><div class="t2">${r.k.startsWith('id:') ? 'Plays your links' : 'On this phone'}</div></div><span class="sc"><b><span class="res-w">${r.w}</span>–<span class="res-l">${r.l}</span>${r.d ? `–<span class="res-d">${r.d}</span>` : ''}</b><span class="res-p">W–L${r.d ? '–D' : ''}</span></span></li>`).join('')}</ul>` : '<p class="small">Nobody yet. Everyone you duel or who plays your links appears here.</p>'}
     <div class="h">Your stats</div>
     <div class="statg"><div class="st">Played<b>${st.played}</b></div><div class="st">Won<b>${st.won}</b></div><div class="st">Accuracy<b>${acc}%</b></div><div class="st">Best streak<b>${st.best}</b></div><div class="st">Perfect<b>${st.perfect}</b></div><div class="st">Level<b>${lm}</b></div></div>
     ${topTopics.length ? `<div class="h">Top topics</div><div class="card lvls">${topTopics.map(x => { const T = TOPICS[x.id]; return `<div class="lvrow"><span class="tic" style="--c:${T.c}">${T.ic}</span><div><div class="meta"><b>${esc(T.name)}</b><span>Lv ${x.L.lv} · ${titleFor(x.L.lv, TOPIC_TITLES)}</span></div><div class="xpbar" style="--c:${T.c}"><i style="width:${Math.round(x.L.into / x.L.need * 100)}%"></i></div></div></div>`; }).join('')}</div>` : ''}
@@ -991,29 +1209,26 @@ function renderMe(){
     <div class="bgrid">${BADGES.map(b => `<div class="bd ${S.badges.includes(b[0]) ? 'on' : ''}"><span class="bi">${b[3]}</span><b>${esc(b[1])}</b>${esc(b[2])}</div>`).join('')}</div>
     <div class="h">Settings</div>
     <div class="card stack">
-      <div class="small">Seating for duels on one phone</div>
-      <div class="seg"><button type="button" data-set="seat" data-v="face" aria-pressed="${S.settings.seat === 'face'}">Face to face</button><button type="button" data-set="seat" data-v="side" aria-pressed="${S.settings.seat === 'side'}">Side by side</button></div>
-      <div class="small">Answer time</div>
-      <div class="seg"><button type="button" data-set="relaxed" data-v="0" aria-pressed="${!S.settings.relaxed}">10 seconds</button><button type="button" data-set="relaxed" data-v="1" aria-pressed="${S.settings.relaxed}">15 seconds</button></div>
-      <div class="small">Practice bot</div>
-      <div class="seg">${['Easy','Normal','Hard'].map((n, i) => `<button type="button" data-set="botLevel" data-v="${i}" aria-pressed="${S.settings.botLevel === i}">${n}</button>`).join('')}</div>
+      <div class="setrow"><span>Seating for duels on one phone</span><div class="seg"><button type="button" data-set="seat" data-v="face" aria-pressed="${S.settings.seat === 'face'}">Face to face</button><button type="button" data-set="seat" data-v="side" aria-pressed="${S.settings.seat === 'side'}">Side by side</button></div></div>
+      <div class="setrow"><span>Answer time</span><div class="seg"><button type="button" data-set="relaxed" data-v="0" aria-pressed="${!S.settings.relaxed}">10 seconds</button><button type="button" data-set="relaxed" data-v="1" aria-pressed="${S.settings.relaxed}">15 seconds</button></div></div>
+      <div class="setrow"><span>Practice bot</span><div class="seg">${['Easy','Normal','Hard'].map((n, i) => `<button type="button" data-set="botLevel" data-v="${i}" aria-pressed="${S.settings.botLevel === i}">${n}</button>`).join('')}</div></div>
       <div class="seg"><button type="button" data-set="sound" data-v="t" aria-pressed="${S.settings.sound}">Sound ${S.settings.sound ? 'on' : 'off'}</button><button type="button" data-set="vib" data-v="t" aria-pressed="${S.settings.vib}">Vibration ${S.settings.vib ? 'on' : 'off'}</button></div>
     </div>
     <button class="btn" type="button" data-go="history">${icon('history','sm')}Match history</button>
     <button class="btn danger ghost" type="button" id="resetBtn">Reset all progress</button>
-    <p class="small" style="text-align:center">Two Minds keeps everything on this phone. Inspired by the head-to-head trivia games we miss.</p>
+    <p class="small" style="text-align:center">No account needed. Your progress stays on this phone.</p>
   </div>`;
-  $('me').querySelectorAll('[data-name]').forEach(i => i.onchange = () => {
-    const k = i.dataset.name, other = k === 'me' ? 'partner' : 'me', v = i.value.trim();
-    if (!v){ toast('Names can\'t be empty'); i.value = S[k].name; return; }
-    if (S[other].name && v.toLowerCase() === S[other].name.toLowerCase()){ toast('Pick two different names'); i.value = S[k].name; return; }
-    S[k].name = v; save(); renderMe();
-  });
-  $('me').querySelectorAll('[data-col]').forEach(b => b.onclick = () => { S[b.dataset.col].color = b.dataset.c; save(); SFX.tap(); renderMe(); });
+  $('meName').onchange = () => {
+    const v = $('meName').value.trim();
+    if (!v){ toast('Your name can\'t be empty'); $('meName').value = S.me.name; return; }
+    S.me.name = v; save(); renderMe();
+  };
+  $('me').querySelectorAll('[data-col]').forEach(b => b.onclick = () => { S.me.color = b.dataset.col; save(); SFX.tap(); renderMe(); });
+  $('me').querySelectorAll('[data-theme-pick]').forEach(b => b.onclick = () => { S.settings.theme = b.dataset.themePick; save(); applyTheme(); SFX.tap(); renderMe(); });
   $('me').querySelectorAll('[data-set]').forEach(b => b.onclick = () => {
-    const k = b.dataset.set, v = b.dataset.v;
+    const k = b.dataset.set, v = b.dataset.v, y = $('me').scrollTop;
     if (k === 'seat') S.settings.seat = v; else if (k === 'relaxed') S.settings.relaxed = v === '1'; else if (k === 'botLevel') S.settings.botLevel = +v; else S.settings[k] = !S.settings[k];
-    save(); SFX.tap(); renderMe(); $('me').scrollTop = $('me').scrollHeight;
+    save(); SFX.tap(); renderMe(); $('me').scrollTop = y;
   });
   const rb = $('resetBtn');
   rb.onclick = () => {
@@ -1022,30 +1237,67 @@ function renderMe(){
   };
 }
 
-/* ================= names prompt ================= */
-function askNames(then){
-  const md = $('modal'); md.hidden = false;
-  md.innerHTML = `<div class="sheet"><span class="grab"></span><h3>Who's playing?</h3><p class="small">Names show on the scoreboard. You can change them later in Profiles.</p>
-    <div class="field">You (this phone)<input id="mdMe" maxlength="14" autocomplete="off" value="${esc(S.me.name)}" placeholder="Your name"></div>
-    <div class="field">Your partner<input id="mdPa" maxlength="14" autocomplete="off" value="${esc(S.partner.name)}" placeholder="Her name"></div>
-    <button class="cta" type="button" id="mdGo">Let's play</button><button class="btn ghost" type="button" id="mdX">Later</button></div>`;
-  $('mdGo').onclick = () => {
-    const a = $('mdMe').value.trim(), b = $('mdPa').value.trim();
-    if (!a || !b){ toast('Type both names'); return; }
-    if (a.toLowerCase() === b.toLowerCase()){ toast('Pick two different names'); return; }
-    S.me.name = a; S.partner.name = b; S.onboarded = true; save(); md.hidden = true; if (then) then(); else go(current, {keepScroll:true});
+/* ================= welcome (first open) ================= */
+function renderWelcome(){
+  $('welcome').innerHTML = `<div class="col wel">
+    <div class="wel-art" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="spark">${icon('zap')}</span></div>
+    <h1 class="logo big"><span class="a">Two</span> <span class="b">Minds</span></h1>
+    <p class="lede">Head-to-head trivia. Same question, ten seconds, the fastest right answer wins.</p>
+    <div class="card stack">
+      <div class="wprev" id="wPrev">${avatar(S.me.name || '?', S.me.color, 'l')}</div>
+      <div class="field">What should we call you?<input id="wName" maxlength="14" autocomplete="given-name" enterkeyhint="go" value="${esc(S.me.name)}" placeholder="Your name"></div>
+      <div class="colors" id="wColors">${COLORS.map(c => `<button type="button" style="--c:${c}" data-c="${c}" aria-pressed="${S.me.color === c}" aria-label="Colour"></button>`).join('')}</div>
+    </div>
+    <button class="cta" type="button" id="wGo">Start playing</button>
+    <p class="small" style="text-align:center">No account or password. Everything stays on this phone.</p>
+  </div>`;
+  const prev = () => { $('wPrev').innerHTML = avatar($('wName').value.trim() || '?', S.me.color, 'l'); };
+  $('wName').oninput = prev;
+  $('wColors').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; S.me.color = b.dataset.c; $('wColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); prev(); SFX.tap(); };
+  const go_ = () => {
+    const v = $('wName').value.trim();
+    if (!v){ toast('Type your name to start'); $('wName').focus(); return; }
+    S.me.name = v; S.onboarded = true; save(); SFX.right(); go('home');
   };
-  $('mdX').onclick = () => { md.hidden = true; };
-  setTimeout(() => (S.me.name ? $('mdPa') : $('mdMe')).focus(), 50);
+  $('wGo').onclick = go_;
+  $('wName').onkeydown = e => { if (e.key === 'Enter') go_(); };
+}
+
+/* ================= who is on this phone with you ================= */
+function pickOpponent(purpose, then){
+  const md = $('modal'); md.hidden = false;
+  const locals = rivalsList().filter(r => r.k.startsWith('local:') && r.n.toLowerCase() !== nameOf('me').toLowerCase()).slice(0, 6);
+  let pickedColor = null;
+  md.innerHTML = `<div class="sheet"><span class="grab"></span>
+    <h3>${purpose === 'couple' ? 'Who are you playing with?' : 'Who are you dueling?'}</h3>
+    <p class="small">They play on this phone with you${purpose === 'duel' ? ', on the other half of the screen' : ''}.</p>
+    ${locals.length ? `<div class="opps">${locals.map((r, i) => `<button type="button" class="opp" data-i="${i}" aria-pressed="${r.n.toLowerCase() === (S.partner.name || '').toLowerCase()}">${avatar(r.n, r.c, 's')}<span>${esc(r.n)}</span></button>`).join('')}</div>` : ''}
+    <div class="field">${locals.length ? 'Or type a name' : 'Their name'}<input id="opName" maxlength="14" autocomplete="off" value="${esc(S.partner.name || '')}" placeholder="Her name"></div>
+    <button class="cta" type="button" id="opGo">${purpose === 'couple' ? 'Start' : 'Start duel'}</button><button class="btn ghost" type="button" id="opX">Cancel</button></div>`;
+  md.querySelectorAll('.opp').forEach(b => b.onclick = () => {
+    const r = locals[+b.dataset.i]; $('opName').value = r.n; pickedColor = r.c;
+    md.querySelectorAll('.opp').forEach(x => x.setAttribute('aria-pressed', x === b)); SFX.tap();
+  });
+  $('opGo').onclick = () => {
+    const v = $('opName').value.trim();
+    if (!v){ toast('Type their name'); $('opName').focus(); return; }
+    if (v.toLowerCase() === nameOf('me').toLowerCase()){ toast(`That's your name. Type theirs`); return; }
+    const known = S.rivals[rivalKey(v)];
+    let c = pickedColor && known && known.n.toLowerCase() === v.toLowerCase() ? pickedColor : (known ? known.c : (S.partner.name && S.partner.name.toLowerCase() === v.toLowerCase() ? S.partner.color : null));
+    if (!c || c === S.me.color) c = freeColor([S.me.color]);
+    S.partner = {name: v, color: c}; save(); md.hidden = true; then();
+  };
+  $('opX').onclick = () => { md.hidden = true; };
+  $('opName').onkeydown = e => { if (e.key === 'Enter') $('opGo').click(); };
+  if (!S.partner.name) setTimeout(() => $('opName').focus(), 60);
 }
 
 /* ================= boot ================= */
 document.querySelectorAll('.tab').forEach(t => { const k = {home:'home', topics:'grid', couple:'heart', me:'user'}[t.dataset.go]; const ti = t.querySelector('.ti'); if (ti && k) ti.outerHTML = icon(k); });
 document.addEventListener('visibilitychange', () => { if (document.hidden && M){ /* timers keep real time; nothing to pause in a live duel */ } });
-if (!handleHash()){
-  go('home');
-  if (!S.me.name || !S.partner.name) setTimeout(() => askNames(null), 400);
-}
+applyTheme();
+if (!handleHash()) go(S.me.name ? 'home' : 'welcome');
+setTimeout(syncChallenges, 1200);
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 window.__TM = {S, pickRefs, materialize, b64e, b64d, linkFor, validLink, TOPIC_IDS};
 })();

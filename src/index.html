@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="velvet">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Two Minds</title>
 <meta name="description" content="Head-to-head trivia for two. Duel on one phone or challenge each other by link.">
-<meta name="theme-color" content="#0e1430">
+<meta name="theme-color" content="#140d1f">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -24,7 +24,9 @@
 </head>
 <body>
 <main>
-  <section class="screen" id="home"></section>
+  <section class="screen full" id="welcome" hidden></section>
+  <section class="screen" id="home" hidden></section>
+  <section class="screen full" id="board" hidden></section>
   <section class="screen" id="topics" hidden></section>
   <section class="screen" id="topic" hidden></section>
   <section class="screen" id="couple" hidden></section>
