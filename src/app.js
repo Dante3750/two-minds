@@ -376,7 +376,8 @@ function go(id, opts = {}){
   $('tabbar').hidden = !tabbed;
   document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-current', t.dataset.go === id || (id === 'topic' && t.dataset.go === 'topics') ? 'page' : 'false'));
   ({welcome:renderWelcome, home:renderHome, topics:renderTopics, topic:renderTopic, couple:renderCouple, me:renderMe, us:renderUs, history:renderHistory, board:renderBoard}[id] || (() => {}))(opts);
-  const el = $(id); if (el && !opts.keepScroll) el.scrollTop = 0;
+  const el = $(id);
+  if (el && !opts.keepScroll){ el.scrollTop = 0; el.classList.remove('enter'); void el.offsetWidth; el.classList.add('enter'); }
 }
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-go]'); if (t){ SFX.tap(); go(t.dataset.go); return; }
@@ -388,8 +389,8 @@ document.addEventListener('click', e => {
 function meCard(){
   const xp = totalXp('me') / 3, L = levelOf(xp), lv = L.lv;
   const rv = rivalsList().slice(0, 8);
-  return `<div class="mecard">
-    <button type="button" class="mehead" data-go="me">${avatar(nameOf('me'), S.me.color, 'l')}<div><div class="hi">Hi, ${esc(nameOf('me'))}</div><div class="lv">Level ${lv} · ${titleFor(lv)}</div><div class="xpbar" style="--c:${S.me.color}"><i style="width:${Math.round(L.into / L.need * 100)}%"></i></div></div></button>
+  return `<div class="mecard" style="--c:${S.me.color}">
+    <button type="button" class="mehead" data-go="me"><span class="ring-av" style="--pct:${Math.round(L.into / L.need * 100)}">${avatar(nameOf('me'), S.me.color, 'l')}<span class="lvb">${lv}</span></span><div><div class="hi">Hi, ${esc(nameOf('me'))}</div><div class="lv"><b>${titleFor(lv)}</b> · ${L.need - Math.round(L.into)} XP to level ${lv + 1}</div><div class="xpbar" style="--c:${S.me.color}"><i style="width:${Math.round(L.into / L.need * 100)}%"></i></div></div></button>
     ${rv.length ? `<div class="rivals">${rv.map(r => `<div class="rival">${avatar(r.n, r.c, 's')}<span class="rn">${esc(r.n)}</span><span class="rs"><b class="res-w">${r.w}</b>–<b class="res-l">${r.l}</b></span></div>`).join('')}</div>`
       : `<p class="small">Play a duel or share a challenge link. Everyone you play shows up here with your record.</p>`}
   </div>`;
@@ -416,11 +417,11 @@ function renderHome(){
     <div class="top"><h1 class="logo"><span class="a">Two</span> <span class="b">Minds</span></h1><button class="iconbtn" type="button" data-go="me" aria-label="Profile">${icon('user')}</button></div>
     ${meCard()}
     <div class="modes">
-      <button class="mode m-live" type="button" id="hmLive"><span class="mi">${icon('zap')}</span><div><b>Play live</b><span class="d">Both online now, each on your own phone.</span></div></button>
-      <button class="mode m-link" type="button" id="hmLink"><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play now. They play whenever they like.</span></div></button>
-      <button class="mode m-duel wide" type="button" id="hmDuel"><span class="mi">${icon('swords')}</span><div><b>Duel on this phone</b><span class="d">Sitting together? Split the screen, race to tap.</span></div><span class="go">Play${icon('chev','sm')}</span></button>
-      <button class="mode m-daily wide" type="button" id="hmDaily"><span class="mi">${icon('sun')}</span><div><b>Daily Duel</b><span class="d">7 mixed questions, the same for everyone today</span></div><span class="go">${dDone ? 'Score ' + dDone.score : 'Play'}${icon('chev','sm')}</span></button>
-      <button class="mode m-couple wide" type="button" data-go="couple"><span class="mi">${icon('heart')}</span><div><b>Couple corner</b><span class="d">How well do you know me? Who's more likely?</span></div><span class="go">Open${icon('chev','sm')}</span></button>
+      <button class="mode m-live" type="button" id="hmLive"><span class="wm" aria-hidden="true">${icon('zap')}</span><span class="mi">${icon('zap')}</span><div><b>Play live</b><span class="d">Both online now, each on your own phone.</span></div></button>
+      <button class="mode m-link" type="button" id="hmLink"><span class="wm" aria-hidden="true">${icon('send')}</span><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play now. They play whenever they like.</span></div></button>
+      <button class="mode m-duel wide" type="button" id="hmDuel"><span class="wm" aria-hidden="true">${icon('swords')}</span><span class="mi">${icon('swords')}</span><div><b>Duel on this phone</b><span class="d">Sitting together? Split the screen, race to tap.</span></div><span class="go">Play${icon('chev','sm')}</span></button>
+      <button class="mode m-daily wide" type="button" id="hmDaily"><span class="wm" aria-hidden="true">${icon('sun')}</span><span class="mi">${icon('sun')}</span><div><b>Daily Duel</b><span class="d">7 mixed questions, the same for everyone today</span></div><span class="go">${dDone ? 'Score ' + dDone.score : 'Play'}${icon('chev','sm')}</span></button>
+      <button class="mode m-couple wide" type="button" data-go="couple"><span class="wm" aria-hidden="true">${icon('heart')}</span><span class="mi">${icon('heart')}</span><div><b>Couple corner</b><span class="d">How well do you know me? Who's more likely?</span></div><span class="go">Open${icon('chev','sm')}</span></button>
     </div>
     ${challengeRows() ? `<div class="h">Your challenges</div><ul class="list">${challengeRows()}</ul>` : ''}
     <div class="h">${S.fav.length || S.recent.length ? 'Your topics' : 'Popular topics'}<button type="button" data-go="topics">All ${TOPIC_IDS.length} topics</button></div>
@@ -672,7 +673,7 @@ function soloNext(){
   if (M.round >= ROUNDS){ finishMatch(); return; }
   const bonus = M.round === ROUNDS - 1, id = M.id, Q = M.Q[M.round];
   $('sLabel').textContent = bonus ? 'Bonus round · ×2' : `Round ${M.round + 1} of ${ROUNDS}`;
-  $('sQ').textContent = Q.q;
+  $('sQ').textContent = Q.q; $('sQ').classList.remove('pop'); void $('sQ').offsetWidth; $('sQ').classList.add('pop');
   $('sOpts').className = 'olist hide opts';
   $('sOpts').innerHTML = Q.opts.map((x, i) => `<button type="button" class="opt" data-i="${i}">${esc(x.text)}</button>`).join('');
   M.pick = null; M.left = 0; M.phase = 'question'; M.gAnswered = false; M.liveSent = false;
@@ -747,6 +748,7 @@ function soloReveal(){
   const bump = (sel, val, gain) => { const sc = $(sel).querySelector('.sc'); sc.firstChild.nodeValue = val; const g = sc.querySelector('.gain'); g.textContent = gain ? '+' + gain : ''; g.classList.remove('show'); void g.offsetWidth; if (gain) g.classList.add('show'); };
   bump('soloMe', M.score, myG);
   if (M.ghost){ bump('soloOpp', M.gscore, gG); if ($('oppState')){ $('oppState').textContent = gIdx === -1 ? 'no answer' : ''; $('oppState').className = 'state'; } }
+  $('soloMe').classList.toggle('lead', M.score > M.gscore); $('soloOpp').classList.toggle('lead', !!M.ghost && M.gscore > M.score);
   $('vbarL').querySelector('i').style.height = Math.min(100, M.score/160*100) + '%';
   $('vbarR').querySelector('i').style.height = Math.min(100, M.gscore/160*100) + '%';
   M.log.push({orig:[M.pick === null ? -1 : Q.opts[M.pick].orig, M.ghost ? (M.ghost.picks[M.round] || [-1])[0] : null], ms:[M.pick === null ? answerMs() : answerMs() - M.left, M.ghost ? (M.ghost.picks[M.round] || [0, 0])[1] : null], g:[myG, gG], q:Q.q, a:Q.opts[Q.right].text});
@@ -871,8 +873,8 @@ function renderResults(o){
     <div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${m.topic === 'daily' ? '' : esc(T.name) + ' · '}${m.mode === 'duel' ? 'Duel' : m.kind === 'live' ? 'Live' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily Duel · ' + esc(m.date || today()) : 'Link challenge'}</span></div>
     <h1 class="winner">${head}</h1>
     <div class="card board">
-      <div class="sb">${showOpp && s0 > s1 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(myName, S.me.color, 'l')}<b style="color:${S.me.color}">${s0}</b><span>${esc(myName)}</span></div><em>VS</em>
-      <div class="sb">${showOpp && s1 > s0 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(oppName, oppColor, 'l', showOpp ? '' : '?')}<b style="color:${safeColor(oppColor)}">${showOpp ? s1 : '?'}</b><span>${esc(oppName)}</span></div></div>
+      <div class="sb ${showOpp && s0 > s1 ? 'win' : ''}">${showOpp && s0 > s1 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(myName, S.me.color, 'l')}<b style="color:${S.me.color}" data-count="${s0}">0</b><span class="nm2">${esc(myName)}</span></div><em>VS</em>
+      <div class="sb ${showOpp && s1 > s0 ? 'win' : ''}">${showOpp && s1 > s0 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(oppName, oppColor, 'l', showOpp ? '' : '?')}<b style="color:${safeColor(oppColor)}" ${showOpp ? `data-count="${s1}"` : ''}>${showOpp ? 0 : '?'}</b><span class="nm2">${esc(oppName)}</span></div></div>
     ${extra}
     ${actions}
     ${badgeHtml(newBadges)}
@@ -882,6 +884,7 @@ function renderResults(o){
   </div>`;
   go('results');
   requestAnimationFrame(() => setTimeout(() => $('results').querySelectorAll('.xpbar i[data-w]').forEach(i => i.style.width = i.dataset.w + '%'), 80));
+  countUp($('results'));
   const winFx = (m.mode === 'duel' && r !== 'd') || r === 'w' || r === 'p';
   if (winFx){ SFX.win(); confetti(140, m.mode === 'duel' ? [r === 'w' ? S.me.color : S.partner.color, '#ffc53d', '#f2f4ff'] : undefined); buzz([30,50,30,50,80]); }
   else if (r === 'd'){ SFX.win(); } else { SFX.lose(); buzz([60]); }
@@ -905,6 +908,14 @@ function renderResults(o){
 }
 let results_ctx = null;
 
+function countUp(root){
+  root.querySelectorAll('[data-count]').forEach(el => {
+    const to = +el.dataset.count, t0 = performance.now(), dur = 900;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = to; return; }
+    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = Math.round(to * e); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  });
+}
 /* automatic send for the person who played a link */
 async function autoSend(cid){
   const pl = S.played[cid]; if (!pl) return;
@@ -1017,7 +1028,7 @@ function handleHash(){
       return `<div class="rr"><span class="n">${i === ROUNDS - 1 ? 'Bonus' : 'R' + (i + 1)}</span>${cell(mine)}${cell(theirs)}</div>`; }).join('');
     $('incoming').innerHTML = `<div class="col"><div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)} · Link result</span></div>
       <h1 class="winner">${r === 'w' ? `${esc(mine.n)} wins!` : r === 'l' ? `${esc(theirs.n)} wins!` : "It's a draw!"}</h1>
-      <div class="card board"><div class="sb">${mine.s > theirs.s ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(mine.n, mine.c, 'l')}<b style="color:${safeColor(mine.c)}">${mine.s}</b><span>${esc(mine.n)}</span></div><em>VS</em><div class="sb">${theirs.s > mine.s ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(theirs.n, theirs.c, 'l')}<b style="color:${safeColor(theirs.c)}">${theirs.s}</b><span>${esc(theirs.n)}</span></div></div>
+      <div class="card board"><div class="sb">${mine.s > theirs.s ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(mine.n, mine.c, 'l')}<b style="color:${safeColor(mine.c)}">${mine.s}</b><span class="nm2">${esc(mine.n)}</span></div><em>VS</em><div class="sb">${theirs.s > mine.s ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(theirs.n, theirs.c, 'l')}<b style="color:${safeColor(theirs.c)}">${theirs.s}</b><span class="nm2">${esc(theirs.n)}</span></div></div>
       <div class="card rounds"><div class="rr head"><span class="n"></span><span class="c" style="color:${mine.c}">${esc(mine.n)}</span><span class="c" style="color:${theirs.c}">${esc(theirs.n)}</span></div>${rows}</div>
       <button class="cta" type="button" id="incRe">Rematch by link</button><button class="btn" type="button" data-go="home">Home</button></div>`;
     go('incoming');
@@ -1189,9 +1200,9 @@ function renderLobby(){
     <div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)} · Live</span></div>
     <h1 class="winner">Waiting for a player</h1>
     <div class="lobby-vs">
-      <div class="sb">${avatar(nameOf('me'), S.me.color, 'l')}<span>${esc(nameOf('me'))}</span></div>
+      <div class="sb">${avatar(nameOf('me'), S.me.color, 'l')}<span class="nm2">${esc(nameOf('me'))}</span></div>
       <div class="pulse"><i></i><i></i><i></i></div>
-      <div class="sb ghostav">${avatar('?', '#8b92bf', 'l', '?')}<span>Waiting…</span></div>
+      <div class="sb ghostav">${avatar('?', '#8b92bf', 'l', '?')}<span class="nm2">Waiting…</span></div>
     </div>
     <p class="lede" style="text-align:center">Send this link. The match starts the moment they open it and tap <b>Join</b>. Keep this screen open.</p>
     <button class="cta" type="button" id="lbShare">${icon('send','sm')}Share live link</button>
@@ -1217,7 +1228,7 @@ function handleLiveHash(h){
   if (H.i === S.id){ toast('This is your own live link. Send it to someone else'); return false; }
   $('incoming').innerHTML = `<div class="col" style="min-height:70vh;align-content:center">
     <div style="display:grid;justify-items:center;gap:14px;text-align:center">
-      <div class="lobby-vs" style="width:100%"><div class="sb">${avatar(H.n, H.c, 'l')}<span>${esc(H.n)}</span></div><div class="pulse live"><i></i><i></i><i></i></div><div class="sb">${avatar(S.me.name || '?', S.me.color, 'l', S.me.name ? '' : '?')}<span>${esc(S.me.name || 'You')}</span></div></div>
+      <div class="lobby-vs" style="width:100%"><div class="sb">${avatar(H.n, H.c, 'l')}<span class="nm2">${esc(H.n)}</span></div><div class="pulse live"><i></i><i></i><i></i></div><div class="sb">${avatar(S.me.name || '?', S.me.color, 'l', S.me.name ? '' : '?')}<span class="nm2">${esc(S.me.name || 'You')}</span></div></div>
       <h1 class="winner">${esc(H.n)} wants to play live</h1>
       <span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)}</span>
       <p class="lede">You're both online now. Same 7 questions at the same time, ten seconds each.</p>
@@ -1263,9 +1274,9 @@ function renderCouple(){
   $('couple').innerHTML = `<div class="col">
     <div class="top"><h1 class="title">Couple corner</h1></div>
     <p class="lede">Pass-the-phone games for the two of you. No timer, just honesty.</p>
-    <button class="mode m-couple wide" type="button" id="cKnow"><span class="mi">${icon('eye')}</span><div><b>How well do you know me?</b><span class="d">One answers in secret, the other guesses. 10 rounds.</span></div><span class="go">${icon('chev')}</span></button>
-    <button class="mode m-daily wide" type="button" id="cLikely"><span class="mi">${icon('scale')}</span><div><b>Who's more likely to…</b><span class="d">Vote in secret, then see if you agree. 10 prompts.</span></div><span class="go">${icon('chev')}</span></button>
-    <button class="mode m-us wide" type="button" id="cUs"><span class="mi">${icon('pen')}</span><div><b>Quiz about us</b><span class="d">Write questions about your story and race to answer.</span></div><span class="go">${S.us.length} Qs${icon('chev','sm')}</span></button>
+    <button class="mode m-couple wide" type="button" id="cKnow"><span class="wm" aria-hidden="true">${icon('eye')}</span><span class="mi">${icon('eye')}</span><div><b>How well do you know me?</b><span class="d">One answers in secret, the other guesses. 10 rounds.</span></div><span class="go">${icon('chev')}</span></button>
+    <button class="mode m-daily wide" type="button" id="cLikely"><span class="wm" aria-hidden="true">${icon('scale')}</span><span class="mi">${icon('scale')}</span><div><b>Who's more likely to…</b><span class="d">Vote in secret, then see if you agree. 10 prompts.</span></div><span class="go">${icon('chev')}</span></button>
+    <button class="mode m-us wide" type="button" id="cUs"><span class="wm" aria-hidden="true">${icon('pen')}</span><span class="mi">${icon('pen')}</span><div><b>Quiz about us</b><span class="d">Write questions about your story and race to answer.</span></div><span class="go">${S.us.length} Qs${icon('chev','sm')}</span></button>
     <div class="statg"><div class="st">Best read<b>${pk.bestKnow}%</b></div><div class="st">Best sync<b>${pk.bestLikely}%</b></div><div class="st">Played<b>${pk.played}</b></div></div>
   </div>`;
   const need = fn => () => pickOpponent('couple', fn);

@@ -49,8 +49,8 @@ async def main():
             await answer_rounds(her, lambda r: 0 if r % 2 else 1, wait_extra=900)
         await asyncio.gather(h(), a())
         await him.wait_for_selector('#results:not([hidden])', timeout=15000); await her.wait_for_selector('#results:not([hidden])', timeout=15000)
-        s_him = [await him.inner_text('#results .board b >> nth=0'), await him.inner_text('#results .board b >> nth=1')]
-        s_her = [await her.inner_text('#results .board b >> nth=0'), await her.inner_text('#results .board b >> nth=1')]
+        s_him = [await him.get_attribute('#results .board b >> nth=0','data-count'), await him.get_attribute('#results .board b >> nth=1','data-count')]
+        s_her = [await her.get_attribute('#results .board b >> nth=0','data-count'), await her.get_attribute('#results .board b >> nth=1','data-count')]
         print('him sees', s_him, '| her sees', s_her, '| consistent:', s_him == s_her[::-1])
         await him.wait_for_timeout(600); await him.screenshot(path=f'{SHOTS}/lv_results.png')
         # rematch
