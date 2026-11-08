@@ -794,7 +794,7 @@ body::before,body::after{opacity:.45}
 /* ---------- quick match search ---------- */
 .mmsearch .radar{position:relative;width:200px;height:200px;margin:4px auto;display:grid;place-items:center}
 .mmsearch .radar i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--tc);opacity:0;animation:ripple 2.7s ease-out infinite}
-.mmsearch .radar i:nth-child(2){animation-delay:.9s} .search .radar i:nth-child(3){animation-delay:1.8s}
+.mmsearch .radar i:nth-child(2){animation-delay:.9s} .mmsearch .radar i:nth-child(3){animation-delay:1.8s}
 .mmsearch .radar .av{position:relative;z-index:1}
 .offerq b{font:700 15px var(--f);text-align:center}
 @media (prefers-reduced-motion:reduce){.hero-art i,.mmsearch .radar i{animation:none;opacity:.3}}
