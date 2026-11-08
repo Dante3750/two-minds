@@ -732,3 +732,69 @@ body::before,body::after{opacity:.45}
 .quick .chip{min-height:36px;font-size:12.5px}
 /* emoji + flag questions render the same on every device (Windows shows flags as letters otherwise) */
 .qcard,.half .q,.opt,.rv{font-family:"Lexend","Noto Color Emoji",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+
+/* =====================================================================
+   QuizUp feel: topic colour drives the game. Bright question card,
+   crisp white answers, colourful topic tiles, bold home hero.
+   ===================================================================== */
+:root{--paper:#fbfaff;--paper-ink:#171029;--tile-ink:#150c24}
+
+/* ---------- home hero: quick match ---------- */
+.hero{position:relative;overflow:hidden;border-radius:26px;padding:20px;display:grid;gap:14px;
+  background:linear-gradient(135deg,var(--gold),color-mix(in srgb,var(--p1) 85%,var(--gold)));color:var(--tile-ink);
+  box-shadow:0 24px 44px -26px color-mix(in srgb,var(--p1) 80%,transparent)}
+.hero-main{display:grid;gap:6px;text-align:left;position:relative;z-index:1;color:inherit}
+.hero-ey{display:inline-flex;align-items:center;gap:6px;font:700 11.5px var(--f);letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.hero-main b{font:800 28px/1.05 var(--f);letter-spacing:-.03em}
+.hero-d{font:500 13.5px/1.45 var(--f);opacity:.8;max-width:30ch}
+.hero-any{position:relative;z-index:1;justify-self:start;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;
+  background:rgba(21,12,36,.14);font:600 13px var(--f);color:inherit}
+.hero-art{position:absolute;right:-50px;top:-50px;width:200px;height:200px;pointer-events:none}
+.hero-art i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(21,12,36,.14);animation:ripple 3.6s ease-out infinite}
+.hero-art i:nth-child(2){animation-delay:1.2s} .hero-art i:nth-child(3){animation-delay:2.4s}
+@keyframes ripple{from{transform:scale(.3);opacity:1}to{transform:scale(1.25);opacity:0}}
+.hero:active{transform:scale(.99)}
+
+/* ---------- topic tiles: full colour, dark ink ---------- */
+.tp{background:linear-gradient(150deg,color-mix(in srgb,var(--c) 88%,#fff),var(--c));border:0;color:var(--tile-ink);min-height:112px;box-shadow:0 14px 26px -20px var(--c)}
+.tp .ic{background:rgba(21,12,36,.14);color:var(--tile-ink);box-shadow:none}
+.tp b{color:var(--tile-ink);font-weight:700}
+.tp small{color:rgba(21,12,36,.62)}
+.tp .star{color:var(--tile-ink)}
+.thero{background:linear-gradient(150deg,color-mix(in srgb,var(--c) 88%,#fff),var(--c));border:0;color:var(--tile-ink)}
+.thero p{color:rgba(21,12,36,.7)}
+.thero .ic{background:rgba(21,12,36,.14);color:var(--tile-ink);box-shadow:none}
+.thero .fav{background:rgba(21,12,36,.12);border:0;color:var(--tile-ink)}
+.thero .fav[aria-pressed="true"]{color:var(--tile-ink);background:rgba(21,12,36,.22)}
+.li .tic,.lvrow .tic{color:var(--tile-ink)}
+
+/* ---------- game screens take the topic colour ---------- */
+#solo{background:radial-gradient(90% 45% at 50% 0%,color-mix(in srgb,var(--tc) 30%,transparent),transparent 75%),linear-gradient(180deg,var(--bg-2),var(--bg))}
+#solo .slabel{color:var(--tc)}
+#solo .qcard{background:linear-gradient(155deg,color-mix(in srgb,var(--tc) 85%,#fff),var(--tc));color:var(--tile-ink);border:0;border-radius:26px;
+  box-shadow:0 26px 50px -28px var(--tc);font-size:clamp(20px,6vw,27px);padding:22px}
+#solo .ring .fgc{stroke:var(--tc);filter:none}
+#solo .ring.hurry .fgc{stroke:var(--bad)}
+#solo .vbar i{box-shadow:none}
+#solo .opt,#duel .opt{background:var(--paper);color:var(--paper-ink);border:0;font-weight:600;box-shadow:0 2px 0 rgba(0,0,0,.18),0 10px 20px -14px rgba(0,0,0,.6)}
+#solo .opt.mine,#duel .opt.mine{background:color-mix(in srgb,var(--tc) 30%,var(--paper));box-shadow:0 0 0 3px var(--tc)}
+#solo .opt.right,#duel .opt.right{background:var(--good);color:#fff}
+#solo .opt.wrong,#duel .opt.wrong{background:var(--bad);color:#fff}
+#solo .opt.dim,#duel .opt.dim{opacity:.32}
+#solo .dot,#duel .dot{border-color:var(--paper)}
+#duel .half{background:radial-gradient(100% 70% at 50% 100%,color-mix(in srgb,var(--tc) 22%,transparent),transparent 75%)}
+#duel .half .q{background:linear-gradient(155deg,color-mix(in srgb,var(--tc) 85%,#fff),var(--tc));color:var(--tile-ink);border-radius:20px;padding:10px 12px;margin:2px 0}
+#duel .band .lab{color:var(--tc)}
+#duel .timer i{background:var(--tc)}
+#duel .timer.hurry i{background:var(--bad)}
+.vs .mid .big{color:var(--tc);text-shadow:0 0 40px color-mix(in srgb,var(--tc) 50%,transparent)}
+.emobar button{background:color-mix(in srgb,var(--paper) 10%,var(--s1))}
+:root[data-theme="blush"] #solo .opt,:root[data-theme="blush"] #duel .opt{box-shadow:0 0 0 1px var(--line-2),0 10px 20px -16px rgba(60,20,40,.4)}
+
+/* ---------- quick match search ---------- */
+.mmsearch .radar{position:relative;width:200px;height:200px;margin:4px auto;display:grid;place-items:center}
+.mmsearch .radar i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--tc);opacity:0;animation:ripple 2.7s ease-out infinite}
+.mmsearch .radar i:nth-child(2){animation-delay:.9s} .search .radar i:nth-child(3){animation-delay:1.8s}
+.mmsearch .radar .av{position:relative;z-index:1}
+.offerq b{font:700 15px var(--f);text-align:center}
+@media (prefers-reduced-motion:reduce){.hero-art i,.mmsearch .radar i{animation:none;opacity:.3}}

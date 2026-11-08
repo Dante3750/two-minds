@@ -14,6 +14,7 @@ No account or password. On first open you type your name and pick a colour; that
 People you play are remembered automatically under Rivals with your win–loss record.
 
 ## Modes
+- **Quick match**: pick a topic and get paired automatically with anyone else searching it at the same moment, no link. If nobody shows up within 25 seconds you can play a bot instead.
 - **Play live**: both online at the same time, each on your own phone. Share the live link; the match starts the moment they tap Join. You see when they answer, scores match on both phones, and you can rematch instantly.
 - **Duel on this phone**: the screen splits in two; face to face, the top half turns around for the other player. Race to tap.
 - **Challenge by link**: play 7 questions and share the link (WhatsApp, copy, share). Anyone who opens it types their name once and plays the same questions against your ghost. Their score comes back to your phone automatically and shows on a live leaderboard (via the free ntfy.sh relay, which keeps messages for about 12 hours; a "send result link" button is the fallback).
