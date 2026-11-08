@@ -301,11 +301,12 @@ async function shareLink(url, text){
 const RELAY = 'https://ntfy.sh/';
 const relayTopic = cid => 'twominds-' + cid;
 const validCid = x => typeof x === 'string' && /^[a-z0-9]{8,24}$/.test(x);
-async function relayPost(cid, obj){
+async function postTopic(topic, obj){
   const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 9000);
-  try{ const r = await fetch(RELAY + relayTopic(cid), {method:'POST', body: JSON.stringify(obj), signal: ctl.signal}); if (!r.ok) throw new Error('relay ' + r.status); }
+  try{ const r = await fetch(RELAY + topic, {method:'POST', body: JSON.stringify(obj), signal: ctl.signal}); if (!r.ok) throw new Error('relay ' + r.status); }
   finally{ clearTimeout(t); }
 }
+const relayPost = (cid, obj) => postTopic(relayTopic(cid), obj);
 async function relayPoll(cid){
   const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 9000);
   try{
@@ -364,7 +365,7 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden) sync
 addEventListener('online', () => syncChallenges());
 
 /* ================= router ================= */
-const APP_SCREENS = ['welcome','home','topics','topic','couple','me','us','results','incoming','coupleRes','history','board'];
+const APP_SCREENS = ['welcome','home','topics','topic','couple','me','us','results','incoming','coupleRes','history','board','lobby'];
 let boardCid = null;
 let current = 'home', topicSel = 'gk';
 function go(id, opts = {}){
@@ -415,8 +416,9 @@ function renderHome(){
     <div class="top"><h1 class="logo"><span class="a">Two</span> <span class="b">Minds</span></h1><button class="iconbtn" type="button" data-go="me" aria-label="Profile">${icon('user')}</button></div>
     ${meCard()}
     <div class="modes">
-      <button class="mode m-link" type="button" id="hmLink"><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play 7 questions, share the link. Anyone can play it.</span></div></button>
-      <button class="mode m-duel" type="button" id="hmDuel"><span class="mi">${icon('swords')}</span><div><b>Duel on this phone</b><span class="d">Face to face. Same question, fastest tap wins.</span></div></button>
+      <button class="mode m-live" type="button" id="hmLive"><span class="mi">${icon('zap')}</span><div><b>Play live</b><span class="d">Both online now, each on your own phone.</span></div></button>
+      <button class="mode m-link" type="button" id="hmLink"><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play now. They play whenever they like.</span></div></button>
+      <button class="mode m-duel wide" type="button" id="hmDuel"><span class="mi">${icon('swords')}</span><div><b>Duel on this phone</b><span class="d">Sitting together? Split the screen, race to tap.</span></div><span class="go">Play${icon('chev','sm')}</span></button>
       <button class="mode m-daily wide" type="button" id="hmDaily"><span class="mi">${icon('sun')}</span><div><b>Daily Duel</b><span class="d">7 mixed questions, the same for everyone today</span></div><span class="go">${dDone ? 'Score ' + dDone.score : 'Play'}${icon('chev','sm')}</span></button>
       <button class="mode m-couple wide" type="button" data-go="couple"><span class="mi">${icon('heart')}</span><div><b>Couple corner</b><span class="d">How well do you know me? Who's more likely?</span></div><span class="go">Open${icon('chev','sm')}</span></button>
     </div>
@@ -427,6 +429,7 @@ function renderHome(){
   </div>`;
   $('hmDuel').onclick = () => { SFX.tap(); pickTopicThen('duel'); };
   $('hmLink').onclick = () => { SFX.tap(); pickTopicThen('link'); };
+  $('hmLive').onclick = () => { SFX.tap(); pickTopicThen('live'); };
   $('hmDaily').onclick = () => { SFX.tap(); startSolo({kind:'daily', topic:'daily'}); };
 }
 function pickTopicThen(mode){ go('topics', {intent: mode}); }
@@ -452,7 +455,7 @@ function renderTopics(opts = {}){
     if (searchTerm && !T.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
     return true;
   });
-  const intentLine = topicIntent === 'duel' ? 'Pick a topic for your duel on this phone' : topicIntent === 'link' ? 'Pick a topic for your link challenge' : 'Tap a topic to see your levels and play';
+  const intentLine = topicIntent === 'duel' ? 'Pick a topic for your duel on this phone' : topicIntent === 'link' ? 'Pick a topic for your link challenge' : topicIntent === 'live' ? 'Pick a topic to play live' : 'Tap a topic to see your levels and play';
   $('topics').innerHTML = `<div class="col">
     <div class="top"><h1 class="title">Topics</h1></div>
     <p class="lede">${intentLine}</p>
@@ -472,15 +475,16 @@ function renderTopic(){
   const usNote = id === 'us' ? (S.us.length < 3 ? `<p class="small">Write at least 3 questions about you two to play this topic. With fewer than 7, the rest come from Mixed Bag.</p>` : `<p class="small">${S.us.length} questions written. Share them as a link and see who knows your story best.</p>`) : '';
   const lvRow = (who, L) => `<div class="lvrow">${avatar(nameOf(who), S[who].color, 's')}<div><div class="meta"><b>${esc(nameOf(who))}</b><span>Lv ${L.lv} · ${titleFor(L.lv, TOPIC_TITLES)}</span></div><div class="xpbar" style="--c:${S[who].color}"><i style="width:${Math.round(L.into / L.need * 100)}%"></i></div></div></div>`;
   $('topic').innerHTML = `<div class="col">
-    <div class="top"><button class="iconbtn" type="button" data-go="topics" aria-label="All topics">${icon('back')}</button><span class="small">${topicIntent === 'duel' ? 'Duel on this phone' : topicIntent === 'link' ? 'Challenge by link' : 'Topic'}</span></div>
+    <div class="top"><button class="iconbtn" type="button" data-go="topics" aria-label="All topics">${icon('back')}</button><span class="small">${topicIntent === 'duel' ? 'Duel on this phone' : topicIntent === 'link' ? 'Challenge by link' : topicIntent === 'live' ? 'Play live' : 'Topic'}</span></div>
     <div class="thero" style="--c:${T.c}"><span class="ic">${T.ic}</span><div><h1>${esc(T.name)}</h1><p>${count} questions · 7 rounds · bonus round ×2</p></div>
       ${id !== 'us' && id !== 'mixed' ? `<button type="button" class="fav" id="favBtn" aria-pressed="${fav}">${icon(fav ? 'starf' : 'star', 'sm')}${fav ? 'Favourite' : 'Favourite'}</button>` : ''}</div>
     ${usNote}
     ${id === 'us' ? `<button class="btn" type="button" data-go="us">${icon('pen','sm')}Write questions about us</button>` : ''}
     <div class="card lvls"><div class="h" style="margin:0 0 -2px">Your level</div>${lvRow('me', lm)}</div>
     <div class="stack">
-    <button class="cta" type="button" id="tpLink">Challenge by link<small>Play now, share the link, anyone can play</small></button>
-    <button class="cta p1" type="button" id="tpDuel">Duel on this phone<small>Phone flat between you, race to tap</small></button>
+    <button class="cta" type="button" id="tpLive">Play live<small>Both online now, each on your own phone</small></button>
+    <button class="cta p2" type="button" id="tpLink">Challenge by link<small>Play now, they play whenever they like</small></button>
+    <button class="cta p1" type="button" id="tpDuel">Duel on this phone<small>Sitting together, one screen</small></button>
     <button class="btn" type="button" id="tpBot">Practice against a bot<small>${['Easy','Normal','Hard'][S.settings.botLevel]} · change in Profiles</small></button></div>
   </div>`;
   if ($('favBtn')) $('favBtn').onclick = () => { S.fav = fav ? S.fav.filter(x => x !== id) : [id, ...S.fav]; save(); SFX.tap(); renderTopic(); };
@@ -488,6 +492,7 @@ function renderTopic(){
   const guard = fn => () => { if (!usOk){ toast('Write at least 3 Us questions first'); go('us'); return; } fn(); };
   $('tpDuel').onclick = guard(() => startDuel(id));
   $('tpLink').onclick = guard(() => startSolo({kind:'new', topic:id}));
+  $('tpLive').onclick = guard(() => startLive(id));
   $('tpBot').onclick = guard(() => startSolo({kind:'bot', topic:id}));
 }
 function noteRecent(id){ if (!TOPICS[id] || id === 'daily') return; S.recent = [id, ...S.recent.filter(x => x !== id)].slice(0, 8); }
@@ -615,6 +620,7 @@ function armQuit(btn, isDuel){
   };
 }
 function quitMatch(){
+  if (M && M.kind === 'live') liveBye();
   M = null; cancelAnimationFrame(raf); clearInterval(soloTimer);
   $('duel').hidden = true; $('solo').hidden = true; $('vs').hidden = true;
   go(current === 'results' ? 'home' : (current || 'home'));
@@ -657,7 +663,7 @@ function startSolo(o){
   armQuit($('squit'), false);
   hideApp(); $('solo').hidden = false; wakeLock();
   const lvMe = o.topic === 'daily' ? overallLevel('me') : topicLevel('me', o.topic).lv;
-  const oppSub = ghost ? (ghost.bot ? 'Practice bot' : `Lv ${ghost.lv || 1} · already played`) : 'Whoever opens your link';
+  const oppSub = ghost ? (ghost.bot ? 'Practice bot' : ghost.live ? `Lv ${ghost.lv || 1} · live now` : `Lv ${ghost.lv || 1} · already played`) : 'Whoever opens your link';
   vsIntro({n:me.n, c:me.c, sub:`Lv ${lvMe}`}, {n:opp.n, c:opp.c, sub:oppSub, l:opp.l}, o.topic, false, () => soloNext());
 }
 function soloNext(){
@@ -669,8 +675,8 @@ function soloNext(){
   $('sQ').textContent = Q.q;
   $('sOpts').className = 'olist hide opts';
   $('sOpts').innerHTML = Q.opts.map((x, i) => `<button type="button" class="opt" data-i="${i}">${esc(x.text)}</button>`).join('');
-  M.pick = null; M.left = 0; M.phase = 'question'; M.gAnswered = false;
-  if ($('oppState') && M.ghost) $('oppState').textContent = '';
+  M.pick = null; M.left = 0; M.phase = 'question'; M.gAnswered = false; M.liveSent = false;
+  if ($('oppState') && M.ghost){ $('oppState').textContent = M.ghost.live ? (M.ghost.gone ? 'offline' : 'thinking…') : ''; $('oppState').className = 'state'; }
   setRing(1, Math.ceil(answerMs()/1000));
   if (bonus){ SFX.bonus(); buzz([30,40,30]); splash($('solo'), 'Bonus round ×2', 1300, () => { if (M && M.id === id) soloShow(); }); }
   else { SFX.round(); setTimeout(() => { if (M && M.id === id) soloShow(); }, 1100); }
@@ -692,7 +698,20 @@ function soloTick(now){
   if (M.pick === null){ setRing(left / T, sec); if (left <= 3000 && left > 0 && sec !== M.lastTick){ M.lastTick = sec; SFX.tick(); } }
   if (M.ghost && !M.gAnswered){
     const g = M.ghost.picks[M.round];
-    if (g && g[0] !== -1 && el >= g[1]){ M.gAnswered = true; if ($('oppState')){ $('oppState').textContent = 'answered'; $('oppState').className = 'state ok'; } tone(700, 0.05, 'triangle', 0.04); }
+    const arrived = M.ghost.live ? (g !== undefined && g[0] !== -1) : (g && g[0] !== -1 && el >= g[1]);
+    if (arrived){ M.gAnswered = true; if ($('oppState')){ $('oppState').textContent = 'answered'; $('oppState').className = 'state ok'; } tone(700, 0.05, 'triangle', 0.04); }
+  }
+  if (M.ghost && M.ghost.live){
+    const g = M.ghost.picks[M.round];
+    if (left <= 0 && M.pick === null && !M.liveSent) liveAnswer(-1, T);
+    const gDoneL = g !== undefined || M.ghost.gone || el > T + LIVE_GRACE;
+    if ((M.pick !== null || left <= 0) && !gDoneL && $('oppState') && $('oppState').textContent !== 'waiting…'){ $('oppState').textContent = 'waiting…'; $('oppState').className = 'state'; }
+    if ((M.pick !== null || left <= 0) && gDoneL){
+      if (g === undefined){ M.ghost.picks[M.round] = [-1, T]; M.ghost.missed = (M.ghost.missed || 0) + 1; if (M.ghost.missed >= 2 && !M.ghost.gone){ M.ghost.gone = true; toast(`${M.ghost.n} seems to be offline`); } }
+      else M.ghost.missed = 0;
+      soloReveal(); return;
+    }
+    raf = requestAnimationFrame(soloTick); return;
   }
   const gDone = !M.ghost || M.gAnswered || (M.ghost.picks[M.round] || [-1])[0] === -1;
   if ((M.pick !== null && gDone) || left <= 0){ soloReveal(); return; }
@@ -703,6 +722,7 @@ document.addEventListener('pointerdown', e => {
   e.preventDefault();
   if (!M || M.mode !== 'solo' || M.phase !== 'answer' || M.pick !== null) return;
   M.pick = +b.dataset.i; M.left = Math.max(0, answerMs() - (performance.now() - M.t0));
+  if (M.kind === 'live'){ const ms = Math.round(answerMs() - M.left); M.left = answerMs() - ms; liveAnswer(M.Q[M.round].opts[M.pick].orig, ms); }
   b.classList.add('mine'); $('sOpts').classList.add('locked');
   SFX.pick(); buzz(12);
 });
@@ -767,7 +787,7 @@ function finishMatch(){
   }
   S.xp.me[xpTopic] = (S.xp.me[xpTopic] || 0) + gained.me;
   m.trailedBeforeBonus = (() => { const pre = m.log.slice(0, ROUNDS - 1).reduce((a, l) => [a[0] + l.g[0], a[1] + l.g[1]], [0, 0]); return pre[0] <= pre[1]; })();
-  const modeName = m.mode === 'duel' ? 'Duel' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily' : m.kind === 'reply' ? 'Link reply' : 'Link';
+  const modeName = m.mode === 'duel' ? 'Duel' : m.kind === 'live' ? 'Live' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily' : m.kind === 'reply' ? 'Link reply' : 'Link';
   S.history.unshift({key: r === 'p' ? 'pend:' + m.cid : undefined, t: m.topic, m: modeName, o: r === 'p' ? 'anyone' : oppName, s:[s0, s1 === null ? '?' : s1], r, when: whenStr()});
   S.history = S.history.slice(0, 60);
   const newBadges = checkBadges({m, r, s0, s1});
@@ -838,6 +858,7 @@ function renderResults(o){
   const xpRow = `<div class="lvrow">${avatar(myName, S.me.color, 's')}<div><div class="meta"><b>+${gained.me} XP</b><span class="${up ? 'lvup' : ''}">${up ? 'Level up! ' : ''}Lv ${L.lv} · ${titleFor(L.lv, TOPIC_TITLES)}</span></div><div class="xpbar" style="--c:${S.me.color}"><i style="width:0%" data-w="${Math.round(L.into / L.need * 100)}"></i></div></div></div>`;
   let actions = '', extra = '';
   if (m.mode === 'duel') actions = `<button class="cta" id="rAgain" type="button">Rematch</button><div class="row"><button class="btn" type="button" data-go="topics">New topic</button><button class="btn" type="button" data-go="home">Home</button></div>`;
+  else if (m.kind === 'live') actions = `<div id="liveRm"></div><button class="cta" id="lvRe" type="button">Rematch live<small>New questions, same topic</small></button><button class="btn" type="button" id="lvHome">Home</button>`;
   else if (m.kind === 'bot') actions = `<button class="cta" id="rAgain" type="button">Play again</button><div class="row"><button class="btn" type="button" data-go="topics">New topic</button><button class="btn" type="button" data-go="home">Home</button></div>`;
   else if (r === 'p'){
     actions = `<button class="cta" id="rShare" type="button">Share challenge link<small>Anyone with the link can play. Scores come back here automatically.</small></button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
@@ -847,7 +868,7 @@ function renderResults(o){
     actions = `<button class="cta" type="button" id="rBack">Challenge ${esc(oppName)} back<small>New questions in ${esc(m.topic === 'daily' ? 'Mixed Bag' : T.name)}</small></button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
   }
   $('results').innerHTML = `<div class="col">
-    <div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${m.topic === 'daily' ? '' : esc(T.name) + ' · '}${m.mode === 'duel' ? 'Duel' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily Duel · ' + esc(m.date || today()) : 'Link challenge'}</span></div>
+    <div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${m.topic === 'daily' ? '' : esc(T.name) + ' · '}${m.mode === 'duel' ? 'Duel' : m.kind === 'live' ? 'Live' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily Duel · ' + esc(m.date || today()) : 'Link challenge'}</span></div>
     <h1 class="winner">${head}</h1>
     <div class="card board">
       <div class="sb">${showOpp && s0 > s1 ? `<span class="crown">${icon('crown')}</span>` : ''}${avatar(myName, S.me.color, 'l')}<b style="color:${S.me.color}">${s0}</b><span>${esc(myName)}</span></div><em>VS</em>
@@ -879,6 +900,7 @@ function renderResults(o){
   };
   if ($('rBack')) $('rBack').onclick = () => startSolo({kind:'new', topic: m.topic === 'daily' ? 'mixed' : m.topic});
   if (m.kind === 'reply' && m.cid) liveBoard(m.cid, 'player');
+  if (m.kind === 'live') liveResultsUI(m);
   results_ctx = {m, s1, myPack};
 }
 let results_ctx = null;
@@ -977,6 +999,7 @@ function showLinkBox(url, text){
 /* ================= incoming links ================= */
 function handleHash(){
   const h = location.hash;
+  if (h.startsWith('#L=')) return handleLiveHash(h);
   if (!h.startsWith('#c=')) return false;
   let p = null;
   try{ p = b64d(h.slice(3)); }catch(e){}
@@ -1039,7 +1062,199 @@ function handleHash(){
   };
   return true;
 }
-addEventListener('hashchange', () => { if (location.hash.startsWith('#c=')){ M = null; $('duel').hidden = true; $('solo').hidden = true; handleHash(); } });
+addEventListener('hashchange', () => { if (location.hash.startsWith('#c=') || location.hash.startsWith('#L=')){ if (M && M.kind === 'live') liveBye(); M = null; $('duel').hidden = true; $('solo').hidden = true; handleHash(); } });
+
+/* ================= live play: two phones at the same time ================= */
+// Both phones listen to one relay topic (server-sent events) and post small messages:
+// join -> go (host picks the first joiner) -> one answer per round from each side -> rematch / bye.
+// Each phone times its own rounds; answers carry the elapsed ms so both phones score identically.
+const LIVE_GRACE = 6000;
+const LV = {es:null, room:null, seen:new Set(), opp:null, role:null, game:0, buf:{}, started:false, pendingRm:null, ctx:null, errs:0, opened:false};
+const liveTopic = room => 'twominds-live-' + room;
+const validMini = x => x && typeof x.n === 'string' && x.n.trim() && x.n.length <= 24 && /^#[0-9a-f]{3,8}$/i.test(String(x.c)) && typeof x.i === 'string' && /^[a-z0-9]{1,16}$/.test(x.i) && (x.lv === undefined || (Number.isInteger(x.lv) && x.lv >= 0 && x.lv < 1000));
+function liveOpen(room, onMsg){
+  liveClose();
+  Object.assign(LV, {room, seen:new Set(), onMsg, errs:0, opened:false});
+  try{
+    const es = new EventSource(RELAY + liveTopic(room) + '/sse?since=all');
+    LV.es = es;
+    es.onopen = () => { if (LV.es === es){ LV.opened = true; LV.errs = 0; } };
+    es.onerror = () => { if (LV.es === es) LV.errs++; };
+    es.onmessage = ev => {
+      if (LV.es !== es) return;   // a closed room's late messages must never reach the current room
+      let m; try{ m = JSON.parse(ev.data); }catch(e){ return; }
+      if (!m || m.event !== 'message' || typeof m.message !== 'string' || LV.seen.has(m.id)) return;
+      LV.seen.add(m.id);
+      let x; try{ x = JSON.parse(m.message); }catch(e){ return; }
+      if (!x || typeof x !== 'object' || x.i === S.id || typeof x.type !== 'string') return;
+      try{ LV.onMsg && LV.onMsg(x); }catch(e){}
+    };
+  }catch(e){ LV.errs = 99; }
+}
+function liveClose(){ if (LV.es) LV.es.close(); LV.es = null; LV.onMsg = null; }
+function livePost(obj){ return LV.room ? postTopic(liveTopic(LV.room), Object.assign({i: S.id, gm: LV.game}, obj)) : Promise.reject(new Error('no room')); }
+function liveBye(){
+  if (LV.room) livePost({type:'bye'}).catch(() => {});
+  const es = LV.es; LV.es = null; LV.onMsg = null; LV.room = null; LV.opp = null; LV.started = false; LV.pendingRm = null; LV.offerRm = null;
+  setTimeout(() => { if (es) es.close(); }, 400);
+}
+// closing the tab or app mid-match tells the other phone straight away
+addEventListener('pagehide', () => {
+  if (!LV.room || !LV.opp) return;
+  try{ navigator.sendBeacon(RELAY + liveTopic(LV.room), JSON.stringify({i: S.id, gm: LV.game, type:'bye'})); }catch(e){}
+});
+function liveAnswer(o, ms){ if (!M) return; M.liveSent = true; livePost({type:'a', r: M.round, o, ms}).catch(() => { setTimeout(() => livePost({type:'a', r: M.round, o, ms}).catch(() => {}), 800); }); }
+
+function liveBegin(refs, t, ms){
+  const picks = []; Object.entries(LV.buf[LV.game] || {}).forEach(([r, v]) => picks[+r] = v);
+  startSolo({kind:'live', topic:t, refs, ms, ghost:{n: LV.opp.n, c: LV.opp.c, lv: LV.opp.lv, i: LV.opp.i, picks, live:true}});
+}
+function liveCommon(x){
+  if (!LV.opp || x.i !== LV.opp.i) return;
+  if (x.type === 'a'){
+    if (!Number.isInteger(x.r) || x.r < 0 || x.r >= ROUNDS || !Number.isInteger(x.o) || x.o < -1 || x.o > 3 || !Number.isFinite(x.ms) || x.ms < 0 || x.ms > 20000) return;
+    if (M && M.kind === 'live' && x.gm === LV.game && M.ghost.i === x.i){ if (M.ghost.picks[x.r] === undefined) M.ghost.picks[x.r] = [x.o, x.ms]; }
+    else { (LV.buf[x.gm] = LV.buf[x.gm] || {})[x.r] = (LV.buf[x.gm] || {})[x.r] || [x.o, x.ms]; }
+    return;
+  }
+  if (x.type === 'bye'){
+    LV.opp.gone = true;
+    if (M && M.kind === 'live'){ M.ghost.gone = true; toast(`${LV.opp.n} left the match`); }
+    if (current === 'results') liveResultsUI(null);
+    if (current === 'lobby' && LV.role === 'guest') { toast(`${LV.opp.n} closed the room`); go('home'); }
+    return;
+  }
+  if (x.type === 'rm'){
+    let refs; try{ refs = unpackRefs(x.q); }catch(e){ return; }
+    if (!Array.isArray(x.q) || x.q.length !== ROUNDS || !TOPICS[x.t] || refs.some(r => !Array.isArray(refQ(r))) || (x.ms !== 10000 && x.ms !== 15000) || typeof x.id !== 'string') return;
+    const incoming = {id: x.id, refs, t: x.t, ms: x.ms};
+    if (LV.pendingRm){ if (x.i < S.id){ LV.pendingRm = null; acceptRematch(incoming); } return; }
+    LV.offerRm = incoming;
+    if (current === 'results') liveResultsUI(null);
+    else toast(`${LV.opp.n} wants a rematch`);
+    SFX.badge(); buzz([20, 40, 20]);
+    return;
+  }
+  if (x.type === 'rmok' && LV.pendingRm && x.id === LV.pendingRm.id){
+    const r = LV.pendingRm; LV.pendingRm = null; LV.game++; liveBegin(r.refs, r.t, r.ms);
+  }
+}
+function acceptRematch(r){
+  LV.offerRm = null;
+  livePost({type:'rmok', id: r.id}).then(() => { LV.game++; liveBegin(r.refs, r.t, r.ms); }).catch(() => toast('Connection problem. Try again'));
+}
+function liveResultsUI(m){
+  const box = $('liveRm'), btn = $('lvRe'); if (!box || !btn) return;
+  const opp = LV.opp;
+  if (!opp || opp.gone){ box.innerHTML = `<div class="sync">${opp ? esc(opp.n) + ' left the match' : 'The live match has ended'}</div>`; btn.hidden = true; }
+  else if (LV.offerRm){
+    box.innerHTML = `<div class="offer">${avatar(opp.n, opp.c, 's')}<span><b>${esc(opp.n)}</b> wants a rematch</span><button type="button" class="cta" id="rmYes">Accept</button></div>`;
+    $('rmYes').onclick = () => acceptRematch(LV.offerRm);
+    btn.hidden = true;
+  } else { box.innerHTML = ''; btn.hidden = false; }
+  btn.onclick = () => {
+    if (!LV.opp || LV.opp.gone) return;
+    const t = LV.ctx.t === 'daily' ? 'mixed' : LV.ctx.t, refs = pickRefs(t), id = randId(6);
+    LV.pendingRm = {id, refs, t, ms: LV.ctx.ms};
+    livePost({type:'rm', id, t, q: packRefs(refs), ms: LV.ctx.ms}).catch(() => { LV.pendingRm = null; toast('Connection problem. Try again'); liveResultsUI(null); });
+    btn.disabled = true; btn.innerHTML = `Waiting for ${esc(LV.opp.n)}…<small>They'll see your rematch request</small>`;
+  };
+  if ($('lvHome')) $('lvHome').onclick = () => { liveBye(); go('home'); };
+}
+
+/* host: make a room, share it, wait */
+function startLive(topicId){
+  noteRecent(topicId);
+  const refs = pickRefs(topicId), room = randId(), ms = S.settings.relaxed ? 15000 : 10000;
+  const host = {i: S.id, n: nameOf('me'), c: S.me.color, lv: overallLevel('me')};
+  const url = baseUrl() + '#L=' + b64e({v:2, k:'live', r: room, t: topicId, q: packRefs(refs), h: host, ms});
+  Object.assign(LV, {role:'host', game:1, buf:{}, opp:null, started:false, pendingRm:null, offerRm:null, ctx:{room, refs, t: topicId, ms, url}});
+  liveOpen(room, x => {
+    if (x.type === 'join' && !LV.started && validMini(x)){
+      LV.started = true; LV.opp = {i: x.i, n: x.n, c: x.c, lv: x.lv};
+      livePost({type:'go', g: x.i}).then(() => { recordSeen(); liveBegin(refs, topicId, ms); })
+        .catch(() => { LV.started = false; LV.opp = null; toast('Connection problem. Ask them to tap Join again'); });
+      return;
+    }
+    liveCommon(x);
+  });
+  renderLobby();
+  go('lobby');
+}
+function recordSeen(){ if (LV.opp) S.rivals[rivalKey(LV.opp.n, LV.opp.i)] && (S.rivals[rivalKey(LV.opp.n, LV.opp.i)].at = Date.now()); }
+function renderLobby(){
+  const c = LV.ctx, T = TOPICS[c.t] || TOPICS.mixed;
+  const text = `${nameOf('me')} wants to play Two Minds live: ${T.name}. Tap to join!`;
+  $('lobby').innerHTML = `<div class="col lobby">
+    <div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)} · Live</span></div>
+    <h1 class="winner">Waiting for a player</h1>
+    <div class="lobby-vs">
+      <div class="sb">${avatar(nameOf('me'), S.me.color, 'l')}<span>${esc(nameOf('me'))}</span></div>
+      <div class="pulse"><i></i><i></i><i></i></div>
+      <div class="sb ghostav">${avatar('?', '#8b92bf', 'l', '?')}<span>Waiting…</span></div>
+    </div>
+    <p class="lede" style="text-align:center">Send this link. The match starts the moment they open it and tap <b>Join</b>. Keep this screen open.</p>
+    <button class="cta" type="button" id="lbShare">${icon('send','sm')}Share live link</button>
+    <div class="linkbox" id="lbox" hidden></div>
+    <div class="sync" id="lbState"><span class="spin"></span>Room open</div>
+    <button class="btn ghost" type="button" id="lbCancel">Cancel</button>
+  </div>`;
+  $('lbShare').onclick = async () => { showLinkBox(c.url, text); await shareLink(c.url, text); };
+  $('lbCancel').onclick = () => { liveBye(); go('home'); };
+  clearTimeout(LV.lobbyT);
+  LV.lobbyT = setTimeout(() => { if (current === 'lobby' && !LV.opened && LV.errs > 0 && $('lbState')){ $('lbState').className = 'sync bad'; $('lbState').textContent = "Can't reach the live server. Check your internet, or use Challenge by link instead."; } }, 7000);
+}
+
+/* guest: open a live link */
+function handleLiveHash(h){
+  let p = null; try{ p = b64d(h.slice(3)); }catch(e){}
+  history.replaceState(null, '', baseUrl());
+  const ok = p && p.v === 2 && p.k === 'live' && validCid(p.r) && TOPICS[p.t] && Array.isArray(p.q) && p.q.length === ROUNDS && validMini(p.h) && (p.ms === 10000 || p.ms === 15000)
+    && unpackRefs(p.q).every(r => r.c ? (Array.isArray(r.c) && r.c.length === 5 && r.c.every(x => typeof x === 'string' && x.length <= 120)) : Array.isArray(refQ(r)));
+  if (!ok){ toast('That live link looks broken'); return false; }
+  $('modal').hidden = true;
+  const T = TOPICS[p.t], H = p.h, refs = unpackRefs(p.q);
+  if (H.i === S.id){ toast('This is your own live link. Send it to someone else'); return false; }
+  $('incoming').innerHTML = `<div class="col" style="min-height:70vh;align-content:center">
+    <div style="display:grid;justify-items:center;gap:14px;text-align:center">
+      <div class="lobby-vs" style="width:100%"><div class="sb">${avatar(H.n, H.c, 'l')}<span>${esc(H.n)}</span></div><div class="pulse live"><i></i><i></i><i></i></div><div class="sb">${avatar(S.me.name || '?', S.me.color, 'l', S.me.name ? '' : '?')}<span>${esc(S.me.name || 'You')}</span></div></div>
+      <h1 class="winner">${esc(H.n)} wants to play live</h1>
+      <span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)}</span>
+      <p class="lede">You're both online now. Same 7 questions at the same time, ten seconds each.</p>
+    </div>
+    <div class="card stack"><div class="field">Your name<input id="incName" maxlength="14" autocomplete="off" value="${esc(S.me.name)}" placeholder="Type your name"></div>
+      <div class="colors" id="incColors">${COLORS.map(c => `<button type="button" style="--c:${c}" data-c="${c}" aria-pressed="${S.me.color === c}" aria-label="Colour"></button>`).join('')}</div></div>
+    <button class="cta" type="button" id="incGo">${icon('zap','sm')}Join live match</button>
+    <div class="sync" id="joinState" hidden></div>
+    <button class="btn" type="button" data-go="home">Not now</button></div>`;
+  go('incoming');
+  if (S.me.color === H.c){ S.me.color = freeColor([H.c]); save(); }
+  $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.c === S.me.color));
+  $('incColors').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; S.me.color = b.dataset.c; save(); $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); };
+  $('incGo').onclick = () => {
+    const n = $('incName').value.trim(); if (!n){ toast('Type your name first'); $('incName').focus(); return; }
+    S.me.name = n; save();
+    const st = $('joinState'); st.hidden = false; st.className = 'sync'; st.innerHTML = `<span class="spin"></span>Joining ${esc(H.n)}…`;
+    $('incGo').disabled = true;
+    Object.assign(LV, {role:'guest', game:1, buf:{}, opp:{i: H.i, n: H.n, c: H.c, lv: H.lv}, started:false, pendingRm:null, offerRm:null, ctx:{room: p.r, refs, t: p.t, ms: p.ms}});
+    liveOpen(p.r, x => {
+      if (x.i !== H.i) return;
+      if (x.type === 'go'){
+        if (x.g === S.id){ if (!LV.started){ LV.started = true; clearTimeout(LV.joinT); liveBegin(refs, p.t, p.ms); } }
+        else if (!LV.started){ clearTimeout(LV.joinT); st.className = 'sync bad'; st.textContent = `Someone else already joined this match. Ask ${H.n} for a new live link.`; liveClose(); }
+        return;
+      }
+      if (x.type === 'bye' && !LV.started){ clearTimeout(LV.joinT); st.className = 'sync bad'; st.textContent = `${H.n} closed this room. Ask for a new live link.`; liveClose(); return; }
+      liveCommon(x);
+    });
+    livePost({type:'join', n: S.me.name, c: S.me.color, lv: overallLevel('me')}).catch(() => {
+      st.className = 'sync bad'; st.textContent = "Couldn't connect. Check your internet and try again."; $('incGo').disabled = false;
+    });
+    clearTimeout(LV.joinT);
+    LV.joinT = setTimeout(() => { if (!LV.started && current === 'incoming'){ st.className = 'sync bad'; st.textContent = `No answer from ${H.n}. They may have left the waiting screen. Ask them to open a new live room.`; $('incGo').disabled = false; } }, 20000);
+  };
+  return true;
+}
 
 /* ================= couple corner ================= */
 let C = null;
