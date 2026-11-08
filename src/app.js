@@ -401,7 +401,7 @@ function inboxOpen(){
 function inboxClose(){ if (IB.es) IB.es.close(); IB.es = null; }
 document.addEventListener('visibilitychange', () => { if (!document.hidden) inboxOpen(); });
 function refreshSocial(){ if (['home','friends'].includes(current)) go(current, {keepScroll:true}); updateFriendDot(); }
-function updateFriendDot(){ const t = document.querySelector('.tab[data-go="friends"]'); if (t) t.classList.toggle('dot', Object.keys(S.reqIn).length > 0 || pendingInbox().length > 0); }
+function updateFriendDot(){ const t = document.querySelector('.tab[data-go="friends"]'); if (t) t.classList.toggle('has-note', Object.keys(S.reqIn).length > 0 || pendingInbox().length > 0); }
 function pendingInbox(){ const now = Date.now(); return S.inbox.filter(it => !it.done && (it.k !== 'lv' || now - it.at < 15*60e3) && (it.k !== 'ch' || !S.played[it.cid])); }
 
 function onInbox(x, at){
@@ -537,11 +537,11 @@ function renderHome(){
     ${meCard()}
     ${inboxBanners()}
     <div class="modes">
-      <button class="mode m-live" type="button" id="hmLive"><span class="wm" aria-hidden="true">${icon('zap')}</span><span class="mi">${icon('zap')}</span><div><b>Play live</b><span class="d">Both online now, each on your own phone.</span></div></button>
-      <button class="mode m-link" type="button" id="hmLink"><span class="wm" aria-hidden="true">${icon('send')}</span><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play now. They play whenever they like.</span></div></button>
-      <button class="mode m-duel wide" type="button" id="hmDuel"><span class="wm" aria-hidden="true">${icon('swords')}</span><span class="mi">${icon('swords')}</span><div><b>Duel on this phone</b><span class="d">Sitting together? Split the screen, race to tap.</span></div><span class="go">Play${icon('chev','sm')}</span></button>
-      <button class="mode m-daily wide" type="button" id="hmDaily"><span class="wm" aria-hidden="true">${icon('sun')}</span><span class="mi">${icon('sun')}</span><div><b>Daily Duel</b><span class="d">7 mixed questions, the same for everyone today</span></div><span class="go">${dDone ? 'Score ' + dDone.score : 'Play'}${icon('chev','sm')}</span></button>
-      <button class="mode m-couple wide" type="button" data-go="couple"><span class="wm" aria-hidden="true">${icon('heart')}</span><span class="mi">${icon('heart')}</span><div><b>Couple corner</b><span class="d">How well do you know me? Who's more likely?</span></div><span class="go">Open${icon('chev','sm')}</span></button>
+      <button class="mode m-live wide" type="button" id="hmLive"><span class="mi">${icon('zap')}</span><div><b>Play live</b><span class="d">Both online now, each on your own phone</span></div><span class="go">${icon('chev','sm')}</span></button>
+      <button class="mode m-link wide" type="button" id="hmLink"><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play now, they play whenever they like</span></div><span class="go">${icon('chev','sm')}</span></button>
+      <button class="mode m-duel wide" type="button" id="hmDuel"><span class="mi">${icon('swords')}</span><div><b>Duel on this phone</b><span class="d">Sitting together? Split the screen, race to tap.</span></div><span class="go">${icon('chev','sm')}</span></button>
+      <button class="mode m-daily wide" type="button" id="hmDaily"><span class="mi">${icon('sun')}</span><div><b>Daily Duel</b><span class="d">7 mixed questions, the same for everyone today</span></div><span class="go">${dDone ? '<b class="sc">' + dDone.score + '</b>' : ''}${icon('chev','sm')}</span></button>
+      <button class="mode m-couple wide" type="button" data-go="couple"><span class="mi">${icon('heart')}</span><div><b>Couple corner</b><span class="d">How well do you know me? Who's more likely?</span></div><span class="go">${icon('chev','sm')}</span></button>
     </div>
     ${challengeRows() ? `<div class="h">Your challenges</div><ul class="list">${challengeRows()}</ul>` : ''}
     <div class="h">${S.fav.length || S.recent.length ? 'Your topics' : 'Popular topics'}<button type="button" data-go="topics">All ${TOPIC_IDS.length} topics</button></div>
@@ -608,12 +608,12 @@ function renderTopic(){
     <div class="card lvls"><div class="h" style="margin:0 0 -2px">Your level</div>${lvRow('me', lm)}</div>
     ${F ? `<div class="stack">
     <button class="cta" type="button" id="tpFLive">${icon('zap','sm')}Play live with ${esc(F.n)}</button>
-    <button class="cta p2" type="button" id="tpFCh">Challenge ${esc(F.n)}<small>Play now. It lands in ${esc(F.n)}'s inbox, no link needed</small></button>
+    <button class="btn" type="button" id="tpFCh">${icon('send','sm')}<span class="tx">Challenge ${esc(F.n)}<small>Play now, it lands in their inbox</small></span></button>
     <button class="btn ghost" type="button" id="tpFX">Play another way</button></div>` : `<div class="stack">
     <button class="cta" type="button" id="tpLive">Play live<small>Both online now, each on your own phone</small></button>
-    <button class="cta p2" type="button" id="tpLink">Challenge by link<small>Play now, they play whenever they like</small></button>
-    <button class="cta p1" type="button" id="tpDuel">Duel on this phone<small>Sitting together, one screen</small></button>
-    <button class="btn" type="button" id="tpBot">Practice against a bot<small>${['Easy','Normal','Hard'][S.settings.botLevel]} · change in Profile</small></button></div>`}
+    <button class="btn" type="button" id="tpLink">${icon('send','sm')}<span class="tx">Challenge by link<small>Play now, they play whenever they like</small></span></button>
+    <button class="btn" type="button" id="tpDuel">${icon('swords','sm')}<span class="tx">Duel on this phone<small>Sitting together, one screen</small></span></button>
+    <button class="btn" type="button" id="tpBot">${icon('bot','sm')}<span class="tx">Practice against a bot<small>${['Easy','Normal','Hard'][S.settings.botLevel]} · change in Profile</small></span></button></div>`}
   </div>`;
   if ($('favBtn')) $('favBtn').onclick = () => { S.fav = fav ? S.fav.filter(x => x !== id) : [id, ...S.fav]; save(); SFX.tap(); renderTopic(); };
   const usOk = id !== 'us' || S.us.length >= 3;
@@ -1493,9 +1493,9 @@ function renderCouple(){
   $('couple').innerHTML = `<div class="col">
     <div class="top"><h1 class="title">Couple corner</h1></div>
     <p class="lede">Pass-the-phone games for the two of you. No timer, just honesty.</p>
-    <button class="mode m-couple wide" type="button" id="cKnow"><span class="wm" aria-hidden="true">${icon('eye')}</span><span class="mi">${icon('eye')}</span><div><b>How well do you know me?</b><span class="d">One answers in secret, the other guesses. 10 rounds.</span></div><span class="go">${icon('chev')}</span></button>
-    <button class="mode m-daily wide" type="button" id="cLikely"><span class="wm" aria-hidden="true">${icon('scale')}</span><span class="mi">${icon('scale')}</span><div><b>Who's more likely to…</b><span class="d">Vote in secret, then see if you agree. 10 prompts.</span></div><span class="go">${icon('chev')}</span></button>
-    <button class="mode m-us wide" type="button" id="cUs"><span class="wm" aria-hidden="true">${icon('pen')}</span><span class="mi">${icon('pen')}</span><div><b>Quiz about us</b><span class="d">Write questions about your story and race to answer.</span></div><span class="go">${S.us.length} Qs${icon('chev','sm')}</span></button>
+    <button class="mode m-couple wide" type="button" id="cKnow"><span class="mi">${icon('eye')}</span><div><b>How well do you know me?</b><span class="d">One answers in secret, the other guesses. 10 rounds.</span></div><span class="go">${icon('chev')}</span></button>
+    <button class="mode m-daily wide" type="button" id="cLikely"><span class="mi">${icon('scale')}</span><div><b>Who's more likely to…</b><span class="d">Vote in secret, then see if you agree. 10 prompts.</span></div><span class="go">${icon('chev')}</span></button>
+    <button class="mode m-us wide" type="button" id="cUs"><span class="mi">${icon('pen')}</span><div><b>Quiz about us</b><span class="d">Write questions about your story and race to answer.</span></div><span class="go">${S.us.length} Qs${icon('chev','sm')}</span></button>
     <div class="statg"><div class="st">Best read<b>${pk.bestKnow}%</b></div><div class="st">Best sync<b>${pk.bestLikely}%</b></div><div class="st">Played<b>${pk.played}</b></div></div>
   </div>`;
   const need = fn => () => pickOpponent('couple', fn);

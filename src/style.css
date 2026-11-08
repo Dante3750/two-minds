@@ -628,3 +628,51 @@ body::after{right:-60vmax;bottom:-75vmax;background:radial-gradient(closest-side
 .empty span{font-size:13.5px;line-height:1.5;max-width:34ch}
 .tab.dot::before{content:"";position:absolute;top:8px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:var(--bad);box-shadow:0 0 0 2px var(--s1)}
 .invite h3{margin-top:4px}
+
+/* =====================================================================
+   Simple layer: calm, flat, one accent. Overrides the decorative layer.
+   ===================================================================== */
+body::before,body::after{opacity:.45}
+.card::before,.mecard::before,.mode::before,.tp::before,.thero::before{content:none}
+.card,.mecard,.mode,.tp,.li,.st,.bd,.theme,.pair{box-shadow:none}
+
+/* surfaces: one flat tone, hairline border */
+.mecard{background:var(--s1)}
+.mode,.tp{background:var(--s1);border:1px solid var(--line)}
+.thero{background:radial-gradient(90% 120% at 100% 0%,color-mix(in srgb,var(--c) 18%,transparent),transparent 60%),var(--s1);border:1px solid var(--line)}
+.qcard{background:var(--s1)}
+
+/* home: one clean list of ways to play */
+.modes{grid-template-columns:1fr;gap:0;background:var(--s1);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.mode,.mode.wide{min-height:0;border:0;border-radius:0;padding:14px 16px;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;background:transparent}
+.mode + .mode{border-top:1px solid var(--line)}
+.mode .mi{width:40px;height:40px;border-radius:12px;box-shadow:none}
+.mode .mi .i{width:20px;height:20px}
+.mode b{font:600 15.5px/1.25 var(--f)}
+.mode span.d{font-size:12.5px;color:var(--muted);margin-top:2px}
+.mode .go{color:var(--muted);font:600 13px var(--f);gap:6px}
+.mode .go .sc{font:400 15px var(--f-num);color:var(--gold-text)}
+.mode:active{transform:none;background:color-mix(in srgb,var(--ink) 4%,transparent)}
+
+/* topic tiles: flat, icon carries the colour */
+.tp{min-height:108px;gap:12px}
+.tp .ic{box-shadow:none;width:36px;height:36px;border-radius:11px}
+
+/* buttons: one primary per screen, the rest quiet */
+.cta{box-shadow:none}
+.btn{justify-content:flex-start;gap:12px;padding:12px 16px;text-align:left}
+.btn .tx{text-align:left}
+.btn > .i{color:var(--muted);flex:none}
+.btn:not(:has(.tx)){justify-content:center;text-align:center}
+.btn small{color:var(--muted)}
+
+/* calmer motion */
+.screen.enter{animation-duration:.28s}
+.opt.right{box-shadow:none}
+.board .sb.win .av{animation:none;box-shadow:0 0 0 3px var(--bg),0 0 0 6px var(--gold)}
+.mode .wm{display:none}
+.tab[aria-current="page"]{background:color-mix(in srgb,var(--ink) 8%,transparent);color:var(--ink)}
+
+/* notification dot on a tab */
+.tab.has-note::before{content:"";position:absolute;top:8px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:var(--bad);box-shadow:0 0 0 2px var(--s1)}
+.btn:has(.tx){flex-direction:row;justify-content:flex-start}

@@ -106,7 +106,7 @@ async def main():
         await sam.wait_for_selector('#syncState.bad #manualRes', timeout=12000); print('fallback shown: yes')
         FAIL['on'] = False
         # couple corner uses the picker with the remembered partner
-        await him.goto(URL); await him.click('.tab[data-go="couple"]'); await him.click('#cKnow')
+        await him.goto(URL); await him.click('#home [data-go="couple"]'); await him.click('#cKnow')
         await him.wait_for_selector('#opGo'); await him.click('#opGo')
         for k in range(10):
             await him.click('#cvGo'); await him.click('#cplay .opt >> nth=1'); await him.click('#cvGo')
