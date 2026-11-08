@@ -140,12 +140,12 @@
   "d": 1
  },
  {
-  "q": "Which is the longest river in South America?",
-  "a": "Amazon",
+  "q": "Which is the smallest of the world's five oceans?",
+  "a": "Arctic Ocean",
   "w": [
-   "Parana",
-   "Orinoco",
-   "Magdalena"
+   "Indian Ocean",
+   "Southern Ocean",
+   "Atlantic Ocean"
   ],
   "d": 1
  },
@@ -380,12 +380,12 @@
   "d": 3
  },
  {
-  "q": "The Danube river empties into which sea?",
-  "a": "Black Sea",
+  "q": "The Indus river empties into which sea?",
+  "a": "Arabian Sea",
   "w": [
-   "Caspian Sea",
-   "Adriatic Sea",
-   "Baltic Sea"
+   "Bay of Bengal",
+   "Red Sea",
+   "Caspian Sea"
   ],
   "d": 3
  },

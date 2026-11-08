@@ -70,12 +70,12 @@
   "d": 1
  },
  {
-  "q": "Which Nintendo gorilla wears a red tie marked 'DK'?",
-  "a": "Donkey Kong",
+  "q": "In Pac-Man, what does Pac-Man eat to make the ghosts turn blue?",
+  "a": "Power pellet",
   "w": [
-   "Diddy Kong",
-   "King K. Rool",
-   "Cranky Kong"
+   "Cherry",
+   "Super Star",
+   "Mushroom"
   ],
   "d": 1
  },
@@ -90,10 +90,10 @@
   "d": 1
  },
  {
-  "q": "In which game do players jump out of a flying 'Battle Bus'?",
-  "a": "Fortnite",
+  "q": "Which battle royale game greets winners with 'Winner Winner Chicken Dinner'?",
+  "a": "PUBG",
   "w": [
-   "PUBG",
+   "Fortnite",
    "Apex Legends",
    "Free Fire"
   ],

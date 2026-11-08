@@ -80,12 +80,12 @@
   "d": 1
  },
  {
-  "q": "Priyanka Chopra played which boxer in a 2014 biopic?",
+  "q": "Priyanka Chopra played which sportswoman in a 2014 biopic?",
   "a": "Mary Kom",
   "w": [
-   "Nikhat Zareen",
-   "Lovlina Borgohain",
-   "Sarita Devi"
+   "Saina Nehwal",
+   "Mithali Raj",
+   "PT Usha"
   ],
   "d": 1
  },
@@ -350,7 +350,7 @@
   "d": 3
  },
  {
-  "q": "Which Indian film won the top prize at the first Cannes festival (1946)?",
+  "q": "Which Indian film shared the top prize at the first Cannes festival (1946)?",
   "a": "Neecha Nagar",
   "w": [
    "Do Bigha Zamin",

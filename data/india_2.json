@@ -140,7 +140,7 @@
   "d": 1
  },
  {
-  "q": "Which river flows past the Taj Mahal in Agra?",
+  "q": "Which river flows past the Taj Mahal?",
   "a": "Yamuna",
   "w": [
    "Ganga",
@@ -354,7 +354,7 @@
   "a": "Godavari",
   "w": [
    "Krishna",
-   "Kaveri",
+   "Mahanadi",
    "Tungabhadra"
   ],
   "d": 3

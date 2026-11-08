@@ -74,7 +74,7 @@
   "a": "Poland",
   "w": [
    "Indonesia",
-   "Monaco",
+   "Malta",
    "Austria"
   ],
   "d": 2
@@ -83,7 +83,7 @@
   "q": "Which country's flag is this? 🇦🇹",
   "a": "Austria",
   "w": [
-   "Latvia",
+   "Lebanon",
    "Poland",
    "Denmark"
   ],
@@ -93,7 +93,7 @@
   "q": "Which country's flag is this? 🇱🇻",
   "a": "Latvia",
   "w": [
-   "Austria",
+   "Estonia",
    "Lebanon",
    "Peru"
   ],
@@ -103,19 +103,19 @@
   "q": "Which country's flag is this? 🇳🇱",
   "a": "Netherlands",
   "w": [
-   "Luxembourg",
    "Russia",
-   "France"
+   "France",
+   "Yemen"
   ],
   "d": 1
  },
  {
-  "q": "Which country's flag is this? 🇱🇺",
-  "a": "Luxembourg",
+  "q": "Which country's flag is this? 🇬🇭",
+  "a": "Ghana",
   "w": [
-   "Netherlands",
-   "Russia",
-   "Paraguay"
+   "Ethiopia",
+   "Senegal",
+   "Lithuania"
   ],
   "d": 3
  },
@@ -123,7 +123,7 @@
   "q": "Which country's flag is this? 🇷🇺",
   "a": "Russia",
   "w": [
-   "Slovenia",
+   "Bulgaria",
    "Serbia",
    "Netherlands"
   ],
@@ -134,8 +134,8 @@
   "a": "Romania",
   "w": [
    "Belgium",
-   "Moldova",
-   "Andorra"
+   "France",
+   "Italy"
   ],
   "d": 3
  },
@@ -204,8 +204,8 @@
   "a": "Argentina",
   "w": [
    "Uruguay",
-   "Nicaragua",
-   "El Salvador"
+   "Greece",
+   "Finland"
   ],
   "d": 1
  },
@@ -334,8 +334,8 @@
   "a": "Egypt",
   "w": [
    "Syria",
-   "Iraq",
-   "Yemen"
+   "Sudan",
+   "Jordan"
   ],
   "d": 3
  },
@@ -383,9 +383,9 @@
   "q": "Which country's flag is this? 🇨🇴",
   "a": "Colombia",
   "w": [
-   "Ecuador",
    "Venezuela",
-   "Bolivia"
+   "Bolivia",
+   "Lithuania"
   ],
   "d": 3
  },
@@ -445,7 +445,7 @@
   "w": [
    "Canada",
    "Austria",
-   "Latvia"
+   "Lebanon"
   ],
   "d": 2
  },
@@ -463,9 +463,9 @@
   "q": "Which country's flag is this? 🇶🇦",
   "a": "Qatar",
   "w": [
-   "Bahrain",
    "Latvia",
-   "Oman"
+   "Oman",
+   "UAE"
   ],
   "d": 3
  },

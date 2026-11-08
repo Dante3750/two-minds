@@ -190,7 +190,7 @@
   "d": 2
  },
  {
-  "q": "What tiny shrimp-like animals are the blue whale's main food?",
+  "q": "What tiny shrimp-like animals do baleen whales mainly eat?",
   "a": "Krill",
   "w": [
    "Squid",
@@ -250,12 +250,12 @@
   "d": 2
  },
  {
-  "q": "What is the largest species of penguin?",
-  "a": "Emperor penguin",
+  "q": "What is an adult female horse called?",
+  "a": "Mare",
   "w": [
-   "King penguin",
-   "Adelie penguin",
-   "Gentoo penguin"
+   "Ewe",
+   "Doe",
+   "Sow"
   ],
   "d": 2
  },

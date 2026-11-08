@@ -43,9 +43,9 @@
   "q": "Which European city is often called the 'City of Love'?",
   "a": "Paris",
   "w": [
-   "Rome",
-   "Vienna",
-   "Prague"
+   "Berlin",
+   "Madrid",
+   "Brussels"
   ],
   "d": 1
  },
@@ -120,12 +120,12 @@
   "d": 1
  },
  {
-  "q": "In Disney's Cinderella, who does Cinderella marry?",
-  "a": "Prince Charming",
+  "q": "In Cinderella, at what time does the fairy godmother's magic end?",
+  "a": "Midnight",
   "w": [
-   "Prince Phillip",
-   "Prince Eric",
-   "Prince Adam"
+   "Sunrise",
+   "Ten o'clock",
+   "One o'clock"
   ],
   "d": 1
  },
@@ -170,7 +170,7 @@
   "d": 2
  },
  {
-  "q": "Shah Jahan built the Taj Mahal in memory of which wife?",
+  "q": "The Taj Mahal was built in memory of which Mughal empress?",
   "a": "Mumtaz Mahal",
   "w": [
    "Nur Jahan",
@@ -250,7 +250,7 @@
   "d": 2
  },
  {
-  "q": "Which goddess, Shiva's first wife, was reborn as Parvati?",
+  "q": "Which wife of Shiva gave up her life at her father Daksha's yajna?",
   "a": "Sati",
   "w": [
    "Ganga",
@@ -280,7 +280,7 @@
   "d": 2
  },
  {
-  "q": "In Kalidasa's play, Dushyanta gives Shakuntala what token?",
+  "q": "In the classic tale, King Dushyanta gives Shakuntala what token?",
   "a": "A ring",
   "w": [
    "A necklace",
@@ -350,7 +350,7 @@
   "d": 3
  },
  {
-  "q": "Which Punjabi poet wrote the famous 1766 version of Heer Ranjha?",
+  "q": "Which Punjabi poet wrote the classic 1766 verse epic 'Heer'?",
   "a": "Waris Shah",
   "w": [
    "Bulleh Shah",

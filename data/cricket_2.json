@@ -220,22 +220,22 @@
   "d": 2
  },
  {
-  "q": "India beat which team in the 2011 World Cup final?",
-  "a": "Sri Lanka",
+  "q": "Which batter is nicknamed the 'Universe Boss'?",
+  "a": "Chris Gayle",
   "w": [
-   "Pakistan",
-   "Australia",
-   "New Zealand"
+   "Kieron Pollard",
+   "Andre Russell",
+   "Brian Lara"
   ],
   "d": 2
  },
  {
-  "q": "India beat which team in the 2007 T20 World Cup final?",
-  "a": "Pakistan",
+  "q": "Who was the first Indian bowler to take 400 Test wickets?",
+  "a": "Kapil Dev",
   "w": [
-   "Australia",
-   "Sri Lanka",
-   "South Africa"
+   "Anil Kumble",
+   "Harbhajan Singh",
+   "Javagal Srinath"
   ],
   "d": 2
  },

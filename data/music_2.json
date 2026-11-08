@@ -20,12 +20,12 @@
   "d": 1
  },
  {
-  "q": "John, Paul, George and Ringo were members of which band?",
-  "a": "The Beatles",
+  "q": "Justin Bieber comes from which country?",
+  "a": "Canada",
   "w": [
-   "The Rolling Stones",
-   "The Who",
-   "The Kinks"
+   "USA",
+   "United Kingdom",
+   "Australia"
   ],
   "d": 1
  },
@@ -100,12 +100,12 @@
   "d": 1
  },
  {
-  "q": "What is the title of Michael Jackson's 1982 album?",
-  "a": "Thriller",
+  "q": "Shakira, the singer of 'Hips Don't Lie', is from which country?",
+  "a": "Colombia",
   "w": [
-   "Bad",
-   "Dangerous",
-   "Off the Wall"
+   "Mexico",
+   "Spain",
+   "Brazil"
   ],
   "d": 1
  },
@@ -160,7 +160,7 @@
   "d": 2
  },
  {
-  "q": "Mick Jagger is the lead singer of which band?",
+  "q": "Mick Jagger found fame as lead singer of which band?",
   "a": "The Rolling Stones",
   "w": [
    "The Beatles",
@@ -210,7 +210,7 @@
   "d": 2
  },
  {
-  "q": "Bono is the lead singer of which band?",
+  "q": "Bono found fame as lead singer of which band?",
   "a": "U2",
   "w": [
    "Coldplay",
@@ -240,7 +240,7 @@
   "d": 2
  },
  {
-  "q": "Which tabla maestro was the father of Zakir Hussain?",
+  "q": "Which maestro was the father of Ustad Zakir Hussain?",
   "a": "Ustad Alla Rakha",
   "w": [
    "Ustad Ahmed Jan Thirakwa",
@@ -300,12 +300,12 @@
   "d": 2
  },
  {
-  "q": "How many symphonies did Beethoven complete?",
-  "a": "Nine",
+  "q": "Who composed the 'Surprise' Symphony (No. 94)?",
+  "a": "Joseph Haydn",
   "w": [
-   "Seven",
-   "Ten",
-   "Twelve"
+   "W. A. Mozart",
+   "Franz Schubert",
+   "Felix Mendelssohn"
   ],
   "d": 3
  },

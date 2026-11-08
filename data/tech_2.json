@@ -350,12 +350,12 @@
   "d": 3
  },
  {
-  "q": "Moore's Law is named after a co-founder of which company?",
-  "a": "Intel",
+  "q": "In the image format 'GIF', what does GIF stand for?",
+  "a": "Graphics Interchange Format",
   "w": [
-   "AMD",
-   "IBM",
-   "Texas Instruments"
+   "Graphic Image File",
+   "General Image Format",
+   "Graphical Internet Frame"
   ],
   "d": 3
  },

@@ -20,12 +20,12 @@
   "d": 1
  },
  {
-  "q": "Which NASA programme landed astronauts on the Moon?",
-  "a": "Apollo",
+  "q": "Which is the smallest planet in our solar system?",
+  "a": "Mercury",
   "w": [
-   "Gemini",
-   "Mercury",
-   "Skylab"
+   "Mars",
+   "Venus",
+   "Earth"
   ],
   "d": 1
  },
