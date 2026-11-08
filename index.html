@@ -619,6 +619,37 @@ body::after{right:-60vmax;bottom:-75vmax;background:radial-gradient(closest-side
 @media (prefers-reduced-motion:reduce){body::before,body::after{animation:none}}
 .cta:not(:has(small)){flex-direction:row}
 
+/* ================= friends ================= */
+.codecard{display:grid;gap:14px}
+.cc-top{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.cc-n{font:800 19px var(--f);letter-spacing:-.02em}
+.code{display:inline-flex;align-items:center;gap:8px;margin-top:4px;padding:6px 12px;border-radius:12px;background:var(--bg);border:1px dashed var(--line-2);font:400 20px var(--f-num);letter-spacing:.12em;color:var(--gold-text)}
+.code .i{color:var(--muted)}
+.addrow{display:grid;grid-template-columns:1fr auto;gap:8px}
+.addrow input{min-width:0;min-height:48px;background:var(--bg);border:1px solid var(--line-2);border-radius:14px;padding:0 14px;font:500 15px var(--f);letter-spacing:.06em;text-transform:uppercase}
+.addrow input::placeholder{text-transform:none;letter-spacing:0;color:var(--muted)}
+.addrow input:focus{outline:none;border-color:var(--gold)}
+.pillbtn{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:40px;padding:0 14px;border-radius:999px;font:600 13px var(--f);background:var(--gold);color:var(--on-c);flex:none;white-space:nowrap}
+.pillbtn.ok{background:var(--good);color:#03200c}
+.pillbtn.live{background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good);border:1px solid color-mix(in srgb,var(--good) 40%,transparent)}
+.pillbtn.ghost{background:transparent;color:var(--ink-2);border:1px solid var(--line-2)}
+.addrow .pillbtn{min-height:48px;border-radius:14px}
+.li.fr{gap:8px}
+.li.fr .pillbtn{padding:0 11px}
+.li .t2 b{font-weight:700}
+.banners{display:grid;gap:8px}
+.bn{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 10px 10px 12px;border-radius:var(--r);
+  background:radial-gradient(120% 140% at 0% 50%,color-mix(in srgb,var(--gold) 16%,transparent),transparent 65%),var(--s1);border:1px solid color-mix(in srgb,var(--gold) 30%,transparent);animation:up .35s cubic-bezier(.2,.9,.3,1.1)}
+.bn.live{background:radial-gradient(120% 140% at 0% 50%,color-mix(in srgb,var(--good) 18%,transparent),transparent 65%),var(--s1);border-color:color-mix(in srgb,var(--good) 40%,transparent)}
+.bn > div{min-width:0}
+.bn b{display:block;font:700 14px var(--f)}
+.bn span{display:block;font-size:12.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.empty{display:grid;justify-items:center;gap:8px;text-align:center;padding:26px 18px;border-radius:var(--r-lg);border:1px dashed var(--line-2);color:var(--muted)}
+.empty b{color:var(--ink);font:700 16px var(--f)}
+.empty span{font-size:13.5px;line-height:1.5;max-width:34ch}
+.tab.dot::before{content:"";position:absolute;top:8px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:var(--bad);box-shadow:0 0 0 2px var(--s1)}
+.invite h3{margin-top:4px}
+
 </style>
 </head>
 <body>
@@ -627,6 +658,7 @@ body::after{right:-60vmax;bottom:-75vmax;background:radial-gradient(closest-side
   <section class="screen" id="home" hidden></section>
   <section class="screen full" id="board" hidden></section>
   <section class="screen full" id="lobby" hidden></section>
+  <section class="screen" id="friends" hidden></section>
   <section class="screen" id="topics" hidden></section>
   <section class="screen" id="topic" hidden></section>
   <section class="screen" id="couple" hidden></section>
@@ -641,8 +673,8 @@ body::after{right:-60vmax;bottom:-75vmax;background:radial-gradient(closest-side
 <nav class="tabs" id="tabbar" aria-label="Main">
   <button class="tab" type="button" data-go="home"><span class="ti">⌂</span>Play</button>
   <button class="tab" type="button" data-go="topics"><span class="ti">▦</span>Topics</button>
-  <button class="tab" type="button" data-go="couple"><span class="ti">❦</span>Couple</button>
-  <button class="tab" type="button" data-go="me"><span class="ti">☺</span>Profiles</button>
+  <button class="tab" type="button" data-go="friends"><span class="ti">☺</span>Friends</button>
+  <button class="tab" type="button" data-go="me"><span class="ti">☺</span>Profile</button>
 </nav>
 
 <!-- VS intro -->
@@ -736,7 +768,7 @@ let S = {
   xp:{me:{}, partner:{}}, stats:{me:blankStats(), partner:blankStats()},
   h2h:[0,0,0], history:[], used:{}, us:[], badges:[], fav:[], recent:[],
   daily:{}, settings:{sound:true, vib:true, relaxed:false, seat:'face', botLevel:1, theme:'velvet'},
-  rivals:{}, sent:{}, played:{},
+  rivals:{}, sent:{}, played:{}, code:'', friends:{}, reqIn:{}, reqOut:{}, inbox:[], ibSeen:[],
   id: Math.random().toString(36).slice(2, 10), onboarded:false, couple:{bestKnow:0, bestLikely:0, played:0}, challenges:{sent:0, played:0, won:0}
 };
 function load(){
@@ -748,6 +780,7 @@ function load(){
       S.stats.partner = Object.assign(blankStats(), d.stats && d.stats.partner);
       S.settings = Object.assign({sound:true, vib:true, relaxed:false, seat:'face', botLevel:1, theme:'velvet'}, d.settings || {});
       S.rivals = d.rivals || {}; S.sent = d.sent || {}; S.played = d.played || {};
+      S.friends = d.friends || {}; S.reqIn = d.reqIn || {}; S.reqOut = d.reqOut || {}; S.inbox = d.inbox || []; S.ibSeen = d.ibSeen || [];
       if (!d.rivals && d.partner && d.partner.name && Array.isArray(d.h2h) && (d.h2h[0] + d.h2h[1] + d.h2h[2]) > 0)
         S.rivals['local:' + d.partner.name.trim().toLowerCase()] = {n: d.partner.name, c: d.partner.color || '#38d6ff', w: d.h2h[0], l: d.h2h[1], d: d.h2h[2], at: Date.now()};
       S.xp = Object.assign({me:{}, partner:{}}, d.xp || {});
@@ -818,7 +851,10 @@ const ICON = {
   hundred:'<path d="M4 8.5 6 7v10M10.5 7h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zM18 7h.5a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/>',
   link:'<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/>',
   copy:'<rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 8.5V6A2.5 2.5 0 0 0 13 3.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/>',
-  plus:'<path d="M12 5v14M5 12h14"/>', x:'<path d="M6 6l12 12M18 6 6 18"/>', history:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5M12 7.5V12l3 2"/>'
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 20a6.5 6.5 0 0 0-3-5.5"/>',
+  useradd:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M19 8v6M16 11h6"/>',
+  inbox:'<path d="M3.5 13.5 6 5h12l2.5 8.5V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19z"/><path d="M3.5 13.5H8l1.5 2.5h5l1.5-2.5h4.5"/>', x:'<path d="M6 6l12 12M18 6 6 18"/>', history:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5M12 7.5V12l3 2"/>'
 };
 function icon(name, cls = ''){ return `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICON[name] || ICON.star}</svg>`; }
 Object.values(TOPICS).forEach(T => T.ic = icon(TOPIC_ICON[T.id] || 'star'));
@@ -836,6 +872,9 @@ const safeColor = c => (typeof c === 'string' && /^#[0-9a-f]{3,8}$/i.test(c)) ? 
 function avatar(name, color, cls = '', letter){ return `<span class="av ${cls}" style="--c:${safeColor(color)}">${esc(letter || initial(name))}</span>`; }
 const randId = (len = 12) => Array.from(crypto.getRandomValues(new Uint8Array(len)), b => 'abcdefghijkmnpqrstuvwxyz23456789'[b % 32]).join('');
 const whenStr = () => new Date().toLocaleDateString(undefined, {day:'numeric', month:'short'}) + ' ' + new Date().toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
+if (!/^[a-z0-9]{6}$/.test(S.code || '')){ S.code = randId(6); save(); }
+const fmtCode = c => String(c).toUpperCase().replace(/^(...)(...)$/, '$1 $2');
+const normCode = c => String(c || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 function rivalKey(name, id){ return id ? 'id:' + id : 'local:' + String(name).trim().toLowerCase(); }
 function recordVs(key, n, c, res){
   // one person, one record: merge a same-name entry from the other kind (duel on this phone vs links)
@@ -1063,23 +1102,126 @@ setInterval(() => { if (!document.hidden) syncChallenges(); }, 25000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) syncChallenges(); });
 addEventListener('online', () => syncChallenges());
 
+/* ================= friends + inbox ================= */
+// Every phone has a private inbox topic on the relay, named by its friend code.
+// Friend requests, challenges and live invites are small messages posted to the other person's inbox.
+const inboxTopic = code => 'twominds-u-' + code;
+const IB = {es:null};
+const validCode = c => typeof c === 'string' && /^[a-z0-9]{6}$/.test(c);
+const meCard_ = () => ({i: S.id, n: nameOf('me'), c: S.me.color, code: S.code});
+function sendTo(code, obj){ return postTopic(inboxTopic(code), Object.assign(meCard_(), obj)); }
+function isFriend(i){ return !!S.friends[i]; }
+function friendList(){ return Object.values(S.friends).sort((a, b) => (b.at || 0) - (a.at || 0)); }
+function touchFriend(x){ const f = S.friends[x.i]; if (f){ f.n = x.n; f.c = safeColor(x.c); f.code = x.code; } }
+function inboxOpen(){
+  if (IB.es || !S.me.name) return;
+  try{
+    const es = new EventSource(RELAY + inboxTopic(S.code) + '/sse?since=all');
+    IB.es = es;
+    es.onmessage = ev => {
+      if (IB.es !== es) return;
+      let m; try{ m = JSON.parse(ev.data); }catch(e){ return; }
+      if (!m || m.event !== 'message' || typeof m.message !== 'string' || S.ibSeen.includes(m.id)) return;
+      S.ibSeen.push(m.id); if (S.ibSeen.length > 400) S.ibSeen = S.ibSeen.slice(-300);
+      let x; try{ x = JSON.parse(m.message); }catch(e){ save(); return; }
+      try{ onInbox(x, (m.time || Date.now()/1000) * 1000); }catch(e){}
+      save();
+    };
+  }catch(e){}
+}
+function inboxClose(){ if (IB.es) IB.es.close(); IB.es = null; }
+document.addEventListener('visibilitychange', () => { if (!document.hidden) inboxOpen(); });
+function refreshSocial(){ if (['home','friends'].includes(current)) go(current, {keepScroll:true}); updateFriendDot(); }
+function updateFriendDot(){ const t = document.querySelector('.tab[data-go="friends"]'); if (t) t.classList.toggle('dot', Object.keys(S.reqIn).length > 0 || pendingInbox().length > 0); }
+function pendingInbox(){ const now = Date.now(); return S.inbox.filter(it => !it.done && (it.k !== 'lv' || now - it.at < 15*60e3) && (it.k !== 'ch' || !S.played[it.cid])); }
+
+function onInbox(x, at){
+  if (!x || typeof x !== 'object' || x.i === S.id || !validMini(x) || !validCode(x.code)) return;
+  const known = isFriend(x.i);
+  if (x.type === 'freq'){                       // someone asks to be friends
+    if (known){ touchFriend(x); sendTo(x.code, {type:'facc'}).catch(() => {}); return; }
+    if (S.reqOut[x.code]){ acceptFriend(x); return; }   // we both asked: just become friends
+    S.reqIn[x.i] = {i: x.i, n: x.n, c: safeColor(x.c), code: x.code, at};
+    toast(`${x.n} sent you a friend request`); SFX.badge(); buzz([20, 40, 20]); refreshSocial();
+    return;
+  }
+  if (x.type === 'facc'){                       // they accepted my request
+    if (!S.reqOut[x.code] && !known) return;
+    delete S.reqOut[x.code];
+    S.friends[x.i] = {i: x.i, n: x.n, c: safeColor(x.c), code: x.code, at: Date.now()};
+    if (!known){ toast(`${x.n} accepted your friend request`); SFX.right(); }
+    refreshSocial(); return;
+  }
+  if (x.type === 'fdec'){ delete S.reqOut[x.code]; refreshSocial(); return; }
+  if (!known) return;                           // challenges only from friends
+  touchFriend(x);
+  if (x.type === 'ch' || x.type === 'lv'){
+    if (typeof x.link !== 'string' || x.link.length > 6000) return;
+    const pre = x.type === 'ch' ? 'c=' : 'L=';
+    if (!x.link.startsWith(pre)) return;
+    let p; try{ p = b64d(x.link.slice(2)); }catch(e){ return; }
+    const T = TOPICS[p && p.t]; if (!T) return;
+    const item = {id: randId(8), k: x.type, from: x.i, n: x.n, c: safeColor(x.c), t: p.t, s: p.A ? p.A.s : null, cid: p.x || null, link: x.link, at};
+    S.inbox = [item, ...S.inbox.filter(it => !(it.k === 'lv' && it.from === x.i))].slice(0, 30);
+    if (x.type === 'lv' && Date.now() - at < 10*60e3 && !M) liveInvitePopup(item);
+    else if (x.type === 'ch'){ toast(`${x.n} challenged you: ${T.name}`); SFX.badge(); buzz([20, 40, 20]); }
+    refreshSocial();
+  }
+}
+function acceptFriend(r){
+  S.friends[r.i] = {i: r.i, n: r.n, c: safeColor(r.c), code: r.code, at: Date.now()};
+  delete S.reqIn[r.i]; delete S.reqOut[r.code]; save();
+  sendTo(r.code, {type:'facc'}).catch(() => toast('Accepted. They will see it next time they are online'));
+  toast(`You and ${r.n} are friends now`); SFX.right(); refreshSocial();
+}
+function declineFriend(r){ delete S.reqIn[r.i]; save(); sendTo(r.code, {type:'fdec'}).catch(() => {}); refreshSocial(); }
+async function requestFriend(code, nameHint){
+  code = normCode(code);
+  if (!validCode(code)){ toast('Friend codes have 6 letters and numbers'); return false; }
+  if (code === S.code){ toast("That's your own code"); return false; }
+  if (friendList().some(f => f.code === code)){ toast('You are already friends'); return false; }
+  const back = Object.values(S.reqIn).find(r => r.code === code);
+  if (back){ acceptFriend(back); return true; }
+  try{ await sendTo(code, {type:'freq'}); }
+  catch(e){ toast("Couldn't send the request. Check your internet"); return false; }
+  S.reqOut[code] = {code, n: nameHint || '', at: Date.now()}; save();
+  toast('Friend request sent'); SFX.right(); refreshSocial();
+  return true;
+}
+function openInboxItem(it){
+  it.done = true; save();
+  location.hash = '#' + it.link;
+}
+function liveInvitePopup(it){
+  const T = TOPICS[it.t] || TOPICS.mixed, md = $('modal'); md.hidden = false;
+  md.innerHTML = `<div class="sheet invite"><span class="grab"></span>
+    <div class="lobby-vs"><div class="sb">${avatar(it.n, it.c, 'l')}<span class="nm2">${esc(it.n)}</span></div><div class="pulse live"><i></i><i></i><i></i></div><div class="sb">${avatar(nameOf('me'), S.me.color, 'l')}<span class="nm2">You</span></div></div>
+    <h3 style="text-align:center">${esc(it.n)} wants to play live</h3>
+    <div style="display:flex;justify-content:center"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)}</span></div>
+    <button class="cta" type="button" id="ivGo">${icon('zap','sm')}Join now</button><button class="btn ghost" type="button" id="ivNo">Not now</button></div>`;
+  SFX.vs(); buzz([30, 60, 30, 60]);
+  $('ivGo').onclick = () => { md.hidden = true; autoJoin = true; openInboxItem(it); };
+  $('ivNo').onclick = () => { md.hidden = true; refreshSocial(); };
+}
+let autoJoin = false;
+
 /* ================= router ================= */
-const APP_SCREENS = ['welcome','home','topics','topic','couple','me','us','results','incoming','coupleRes','history','board','lobby'];
+const APP_SCREENS = ['welcome','home','topics','topic','couple','me','us','results','incoming','coupleRes','history','board','lobby','friends'];
 let boardCid = null;
 let current = 'home', topicSel = 'gk';
 function go(id, opts = {}){
   current = id;
   if (id !== 'results' && id !== 'coupleRes' && id !== 'incoming'){ parts = []; }
   for (const s of APP_SCREENS) $(s).hidden = s !== id;
-  const tabbed = ['home','topics','topic','couple','me'].includes(id);
+  const tabbed = ['home','topics','topic','couple','me','friends'].includes(id);
   $('tabbar').hidden = !tabbed;
   document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-current', t.dataset.go === id || (id === 'topic' && t.dataset.go === 'topics') ? 'page' : 'false'));
-  ({welcome:renderWelcome, home:renderHome, topics:renderTopics, topic:renderTopic, couple:renderCouple, me:renderMe, us:renderUs, history:renderHistory, board:renderBoard}[id] || (() => {}))(opts);
+  ({friends:renderFriends, welcome:renderWelcome, home:renderHome, topics:renderTopics, topic:renderTopic, couple:renderCouple, me:renderMe, us:renderUs, history:renderHistory, board:renderBoard}[id] || (() => {}))(opts);
   const el = $(id);
   if (el && !opts.keepScroll){ el.scrollTop = 0; el.classList.remove('enter'); void el.offsetWidth; el.classList.add('enter'); }
 }
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-go]'); if (t){ SFX.tap(); go(t.dataset.go); return; }
+  const t = e.target.closest('[data-go]'); if (t){ SFX.tap(); if (t.classList.contains('tab')){ topicIntent = null; withFriend = null; } go(t.dataset.go); return; }
   const tp = e.target.closest('[data-topic]'); if (tp){ SFX.tap(); topicSel = tp.dataset.topic; go('topic'); return; }
   const bd = e.target.closest('[data-board]'); if (bd){ SFX.tap(); go('board', {cid: bd.dataset.board}); return; }
 });
@@ -1093,6 +1235,15 @@ function meCard(){
     ${rv.length ? `<div class="rivals">${rv.map(r => `<div class="rival">${avatar(r.n, r.c, 's')}<span class="rn">${esc(r.n)}</span><span class="rs"><b class="res-w">${r.w}</b>–<b class="res-l">${r.l}</b></span></div>`).join('')}</div>`
       : `<p class="small">Play a duel or share a challenge link. Everyone you play shows up here with your record.</p>`}
   </div>`;
+}
+function inboxBanners(){
+  const reqs = Object.values(S.reqIn), items = pendingInbox().slice(0, 4);
+  if (!reqs.length && !items.length) return '';
+  const rows = [
+    ...reqs.map(r => `<div class="bn">${avatar(r.n, r.c, 's')}<div><b>${esc(r.n)}</b><span>wants to be friends</span></div><button type="button" class="pillbtn ok" data-acc="${esc(r.i)}">Accept</button></div>`),
+    ...items.map(it => { const T = TOPICS[it.t] || TOPICS.mixed; return `<div class="bn ${it.k === 'lv' ? 'live' : ''}">${avatar(it.n, it.c, 's')}<div><b>${esc(it.n)}</b><span>${it.k === 'lv' ? 'is waiting to play live' : 'challenged you'} · ${esc(T.name)}${it.s != null ? ' · ' + it.s + ' to beat' : ''}</span></div><button type="button" class="pillbtn" data-ib="${it.id}">${it.k === 'lv' ? 'Join' : 'Play'}</button></div>`; })
+  ];
+  return `<div class="banners">${rows.join('')}</div>`;
 }
 function challengeRows(){
   const now = Date.now();
@@ -1115,6 +1266,7 @@ function renderHome(){
   $('home').innerHTML = `<div class="col">
     <div class="top"><h1 class="logo"><span class="a">Two</span> <span class="b">Minds</span></h1><button class="iconbtn" type="button" data-go="me" aria-label="Profile">${icon('user')}</button></div>
     ${meCard()}
+    ${inboxBanners()}
     <div class="modes">
       <button class="mode m-live" type="button" id="hmLive"><span class="wm" aria-hidden="true">${icon('zap')}</span><span class="mi">${icon('zap')}</span><div><b>Play live</b><span class="d">Both online now, each on your own phone.</span></div></button>
       <button class="mode m-link" type="button" id="hmLink"><span class="wm" aria-hidden="true">${icon('send')}</span><span class="mi">${icon('send')}</span><div><b>Challenge by link</b><span class="d">Play now. They play whenever they like.</span></div></button>
@@ -1131,6 +1283,7 @@ function renderHome(){
   $('hmLink').onclick = () => { SFX.tap(); pickTopicThen('link'); };
   $('hmLive').onclick = () => { SFX.tap(); pickTopicThen('live'); };
   $('hmDaily').onclick = () => { SFX.tap(); startSolo({kind:'daily', topic:'daily'}); };
+  wireSocial($('home'));
 }
 function pickTopicThen(mode){ go('topics', {intent: mode}); }
 
@@ -1155,7 +1308,8 @@ function renderTopics(opts = {}){
     if (searchTerm && !T.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
     return true;
   });
-  const intentLine = topicIntent === 'duel' ? 'Pick a topic for your duel on this phone' : topicIntent === 'link' ? 'Pick a topic for your link challenge' : topicIntent === 'live' ? 'Pick a topic to play live' : 'Tap a topic to see your levels and play';
+  const FF = withFriend && S.friends[withFriend];
+  const intentLine = FF ? `Pick a topic to play with ${esc(FF.n)}` : topicIntent === 'duel' ? 'Pick a topic for your duel on this phone' : topicIntent === 'link' ? 'Pick a topic for your link challenge' : topicIntent === 'live' ? 'Pick a topic to play live' : 'Tap a topic to see your levels and play';
   $('topics').innerHTML = `<div class="col">
     <div class="top"><h1 class="title">Topics</h1></div>
     <p class="lede">${intentLine}</p>
@@ -1167,29 +1321,40 @@ function renderTopics(opts = {}){
   $('topics').querySelectorAll('[data-cat]').forEach(b => b.onclick = () => { catSel = b.dataset.cat; SFX.tap(); renderTopics(); });
 }
 
+let withFriend = null;
 function renderTopic(){
   const T = TOPICS[topicSel] || TOPICS.gk, id = T.id;
+  const F = withFriend && S.friends[withFriend];
   const lm = topicLevel('me', id);
   const fav = S.fav.includes(id);
   const count = id === 'us' ? S.us.length : id === 'mixed' ? TOPIC_IDS.reduce((a, t) => a + QB.topics[t].length, 0) : T.q.length;
   const usNote = id === 'us' ? (S.us.length < 3 ? `<p class="small">Write at least 3 questions about you two to play this topic. With fewer than 7, the rest come from Mixed Bag.</p>` : `<p class="small">${S.us.length} questions written. Share them as a link and see who knows your story best.</p>`) : '';
   const lvRow = (who, L) => `<div class="lvrow">${avatar(nameOf(who), S[who].color, 's')}<div><div class="meta"><b>${esc(nameOf(who))}</b><span>Lv ${L.lv} · ${titleFor(L.lv, TOPIC_TITLES)}</span></div><div class="xpbar" style="--c:${S[who].color}"><i style="width:${Math.round(L.into / L.need * 100)}%"></i></div></div></div>`;
   $('topic').innerHTML = `<div class="col">
-    <div class="top"><button class="iconbtn" type="button" data-go="topics" aria-label="All topics">${icon('back')}</button><span class="small">${topicIntent === 'duel' ? 'Duel on this phone' : topicIntent === 'link' ? 'Challenge by link' : topicIntent === 'live' ? 'Play live' : 'Topic'}</span></div>
+    <div class="top"><button class="iconbtn" type="button" data-go="topics" aria-label="All topics">${icon('back')}</button><span class="small">${F ? 'Playing with ' + esc(F.n) : topicIntent === 'duel' ? 'Duel on this phone' : topicIntent === 'link' ? 'Challenge by link' : topicIntent === 'live' ? 'Play live' : 'Topic'}</span></div>
     <div class="thero" style="--c:${T.c}"><span class="ic">${T.ic}</span><div><h1>${esc(T.name)}</h1><p>${count} questions · 7 rounds · bonus round ×2</p></div>
       ${id !== 'us' && id !== 'mixed' ? `<button type="button" class="fav" id="favBtn" aria-pressed="${fav}">${icon(fav ? 'starf' : 'star', 'sm')}${fav ? 'Favourite' : 'Favourite'}</button>` : ''}</div>
     ${usNote}
     ${id === 'us' ? `<button class="btn" type="button" data-go="us">${icon('pen','sm')}Write questions about us</button>` : ''}
     <div class="card lvls"><div class="h" style="margin:0 0 -2px">Your level</div>${lvRow('me', lm)}</div>
-    <div class="stack">
+    ${F ? `<div class="stack">
+    <button class="cta" type="button" id="tpFLive">${icon('zap','sm')}Play live with ${esc(F.n)}</button>
+    <button class="cta p2" type="button" id="tpFCh">Challenge ${esc(F.n)}<small>Play now. It lands in ${esc(F.n)}'s inbox, no link needed</small></button>
+    <button class="btn ghost" type="button" id="tpFX">Play another way</button></div>` : `<div class="stack">
     <button class="cta" type="button" id="tpLive">Play live<small>Both online now, each on your own phone</small></button>
     <button class="cta p2" type="button" id="tpLink">Challenge by link<small>Play now, they play whenever they like</small></button>
     <button class="cta p1" type="button" id="tpDuel">Duel on this phone<small>Sitting together, one screen</small></button>
-    <button class="btn" type="button" id="tpBot">Practice against a bot<small>${['Easy','Normal','Hard'][S.settings.botLevel]} · change in Profiles</small></button></div>
+    <button class="btn" type="button" id="tpBot">Practice against a bot<small>${['Easy','Normal','Hard'][S.settings.botLevel]} · change in Profile</small></button></div>`}
   </div>`;
   if ($('favBtn')) $('favBtn').onclick = () => { S.fav = fav ? S.fav.filter(x => x !== id) : [id, ...S.fav]; save(); SFX.tap(); renderTopic(); };
   const usOk = id !== 'us' || S.us.length >= 3;
   const guard = fn => () => { if (!usOk){ toast('Write at least 3 Us questions first'); go('us'); return; } fn(); };
+  if (F){
+    $('tpFLive').onclick = guard(() => startLive(id, F.i));
+    $('tpFCh').onclick = guard(() => startSolo({kind:'new', topic:id, toFriend: F.i}));
+    $('tpFX').onclick = () => { withFriend = null; renderTopic(); };
+    return;
+  }
   $('tpDuel').onclick = guard(() => startDuel(id));
   $('tpLink').onclick = guard(() => startSolo({kind:'new', topic:id}));
   $('tpLive').onclick = guard(() => startLive(id));
@@ -1353,7 +1518,7 @@ function startSolo(o){
   M = null;
   const matchT = o.ms || (S.settings.relaxed ? 15000 : 10000);
   M = {T: matchT, mode:'solo', kind, topic:o.topic, refs, Q, ghost, round:-1, score:0, gscore:0, log:[], phase:'intro', id:Math.random(), link:o.link || null, date:o.date || (o.topic === 'daily' ? today() : null)};
-  M.cid = o.cid || null;
+  M.cid = o.cid || null; M.toFriend = o.toFriend || null;
   const me = {n:nameOf('me'), c:S.me.color}, opp = ghost ? {n:ghost.n, c:ghost.c} : {n:'Anyone', c:'#8b92bf', l:'?'};
   $('soloMe').innerHTML = `${avatar(me.n, me.c, 's')}<div><div class="nm">${esc(me.n)}</div><div class="sc">0<span class="gain"></span></div></div>`;
   $('soloOpp').innerHTML = `${avatar(opp.n, opp.c, 's', opp.l)}<div><div class="nm">${esc(opp.n)}</div><div class="sc">${ghost ? '0' : '–'}<span class="gain"></span></div><div class="state" id="oppState">${ghost ? '' : 'plays your link'}</div></div>`;
@@ -1561,6 +1726,11 @@ function renderResults(o){
   if (m.mode === 'duel') actions = `<button class="cta" id="rAgain" type="button">Rematch</button><div class="row"><button class="btn" type="button" data-go="topics">New topic</button><button class="btn" type="button" data-go="home">Home</button></div>`;
   else if (m.kind === 'live') actions = `<div id="liveRm"></div><button class="cta" id="lvRe" type="button">Rematch live<small>New questions, same topic</small></button><button class="btn" type="button" id="lvHome">Home</button>`;
   else if (m.kind === 'bot') actions = `<button class="cta" id="rAgain" type="button">Play again</button><div class="row"><button class="btn" type="button" data-go="topics">New topic</button><button class="btn" type="button" data-go="home">Home</button></div>`;
+  else if (r === 'p' && m.toFriend && S.friends[m.toFriend]){
+    const F = S.friends[m.toFriend];
+    extra = `<div class="sync" id="friendSend"><span class="spin"></span>Sending to ${esc(F.n)}…</div><div class="card" id="liveBoard" hidden></div>`;
+    actions = `<button class="btn" type="button" data-go="home">Done</button>`;
+  }
   else if (r === 'p'){
     actions = `<button class="cta" id="rShare" type="button">Share challenge link<small>Anyone with the link can play. Scores come back here automatically.</small></button><div class="linkbox" id="lbox" hidden></div><button class="btn" type="button" data-go="home">Home</button>`;
     extra = `<div class="card" id="liveBoard" hidden></div>`;
@@ -1603,9 +1773,27 @@ function renderResults(o){
   if ($('rBack')) $('rBack').onclick = () => startSolo({kind:'new', topic: m.topic === 'daily' ? 'mixed' : m.topic});
   if (m.kind === 'reply' && m.cid) liveBoard(m.cid, 'player');
   if (m.kind === 'live') liveResultsUI(m);
+  if (r === 'p' && m.toFriend && S.friends[m.toFriend]) deliverChallenge(m, myPack);
   results_ctx = {m, s1, myPack};
 }
 let results_ctx = null;
+async function deliverChallenge(m, myPack){
+  const F = S.friends[m.toFriend], st = S.sent[m.cid], T = TOPICS[m.topic];
+  const url = linkFor('ch', m.topic, m.refs, myPack, null, m.date, m.T, m.cid);
+  st.shared = true; st.url = url; st.to = F.i; S.challenges.sent++; save();
+  const el = () => $('friendSend');
+  try{
+    await sendTo(F.code, {type:'ch', link: url.split('#')[1]});
+    if (el()){ el().className = 'sync ok'; el().innerHTML = `${icon('check','sm')}Sent to ${esc(F.n)}. Their score shows up here when they play.`; }
+    liveBoard(m.cid, 'sender');
+  }catch(e){
+    if (!el()) return;
+    el().className = 'sync bad';
+    el().innerHTML = `<span>Couldn't reach ${esc(F.n)}'s inbox (no connection?).</span><button type="button" class="btn" id="fsLink">${icon('link','sm')}Send as a link instead</button>`;
+    $('fsLink').onclick = () => shareLink(url, `${myPack.n} challenged you on Two Minds: ${T.name}. ${myPack.s} points to beat!`);
+  }
+  const nb = checkBadges(); save(); badgeToast(nb);
+}
 
 function countUp(root){
   root.querySelectorAll('[data-count]').forEach(el => {
@@ -1710,6 +1898,7 @@ function showLinkBox(url, text){
 function handleHash(){
   const h = location.hash;
   if (h.startsWith('#L=')) return handleLiveHash(h);
+  if (h.startsWith('#F=')) return handleFriendHash(h);
   if (!h.startsWith('#c=')) return false;
   let p = null;
   try{ p = b64d(h.slice(3)); }catch(e){}
@@ -1772,7 +1961,7 @@ function handleHash(){
   };
   return true;
 }
-addEventListener('hashchange', () => { if (location.hash.startsWith('#c=') || location.hash.startsWith('#L=')){ if (M && M.kind === 'live') liveBye(); M = null; $('duel').hidden = true; $('solo').hidden = true; handleHash(); } });
+addEventListener('hashchange', () => { if (location.hash.startsWith('#c=') || location.hash.startsWith('#L=') || location.hash.startsWith('#F=')){ if (M && M.kind === 'live') liveBye(); M = null; $('duel').hidden = true; $('solo').hidden = true; handleHash(); } });
 
 /* ================= live play: two phones at the same time ================= */
 // Both phones listen to one relay topic (server-sent events) and post small messages:
@@ -1873,12 +2062,14 @@ function liveResultsUI(m){
 }
 
 /* host: make a room, share it, wait */
-function startLive(topicId){
+function startLive(topicId, friendId){
   noteRecent(topicId);
   const refs = pickRefs(topicId), room = randId(), ms = S.settings.relaxed ? 15000 : 10000;
   const host = {i: S.id, n: nameOf('me'), c: S.me.color, lv: overallLevel('me')};
   const url = baseUrl() + '#L=' + b64e({v:2, k:'live', r: room, t: topicId, q: packRefs(refs), h: host, ms});
-  Object.assign(LV, {role:'host', game:1, buf:{}, opp:null, started:false, pendingRm:null, offerRm:null, ctx:{room, refs, t: topicId, ms, url}});
+  const F = friendId && S.friends[friendId];
+  Object.assign(LV, {role:'host', game:1, buf:{}, opp:null, started:false, pendingRm:null, offerRm:null, ctx:{room, refs, t: topicId, ms, url, friend: F ? F.i : null}});
+  if (F) sendTo(F.code, {type:'lv', link: url.split('#')[1]}).then(() => { const e = $('lbState'); if (e && !LV.started){ e.className = 'sync ok'; e.innerHTML = `${icon('check','sm')}Invite sent to ${esc(F.n)}`; } }).catch(() => { const e = $('lbState'); if (e){ e.className = 'sync bad'; e.textContent = `Couldn't reach ${F.n}'s inbox. Share the link instead.`; } });
   liveOpen(room, x => {
     if (x.type === 'join' && !LV.started && validMini(x)){
       LV.started = true; LV.opp = {i: x.i, n: x.n, c: x.c, lv: x.lv};
@@ -1893,20 +2084,20 @@ function startLive(topicId){
 }
 function recordSeen(){ if (LV.opp) S.rivals[rivalKey(LV.opp.n, LV.opp.i)] && (S.rivals[rivalKey(LV.opp.n, LV.opp.i)].at = Date.now()); }
 function renderLobby(){
-  const c = LV.ctx, T = TOPICS[c.t] || TOPICS.mixed;
+  const c = LV.ctx, T = TOPICS[c.t] || TOPICS.mixed, F = c.friend && S.friends[c.friend];
   const text = `${nameOf('me')} wants to play Two Minds live: ${T.name}. Tap to join!`;
   $('lobby').innerHTML = `<div class="col lobby">
     <div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)} · Live</span></div>
-    <h1 class="winner">Waiting for a player</h1>
+    <h1 class="winner">${F ? 'Waiting for ' + esc(F.n) : 'Waiting for a player'}</h1>
     <div class="lobby-vs">
       <div class="sb">${avatar(nameOf('me'), S.me.color, 'l')}<span class="nm2">${esc(nameOf('me'))}</span></div>
       <div class="pulse"><i></i><i></i><i></i></div>
-      <div class="sb ghostav">${avatar('?', '#8b92bf', 'l', '?')}<span class="nm2">Waiting…</span></div>
+      <div class="sb ghostav">${F ? avatar(F.n, F.c, 'l') : avatar('?', '#8b92bf', 'l', '?')}<span class="nm2">${F ? esc(F.n) : 'Waiting…'}</span></div>
     </div>
-    <p class="lede" style="text-align:center">Send this link. The match starts the moment they open it and tap <b>Join</b>. Keep this screen open.</p>
-    <button class="cta" type="button" id="lbShare">${icon('send','sm')}Share live link</button>
+    <p class="lede" style="text-align:center">${F ? `${esc(F.n)} gets an invite in the app. If their app is closed, give them a nudge.` : 'Send this link. The match starts the moment they open it and tap <b>Join</b>. Keep this screen open.'}</p>
+    <button class="${F ? 'btn' : 'cta'}" type="button" id="lbShare">${icon('send','sm')}${F ? 'Nudge with a link' : 'Share live link'}</button>
     <div class="linkbox" id="lbox" hidden></div>
-    <div class="sync" id="lbState"><span class="spin"></span>Room open</div>
+    <div class="sync" id="lbState"><span class="spin"></span>${F ? 'Sending invite…' : 'Room open'}</div>
     <button class="btn ghost" type="button" id="lbCancel">Cancel</button>
   </div>`;
   $('lbShare').onclick = async () => { showLinkBox(c.url, text); await shareLink(c.url, text); };
@@ -1938,6 +2129,7 @@ function handleLiveHash(h){
     <div class="sync" id="joinState" hidden></div>
     <button class="btn" type="button" data-go="home">Not now</button></div>`;
   go('incoming');
+  if (autoJoin && S.me.name){ autoJoin = false; setTimeout(() => $('incGo') && $('incGo').click(), 50); }
   if (S.me.color === H.c){ S.me.color = freeColor([H.c]); save(); }
   $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.c === S.me.color));
   $('incColors').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; S.me.color = b.dataset.c; save(); $('incColors').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); };
@@ -1962,6 +2154,65 @@ function handleLiveHash(h){
     });
     clearTimeout(LV.joinT);
     LV.joinT = setTimeout(() => { if (!LV.started && current === 'incoming'){ st.className = 'sync bad'; st.textContent = `No answer from ${H.n}. They may have left the waiting screen. Ask them to open a new live room.`; $('incGo').disabled = false; } }, 20000);
+  };
+  return true;
+}
+
+/* ================= friends screen ================= */
+function friendLink(){ return baseUrl() + '#F=' + b64e({v:2, i: S.id, n: nameOf('me'), c: S.me.color, code: S.code}); }
+function renderFriends(){
+  const fl = friendList(), reqs = Object.values(S.reqIn), outs = Object.values(S.reqOut), items = pendingInbox();
+  $('friends').innerHTML = `<div class="col">
+    <div class="top"><h1 class="title">Friends</h1></div>
+    <div class="card codecard">
+      <div class="cc-top">${avatar(nameOf('me'), S.me.color, 'l')}<div><div class="cc-n">${esc(nameOf('me'))}</div><div class="small">Your friend code</div><button type="button" class="code" id="copyCode" aria-label="Copy friend code">${fmtCode(S.code)}${icon('copy','sm')}</button></div></div>
+      <button class="cta" type="button" id="shareMe">${icon('useradd','sm')}Invite a friend</button>
+      <form class="addrow" id="addForm" autocomplete="off"><input id="addCode" maxlength="9" placeholder="Enter a friend code" autocapitalize="characters" spellcheck="false"><button class="pillbtn" type="submit">Send request</button></form>
+    </div>
+    ${reqs.length ? `<div class="h">Friend requests</div><ul class="list">${reqs.map(r => `<li class="li">${avatar(r.n, r.c, 's')}<div><div class="t1">${esc(r.n)}</div><div class="t2">Code ${fmtCode(r.code)}</div></div><button type="button" class="pillbtn ghost" data-dec="${esc(r.i)}">Decline</button><button type="button" class="pillbtn ok" data-acc="${esc(r.i)}">Accept</button></li>`).join('')}</ul>` : ''}
+    ${items.length ? `<div class="h">Waiting for you</div><div class="banners">${items.map(it => { const T = TOPICS[it.t] || TOPICS.mixed; return `<div class="bn ${it.k === 'lv' ? 'live' : ''}">${avatar(it.n, it.c, 's')}<div><b>${esc(it.n)}</b><span>${it.k === 'lv' ? 'is waiting to play live' : 'challenged you'} · ${esc(T.name)}</span></div><button type="button" class="pillbtn" data-ib="${it.id}">${it.k === 'lv' ? 'Join' : 'Play'}</button></div>`; }).join('')}</div>` : ''}
+    <div class="h">Your friends · ${fl.length}</div>
+    ${fl.length ? `<ul class="list">${fl.map(f => { const r = S.rivals['id:' + f.i] || {w:0, l:0}; return `<li class="li fr">${avatar(f.n, f.c, 's')}<div><div class="t1">${esc(f.n)}</div><div class="t2">You <b class="res-w">${r.w}</b> – <b class="res-l">${r.l}</b> ${esc(f.n)}</div></div><button type="button" class="pillbtn live" data-flive="${esc(f.i)}">${icon('zap','sm')}Live</button><button type="button" class="pillbtn" data-fch="${esc(f.i)}">Challenge</button></li>`; }).join('')}</ul>`
+      : `<div class="empty">${icon('users','xl')}<b>No friends yet</b><span>Tap <b>Invite a friend</b> and send it to her, or type her friend code. Once she accepts, you can challenge each other right from here, no links.</span></div>`}
+    ${outs.length ? `<div class="h">Requests you sent</div><ul class="list">${outs.map(o => `<li class="li"><span class="tic" style="--c:var(--muted)">${icon('send','sm')}</span><div><div class="t1">${o.n ? esc(o.n) : 'Code ' + fmtCode(o.code)}</div><div class="t2">Waiting for them to accept</div></div><button type="button" class="pillbtn ghost" data-cancel="${esc(o.code)}">Cancel</button></li>`).join('')}</ul>` : ''}
+    <p class="small" style="text-align:center">Requests and challenges arrive when the other person's app is open, or the next time they open it (within about 12 hours).</p>
+  </div>`;
+  $('copyCode').onclick = async () => { try{ await navigator.clipboard.writeText(fmtCode(S.code)); toast('Friend code copied'); }catch(e){ toast('Your code: ' + fmtCode(S.code)); } };
+  $('shareMe').onclick = () => shareLink(friendLink(), `Add me on Two Minds! Tap to send me a friend request (my code is ${fmtCode(S.code)}).`);
+  $('addForm').onsubmit = async e => { e.preventDefault(); if (await requestFriend($('addCode').value)) $('addCode').value = ''; };
+  wireSocial($('friends'));
+  $('friends').querySelectorAll('[data-cancel]').forEach(b => b.onclick = () => { delete S.reqOut[b.dataset.cancel]; save(); renderFriends(); });
+  $('friends').querySelectorAll('[data-dec]').forEach(b => b.onclick = () => { const r = S.reqIn[b.dataset.dec]; if (r) declineFriend(r); });
+  $('friends').querySelectorAll('[data-flive],[data-fch]').forEach(b => b.onclick = () => {
+    withFriend = b.dataset.flive || b.dataset.fch; topicIntent = b.dataset.flive ? 'live' : 'link'; SFX.tap(); go('topics');
+  });
+  updateFriendDot();
+}
+function wireSocial(root){
+  root.querySelectorAll('[data-acc]').forEach(b => b.onclick = () => { const r = S.reqIn[b.dataset.acc]; if (r) acceptFriend(r); });
+  root.querySelectorAll('[data-ib]').forEach(b => b.onclick = () => { const it = S.inbox.find(x => x.id === b.dataset.ib); if (!it) return; if (it.k === 'lv') autoJoin = true; openInboxItem(it); });
+}
+function handleFriendHash(h){
+  let p = null; try{ p = b64d(h.slice(3)); }catch(e){}
+  history.replaceState(null, '', baseUrl());
+  if (!p || p.v !== 2 || !validMini(p) || !validCode(p.code)){ toast('That friend link looks broken'); return false; }
+  if (p.i === S.id){ toast('This is your own friend link. Send it to someone else'); go('friends'); return true; }
+  if (isFriend(p.i)){ toast(`You and ${p.n} are already friends`); go('friends'); return true; }
+  $('modal').hidden = true;
+  $('incoming').innerHTML = `<div class="col" style="min-height:70vh;align-content:center">
+    <div style="display:grid;justify-items:center;gap:14px;text-align:center">
+      ${avatar(p.n, p.c, 'l')}
+      <h1 class="winner">Add ${esc(p.n)} as a friend?</h1>
+      <p class="lede">${esc(p.n)} gets your request and taps Accept. Then you can challenge each other from the Friends tab, no links needed.</p>
+    </div>
+    ${S.me.name ? '' : `<div class="card stack"><div class="field">Your name<input id="incName" maxlength="14" autocomplete="off" placeholder="Type your name"></div></div>`}
+    <button class="cta" type="button" id="frGo">${icon('useradd','sm')}Send friend request</button>
+    <button class="btn" type="button" data-go="home">Not now</button></div>`;
+  go('incoming');
+  $('frGo').onclick = async () => {
+    if (!S.me.name){ const n = $('incName').value.trim(); if (!n){ toast('Type your name first'); $('incName').focus(); return; } S.me.name = n; save(); inboxOpen(); }
+    $('frGo').disabled = true;
+    if (await requestFriend(p.code, p.n)) go('friends'); else $('frGo').disabled = false;
   };
   return true;
 }
@@ -2120,7 +2371,7 @@ function renderMe(){
   const rv = rivalsList();
   $('me').innerHTML = `<div class="col">
     <div class="top"><h1 class="title">Profile</h1></div>
-    <div class="card stack"><div class="pp">${avatar(nameOf('me'), S.me.color, 'l')}<div><div class="nm" style="font-size:19px">${esc(nameOf('me'))}</div><div class="tt">Level ${lm} · ${titleFor(lm)}</div></div></div>
+    <div class="card stack"><div class="pp">${avatar(nameOf('me'), S.me.color, 'l')}<div><div class="nm" style="font-size:19px">${esc(nameOf('me'))}</div><div class="tt">Level ${lm} · ${titleFor(lm)} · code ${fmtCode(S.code)}</div></div></div>
       <div class="field">Your name<input id="meName" maxlength="14" autocomplete="off" value="${esc(S.me.name)}" placeholder="Your name"></div>
       <div class="colors">${COLORS.map(c => `<button type="button" style="--c:${c}" data-col="${c}" aria-pressed="${S.me.color === c}" aria-label="Colour"></button>`).join('')}</div></div>
     <div class="h">Look</div>
@@ -2182,7 +2433,7 @@ function renderWelcome(){
   const go_ = () => {
     const v = $('wName').value.trim();
     if (!v){ toast('Type your name to start'); $('wName').focus(); return; }
-    S.me.name = v; S.onboarded = true; save(); SFX.right(); go('home');
+    S.me.name = v; S.onboarded = true; save(); SFX.right(); inboxOpen(); go('home');
   };
   $('wGo').onclick = go_;
   $('wName').onkeydown = e => { if (e.key === 'Enter') go_(); };
@@ -2218,11 +2469,12 @@ function pickOpponent(purpose, then){
 }
 
 /* ================= boot ================= */
-document.querySelectorAll('.tab').forEach(t => { const k = {home:'home', topics:'grid', couple:'heart', me:'user'}[t.dataset.go]; const ti = t.querySelector('.ti'); if (ti && k) ti.outerHTML = icon(k); });
+document.querySelectorAll('.tab').forEach(t => { const k = {home:'home', topics:'grid', friends:'users', couple:'heart', me:'user'}[t.dataset.go]; const ti = t.querySelector('.ti'); if (ti && k) ti.outerHTML = icon(k); });
 document.addEventListener('visibilitychange', () => { if (document.hidden && M){ /* timers keep real time; nothing to pause in a live duel */ } });
 applyTheme();
 if (!handleHash()) go(S.me.name ? 'home' : 'welcome');
 setTimeout(syncChallenges, 1200);
+inboxOpen(); updateFriendDot();
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 window.__TM = {S, pickRefs, materialize, b64e, b64d, linkFor, validLink, TOPIC_IDS};
 })();
