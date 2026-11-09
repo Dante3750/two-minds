@@ -2,20 +2,10 @@
 import asyncio, json, os, time
 from urllib.parse import urlparse
 from playwright.async_api import async_playwright
+from relaymock import Relay
 URL = 'http://localhost:8765/'; SHOTS = os.path.join(os.path.dirname(__file__), '..', 'shots')
 RELAY = {}; errs = []; DROP = {'sam': False}
-async def relay(route):
-    req = route.request; u = urlparse(req.url); parts = u.path.strip('/').split('/'); topic = parts[0]
-    hdr = {'Access-Control-Allow-Origin': '*'}
-    if req.method == 'POST':
-        msg = {'id': f'{topic}-{len(RELAY.get(topic, []))}', 'time': int(time.time()), 'event': 'message', 'topic': topic, 'message': req.post_data}
-        RELAY.setdefault(topic, []).append(msg); return await route.fulfill(status=200, headers=hdr, body=json.dumps(msg))
-    if len(parts) > 1 and parts[1] == 'sse':
-        body = 'retry: 250\n\n' + ''.join(f"id: {m['id']}\nevent: message\ndata: {json.dumps(m)}\n\n" for m in RELAY.get(topic, []))
-        return await route.fulfill(status=200, headers={**hdr, 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache'}, body=body)
-    if len(parts) > 1 and parts[1] == 'json':
-        return await route.fulfill(status=200, headers=hdr, body='\n'.join(json.dumps(m) for m in RELAY.get(topic, [])))
-    await route.fulfill(status=404, body='')
+R = Relay(); relay = R.route; RELAY = R.topics
 async def phone(b, tag, name):
     c = await b.new_context(viewport={'width': 390, 'height': 844}, device_scale_factor=2, has_touch=True, is_mobile=True)
     await c.route('https://ntfy.sh/**', relay)

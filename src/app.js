@@ -35,11 +35,11 @@ const TOPIC_TITLES = [[1,'Novice'],[5,'Apprentice'],[10,'Expert'],[15,'Master'],
 const KEY = 'twominds.v2';
 const blankStats = () => ({played:0, won:0, lost:0, draw:0, correct:0, answered:0, fast:0, perfect:0, streak:0, best:0, topics:{}});
 let S = {
-  me:{name:'', color:'#ff6b5a'}, partner:{name:'', color:'#38d6ff'},
+  me:{name:'', color: COLORS[(Math.random()*COLORS.length)|0]}, partner:{name:'', color:'#38d6ff'},
   xp:{me:{}, partner:{}}, stats:{me:blankStats(), partner:blankStats()},
   h2h:[0,0,0], history:[], used:{}, us:[], badges:[], fav:[], recent:[],
   daily:{}, settings:{sound:true, vib:true, relaxed:false, seat:'face', botLevel:1, theme:'velvet'},
-  rivals:{}, sent:{}, played:{}, code:'', friends:{}, reqIn:{}, reqOut:{}, inbox:[], ibSeen:[],
+  rivals:{}, sent:{}, played:{}, blocked:{}, outbox:[], code:'', friends:{}, reqIn:{}, reqOut:{}, inbox:[], ibSeen:[],
   streak:{cur:0, best:0, last:''}, week:{k:'', p:0, g:0}, fweek:{}, lastWeek:null, season:{k:'', p:0}, frames:[], frameOf:{},
   id: Math.random().toString(36).slice(2, 10), onboarded:false, couple:{bestKnow:0, bestLikely:0, played:0}, challenges:{sent:0, played:0, won:0}
 };
@@ -71,8 +71,27 @@ function load(){
     }
   }catch(e){}
 }
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+let saveWarned = false;
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(S)); }
+  catch(e){ prune(true); try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e2){ if (!saveWarned){ saveWarned = true; setTimeout(() => toast('Phone storage is full. Progress may not be saved', 3500), 50); } } }
+}
+// keep stored data small: old challenges, finished inbox items and stale lookups are dropped
+function prune(hard){
+  const now = Date.now(), keep = (hard ? 4 : 14) * 864e5;
+  for (const map of [S.sent, S.played]) for (const k of Object.keys(map)) if (!map[k] || now - (map[k].at || 0) > keep) delete map[k];
+  S.inbox = S.inbox.filter(it => it && now - (it.at || 0) < 7*864e5).slice(0, 30);
+  const fk = Object.keys(S.frameOf); if (fk.length > 150) fk.slice(0, fk.length - 150).forEach(k => delete S.frameOf[k]);
+  const rv = Object.entries(S.rivals).sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
+  if (rv.length > 80) rv.slice(80).forEach(([k]) => delete S.rivals[k]);
+  S.history = S.history.slice(0, hard ? 30 : 60);
+  if (hard) S.used = {};
+  S.recent = S.recent.filter(id => typeof id === 'string' && Object.prototype.hasOwnProperty.call(QB.topics, id) || id === 'mixed' || id === 'us');
+  S.fav = S.fav.filter(id => typeof id === 'string' && Object.prototype.hasOwnProperty.call(QB.topics, id));
+}
 load();
+try{ prune(false); }catch(e){}
+S.outbox = Array.isArray(S.outbox) ? S.outbox : []; S.blocked = (S.blocked && typeof S.blocked === 'object') ? S.blocked : {};
 
 
 /* ================= icons (hand-drawn line set, 24px grid) ================= */
@@ -145,9 +164,13 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 function shuffle(a, rnd = Math.random){ for (let i = a.length - 1; i > 0; i--){ const j = (rnd()*(i+1))|0; [a[i], a[j]] = [a[j], a[i]]; } return a; }
 function hash(s){ let h = 2166136261; for (let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
 function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-function today(){ const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+// the Daily Duel day is the same for everyone in the world (UTC), so friends in other time zones get the same questions
+function today(){ return new Date().toISOString().slice(0, 10); }
+const RESERVED = k => k in Object.prototype;          // 'constructor', '__proto__' … must never become map keys
+const own = (o, k) => o != null && Object.prototype.hasOwnProperty.call(o, k);
+const topicOk = t => typeof t === 'string' && own(TOPICS, t);
 const nameOf = who => (S[who].name || (who === 'me' ? 'You' : 'Partner')).trim();
-const initial = n => (String(n).trim()[0] || '?').toUpperCase();
+const initial = n => (Array.from(String(n).trim())[0] || '?').toUpperCase();
 const safeColor = c => (typeof c === 'string' && /^#[0-9a-f]{3,8}$/i.test(c)) ? c : '#9aa3d1';
 const FRAME_IDS = ['bronze','silver','gold','plat','diamond','flame'];
 const validFrame = f => f === undefined || f === '' || FRAME_IDS.includes(f);
@@ -165,12 +188,13 @@ const fmtCode = c => String(c).toUpperCase().replace(/^(...)(...)$/, '$1 $2');
 const normCode = c => String(c || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 function rivalKey(name, id){ return id ? 'id:' + id : 'local:' + String(name).trim().toLowerCase(); }
 function recordVs(key, n, c, res){
-  // one person, one record: merge a same-name entry from the other kind (duel on this phone vs links)
-  const low = String(n).trim().toLowerCase();
-  const twin = Object.keys(S.rivals).find(k => k !== key && S.rivals[k].n.trim().toLowerCase() === low);
-  if (twin){
-    const keepId = key.startsWith('id:') ? key : (twin.startsWith('id:') ? twin : key);
-    const other = keepId === key ? twin : key, a = S.rivals[keepId] || {n, c, w:0, l:0, d:0, at:0}, b = S.rivals[other];
+  // one person, one record: a same-name duel on this phone ('local:') belongs to the online player with that name.
+  // Two different online players ('id:') are never merged, even if they share a name.
+  const low = String(n).trim().toLowerCase(), isId = key.startsWith('id:');
+  const twins = Object.keys(S.rivals).filter(k => k !== key && (isId ? k.startsWith('local:') : k.startsWith('id:')) && S.rivals[k].n.trim().toLowerCase() === low);
+  if (twins.length === 1){
+    const twin = twins[0], keepId = isId ? key : twin, other = isId ? twin : key;
+    const a = S.rivals[keepId] || {n, c, w:0, l:0, d:0, at:0}, b = S.rivals[other];
     if (b){ a.w += b.w; a.l += b.l; a.d += b.d; delete S.rivals[other]; }
     S.rivals[keepId] = a; key = keepId;
   }
@@ -298,18 +322,36 @@ function validPlayer(x){
   if (!Number.isInteger(x.s) || x.s < 0 || x.s > 160) return false;
   if (!/^#[0-9a-f]{3,8}$/i.test(String(x.c))) return false;
   if (x.lv !== undefined && !(Number.isInteger(x.lv) && x.lv >= 0 && x.lv < 1000)) return false;
-  if (x.i !== undefined && !(typeof x.i === 'string' && /^[a-z0-9]{1,16}$/.test(x.i))) return false;
+  if (x.i !== undefined && !(typeof x.i === 'string' && /^[a-z0-9]{1,16}$/.test(x.i) && !RESERVED(x.i))) return false;
   if (!validFrame(x.f)) return false;
-  return Array.isArray(x.p) && x.p.length === ROUNDS && x.p.every(k => Array.isArray(k) && Number.isInteger(k[0]) && k[0] >= -1 && k[0] <= 3 && Number.isFinite(k[1]) && k[1] >= 0 && k[1] <= 20000);
+  return validPicks(x.p);
 }
+const validPicks = p => Array.isArray(p) && p.length === ROUNDS && p.every(k => Array.isArray(k) && Number.isInteger(k[0]) && k[0] >= -1 && k[0] <= 3 && Number.isFinite(k[1]) && k[1] >= 0 && k[1] <= 20000);
+// packed question refs: [topicIndex, questionIndex] or {c:[q, right, wrong x3]} for custom "Us" questions
+function validRefs(q, allowCustom = true){
+  if (!Array.isArray(q) || q.length !== ROUNDS) return false;
+  return q.every(x => {
+    if (Array.isArray(x)) return x.length === 2 && Number.isInteger(x[0]) && Number.isInteger(x[1]) && x[0] >= 0 && x[0] < TOPIC_IDS.length && x[1] >= 0 && Array.isArray(QB.topics[TOPIC_IDS[x[0]]][x[1]]);
+    return allowCustom && x && Array.isArray(x.c) && x.c.length === 5 && x.c.every(s => typeof s === 'string' && s.trim() && s.length <= 120) && new Set(x.c.slice(1).map(s => s.trim().toLowerCase())).size === 4;
+  });
+}
+// the score is always worked out from the answers, never taken from the message
+function ptsFor(leftMs, T, bonus){ const base = clamp(10 + Math.ceil(leftMs / T * 10), 11, 20); return bonus ? base*2 : base; }
+function scoreOf(picks, T){ return picks.reduce((a, k, r) => a + (k[0] === 0 ? ptsFor(Math.max(0, T - k[1]), T, r === ROUNDS - 1) : 0), 0); }
 function validLink(p){
-  if (!p || p.v !== 2 || !Array.isArray(p.q) || p.q.length !== ROUNDS || !validPlayer(p.A)) return false;
+  if (!p || typeof p !== 'object' || p.v !== 2 || !validRefs(p.q) || !validPlayer(p.A)) return false;
+  if (p.k !== 'ch' && p.k !== 'res') return false;
   if (p.B !== undefined && !validPlayer(p.B)) return false;
-  if (!TOPICS[p.t]) return false;
+  if (!topicOk(p.t)) return false;
   if (p.ms !== undefined && p.ms !== 10000 && p.ms !== 15000) return false;
   if (p.d !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(String(p.d))) return false;
   if (p.x !== undefined && !validCid(p.x)) return false;
-  return unpackRefs(p.q).every(r => { if (r.c) return Array.isArray(r.c) && r.c.length === 5 && r.c.every(x => typeof x === 'string' && x.length <= 120); const q = refQ(r); return Array.isArray(q) && q.length >= 5; });
+  const T = p.ms || 10000;
+  p.A.s = scoreOf(p.A.p, T); if (p.B) p.B.s = scoreOf(p.B.p, T);
+  return true;
+}
+function validLiveLink(p){
+  return !!(p && typeof p === 'object' && p.v === 2 && p.k === 'live' && validCid(p.r) && topicOk(p.t) && validRefs(p.q) && validMini(p.h) && (p.ms === 10000 || p.ms === 15000));
 }
 
 async function shareLink(url, text){
@@ -327,17 +369,23 @@ async function shareLink(url, text){
 // the challenger's phone polls for new scores. Messages stay on the relay for about 12 hours.
 const RELAY = 'https://ntfy.sh/';
 const relayTopic = cid => 'twominds-' + cid;
-const validCid = x => typeof x === 'string' && /^[a-z0-9]{8,24}$/.test(x);
+const validCid = x => typeof x === 'string' && /^[a-z0-9]{8,24}$/.test(x) && !RESERVED(x);
 async function postTopic(topic, obj){
   const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 9000);
-  try{ const r = await fetch(RELAY + topic, {method:'POST', body: JSON.stringify(obj), signal: ctl.signal}); if (!r.ok) throw new Error('relay ' + r.status); }
+  try{
+    const r = await fetch(RELAY + topic, {method:'POST', body: JSON.stringify(obj), signal: ctl.signal});
+    if (!r.ok) throw new Error('relay ' + r.status);
+    try{ return await r.json(); }catch(e){ return {}; }       // the relay answers with the stored message (id, time)
+  }
   finally{ clearTimeout(t); }
 }
 const relayPost = (cid, obj) => postTopic(relayTopic(cid), obj);
-async function relayPoll(cid){
+// one request reads many topics at once (the relay accepts a comma-separated list)
+async function pollTopics(topics, since = 'all'){
+  if (!topics.length) return [];
   const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 9000);
   try{
-    const r = await fetch(RELAY + relayTopic(cid) + '/json?poll=1&since=all', {cache:'no-store', signal: ctl.signal});
+    const r = await fetch(RELAY + topics.join(',') + '/json?poll=1&since=' + encodeURIComponent(since), {cache:'no-store', signal: ctl.signal});
     if (!r.ok) throw new Error('relay ' + r.status);
     const out = [];
     for (const line of (await r.text()).split('\n')){
@@ -345,40 +393,49 @@ async function relayPoll(cid){
       let m; try{ m = JSON.parse(line); }catch(e){ continue; }
       if (!m || m.event !== 'message' || typeof m.message !== 'string') continue;
       let x; try{ x = JSON.parse(m.message); }catch(e){ continue; }
-      if (validPlayer(x) && x.i) out.push(x);
+      if (x && typeof x === 'object') out.push({topic: m.topic || topics[0], id: m.id, time: m.time, x});
     }
     return out;
   } finally{ clearTimeout(t); }
 }
-let syncing = false;
-async function syncChallenges(){
+async function relayPoll(cid){ return (await pollTopics([relayTopic(cid)])).map(m => m.x).filter(x => validPlayer(x) && x.i); }
+// a score for a challenge I sent; returns true when it is new. Used by the relay and by result links alike.
+function applyResult(cid, x){
+  const st = S.sent[cid]; if (!st || !validPlayer(x) || !x.i || x.i === S.id) return null;
+  st.res = st.res || {};
+  if (own(st.res, x.i)) return null;
+  x.s = scoreOf(x.p, st.ms || 10000);
+  learnFrame(x);
+  st.res[x.i] = {n:x.n, c:x.c, s:x.s, p:x.p};
+  const r = st.s > x.s ? 'w' : st.s < x.s ? 'l' : 'd';
+  recordVs('id:' + x.i, x.n, x.c, r);
+  S.history = S.history.filter(h => h.key !== 'pend:' + cid);
+  S.history.unshift({key:'rl:' + cid + x.i, cid, t: st.t, m:'Link', o: x.n, s:[st.s, x.s], r, when: whenStr()});
+  S.history = S.history.slice(0, 60);
+  if (r === 'w') S.challenges.won++;
+  return {cid, st, x, r};
+}
+let syncing = false, syncN = 0;
+async function syncChallenges(force){
   if (syncing || M || (navigator.onLine === false)) return;
-  syncing = true;
+  syncing = true; syncN++;
   const now = Date.now(), fresh = [];
   try{
-    for (const [cid, st] of Object.entries(S.sent)){
-      if (!st.shared || now - st.at > 36*3600e3) continue;
-      let list; try{ list = await relayPoll(cid); }catch(e){ continue; }
-      for (const x of list){
-        learnFrame(x);
-        if (x.i === S.id || st.res[x.i]) continue;
-        st.res[x.i] = {n:x.n, c:x.c, s:x.s, p:x.p};
-        const r = st.s > x.s ? 'w' : st.s < x.s ? 'l' : 'd';
-        recordVs('id:' + x.i, x.n, x.c, r);
-        S.history = S.history.filter(h => h.key !== 'pend:' + cid);
-        S.history.unshift({key:'rl:' + cid + x.i, cid, t: st.t, m:'Link', o: x.n, s:[st.s, x.s], r, when: whenStr()});
-        if (r === 'w') S.challenges.won++;
-        fresh.push({cid, st, x, r});
-      }
+    // fresh challenges every time, older ones (results can still trickle in for a day and a half) every 4th time
+    const cids = Object.entries(S.sent).filter(([cid, st]) => st.shared && now - st.at < 36*3600e3 && (force || now - st.at < 3*3600e3 || syncN % 4 === 0))
+      .sort((a, b) => b[1].at - a[1].at).slice(0, 20).map(([cid]) => cid);
+    if (cids.length){
+      let msgs = []; try{ msgs = await pollTopics(cids.map(relayTopic)); }catch(e){}
+      for (const m of msgs){ const cid = String(m.topic).replace(/^twominds-/, ''); if (cids.includes(cid)){ const f = applyResult(cid, m.x); if (f) fresh.push(f); } }
     }
-    // retry any score of mine that failed to send earlier
+    // retry any score of mine that failed to send earlier, and friend replies that could not be delivered
     for (const [cid, pl] of Object.entries(S.played)){
       if (pl.sent || !pl.pack || now - pl.at > 24*3600e3) continue;
       try{ await relayPost(cid, pl.pack); pl.sent = true; save(); }catch(e){}
     }
+    await flushOutbox();
   } finally{ syncing = false; }
   if (!fresh.length) return;
-  S.history = S.history.slice(0, 60);
   const nb = checkBadges(); save();
   fresh.forEach((f, k) => setTimeout(() => {
     const T = TOPICS[f.st.t] || TOPICS.mixed;
@@ -387,10 +444,22 @@ async function syncChallenges(){
   }, k*3400));
   badgeToast(nb);
   if (current === 'home' || current === 'board') go(current, {keepScroll:true, cid: boardCid});
+  if (current === 'results' && results_ctx && results_ctx.board) results_ctx.board();
 }
 setInterval(() => { if (!document.hidden) syncChallenges(); }, 25000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) syncChallenges(); });
-addEventListener('online', () => syncChallenges());
+addEventListener('online', () => { syncChallenges(true); inboxOpen(); });
+// friend replies (accept / decline / cancel / remove) wait here until the relay takes them
+async function flushOutbox(){
+  if (!S.outbox.length) return;
+  const keep = [];
+  for (const o of S.outbox){
+    if (Date.now() - o.at > 3*864e5) continue;
+    try{ await sendTo(o.code, o.msg); }catch(e){ keep.push(o); }
+  }
+  S.outbox = keep; save();
+}
+function sendSure(code, msg){ return sendTo(code, msg).catch(() => { S.outbox.push({code, msg, at: Date.now()}); save(); throw new Error('queued'); }); }
 
 /* ================= friends + inbox ================= */
 // Every phone has a private inbox topic on the relay, named by its friend code.
@@ -400,14 +469,20 @@ const IB = {es:null};
 const validCode = c => typeof c === 'string' && /^[a-z0-9]{6}$/.test(c);
 const meCard_ = () => ({i: S.id, n: nameOf('me'), c: S.me.color, code: S.code, f: myFrame() || undefined});
 function sendTo(code, obj){ return postTopic(inboxTopic(code), Object.assign(meCard_(), obj)); }
-function isFriend(i){ return !!S.friends[i]; }
+function isFriend(i){ return own(S.friends, i); }
+const friendOf = i => own(S.friends, i) ? S.friends[i] : null;
 function friendList(){ return Object.values(S.friends).sort((a, b) => (b.at || 0) - (a.at || 0)); }
-function touchFriend(x){ const f = S.friends[x.i]; if (f){ f.n = x.n; f.c = safeColor(x.c); f.code = x.code; } }
+function touchFriend(x){ const f = friendOf(x.i); if (f){ f.n = x.n; f.c = safeColor(x.c); f.code = x.code; } }
+// an EventSource that the browser gave up on (relay restart, network switch) is reopened with a growing delay
+function reviveLater(key, fn){ const st = reviveLater[key] = reviveLater[key] || {n:0, t:0}; clearTimeout(st.t); st.n = Math.min(st.n + 1, 6); st.t = setTimeout(fn, 1000 * Math.pow(2, st.n)); }
+const reviveOk = key => { if (reviveLater[key]) reviveLater[key].n = 0; };
 function inboxOpen(){
   if (IB.es || !S.me.name) return;
   try{
     const es = new EventSource(RELAY + inboxTopic(S.code) + '/sse?since=all');
     IB.es = es;
+    es.onopen = () => reviveOk('ib');
+    es.onerror = () => { if (IB.es === es && es.readyState === 2){ IB.es = null; reviveLater('ib', inboxOpen); } };
     es.onmessage = ev => {
       if (IB.es !== es) return;
       let m; try{ m = JSON.parse(ev.data); }catch(e){ return; }
@@ -429,54 +504,71 @@ function onInbox(x, at){
   if (!x || typeof x !== 'object' || x.i === S.id || !validMini(x) || !validCode(x.code)) return;
   learnFrame(x);
   const known = isFriend(x.i);
+  if (own(S.blocked, x.i)) return;        // removed friends can't send requests again
   if (x.type === 'freq'){                       // someone asks to be friends
-    if (known){ touchFriend(x); sendTo(x.code, {type:'facc'}).catch(() => {}); return; }
-    if (S.reqOut[x.code]){ acceptFriend(x); return; }   // we both asked: just become friends
+    if (known){ touchFriend(x); sendSure(x.code, {type:'facc'}).catch(() => {}); return; }
+    if (own(S.reqOut, x.code)){ acceptFriend(x); return; }   // we both asked: just become friends
     S.reqIn[x.i] = {i: x.i, n: x.n, c: safeColor(x.c), code: x.code, at};
     toast(`${x.n} sent you a friend request`); SFX.badge(); buzz([20, 40, 20]); refreshSocial();
     return;
   }
   if (x.type === 'facc'){                       // they accepted my request
-    if (!S.reqOut[x.code] && !known) return;
+    if (!own(S.reqOut, x.code) && !known) return;
     delete S.reqOut[x.code];
     S.friends[x.i] = {i: x.i, n: x.n, c: safeColor(x.c), code: x.code, at: Date.now()};
     if (!known){ toast(`${x.n} accepted your friend request`); SFX.right(); }
     refreshSocial(); return;
   }
   if (x.type === 'fdec'){ delete S.reqOut[x.code]; refreshSocial(); return; }
+  if (x.type === 'fcancel'){ if (own(S.reqIn, x.i)){ delete S.reqIn[x.i]; refreshSocial(); } return; }
+  if (x.type === 'funf'){ if (known){ delete S.friends[x.i]; delete S.fweek[x.i]; refreshSocial(); } return; }
   if (!known) return;                           // challenges only from friends
   touchFriend(x);
-  if (x.type === 'wk'){
-    if (typeof x.k === 'string' && /^w\d{4}-\d{2}-\d{2}$/.test(x.k) && Number.isInteger(x.p) && x.p >= 0 && x.p < 1e6 && Number.isInteger(x.g) && x.g >= 0 && x.g < 1e4){
-      const cur = S.fweek[x.i]; if (!cur || cur.k !== x.k || x.p >= cur.p) S.fweek[x.i] = {k: x.k, p: x.p, g: x.g};
-      if (current === 'friends') go('friends', {keepScroll:true});
-    }
-    return;
-  }
+  if (x.type === 'wk'){ takeWeek(x.i, x); return; }
   if (x.type === 'ch' || x.type === 'lv'){
     if (typeof x.link !== 'string' || x.link.length > 6000) return;
     const pre = x.type === 'ch' ? 'c=' : 'L=';
     if (!x.link.startsWith(pre)) return;
     let p; try{ p = b64d(x.link.slice(2)); }catch(e){ return; }
-    const T = TOPICS[p && p.t]; if (!T) return;
+    if (x.type === 'ch' ? !(validLink(p) && p.k === 'ch') : !validLiveLink(p)) return;    // same checks as opening the link
+    const T = TOPICS[p.t];
     const item = {id: randId(8), k: x.type, from: x.i, n: x.n, c: safeColor(x.c), t: p.t, s: p.A ? p.A.s : null, cid: p.x || null, link: x.link, at};
     S.inbox = [item, ...S.inbox.filter(it => !(it.k === 'lv' && it.from === x.i))].slice(0, 30);
-    if (x.type === 'lv' && Date.now() - at < 10*60e3 && !M) liveInvitePopup(item);
+    if (x.type === 'lv' && Date.now() - at < 10*60e3){
+      if (!M && current !== 'lobby') liveInvitePopup(item);
+      else toast(`${x.n} wants to play live. It's waiting on Home`, 3200);    // never interrupt a match or a search
+    }
     else if (x.type === 'ch'){ toast(`${x.n} challenged you: ${T.name}`); SFX.badge(); buzz([20, 40, 20]); }
     refreshSocial();
   }
 }
+function takeWeek(i, x){
+  if (!(typeof x.k === 'string' && /^w\d{4}-\d{2}-\d{2}$/.test(x.k) && Number.isInteger(x.p) && x.p >= 0 && x.p < 1e6 && Number.isInteger(x.g) && x.g >= 0 && x.g < 1e4)) return false;
+  const cur = own(S.fweek, i) ? S.fweek[i] : null;
+  if (cur && cur.k === x.k && x.p < cur.p) return false;
+  S.fweek[i] = {k: x.k, p: x.p, g: x.g};
+  if (current === 'friends' && !document.activeElement.matches('input')) go('friends', {keepScroll:true});
+  return true;
+}
 function acceptFriend(r){
   S.friends[r.i] = {i: r.i, n: r.n, c: safeColor(r.c), code: r.code, at: Date.now()};
   delete S.reqIn[r.i]; delete S.reqOut[r.code]; save();
-  sendTo(r.code, {type:'facc'}).catch(() => toast('Accepted. They will see it next time they are online'));
+  sendSure(r.code, {type:'facc'}).catch(() => toast('Accepted. They will see it as soon as you are back online'));
   toast(`You and ${r.n} are friends now`); SFX.right(); refreshSocial();
 }
-function declineFriend(r){ delete S.reqIn[r.i]; save(); sendTo(r.code, {type:'fdec'}).catch(() => {}); refreshSocial(); }
+function declineFriend(r){ delete S.reqIn[r.i]; save(); sendSure(r.code, {type:'fdec'}).catch(() => {}); refreshSocial(); }
+function removeFriend(f){
+  delete S.friends[f.i]; delete S.fweek[f.i];
+  S.blocked[f.i] = f.code;
+  S.inbox = S.inbox.filter(it => it.from !== f.i); save();
+  sendSure(f.code, {type:'funf'}).catch(() => {});
+  toast(`${f.n} removed from friends`); refreshSocial();
+}
 async function requestFriend(code, nameHint){
   code = normCode(code);
   if (!validCode(code)){ toast('Friend codes have 6 letters and numbers'); return false; }
   if (code === S.code){ toast("That's your own code"); return false; }
+  for (const k of Object.keys(S.blocked)) if (S.blocked[k] === code) delete S.blocked[k];     // adding someone again lifts the removal
   if (friendList().some(f => f.code === code)){ toast('You are already friends'); return false; }
   const back = Object.values(S.reqIn).find(r => r.code === code);
   if (back){ acceptFriend(back); return true; }
@@ -488,6 +580,7 @@ async function requestFriend(code, nameHint){
 }
 function openInboxItem(it){
   it.done = true; save();
+  if (MM.active) mmStop(true);
   location.hash = '#' + it.link;
 }
 function liveInvitePopup(it){
@@ -502,12 +595,23 @@ function liveInvitePopup(it){
   $('ivNo').onclick = () => { md.hidden = true; refreshSocial(); };
 }
 let autoJoin = false;
+// a live invite that came in during a match is offered once the match is over
+function flushQueued(){
+  const it = pendingInbox().find(x => x.k === 'lv' && !x.popped && Date.now() - x.at < 10*60e3);
+  if (!it || M || current === 'lobby') return;
+  it.popped = true; save();
+  if (current === 'results') toast(`${it.n} is waiting to play live. Join from Home`, 3500);
+  else liveInvitePopup(it);
+}
 
 /* ================= router ================= */
 const APP_SCREENS = ['welcome','home','topics','topic','couple','me','us','results','incoming','coupleRes','history','board','lobby','friends'];
 let boardCid = null;
 let current = 'home', topicSel = 'gk';
 function go(id, opts = {}){
+  // leaving a search or a waiting room by any route closes it, so it can't pull you into a match later
+  if (id !== 'lobby' && MM.active) mmStop(true);
+  if (LV.room && !LV.started && id !== 'lobby' && id !== 'incoming') liveBye();
   current = id;
   if (id !== 'results' && id !== 'coupleRes' && id !== 'incoming'){ parts = []; }
   for (const s of APP_SCREENS) $(s).hidden = s !== id;
@@ -544,7 +648,7 @@ function inboxBanners(){
   if (!reqs.length && !items.length) return '';
   const rows = [
     ...reqs.map(r => `<div class="bn">${avatar(r.n, r.c, 's')}<div><b>${esc(r.n)}</b><span>wants to be friends</span></div><button type="button" class="pillbtn ok" data-acc="${esc(r.i)}">Accept</button></div>`),
-    ...items.map(it => { const T = TOPICS[it.t] || TOPICS.mixed; return `<div class="bn ${it.k === 'lv' ? 'live' : ''}">${avatar(it.n, it.c, 's')}<div><b>${esc(it.n)}</b><span>${it.k === 'lv' ? 'is waiting to play live' : 'challenged you'} · ${esc(T.name)}${it.s != null ? ' · ' + it.s + ' to beat' : ''}</span></div><button type="button" class="pillbtn" data-ib="${it.id}">${it.k === 'lv' ? 'Join' : 'Play'}</button></div>`; })
+    ...items.map(it => { const T = TOPICS[it.t] || TOPICS.mixed; return `<div class="bn ${it.k === 'lv' ? 'live' : ''}">${avatar(it.n, it.c, 's')}<div><b>${esc(it.n)}</b><span>${it.k === 'lv' ? 'is waiting to play live' : 'challenged you'} · ${esc(T.name)}${Number.isInteger(it.s) ? ' · ' + it.s + ' to beat' : ''}</span></div><button type="button" class="pillbtn" data-ib="${it.id}">${it.k === 'lv' ? 'Join' : 'Play'}</button></div>`; })
   ];
   return `<div class="banners">${rows.join('')}</div>`;
 }
@@ -618,7 +722,7 @@ function renderTopics(opts = {}){
     if (searchTerm && !T.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
     return true;
   });
-  const FF = withFriend && S.friends[withFriend];
+  const FF = withFriend && friendOf(withFriend);
   const intentLine = FF ? `Pick a topic to play with ${esc(FF.n)}` : topicIntent === 'duel' ? 'Pick a topic for your duel on this phone' : topicIntent === 'link' ? 'Pick a topic for your link challenge' : topicIntent === 'live' ? 'Pick a topic to play live' : topicIntent === 'quick' ? 'Pick a topic. You get matched with anyone playing it now' : 'Tap a topic to see your levels and play';
   $('topics').innerHTML = `<div class="col">
     <div class="top"><h1 class="title">Topics</h1></div>
@@ -634,7 +738,7 @@ function renderTopics(opts = {}){
 let withFriend = null;
 function renderTopic(){
   const T = TOPICS[topicSel] || TOPICS.gk, id = T.id;
-  const F = withFriend && S.friends[withFriend];
+  const F = withFriend && friendOf(withFriend);
   const lm = topicLevel('me', id);
   const fav = S.fav.includes(id);
   const count = id === 'us' ? S.us.length : id === 'mixed' ? TOPIC_IDS.reduce((a, t) => a + QB.topics[t].length, 0) : T.q.length;
@@ -685,12 +789,13 @@ function vsIntro(a, b, topicId, face, then){
     <div class="side a">${avatar(a.n, a.c, 'l')}<div class="nm">${esc(a.n)}</div><div class="tt">${esc(a.sub)}</div></div>`;
   el.hidden = false;
   SFX.vs(); buzz([30, 60, 30]);
-  setTimeout(() => { el.hidden = true; then(); }, 2300);
+  const mid = M && M.id;
+  setTimeout(() => { if (!M || M.id !== mid) return; el.hidden = true; then(); }, 2300);
 }
 
 /* ================= shared round helpers ================= */
 const answerMs = () => (M && M.T) || (S.settings.relaxed ? 15000 : 10000);
-function pointsFor(leftMs, bonus){ const T = answerMs(); const base = clamp(10 + Math.ceil(leftMs / T * 10), 11, 20); return bonus ? base*2 : base; }
+function pointsFor(leftMs, bonus){ return ptsFor(leftMs, answerMs(), bonus); }
 function wakeLock(){ try{ navigator.wakeLock && navigator.wakeLock.request('screen').catch(() => {}); }catch(e){} }
 
 /* ================= split-screen duel ================= */
@@ -766,6 +871,7 @@ document.addEventListener('pointerdown', e => {
   const b = e.target.closest('#duel .opt'); if (!b) return;
   e.preventDefault(); duelAnswer(+b.dataset.p, +b.dataset.i);
 });
+document.addEventListener('click', e => { const b = e.target.closest('#duel .opt'); if (b) duelAnswer(+b.dataset.p, +b.dataset.i); });
 function duelReveal(){
   if (!M || M.phase !== 'answer') return;
   M.phase = 'reveal'; cancelAnimationFrame(raf);
@@ -799,15 +905,25 @@ function armQuit(btn, isDuel){
 }
 function quitMatch(){
   if (MM.active) mmStop(true);
-  if (M && M.kind === 'live') liveBye();
-  M = null; cancelAnimationFrame(raf); clearInterval(soloTimer);
-  $('duel').hidden = true; $('solo').hidden = true; $('vs').hidden = true;
-  go(current === 'results' ? 'home' : (current || 'home'));
+  const m = M;
+  if (m && m.kind === 'live'){
+    liveBye();
+    if (m.round >= 0 && m.ghost){       // walking out of a live match counts as a loss
+      recordVs(rivalKey(m.ghost.n, m.ghost.i), m.ghost.n, m.ghost.c, 'l');
+      S.stats.me.played++; S.stats.me.lost++; S.stats.me.streak = 0;
+      S.history.unshift({t: m.topic, m:'Live', o: m.ghost.n, s:[m.score, m.gscore], r:'l', quit:true, when: whenStr()});
+      S.history = S.history.slice(0, 60); save();
+    }
+  }
+  M = null; cancelAnimationFrame(raf);
+  $('duel').hidden = true; $('solo').hidden = true; $('vs').hidden = true; $('modal').hidden = true;
+  const t = m && m.topic;
+  if (t && topicOk(t) && t !== 'daily'){ topicSel = t; go('topic'); } else go('home');
+  flushQueued();
 }
 
 /* ================= solo: link challenge / reply / bot / daily ================= */
 // ghost = {n, c, lv, picks:[[orig, ms] x7]}; picks orig: 0 right, 1-3 wrong, -1 no answer
-let soloTimer = 0;
 function makeBotGhost(refs){
   const lvl = S.settings.botLevel, acc = [0.45, 0.66, 0.85][lvl], spd = [[3500, 8500], [2200, 7000], [1200, 4500]][lvl];
   const names = ['Bot Rookie', 'Bot Pro', 'Bot Genius'];
@@ -832,6 +948,9 @@ function startSolo(o){
   M = null;
   const matchT = o.ms || (S.settings.relaxed ? 15000 : 10000);
   M = {T: matchT, mode:'solo', kind, topic:o.topic, refs, Q, ghost, round:-1, score:0, gscore:0, log:[], phase:'intro', id:Math.random(), link:o.link || null, date:o.date || (o.topic === 'daily' ? today() : null)};
+  // the Daily Duel counts once a day; replays are practice (no XP, no stats)
+  M.practice = kind === 'daily' && !!S.daily[today()];
+  if (M.practice) setTimeout(() => toast("Today's score is already in. This replay is practice"), 2400);
   M.cid = o.cid || null; M.toFriend = o.toFriend || null;
   $('solo').style.setProperty('--tc', (TOPICS[o.topic] || TOPICS.mixed).c);
   $('emoBar').hidden = kind !== 'live';
@@ -901,12 +1020,19 @@ function soloTick(now){
 document.addEventListener('pointerdown', e => {
   const b = e.target.closest('#sOpts .opt'); if (!b) return;
   e.preventDefault();
+  soloPick(b);
+});
+document.addEventListener('click', e => { const b = e.target.closest('#sOpts .opt'); if (b) soloPick(b); });     // keyboard / screen readers
+function soloPick(b){
   if (!M || M.mode !== 'solo' || M.phase !== 'answer' || M.pick !== null) return;
-  M.pick = +b.dataset.i; M.left = Math.max(0, answerMs() - (performance.now() - M.t0));
-  if (M.kind === 'live'){ const ms = Math.round(answerMs() - M.left); M.left = answerMs() - ms; liveAnswer(M.Q[M.round].opts[M.pick].orig, ms); }
+  const T = answerMs(), el = performance.now() - M.t0;
+  if (M.kind === 'live' && (M.liveSent || el >= T)) return;      // time is up: the "no answer" already went to the other phone
+  const ms = Math.min(T, Math.round(el));                          // whole milliseconds, so both phones and links score identically
+  M.pick = +b.dataset.i; M.left = Math.max(0, T - ms);
+  if (M.kind === 'live') liveAnswer(M.Q[M.round].opts[M.pick].orig, ms);
   b.classList.add('mine'); $('sOpts').classList.add('locked');
   SFX.pick(); buzz(12);
-});
+}
 function soloReveal(){
   if (!M || M.phase === 'reveal') return;
   M.phase = 'reveal'; cancelAnimationFrame(raf);
@@ -950,35 +1076,48 @@ function finishMatch(){
   if (m.mode === 'duel'){
     [s0, s1] = m.scores; oppName = nameOf('partner'); oppColor = S.partner.color;
     r = s0 > s1 ? 'w' : s1 > s0 ? 'l' : 'd';
-    S.h2h[r === 'w' ? 0 : r === 'l' ? 1 : 2]++;
-    recordVs(rivalKey(S.partner.name), S.partner.name, S.partner.color, r);
-    applyStats(me, r, m.log.map(l => [l.orig[0], l.ms[0]]), m.topic);
-    gained.me = s0 + (r === 'w' ? 50 : r === 'd' ? 20 : 0);
+    m.empty = s0 === 0 && s1 === 0;          // nobody answered anything: no result, no XP, no badge
+    if (!m.empty){
+      S.h2h[r === 'w' ? 0 : r === 'l' ? 1 : 2]++;
+      recordVs(rivalKey(S.partner.name), S.partner.name, S.partner.color, r);
+      applyStats(me, r, m.log.map(l => [l.orig[0], l.ms[0]]), m.topic);
+      gained.me = s0 + (r === 'w' ? 50 : r === 'd' ? 20 : 0);
+    }
   } else {
     s0 = m.score; s1 = m.ghost ? m.gscore : null; oppName = m.ghost ? m.ghost.n : 'Anyone'; oppColor = m.ghost ? m.ghost.c : '#8b92bf';
     r = s1 === null ? 'p' : s0 > s1 ? 'w' : s1 > s0 ? 'l' : 'd';
-    applyStats(me, r, m.log.map(l => [l.orig[0], l.ms[0]]), m.topic);
-    gained.me = s0 + (r === 'w' ? 50 : r === 'd' ? 20 : 0);
+    m.empty = s0 === 0 && (s1 === null || s1 === 0) && m.log.every(l => l.orig[0] === -1);
+    if (!m.practice && !(m.empty && r === 'd')){
+      applyStats(me, r, m.log.map(l => [l.orig[0], l.ms[0]]), m.topic);
+      gained.me = s0 + (r === 'w' ? 50 : r === 'd' ? 20 : 0);
+    }
     if (m.ghost && !m.ghost.bot && m.kind !== 'bot'){ S.challenges.played++; if (r === 'w') S.challenges.won++; recordVs(rivalKey(m.ghost.n, m.ghost.i), m.ghost.n, m.ghost.c, r); }
-    if (r === 'p'){ m.cid = randId(); S.sent[m.cid] = {t: m.topic, s: s0, at: Date.now(), res: {}, shared: false, url: null}; }
+    if (r === 'p'){ m.cid = randId(); S.sent[m.cid] = {t: m.topic, s: s0, ms: m.T, at: Date.now(), res: {}, shared: false, url: null}; }
     if (m.kind === 'reply' && m.cid){
       m.pack = {i: S.id, n: nameOf('me'), c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
-      S.played[m.cid] = {t: m.topic, s: s0, at: Date.now(), A: {i: m.ghost.i, n: m.ghost.n, c: m.ghost.c, s: s1}, pack: m.pack, sent: false};
+      S.played[m.cid] = {t: m.topic, s: s0, ms: m.T, at: Date.now(), A: {i: m.ghost.i, n: m.ghost.n, c: m.ghost.c, s: s1}, pack: m.pack, sent: false};
     }
     if (m.topic === 'daily' && !S.daily[today()] && m.date === today()) S.daily[today()] = {score: s0};
   }
   S.xp.me[xpTopic] = (S.xp.me[xpTopic] || 0) + gained.me;
-  m.trailedBeforeBonus = (() => { const pre = m.log.slice(0, ROUNDS - 1).reduce((a, l) => [a[0] + l.g[0], a[1] + l.g[1]], [0, 0]); return pre[0] <= pre[1]; })();
-  const modeName = m.mode === 'duel' ? 'Duel' : m.kind === 'live' ? 'Live' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? 'Daily' : m.kind === 'reply' ? 'Link reply' : 'Link';
-  S.history.unshift({key: r === 'p' ? 'pend:' + m.cid : undefined, t: m.topic, m: modeName, o: r === 'p' ? 'anyone' : oppName, s:[s0, s1 === null ? '?' : s1], r, when: whenStr()});
+  m.trailedBeforeBonus = (() => { const pre = m.log.slice(0, ROUNDS - 1).reduce((a, l) => [a[0] + l.g[0], a[1] + l.g[1]], [0, 0]); return pre[0] < pre[1]; })();
+  const modeName = m.mode === 'duel' ? 'Duel' : m.kind === 'live' ? 'Live' : m.kind === 'bot' ? 'Practice' : m.topic === 'daily' ? (m.practice ? 'Daily practice' : 'Daily') : m.kind === 'reply' ? 'Link reply' : 'Link';
+  // round-by-round detail kept with the match, so history can show it later
+  const det = m.log.map((l, i) => ({q: l.q, a: l.a, o: [l.orig[0], l.orig[1]], g: l.g.slice(), w: [pickText(m.Q[i], l.orig[0]), pickText(m.Q[i], l.orig[1])]}));
+  const hkey = r === 'p' ? 'pend:' + m.cid : 'm:' + randId(8);
+  S.history.unshift({key: hkey, t: m.topic, m: modeName, o: r === 'p' ? 'anyone' : oppName, oc: oppColor, s:[s0, s1 === null ? '?' : s1], r, when: whenStr(), det});
   S.history = S.history.slice(0, 60);
-  if (m.kind !== 'bot') onPlayed(gained.me, s0); else onPlayed(0, 0);
+  if (m.kind === 'live') LV.last = {gm: LV.game, hkey, r, s0, s1, T: m.T, key: rivalKey(m.ghost.n, m.ghost.i), picks: m.ghost.picks.slice(), mine: m.log.map(l => [l.orig[0], Math.round(l.ms[0])])};
+  if (m.empty) {} else if (m.kind === 'bot' || m.practice) onPlayed(0, 0); else onPlayed(gained.me, s0);
   const newBadges = checkBadges({m, r, s0, s1});
   save();
   renderResults({m, r, s0, s1, oppName, oppColor, gained, before, xpTopic, newBadges});
   if (m.kind === 'reply' && m.cid) autoSend(m.cid);
+  if (m.kind === 'live') livePost({type:'fin', p: LV.last.mine}).catch(() => {});    // both phones check they scored the same answers
   M = null;
+  setTimeout(flushQueued, 1500);
 }
+function pickText(Q, orig){ if (orig === null || orig === undefined || orig === -1 || !Q) return null; const o = Q.opts.find(x => x.orig === orig); return o ? o.text : null; }
 function applyStats(st, r, picks, topic){
   st.played++; if (r === 'w'){ st.won++; st.streak++; st.best = Math.max(st.best, st.streak); } else if (r === 'l'){ st.lost++; st.streak = 0; } else if (r === 'd'){ st.draw++; }
   let right = 0;
@@ -1029,8 +1168,18 @@ function onPlayed(xp, score){
   if (st.cur > before && st.cur > 1) notes.push(`${st.cur}-day streak! Keep it going tomorrow`);
   if (tAfter[0] !== tBefore) notes.push(`Season rank up: ${tAfter[1]}! New avatar frame unlocked`);
   notes.forEach((t, k) => setTimeout(() => { toast(t, 2600); SFX.badge(); }, 2600 + k*2800));
-  // tell friends my weekly total so everyone's weekly board stays current
-  friendList().forEach(f => sendTo(f.code, {type:'wk', k: S.week.k, p: S.week.p, g: S.week.g}).catch(() => {}));
+  // my weekly total goes to my own board topic (one message); friends read it when they open Friends
+  if (friendList().length) postTopic(weekTopic(S.code), {k: S.week.k, p: S.week.p, g: S.week.g}).catch(() => {});
+}
+const weekTopic = code => 'twominds-w-' + code;
+let weekPulled = 0;
+async function pullWeeks(){
+  const fl = friendList(); if (!fl.length || Date.now() - weekPulled < 60e3) return;
+  weekPulled = Date.now();
+  let msgs; try{ msgs = await pollTopics(fl.slice(0, 30).map(f => weekTopic(f.code))); }catch(e){ return; }
+  let changed = false;
+  for (const m of msgs){ const f = fl.find(f => weekTopic(f.code) === m.topic); if (f && takeWeek(f.i, m.x)) changed = true; }
+  if (changed) save();
 }
 
 /* ================= badges ================= */
@@ -1039,7 +1188,7 @@ const BADGES = [
   ['perfect','Flawless','7 of 7 correct','✔'], ['score140','Speed demon','Score 140+ in a match','➶'], ['comeback','Clutch','Win from behind in the bonus round','↺'],
   ['draw','Perfect balance','Draw a match','☯'], ['topics5','Explorer','Play 5 topics','⌖'], ['topics12','Globetrotter','Play 12 topics','✈'],
   ['lv5','Rising star','Reach level 5 in a topic','★'], ['lv10','Expert','Reach level 10 in a topic','✪'], ['daily1','Early bird','Finish a Daily Duel','☀'],
-  ['daily7','Week warrior','Daily Duel on 7 days','☼'], ['sent','Gauntlet','Send a challenge link','✉'], ['ldw','Long-distance win','Beat her link ghost','❤'],
+  ['daily7','Week warrior','Daily Duel on 7 days','☼'], ['sent','Gauntlet','Send a challenge link','✉'], ['ldw','Long-distance win','Win a link challenge','❤'],
   ['us5','Storyteller','Write 5 Us questions','✎'], ['know80','Mind reader','80%+ in How well do you know me','◎'], ['likely80','Same wavelength','80%+ in Who\'s more likely','≈'],
   ['bothard','Beat the machine','Beat the Hard bot','⚙'], ['played25','Regular','Play 25 matches','♺'], ['century','Century','100 correct answers','C'],
   ['night','Night owl','Play between midnight and 4 am','☾'], ['fast20','Quick draw','20 answers under 2 seconds','⌁'], ['h2h10','Rivals','Play 10 duels on one phone','⚔'],
@@ -1050,7 +1199,7 @@ function checkBadges(ctx = {}){
   const has = (id, cond) => { if (!got.has(id) && cond){ got.add(id); add.push(id); } };
   const m = ctx.m || {}, maxLv = Math.max(0, ...Object.keys(S.xp.me).map(t => topicLevel('me', t).lv));
   has('first_win', st.won >= 1); has('win10', st.won >= 10); has('streak3', st.best >= 3);
-  has('perfect', st.perfect >= 1); has('score140', ctx.s0 >= 140); has('comeback', ctx.r === 'w' && m.trailedBeforeBonus && m.mode);
+  has('perfect', st.perfect >= 1); has('score140', ctx.s0 >= 140); has('comeback', ctx.r === 'w' && !!m.trailedBeforeBonus && !m.practice);
   has('draw', st.draw >= 1); has('topics5', Object.keys(st.topics).length >= 5); has('topics12', Object.keys(st.topics).length >= 12);
   has('lv5', maxLv >= 5); has('lv10', maxLv >= 10); has('daily1', Object.keys(S.daily).length >= 1); has('daily7', Object.keys(S.daily).length >= 7);
   has('sent', S.challenges.sent >= 1); has('ldw', S.challenges.won >= 1); has('us5', S.us.length >= 5);
@@ -1060,7 +1209,7 @@ function checkBadges(ctx = {}){
   has('night', ctx.m && new Date().getHours() < 4); has('fast20', st.fast >= 20);
   has('h2h10', S.h2h[0] + S.h2h[1] + S.h2h[2] >= 10);
   has('streak7', S.streak.best >= 7); has('streak30', S.streak.best >= 30);
-  has('champ', !!(S.lastWeek && S.lastWeek.board.length > 1 && S.lastWeek.board[0].me && S.lastWeek.board[0].p > 0));
+  has('champ', !!(S.lastWeek && S.lastWeek.board.length > 1 && S.lastWeek.board[0].me && S.lastWeek.board[0].p > S.lastWeek.board[1].p));
   has('goldtier', S.frames.includes('gold'));
   S.badges = [...got];
   return add;
@@ -1093,8 +1242,8 @@ function renderResults(o){
   if (m.mode === 'duel') actions = `<button class="cta" id="rAgain" type="button">Rematch</button><div class="row"><button class="btn" type="button" data-go="topics">New topic</button><button class="btn" type="button" data-go="home">Home</button></div>`;
   else if (m.kind === 'live') actions = `<div id="liveRm"></div><button class="cta" id="lvRe" type="button">Rematch live<small>New questions, same topic</small></button><button class="btn" type="button" id="lvHome">Home</button>`;
   else if (m.kind === 'bot') actions = `<button class="cta" id="rAgain" type="button">Play again</button><div class="row"><button class="btn" type="button" data-go="topics">New topic</button><button class="btn" type="button" data-go="home">Home</button></div>`;
-  else if (r === 'p' && m.toFriend && S.friends[m.toFriend]){
-    const F = S.friends[m.toFriend];
+  else if (r === 'p' && m.toFriend && friendOf(m.toFriend)){
+    const F = friendOf(m.toFriend);
     extra = `<div class="sync" id="friendSend"><span class="spin"></span>Sending to ${esc(F.n)}…</div><div class="card" id="liveBoard" hidden></div>`;
     actions = `<button class="btn" type="button" data-go="home">Done</button>`;
   }
@@ -1126,6 +1275,7 @@ function renderResults(o){
   else if (r === 'd'){ SFX.win(); } else { SFX.lose(); buzz([60]); }
 
   const myPack = {i: S.id, n: myName, c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me'), p: m.log.map(l => [l.orig[0], Math.round(l.ms[0])]), s: s0};
+  results_ctx = {m, s1, myPack};
   if ($('rAgain')) $('rAgain').onclick = () => m.mode === 'duel' ? startDuel(m.topic, true) : startSolo({kind:'bot', topic:m.topic});
   if ($('rShare')) $('rShare').onclick = async () => {
     const st = S.sent[m.cid];
@@ -1140,12 +1290,11 @@ function renderResults(o){
   if ($('rBack')) $('rBack').onclick = () => startSolo({kind:'new', topic: m.topic === 'daily' ? 'mixed' : m.topic});
   if (m.kind === 'reply' && m.cid) liveBoard(m.cid, 'player');
   if (m.kind === 'live') liveResultsUI(m);
-  if (r === 'p' && m.toFriend && S.friends[m.toFriend]) deliverChallenge(m, myPack);
-  results_ctx = {m, s1, myPack};
+  if (r === 'p' && m.toFriend && friendOf(m.toFriend)) deliverChallenge(m, myPack);
 }
 let results_ctx = null;
 async function deliverChallenge(m, myPack){
-  const F = S.friends[m.toFriend], st = S.sent[m.cid], T = TOPICS[m.topic];
+  const F = friendOf(m.toFriend), st = S.sent[m.cid], T = TOPICS[m.topic];
   const url = linkFor('ch', m.topic, m.refs, myPack, null, m.date, m.T, m.cid);
   st.shared = true; st.url = url; st.to = F.i; S.challenges.sent++; save();
   const el = () => $('friendSend');
@@ -1187,7 +1336,7 @@ async function autoSend(cid){
     $('manualRes').onclick = async () => {
       const ctx = results_ctx; if (!ctx) return;
       const m = ctx.m, ghostPack = {i: m.ghost.i, n: m.ghost.n, c: m.ghost.c, lv: m.ghost.lv, p: m.ghost.picks, s: ctx.s1};
-      const url = linkFor('res', m.topic, m.refs, ghostPack, ctx.myPack, m.date, m.T);
+      const url = linkFor('res', m.topic, m.refs, ghostPack, ctx.myPack, m.date, m.T, m.cid);
       const text = `Two Minds result: ${ctx.myPack.n} ${ctx.myPack.s} vs ${m.ghost.n} ${ctx.s1} in ${TOPICS[m.topic].name}`;
       showLinkBox(url, text); await shareLink(url, text);
     };
@@ -1224,15 +1373,18 @@ function liveBoard(cid, role){
   draw();
   clearInterval(liveTimer);
   const pull = async () => {
-    if (current !== 'results' || !$('liveBoard')){ clearInterval(liveTimer); return; }
+    if (current !== 'results' || !$('liveBoard') || document.hidden){ if (current !== 'results') clearInterval(liveTimer); return; }
     try{
-      const list = await relayPoll(cid);
-      if (role === 'sender'){ await syncChallenges(); }
-      else { const pl = S.played[cid]; if (pl){ pl.others = pl.others || {}; list.forEach(x => { if (x.i !== S.id && (!pl.A || x.i !== pl.A.i)) pl.others[x.i] = {n:x.n, c:x.c, s:x.s}; }); save(); } }
+      if (role === 'sender') await syncChallenges(true);
+      else {
+        const list = await relayPoll(cid), pl = S.played[cid];
+        if (pl){ pl.others = pl.others || {}; list.forEach(x => { if (x.i !== S.id && (!pl.A || x.i !== pl.A.i)) pl.others[x.i] = {n:x.n, c:x.c, s: scoreOf(x.p, pl.ms || 10000)}; }); save(); }
+      }
     }catch(e){}
     draw();
   };
-  pull(); liveTimer = setInterval(pull, 8000);
+  if (results_ctx) results_ctx.board = draw;
+  pull(); liveTimer = setInterval(pull, 12000);
 }
 
 /* leaderboard screen for a challenge you sent */
@@ -1290,7 +1442,11 @@ function handleHash(){
     go('incoming');
     if (r === 'w') { confetti(120); SFX.win(); }
     const key = 'res:' + hash(h);
-    if (meIsA && !S.history.some(x => x.key === key)){
+    if (meIsA && p.x && own(S.sent, p.x)){
+      // same bookkeeping as a score that arrives through the relay, so it can never count twice
+      const f = applyResult(p.x, Object.assign({}, B)); if (f){ checkBadges(); save(); }
+    }
+    else if (meIsA && !S.history.some(x => x.key === key)){
       const pend = S.history.findIndex(x => x.r === 'p' && x.t === p.t && x.s[0] === mine.s);
       if (pend !== -1) S.history.splice(pend, 1);
       S.history.unshift({key, t: p.t, m:'Link', o: theirs.n, s:[mine.s, theirs.s], r, when: new Date().toLocaleDateString(undefined, {day:'numeric', month:'short'})});
@@ -1301,7 +1457,7 @@ function handleHash(){
   }
   // a challenge to play
   if (p.x && (A.i === S.id || S.played[p.x])){
-    if (A.i === S.id && !S.sent[p.x]) S.sent[p.x] = {t: p.t, s: A.s, at: Date.now(), res: {}, shared: true, url: baseUrl() + h};
+    if (A.i === S.id && !own(S.sent, p.x)) S.sent[p.x] = {t: p.t, s: A.s, ms: p.ms || 10000, at: Date.now(), res: {}, shared: true, url: baseUrl() + h};
     go('board', {cid: p.x});
     if (A.i === S.id) toast('This is your own challenge. Here is who played it');
     return true;
@@ -1329,7 +1485,14 @@ function handleHash(){
   };
   return true;
 }
-addEventListener('hashchange', () => { if (location.hash.startsWith('#c=') || location.hash.startsWith('#L=') || location.hash.startsWith('#F=')){ if (M && M.kind === 'live') liveBye(); M = null; $('duel').hidden = true; $('solo').hidden = true; handleHash(); } });
+addEventListener('hashchange', () => {
+  if (!(location.hash.startsWith('#c=') || location.hash.startsWith('#L=') || location.hash.startsWith('#F='))) return;
+  if (MM.active) mmStop(true);
+  if (LV.room) liveBye();
+  if (M){ M = null; cancelAnimationFrame(raf); }
+  $('duel').hidden = true; $('solo').hidden = true; $('vs').hidden = true;
+  handleHash();
+});
 
 /* ================= live play: two phones at the same time ================= */
 // Both phones listen to one relay topic (server-sent events) and post small messages:
@@ -1338,31 +1501,50 @@ addEventListener('hashchange', () => { if (location.hash.startsWith('#c=') || lo
 const LIVE_GRACE = 6000;
 const LV = {es:null, room:null, seen:new Set(), opp:null, role:null, game:0, buf:{}, started:false, pendingRm:null, ctx:null, errs:0, opened:false};
 const liveTopic = room => 'twominds-live-' + room;
-const validMini = x => x && validFrame(x.f) && typeof x.n === 'string' && x.n.trim() && x.n.length <= 24 && /^#[0-9a-f]{3,8}$/i.test(String(x.c)) && typeof x.i === 'string' && /^[a-z0-9]{1,16}$/.test(x.i) && (x.lv === undefined || (Number.isInteger(x.lv) && x.lv >= 0 && x.lv < 1000));
-function liveOpen(room, onMsg){
+const validMini = x => x && validFrame(x.f) && typeof x.n === 'string' && x.n.trim() && x.n.length <= 24 && /^#[0-9a-f]{3,8}$/i.test(String(x.c)) && typeof x.i === 'string' && /^[a-z0-9]{1,16}$/.test(x.i) && !RESERVED(x.i) && (x.lv === undefined || (Number.isInteger(x.lv) && x.lv >= 0 && x.lv < 1000));
+// since: 'all' for a brand-new room (host), or the id of my own join message (guest) so an old match
+// that happened in the same room earlier is never replayed into this one
+function liveOpen(room, onMsg, since = 'all'){
   liveClose();
-  Object.assign(LV, {room, seen:new Set(), onMsg, errs:0, opened:false});
+  Object.assign(LV, {room, seen:new Set(), onMsg, errs:0, opened:false, since});
+  liveConnect();
+}
+function liveConnect(){
+  const room = LV.room;
   try{
-    const es = new EventSource(RELAY + liveTopic(room) + '/sse?since=all');
+    const es = new EventSource(RELAY + liveTopic(room) + '/sse?since=' + encodeURIComponent(LV.since || 'all'));
     LV.es = es;
-    es.onopen = () => { if (LV.es === es){ LV.opened = true; LV.errs = 0; } };
-    es.onerror = () => { if (LV.es === es) LV.errs++; };
+    es.onopen = () => { if (LV.es === es){ LV.opened = true; LV.errs = 0; reviveOk('lv'); } };
+    es.onerror = () => {
+      if (LV.es !== es) return;
+      LV.errs++;
+      if (es.readyState === 2) reviveLater('lv', () => { if (LV.es === es && LV.room === room) liveConnect(); });   // pick up where we left off
+    };
     es.onmessage = ev => {
       if (LV.es !== es) return;   // a closed room's late messages must never reach the current room
       let m; try{ m = JSON.parse(ev.data); }catch(e){ return; }
       if (!m || m.event !== 'message' || typeof m.message !== 'string' || LV.seen.has(m.id)) return;
-      LV.seen.add(m.id);
+      LV.seen.add(m.id); LV.since = m.id;
       let x; try{ x = JSON.parse(m.message); }catch(e){ return; }
       if (!x || typeof x !== 'object' || x.i === S.id || typeof x.type !== 'string') return;
+      if (x.gm !== undefined && !(Number.isInteger(x.gm) && x.gm >= 0 && x.gm < 1000)) return;
       try{ LV.onMsg && LV.onMsg(x); }catch(e){}
     };
   }catch(e){ LV.errs = 99; }
+}
+// guest: post the join first, then listen from that message on
+async function liveJoin(room, join, onMsg){
+  liveClose(); LV.room = room;
+  const res = await postTopic(liveTopic(room), Object.assign({i: S.id, gm: LV.game, type:'join'}, join));
+  if (LV.room !== room) return;                    // cancelled meanwhile
+  liveOpen(room, onMsg, res && typeof res.id === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(res.id) ? res.id : '20s');
 }
 function liveClose(){ if (LV.es) LV.es.close(); LV.es = null; LV.onMsg = null; }
 function livePost(obj){ return LV.room ? postTopic(liveTopic(LV.room), Object.assign({i: S.id, gm: LV.game}, obj)) : Promise.reject(new Error('no room')); }
 function liveBye(){
   if (LV.room) livePost({type:'bye'}).catch(() => {});
   const es = LV.es; LV.es = null; LV.onMsg = null; LV.room = null; LV.opp = null; LV.started = false; LV.pendingRm = null; LV.offerRm = null;
+  clearTimeout(LV.joinT);
   setTimeout(() => { if (es) es.close(); }, 400);
 }
 // closing the tab or app mid-match tells the other phone straight away
@@ -1370,11 +1552,18 @@ addEventListener('pagehide', () => {
   if (!LV.room || !LV.opp) return;
   try{ navigator.sendBeacon(RELAY + liveTopic(LV.room), JSON.stringify({i: S.id, gm: LV.game, type:'bye'})); }catch(e){}
 });
-function liveAnswer(o, ms){ if (!M) return; M.liveSent = true; livePost({type:'a', r: M.round, o, ms}).catch(() => { setTimeout(() => livePost({type:'a', r: M.round, o, ms}).catch(() => {}), 800); }); }
+function liveAnswer(o, ms){
+  if (!M) return;
+  M.liveSent = true;
+  const msg = {type:'a', r: M.round, o, ms}, gm = LV.game;     // the round is fixed now, retries can't drift to the next one
+  const send = n => livePost(Object.assign(msg, {gm})).catch(() => { if (n < 3 && LV.game === gm) setTimeout(() => send(n + 1), 700 * (n + 1)); });
+  send(0);
+}
 
 function liveBegin(refs, t, ms){
+  if (M && M.phase !== 'done') return;              // never start a match on top of another one
   LV.chat = LV.chat || []; emoCount = 0;
-  const picks = []; Object.entries(LV.buf[LV.game] || {}).forEach(([r, v]) => picks[+r] = v);
+  const picks = []; Object.entries(own(LV.buf, LV.game) ? LV.buf[LV.game] : {}).forEach(([r, v]) => picks[+r] = v);
   startSolo({kind:'live', topic:t, refs, ms, ghost:{n: LV.opp.n, c: LV.opp.c, lv: LV.opp.lv, i: LV.opp.i, picks, live:true}});
 }
 function liveCommon(x){
@@ -1382,9 +1571,10 @@ function liveCommon(x){
   if (x.type === 'a'){
     if (!Number.isInteger(x.r) || x.r < 0 || x.r >= ROUNDS || !Number.isInteger(x.o) || x.o < -1 || x.o > 3 || !Number.isFinite(x.ms) || x.ms < 0 || x.ms > 20000) return;
     if (M && M.kind === 'live' && x.gm === LV.game && M.ghost.i === x.i){ if (M.ghost.picks[x.r] === undefined) M.ghost.picks[x.r] = [x.o, x.ms]; }
-    else { (LV.buf[x.gm] = LV.buf[x.gm] || {})[x.r] = (LV.buf[x.gm] || {})[x.r] || [x.o, x.ms]; }
+    else if (Number.isInteger(x.gm) && x.gm >= LV.game){ const b = own(LV.buf, x.gm) ? LV.buf[x.gm] : (LV.buf[x.gm] = {}); if (!own(b, x.r)) b[x.r] = [x.o, x.ms]; }
     return;
   }
+  if (x.type === 'fin'){ liveFin(x); return; }
   if (x.type === 'bye'){
     LV.opp.gone = true;
     if (M && M.kind === 'live'){ M.ghost.gone = true; toast(`${LV.opp.n} left the match`); }
@@ -1393,8 +1583,8 @@ function liveCommon(x){
     return;
   }
   if (x.type === 'rm'){
-    let refs; try{ refs = unpackRefs(x.q); }catch(e){ return; }
-    if (!Array.isArray(x.q) || x.q.length !== ROUNDS || !TOPICS[x.t] || refs.some(r => !Array.isArray(refQ(r))) || (x.ms !== 10000 && x.ms !== 15000) || typeof x.id !== 'string') return;
+    if (!validRefs(x.q) || !topicOk(x.t) || (x.ms !== 10000 && x.ms !== 15000) || typeof x.id !== 'string' || x.id.length > 16) return;
+    const refs = unpackRefs(x.q);
     const incoming = {id: x.id, refs, t: x.t, ms: x.ms};
     if (LV.pendingRm){ if (x.i < S.id){ LV.pendingRm = null; acceptRematch(incoming); } return; }
     LV.offerRm = incoming;
@@ -1414,12 +1604,32 @@ function liveCommon(x){
     const r = LV.pendingRm; LV.pendingRm = null; LV.game++; liveBegin(r.refs, r.t, r.ms);
   }
 }
+// after a live match each phone sends every answer it gave; if one went missing on the way, both sides fix the score
+function liveFin(x){
+  const L = LV.last; if (!L || x.gm !== L.gm || !validPicks(x.p) || L.fixed) return;
+  const their = x.p, same = their.every((k, r) => { const g = L.picks[r] || [-1, 0]; return k[0] === g[0] && (k[0] !== 0 || Math.abs(k[1] - g[1]) < 2); });
+  if (same) return;
+  L.fixed = true;
+  const s1 = scoreOf(their, L.T), s0 = L.s0, r = s0 > s1 ? 'w' : s1 > s0 ? 'l' : 'd';
+  const h = S.history.find(e => e.key === L.hkey);
+  if (h){ h.s = [s0, s1]; h.r = r; }
+  const rv = own(S.rivals, L.key) ? S.rivals[L.key] : null;
+  if (rv && r !== L.r){ const dec = {w:'w', l:'l', d:'d'}[L.r]; if (rv[dec] > 0) rv[dec]--; rv[r]++; }
+  const st = S.stats.me;
+  if (r !== L.r){ const f = {w:'won', l:'lost', d:'draw'}; if (st[f[L.r]] > 0) st[f[L.r]]--; st[f[r]]++; }
+  save();
+  if (current === 'results'){
+    const b = $('results').querySelectorAll('.board .sb b'); if (b[1]){ b[1].textContent = s1; b[1].removeAttribute('data-count'); }
+    const w = $('results').querySelector('.winner'); if (w) w.textContent = r === 'w' ? 'You win!' : r === 'l' ? `${LV.opp ? LV.opp.n : 'They'} win${LV.opp ? 's' : ''}` : "It's a draw!";
+  }
+  toast('Scores synced with the other phone');
+}
 const EMOS = ['😂','🔥','😮','👏','😤','❤️'];
 const QUICK = ['GG!', 'Rematch?', 'Lucky guess 😏', 'You\'re too good ❤️', 'Again!', 'So close 😩'];
 let emoLast = 0, emoCount = 0;
 function sendEmo(k){
   const now = Date.now();
-  if (now - emoLast < 1200 || emoCount >= 25){ return; }
+  if (now - emoLast < 1500 || emoCount >= 15){ return; }
   emoLast = now; emoCount++;
   showEmo(EMOS[k], 'me'); livePost({type:'emo', e:k}).catch(() => {}); buzz(8);
 }
@@ -1437,7 +1647,7 @@ function renderChat(){
 }
 function sendChat(t){
   t = String(t || '').trim().slice(0, 80); if (!t || !LV.opp || LV.opp.gone) return;
-  if (LV.chatSent >= 40) { toast('That is a lot of messages. Rematch?'); return; }
+  if (LV.chatSent >= 30) { toast('That is a lot of messages. Rematch?'); return; }
   LV.chatSent = (LV.chatSent || 0) + 1;
   LV.chat.push({me:true, t}); renderChat(); livePost({type:'chat', t}).catch(() => toast('Message not sent'));
 }
@@ -1474,12 +1684,14 @@ function liveResultsUI(m){
 
 /* host: make a room, share it, wait */
 function startLive(topicId, friendId){
+  if (MM.active) mmStop(true);
+  if (LV.room) liveBye();
   noteRecent(topicId);
   const refs = pickRefs(topicId), room = randId(), ms = S.settings.relaxed ? 15000 : 10000;
   const host = {i: S.id, n: nameOf('me'), c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me')};
   const url = baseUrl() + '#L=' + b64e({v:2, k:'live', r: room, t: topicId, q: packRefs(refs), h: host, ms});
-  const F = friendId && S.friends[friendId];
-  Object.assign(LV, {chat:[], chatSent:0, role:'host', game:1, buf:{}, opp:null, started:false, pendingRm:null, offerRm:null, ctx:{room, refs, t: topicId, ms, url, friend: F ? F.i : null}});
+  const F = friendId && friendOf(friendId);
+  Object.assign(LV, {chat:[], chatSent:0, role:'host', game:1, buf:{}, opp:null, started:false, pendingRm:null, offerRm:null, last:null, ctx:{room, refs, t: topicId, ms, url, friend: F ? F.i : null}});
   if (F) sendTo(F.code, {type:'lv', link: url.split('#')[1]}).then(() => { const e = $('lbState'); if (e && !LV.started){ e.className = 'sync ok'; e.innerHTML = `${icon('check','sm')}Invite sent to ${esc(F.n)}`; } }).catch(() => { const e = $('lbState'); if (e){ e.className = 'sync bad'; e.textContent = `Couldn't reach ${F.n}'s inbox. Share the link instead.`; } });
   liveOpen(room, x => {
     if (x.type === 'join' && !LV.started && validMini(x)){
@@ -1488,6 +1700,7 @@ function startLive(topicId, friendId){
         .catch(() => { LV.started = false; LV.opp = null; toast('Connection problem. Ask them to tap Join again'); });
       return;
     }
+    if (x.type === 'join' && LV.started && LV.opp && x.i !== LV.opp.i){ livePost({type:'full', g: x.i}).catch(() => {}); return; }   // tell latecomers the room is taken
     liveCommon(x);
   });
   renderLobby();
@@ -1495,7 +1708,7 @@ function startLive(topicId, friendId){
 }
 function recordSeen(){ if (LV.opp) S.rivals[rivalKey(LV.opp.n, LV.opp.i)] && (S.rivals[rivalKey(LV.opp.n, LV.opp.i)].at = Date.now()); }
 function renderLobby(){
-  const c = LV.ctx, T = TOPICS[c.t] || TOPICS.mixed, F = c.friend && S.friends[c.friend];
+  const c = LV.ctx, T = TOPICS[c.t] || TOPICS.mixed, F = c.friend && friendOf(c.friend);
   const text = `${nameOf('me')} wants to play Two Minds live: ${T.name}. Tap to join!`;
   $('lobby').innerHTML = `<div class="col lobby">
     <div class="kicker"><span class="pill" style="--c:${T.c}">${icon(TOPIC_ICON[T.id] || 'star','sm')}${esc(T.name)} · Live</span></div>
@@ -1521,9 +1734,7 @@ function renderLobby(){
 function handleLiveHash(h){
   let p = null; try{ p = b64d(h.slice(3)); }catch(e){}
   history.replaceState(null, '', baseUrl());
-  const ok = p && p.v === 2 && p.k === 'live' && validCid(p.r) && TOPICS[p.t] && Array.isArray(p.q) && p.q.length === ROUNDS && validMini(p.h) && (p.ms === 10000 || p.ms === 15000)
-    && unpackRefs(p.q).every(r => r.c ? (Array.isArray(r.c) && r.c.length === 5 && r.c.every(x => typeof x === 'string' && x.length <= 120)) : Array.isArray(refQ(r)));
-  if (!ok){ toast('That live link looks broken'); return false; }
+  if (!validLiveLink(p)){ toast('That live link looks broken'); return false; }
   $('modal').hidden = true;
   const T = TOPICS[p.t], H = p.h, refs = unpackRefs(p.q); learnFrame(H);
   if (H.i === S.id){ toast('This is your own live link. Send it to someone else'); return false; }
@@ -1549,22 +1760,23 @@ function handleLiveHash(h){
     S.me.name = n; save();
     const st = $('joinState'); st.hidden = false; st.className = 'sync'; st.innerHTML = `<span class="spin"></span>Joining ${esc(H.n)}…`;
     $('incGo').disabled = true;
-    Object.assign(LV, {chat:[], chatSent:0, role:'guest', game:1, buf:{}, opp:{i: H.i, n: H.n, c: H.c, lv: H.lv}, started:false, pendingRm:null, offerRm:null, ctx:{room: p.r, refs, t: p.t, ms: p.ms}});
-    liveOpen(p.r, x => {
+    if (LV.room) liveBye();
+    Object.assign(LV, {chat:[], chatSent:0, role:'guest', game:1, buf:{}, opp:{i: H.i, n: H.n, c: H.c, lv: H.lv}, started:false, pendingRm:null, offerRm:null, last:null, ctx:{room: p.r, refs, t: p.t, ms: p.ms}});
+    const stop = () => { clearTimeout(LV.joinT); liveClose(); LV.room = null; };
+    liveJoin(p.r, {n: S.me.name, c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me')}, x => {
       if (x.i !== H.i) return;
-      if (x.type === 'go'){
-        if (x.g === S.id){ if (!LV.started){ LV.started = true; clearTimeout(LV.joinT); liveBegin(refs, p.t, p.ms); } }
-        else if (!LV.started){ clearTimeout(LV.joinT); st.className = 'sync bad'; st.textContent = `Someone else already joined this match. Ask ${H.n} for a new live link.`; liveClose(); }
+      if (x.type === 'go' || x.type === 'full'){
+        if (x.type === 'go' && x.g === S.id){ if (!LV.started){ LV.started = true; clearTimeout(LV.joinT); liveBegin(refs, p.t, p.ms); } }
+        else if (!LV.started && (x.type === 'go' || x.g === S.id)){ stop(); st.className = 'sync bad'; st.textContent = `Someone else already joined this match. Ask ${H.n} for a new live link.`; }
         return;
       }
-      if (x.type === 'bye' && !LV.started){ clearTimeout(LV.joinT); st.className = 'sync bad'; st.textContent = `${H.n} closed this room. Ask for a new live link.`; liveClose(); return; }
+      if (x.type === 'bye' && !LV.started){ stop(); st.className = 'sync bad'; st.textContent = `${H.n} closed this room. Ask for a new live link.`; return; }
       liveCommon(x);
-    });
-    livePost({type:'join', n: S.me.name, c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me')}).catch(() => {
-      st.className = 'sync bad'; st.textContent = "Couldn't connect. Check your internet and try again."; $('incGo').disabled = false;
+    }).catch(() => {
+      LV.room = null; st.className = 'sync bad'; st.textContent = "Couldn't connect. Check your internet and try again."; $('incGo').disabled = false;
     });
     clearTimeout(LV.joinT);
-    LV.joinT = setTimeout(() => { if (!LV.started && current === 'incoming'){ st.className = 'sync bad'; st.textContent = `No answer from ${H.n}. They may have left the waiting screen. Ask them to open a new live room.`; $('incGo').disabled = false; } }, 20000);
+    LV.joinT = setTimeout(() => { if (!LV.started && current === 'incoming'){ stop(); st.className = 'sync bad'; st.textContent = `No answer from ${H.n}. They may have left the waiting screen. Ask them to open a new live room.`; $('incGo').disabled = false; } }, 20000);
   };
   return true;
 }
@@ -1579,18 +1791,30 @@ function mmMe(){ return {i: S.id, n: nameOf('me'), c: S.me.color, f: myFrame() |
 function mmStop(announce){
   clearInterval(MM.seekT); clearTimeout(MM.offerT); clearInterval(MM.tickT); clearTimeout(MM.joinT);
   if (MM.es) MM.es.close(); MM.es = null;
-  if (announce && MM.active && MM.topic) postTopic(mmTopic(MM.topic), Object.assign(mmMe(), {type:'gone'})).catch(() => {});
+  if (announce && MM.active && MM.topic) postTopic(mmTopic(MM.topic), Object.assign(mmMe(), {type:'gone', r: MM.room})).catch(() => {});
   MM.active = false; MM.joining = null;
 }
 function mmIsTaken(i){ const t = MM.taken.get(i); if (t && Date.now() - t < 15000) return true; MM.taken.delete(i); return false; }
+const MM_MAX = 180000;     // stop searching after 3 minutes, so a forgotten search doesn't run all day
 function startQuick(topicId){
   if (!S.me.name){ go('welcome'); return; }
   mmStop(true); if (LV.room) liveBye();
   noteRecent(topicId);
-  Object.assign(MM, {active:true, topic: topicId, start: Date.now(), joining:null, taken:new Map(), gone:new Set(), seen:new Set(), room: randId(), refs: pickRefs(topicId), ms: S.settings.relaxed ? 15000 : 10000});
+  Object.assign(MM, {active:true, topic: topicId, start: Date.now(), joining:null, taken:new Map(), gone:new Set(), seen:new Set(), room: null, refs: pickRefs(topicId), ms: S.settings.relaxed ? 15000 : 10000});
   mmHost();
+  mmListen();
+  mmSeek(); MM.seekT = setInterval(mmSeek, 12000);
+  renderSearch(); go('lobby');
+  MM.tickT = setInterval(() => {
+    const el = $('mmSecs'); if (el) el.textContent = Math.round((Date.now() - MM.start) / 1000) + 's';
+    if (MM.active && !MM.joining && !LV.started && Date.now() - MM.start > MM_MAX) mmTimeout();
+  }, 1000);
+  MM.offerT = setTimeout(mmOffer, 25000);
+}
+function mmListen(){
+  const topic = MM.topic;
   try{
-    const es = new EventSource(RELAY + mmTopic(topicId) + '/sse?since=45s');
+    const es = new EventSource(RELAY + mmTopic(topic) + '/sse?since=30s');
     MM.es = es;
     es.onmessage = ev => {
       if (MM.es !== es) return;
@@ -1598,32 +1822,31 @@ function startQuick(topicId){
       if (!m || m.event !== 'message' || typeof m.message !== 'string' || MM.seen.has(m.id)) return;
       MM.seen.add(m.id);
       let x; try{ x = JSON.parse(m.message); }catch(e){ return; }
-      try{ mmOn(x, (m.time || 0) * 1000); }catch(e){}
+      try{ mmOn(x); }catch(e){}
     };
-    es.onerror = () => { MM.errs = (MM.errs || 0) + 1; };
-    es.onopen = () => { MM.errs = 0; };
+    es.onerror = () => { MM.errs = (MM.errs || 0) + 1; if (MM.es === es && es.readyState === 2) reviveLater('mm', () => { if (MM.es === es && MM.active && MM.topic === topic) mmListen(); }); };
+    es.onopen = () => { MM.errs = 0; reviveOk('mm'); };
   }catch(e){}
-  mmSeek(); MM.seekT = setInterval(mmSeek, 12000);
-  renderSearch(); go('lobby');
-  MM.tickT = setInterval(() => { const el = $('mmSecs'); if (el) el.textContent = Math.round((Date.now() - MM.start) / 1000) + 's'; }, 1000);
-  MM.offerT = setTimeout(mmOffer, 25000);
 }
 function mmSeek(){
-  if (!MM.active || MM.joining || LV.started) return;
+  if (!MM.active || MM.joining || LV.started || document.hidden) return;       // no posting from a phone in a pocket
   postTopic(mmTopic(MM.topic), Object.assign(mmMe(), {type:'seek', r: MM.room, t: MM.topic, q: packRefs(MM.refs), ms: MM.ms}))
     .then(() => { const e = $('mmState'); if (e && e.classList.contains('bad')){ e.className = 'sync'; e.innerHTML = `<span class="spin"></span>Searching… <span id="mmSecs"></span>`; } })
     .catch(() => { const e = $('mmState'); if (e){ e.className = 'sync bad'; e.textContent = "Can't reach the match server. Check your internet."; } });
 }
+// every hosting attempt gets a fresh room, so a join left over from an earlier attempt can't start a match
 function mmHost(){
+  MM.room = randId();
   const refs = MM.refs, t = MM.topic, ms = MM.ms;
-  Object.assign(LV, {chat:[], chatSent:0, role:'host', game:1, buf:{}, opp:null, started:false, pendingRm:null, offerRm:null, ctx:{room: MM.room, refs, t, ms, quick:true}});
+  Object.assign(LV, {chat:[], chatSent:0, role:'host', game:1, buf:{}, opp:null, started:false, pendingRm:null, offerRm:null, last:null, ctx:{room: MM.room, refs, t, ms, quick:true}});
   liveOpen(MM.room, x => {
-    if (x.type === 'join' && !LV.started && !MM.joining && validMini(x)){
+    if (x.type === 'join' && !LV.started && !MM.joining && MM.active && validMini(x)){
       LV.started = true; LV.opp = {i: x.i, n: x.n, c: x.c, lv: x.lv}; learnFrame(x);
       livePost({type:'go', g: x.i}).then(() => { mmFound(x); liveBegin(refs, t, ms); })
         .catch(() => { LV.started = false; LV.opp = null; });
       return;
     }
+    if (x.type === 'join' && LV.started && LV.opp && x.i !== LV.opp.i){ livePost({type:'full', g: x.i}).catch(() => {}); return; }
     liveCommon(x);
   });
 }
@@ -1631,39 +1854,42 @@ function mmFound(x){
   mmStop(true);
   recordSeen(); toast(`Matched with ${x.n}!`); SFX.right(); buzz([20, 40, 20]);
 }
-function mmOn(x, at){
+function mmOn(x){
   if (!MM.active || !x || typeof x !== 'object' || x.i === S.id || !validMini(x)) return;
-  if (x.type === 'gone'){ MM.gone.add(x.i); return; }
-  if (x.type !== 'seek' || x.t !== MM.topic || !validCid(x.r) || (x.ms !== 10000 && x.ms !== 15000) || !Array.isArray(x.q) || x.q.length !== ROUNDS) return;
-  if (at && Date.now() - at > 50000) return;     // stale seek (left over from an old search)
-  if (MM.gone.has(x.i)) return;
-  let refs; try{ refs = unpackRefs(x.q); }catch(e){ return; }
-  if (refs.some(r => r.c || !Array.isArray(refQ(r)))) return;
+  if (x.type === 'gone'){ if (validCid(x.r)) MM.gone.add(x.r); return; }        // that room is closed (the person may search again later)
+  if (x.type !== 'seek' || x.t !== MM.topic || !validCid(x.r) || (x.ms !== 10000 && x.ms !== 15000) || !validRefs(x.q, false)) return;
+  if (MM.gone.has(x.r)) return;
   learnFrame(x);
-  if (x.i < S.id && !MM.joining && !LV.started && !mmIsTaken(x.i)) mmJoin(x, refs);     // the smaller id hosts
+  if (x.i < S.id && !MM.joining && !LV.started && !mmIsTaken(x.r)) mmJoin(x, unpackRefs(x.q));     // the smaller id hosts
 }
 function mmJoin(x, refs){
   MM.joining = x.i;
   const st = $('mmState'); if (st){ st.className = 'sync ok'; st.innerHTML = `<span class="spin"></span>Found ${esc(x.n)}! Connecting…`; }
-  Object.assign(LV, {chat:[], chatSent:0, role:'guest', game:1, buf:{}, opp:{i: x.i, n: x.n, c: x.c, lv: x.lv}, started:false, pendingRm:null, offerRm:null, ctx:{room: x.r, refs, t: x.t, ms: x.ms, quick:true}});
+  Object.assign(LV, {chat:[], chatSent:0, role:'guest', game:1, buf:{}, opp:{i: x.i, n: x.n, c: x.c, lv: x.lv}, started:false, pendingRm:null, offerRm:null, last:null, ctx:{room: x.r, refs, t: x.t, ms: x.ms, quick:true}});
   const fail = () => {
-    if (LV.started || !MM.active) return;
-    MM.taken.set(x.i, Date.now()); MM.joining = null; clearTimeout(MM.joinT);
+    if (LV.started || !MM.active || MM.joining !== x.i) return;
+    MM.taken.set(x.r, Date.now()); MM.joining = null; clearTimeout(MM.joinT);
     const e = $('mmState'); if (e){ e.className = 'sync'; e.innerHTML = `<span class="spin"></span>Searching… <span id="mmSecs"></span>`; }
     mmHost(); mmSeek();
   };
-  liveOpen(x.r, y => {
+  liveJoin(x.r, {n: nameOf('me'), c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me')}, y => {
     if (y.i !== x.i) return;
+    if (y.type === 'full'){ if (y.g === S.id && !LV.started) fail(); return; }
     if (y.type === 'go'){
-      if (y.g === S.id){ if (!LV.started){ LV.started = true; clearTimeout(MM.joinT); mmFound(x); liveBegin(refs, x.t, x.ms); } }
+      if (y.g === S.id){ if (!LV.started && MM.active){ LV.started = true; clearTimeout(MM.joinT); mmFound(x); liveBegin(refs, x.t, x.ms); } }
       else if (!LV.started) fail();
       return;
     }
     if (y.type === 'bye' && !LV.started){ fail(); return; }
     liveCommon(y);
-  });
-  livePost({type:'join', n: nameOf('me'), c: S.me.color, f: myFrame() || undefined, lv: overallLevel('me')}).catch(fail);
+  }).catch(fail);
   clearTimeout(MM.joinT); MM.joinT = setTimeout(fail, 8000);
+}
+function mmTimeout(){
+  mmStop(true); liveBye();
+  const box = $('mmOffer'), stEl = $('mmState');
+  if (stEl){ stEl.className = 'sync'; stEl.textContent = 'Search stopped after 3 minutes'; }
+  if (box) mmOffer(true);
 }
 function renderSearch(){
   const T = TOPICS[MM.topic] || TOPICS.mixed;
@@ -1678,18 +1904,18 @@ function renderSearch(){
   </div>`;
   $('mmCancel').onclick = () => { mmStop(true); liveBye(); go('home'); };
 }
-function mmOffer(){
-  const box = $('mmOffer'); if (!box || !MM.active || LV.started || MM.joining) return;
-  const T = TOPICS[MM.topic] || TOPICS.mixed;
+function mmOffer(stopped){
+  const box = $('mmOffer'); if (!box || (!stopped && (!MM.active || LV.started || MM.joining))) return;
+  const T = TOPICS[MM.topic] || TOPICS.mixed, t = MM.topic;
   box.innerHTML = `<div class="card stack offerq"><b>No one's playing ${esc(T.name)} right now</b>
     <button class="cta" type="button" id="mmBot">${icon('bot','sm')}Play a bot instead</button>
-    ${MM.topic !== 'mixed' ? `<button class="btn" type="button" id="mmMixed">${icon('shuffle','sm')}Search Mixed Bag instead</button>` : ''}
-    <button class="btn ghost" type="button" id="mmKeep">Keep searching</button></div>`;
-  $('mmBot').onclick = () => { const t = MM.topic; mmStop(true); liveBye(); startSolo({kind:'bot', topic: t}); };
+    ${t !== 'mixed' ? `<button class="btn" type="button" id="mmMixed">${icon('shuffle','sm')}Search Mixed Bag instead</button>` : ''}
+    <button class="btn ghost" type="button" id="mmKeep">${stopped ? 'Search again' : 'Keep searching'}</button></div>`;
+  $('mmBot').onclick = () => { mmStop(true); liveBye(); startSolo({kind:'bot', topic: t}); };
   if ($('mmMixed')) $('mmMixed').onclick = () => startQuick('mixed');
-  $('mmKeep').onclick = () => { box.innerHTML = ''; clearTimeout(MM.offerT); MM.offerT = setTimeout(mmOffer, 30000); };
+  $('mmKeep').onclick = () => { if (stopped || !MM.active){ startQuick(t); return; } box.innerHTML = ''; clearTimeout(MM.offerT); MM.offerT = setTimeout(mmOffer, 30000); };
 }
-addEventListener('pagehide', () => { if (MM.active && MM.topic){ try{ navigator.sendBeacon(RELAY + mmTopic(MM.topic), JSON.stringify(Object.assign(mmMe(), {type:'gone'}))); }catch(e){} } });
+addEventListener('pagehide', () => { if (MM.active && MM.topic){ try{ navigator.sendBeacon(RELAY + mmTopic(MM.topic), JSON.stringify(Object.assign(mmMe(), {type:'gone', r: MM.room}))); }catch(e){} } });
 
 /* ================= friends screen ================= */
 function friendLink(){ return baseUrl() + '#F=' + b64e({v:2, i: S.id, n: nameOf('me'), c: S.me.color, code: S.code}); }
@@ -1706,7 +1932,7 @@ function renderFriends(){
     ${reqs.length ? `<div class="h">Friend requests</div><ul class="list">${reqs.map(r => `<li class="li">${avatar(r.n, r.c, 's')}<div><div class="t1">${esc(r.n)}</div><div class="t2">Code ${fmtCode(r.code)}</div></div><button type="button" class="pillbtn ghost" data-dec="${esc(r.i)}">Decline</button><button type="button" class="pillbtn ok" data-acc="${esc(r.i)}">Accept</button></li>`).join('')}</ul>` : ''}
     ${items.length ? `<div class="h">Waiting for you</div><div class="banners">${items.map(it => { const T = TOPICS[it.t] || TOPICS.mixed; return `<div class="bn ${it.k === 'lv' ? 'live' : ''}">${avatar(it.n, it.c, 's')}<div><b>${esc(it.n)}</b><span>${it.k === 'lv' ? 'is waiting to play live' : 'challenged you'} · ${esc(T.name)}</span></div><button type="button" class="pillbtn" data-ib="${it.id}">${it.k === 'lv' ? 'Join' : 'Play'}</button></div>`; }).join('')}</div>` : ''}
     <div class="h">Your friends · ${fl.length}</div>
-    ${fl.length ? `<ul class="list">${fl.map(f => { const r = S.rivals['id:' + f.i] || {w:0, l:0}; return `<li class="li fr">${avatar(f.n, f.c, 's')}<div><div class="t1">${esc(f.n)}</div><div class="t2">You <b class="res-w">${r.w}</b> – <b class="res-l">${r.l}</b> ${esc(f.n)}</div></div><button type="button" class="pillbtn live" data-flive="${esc(f.i)}">${icon('zap','sm')}Live</button><button type="button" class="pillbtn" data-fch="${esc(f.i)}">Challenge</button></li>`; }).join('')}</ul>`
+    ${fl.length ? `<ul class="list">${fl.map(f => { const r = S.rivals['id:' + f.i] || {w:0, l:0}; return `<li class="li fr">${avatar(f.n, f.c, 's')}<div><div class="t1">${esc(f.n)}</div><div class="t2">You <b class="res-w">${r.w}</b> – <b class="res-l">${r.l}</b> ${esc(f.n)}</div></div><button type="button" class="pillbtn live" data-flive="${esc(f.i)}">${icon('zap','sm')}Live</button><button type="button" class="pillbtn" data-fch="${esc(f.i)}">Challenge</button><button type="button" class="iconbtn sm" data-fmore="${esc(f.i)}" aria-label="More options for ${esc(f.n)}">⋯</button></li>`; }).join('')}</ul>`
       : `<div class="empty">${icon('users','xl')}<b>No friends yet</b><span>Tap <b>Invite a friend</b> and send it to her, or type her friend code. Once she accepts, you can challenge each other right from here, no links.</span></div>`}
     ${outs.length ? `<div class="h">Requests you sent</div><ul class="list">${outs.map(o => `<li class="li"><span class="tic" style="--c:var(--muted)">${icon('send','sm')}</span><div><div class="t1">${o.n ? esc(o.n) : 'Code ' + fmtCode(o.code)}</div><div class="t2">Waiting for them to accept</div></div><button type="button" class="pillbtn ghost" data-cancel="${esc(o.code)}">Cancel</button></li>`).join('')}</ul>` : ''}
     <p class="small" style="text-align:center">Requests and challenges arrive when the other person's app is open, or the next time they open it (within about 12 hours).</p>
@@ -1715,16 +1941,33 @@ function renderFriends(){
   $('shareMe').onclick = () => shareLink(friendLink(), `Add me on Two Minds! Tap to send me a friend request (my code is ${fmtCode(S.code)}).`);
   $('addForm').onsubmit = async e => { e.preventDefault(); if (await requestFriend($('addCode').value)) $('addCode').value = ''; };
   wireSocial($('friends'));
-  $('friends').querySelectorAll('[data-cancel]').forEach(b => b.onclick = () => { delete S.reqOut[b.dataset.cancel]; save(); renderFriends(); });
+  $('friends').querySelectorAll('[data-cancel]').forEach(b => b.onclick = () => { const code = b.dataset.cancel; delete S.reqOut[code]; save(); sendSure(code, {type:'fcancel'}).catch(() => {}); renderFriends(); });
+  $('friends').querySelectorAll('[data-fmore]').forEach(b => b.onclick = () => { const f = friendOf(b.dataset.fmore); if (f) friendSheet(f); });
+  pullWeeks();
   $('friends').querySelectorAll('[data-dec]').forEach(b => b.onclick = () => { const r = S.reqIn[b.dataset.dec]; if (r) declineFriend(r); });
   $('friends').querySelectorAll('[data-flive],[data-fch]').forEach(b => b.onclick = () => {
     withFriend = b.dataset.flive || b.dataset.fch; topicIntent = b.dataset.flive ? 'live' : 'link'; SFX.tap(); go('topics');
   });
   updateFriendDot();
 }
+function friendSheet(f){
+  const md = $('modal'), r = own(S.rivals, 'id:' + f.i) ? S.rivals['id:' + f.i] : {w:0, l:0, d:0};
+  md.hidden = false;
+  md.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(f.n)}"><span class="grab"></span>
+    <div class="pp">${avatar(f.n, f.c, 'l')}<div><div class="nm" style="font-size:19px">${esc(f.n)}</div><div class="tt">Code ${fmtCode(f.code)} · You ${r.w}–${r.l} ${esc(f.n)}</div></div></div>
+    <button class="btn danger" type="button" id="fsRemove">Remove friend</button>
+    <button class="btn ghost" type="button" id="fsX">Close</button></div>`;
+  const rb = $('fsRemove');
+  rb.onclick = () => {
+    if (!rb.dataset.arm){ rb.dataset.arm = '1'; rb.textContent = `Tap again to remove ${f.n}`; return; }
+    md.hidden = true; removeFriend(f);
+  };
+  $('fsX').onclick = () => { md.hidden = true; };
+}
 function weekCard(){
   rollPeriods();
-  const b = weekBoard(), lw = S.lastWeek;
+  const prev = new Date(); prev.setDate(prev.getDate() - 7);
+  const b = weekBoard(), lw = S.lastWeek && S.lastWeek.k === weekKey(prev) ? S.lastWeek : null;   // only last week, not an older one
   return `<div class="card week">
     <div class="h" style="margin:0 0 10px">This week<span class="small" style="text-transform:none;letter-spacing:0">${weekDaysLeft()} day${weekDaysLeft() === 1 ? '' : 's'} left</span></div>
     <ol class="lb">${b.map((e, k) => `<li class="${e.me ? 'me' : ''}"><span class="rk">${k === 0 && e.p > 0 ? icon('crown','sm') : k + 1}</span>${avatar(e.n, e.c, 's')}<span class="ln">${esc(e.n)}${e.me ? ' <em>you</em>' : ''}<em>${e.g} game${e.g === 1 ? '' : 's'}</em></span><b>${e.p}</b></li>`).join('')}</ol>
@@ -2030,7 +2273,18 @@ $('emoBar').innerHTML = EMOS.map((e, k) => `<button type="button" data-e="${k}" 
 $('emoBar').addEventListener('pointerdown', e => { const b = e.target.closest('[data-e]'); if (!b) return; e.preventDefault(); sendEmo(+b.dataset.e); });
 rollPeriods();
 document.querySelectorAll('.tab').forEach(t => { const k = {home:'home', topics:'grid', friends:'users', couple:'heart', me:'user'}[t.dataset.go]; const ti = t.querySelector('.ti'); if (ti && k) ti.outerHTML = icon(k); });
-document.addEventListener('visibilitychange', () => { if (document.hidden && M){ /* timers keep real time; nothing to pause in a live duel */ } });
+// Two Minds open in two tabs: the idle tab picks up what the other one saved instead of overwriting it later
+addEventListener('storage', e => {
+  if (e.key !== KEY || !e.newValue) return;
+  if (M || C){ storageStale = true; return; }
+  reloadState();
+});
+let storageStale = false;
+function reloadState(){
+  storageStale = false; load(); applyTheme();
+  const typing = document.activeElement && document.activeElement.matches('input, textarea');
+  if (!typing && ['home','friends','me','topics','topic','couple','history'].includes(current)) go(current, {keepScroll:true});
+}
 applyTheme();
 if (!handleHash()) go(S.me.name ? 'home' : 'welcome');
 setTimeout(syncChallenges, 1200);

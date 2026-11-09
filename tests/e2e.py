@@ -2,26 +2,14 @@
 import asyncio, json, os, time
 from urllib.parse import urlparse, parse_qs
 from playwright.async_api import async_playwright
+from relaymock import Relay
 URL = os.environ.get('TM_URL', 'http://localhost:8765/')
 SHOTS = os.path.join(os.path.dirname(__file__), '..', 'shots')
 RELAY = {}          # topic -> [messages]
 FAIL = {'on': False}
 errs = []
 
-async def relay(route):
-    req = route.request
-    if FAIL['on']: return await route.fulfill(status=500, body='down')
-    u = urlparse(req.url); parts = u.path.strip('/').split('/')
-    topic = parts[0]
-    hdr = {'Access-Control-Allow-Origin': '*'}
-    if req.method == 'POST':
-        msg = {'id': str(len(RELAY.get(topic, []))), 'time': int(time.time()), 'event': 'message', 'topic': topic, 'message': req.post_data}
-        RELAY.setdefault(topic, []).append(msg)
-        return await route.fulfill(status=200, headers=hdr, body=json.dumps(msg))
-    if len(parts) > 1 and parts[1] == 'json':
-        body = '\n'.join(json.dumps(m) for m in RELAY.get(topic, []))
-        return await route.fulfill(status=200, headers=hdr, body=body + ('\n' if body else ''))
-    await route.fulfill(status=404, body='')
+R = Relay(); relay = R.route; RELAY = R.topics
 
 async def phone(b, tag):
     c = await b.new_context(viewport={'width': 390, 'height': 844}, device_scale_factor=2, has_touch=True, is_mobile=True)
@@ -101,10 +89,10 @@ async def main():
         await her.goto(link); await her.wait_for_selector('#board:not([hidden])', timeout=6000); print('her reopen ->', await her.inner_text('#board h1'))
         await him.goto(link); await him.wait_for_selector('#board:not([hidden])', timeout=6000); print('his own link ->', await him.inner_text('#board h1'))
         # relay down: fallback appears
-        FAIL['on'] = True
+        R.fail = True
         c4, sam = await phone(b, 'sam'); await accept(sam, link, 'Sam'); await play_solo(sam)
         await sam.wait_for_selector('#syncState.bad #manualRes', timeout=12000); print('fallback shown: yes')
-        FAIL['on'] = False
+        R.fail = False
         # couple corner uses the picker with the remembered partner
         await him.goto(URL); await him.click('#home [data-go="couple"]'); await him.click('#cKnow')
         await him.wait_for_selector('#opGo'); await him.click('#opGo')
