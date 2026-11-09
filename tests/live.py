@@ -24,7 +24,7 @@ async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(executable_path='/usr/bin/google-chrome', args=['--no-sandbox'])
         _, him = await phone(b, 'him', 'Rohan'); _, her = await phone(b, 'her', 'Ananya')
-        await him.click('#hmLive'); await him.click('#topics [data-topic="movies"]' if False else '#topics [data-topic="india"]'); await him.click('#tpLive')
+        await him.click('#hmLive'); await him.click('#topics [data-topic="india"]'); await him.click('#tpLive')
         await him.wait_for_selector('#lobby:not([hidden])'); await him.click('#lbShare'); await him.wait_for_timeout(300)
         link = await him.input_value('#lurl'); await him.screenshot(path=f'{SHOTS}/lv_lobby.png')
         await her.goto(link); await her.wait_for_selector('#incGo'); await her.screenshot(path=f'{SHOTS}/lv_join.png')

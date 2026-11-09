@@ -61,7 +61,7 @@ async def main():
         check('daily replay gives no XP', xp1 == xp2 and xp1 > 0, (xp1, xp2))
         # 5. two tabs: the idle tab follows the other one
         ctx, t1 = await phone(b, 'Priya'); _, t2 = await phone(b, None, ctx)
-        await t1.click('.tab[data-go="me"]'); await t1.fill('#meName', 'Priya K'); await t1.press('#meName', 'Tab'); await t2.wait_for_timeout(800)
+        await t1.click('.tab[data-go="me"]'); await t1.evaluate("document.querySelector('#me details.edit').open = true"); await t1.fill('#meName', 'Priya K'); await t1.press('#meName', 'Tab'); await t2.wait_for_timeout(800)
         check('second tab picks up the new name', 'Priya K' in await t2.inner_text('#home'))
         # 6. long names don't overflow at 360px
         await t1.set_viewport_size({'width': 360, 'height': 780}); await t1.fill('#meName', 'Wolfeschlegelstein'); await t1.press('#meName', 'Tab')
@@ -69,8 +69,8 @@ async def main():
         sw = await t1.evaluate("document.getElementById('home').scrollWidth <= document.getElementById('home').clientWidth + 1")
         check('no sideways scroll at 360px with a long name', sw)
         # 7. emoji name gives an emoji initial
-        await t1.click('.tab[data-go="me"]'); await t1.fill('#meName', '🦊 Fox'); await t1.press('#meName', 'Tab')
-        check('emoji initial', (await t1.inner_text('#me .pp .av')).strip() == '🦊')
+        await t1.click('.tab[data-go="me"]'); await t1.evaluate("document.querySelector('#me details.edit').open = true"); await t1.fill('#meName', '🦊 Fox'); await t1.press('#meName', 'Tab')
+        check('emoji initial', (await t1.inner_text('#me .phead .av')).strip() == '🦊')
         await b.close()
     print('ERRORS:', errs or 'none'); print('FAILED:', fails or 'none')
 asyncio.run(main())
