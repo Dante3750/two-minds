@@ -2790,7 +2790,7 @@ function renderFriends(){
     <div class="card codecard">
       <div class="cc-top">${avatar(nameOf('me'), S.me.color, 'l')}<div><div class="cc-n">${esc(nameOf('me'))}</div><div class="small">Your friend code</div><button type="button" class="code" id="copyCode" aria-label="Copy friend code">${fmtCode(S.code)}${icon('copy','sm')}</button></div></div>
       <button class="cta" type="button" id="shareMe">${icon('useradd','sm')}Invite a friend</button>
-      <form class="addrow" id="addForm" autocomplete="off"><input id="addCode" maxlength="9000" placeholder="Friend code or a pasted link" autocapitalize="none" spellcheck="false" aria-label="Friend code or a Two Minds link"><button class="pillbtn" type="submit">Go</button></form>
+      <form class="addrow" id="addForm" autocomplete="off"><input id="addCode" maxlength="9000" placeholder="Friend code or link" autocapitalize="none" spellcheck="false" aria-label="Friend code or a Two Minds link"><button class="pillbtn" type="submit">Go</button></form>
     </div>
     ${fl.length ? weekCard() : ''}
     ${reqs.length ? `<div class="h">Friend requests</div><ul class="list">${reqs.map(r => `<li class="li">${avatar(r.n, r.c, 's')}<div><div class="t1">${esc(r.n)}</div><div class="t2">Code ${fmtCode(r.code)}</div></div><button type="button" class="pillbtn ghost" data-dec="${esc(r.i)}">Decline</button><button type="button" class="pillbtn ok" data-acc="${esc(r.i)}">Accept</button></li>`).join('')}</ul>` : ''}
