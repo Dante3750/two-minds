@@ -43,5 +43,12 @@ open(os.path.join(DIST, '.nojekyll'), 'w').write('')
 for f in ('index.html', 'sw.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', '.nojekyll'):
     p = os.path.join(DIST, f)
     if os.path.exists(p): shutil.copy(p, ROOT)
+# the Android app bundles the same page so it opens instantly and works offline
+www = os.path.join(ROOT, 'android', 'app', 'src', 'main', 'assets', 'www')
+if os.path.isdir(os.path.join(ROOT, 'android')):
+    os.makedirs(www, exist_ok=True)
+    for f in ('index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png'):
+        p = os.path.join(DIST, f)
+        if os.path.exists(p): shutil.copy(p, www)
 total = sum(len(v) for v in qb['topics'].values())
 print(f'built dist/index.html  {len(html)//1024} KB  {total} questions  sw {ver}')

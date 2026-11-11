@@ -5,3 +5,8 @@ qa2/
 __pycache__/
 qa3/
 qa4/
+android/.gradle/
+android/build/
+android/app/build/
+android/app/src/main/assets/www/
+android/local.properties

@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+}
+
+// The APK is a thin shell around the web game: no libraries, only platform APIs.
+def env = { String k, String d -> System.getenv(k) ?: d }
+
+android {
+    namespace 'io.github.dante3750.twominds'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'io.github.dante3750.twominds'
+        minSdk 24
+        targetSdk 35
+        versionCode env('VERSION_CODE', '1').toInteger()
+        versionName env('VERSION_NAME', '1.0')
+    }
+
+    signingConfigs {
+        // Every build is signed with the same key, so a newer APK installs over the old one and keeps progress.
+        // sideload.keystore is committed on purpose (see android/README.md); set the env vars to use a private key instead.
+        release {
+            storeFile file(env('KEYSTORE_FILE', 'sideload.keystore'))
+            storePassword env('KEYSTORE_PASSWORD', 'twominds')
+            keyAlias env('KEY_ALIAS', 'twominds')
+            keyPassword env('KEY_PASSWORD', 'twominds')
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
