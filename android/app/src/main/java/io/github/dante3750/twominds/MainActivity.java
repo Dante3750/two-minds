@@ -41,9 +41,10 @@ import java.util.regex.Pattern;
  *
  * The page always lives at its public address, so links made in the app open for people in a browser
  * and links from a browser open in the app. The page itself comes from, in this order:
- *   1. the live site, when it is reachable and is a build that knows about this app (updates without a new APK),
- *   2. the last copy fetched from the live site,
- *   3. the copy bundled inside the APK (works on first launch with no internet).
+ *   1. the last copy fetched from the live site (refreshed in the background on every launch, so game updates
+ *      arrive one launch later without a new APK),
+ *   2. the copy bundled inside the APK (works on first launch with no internet).
+ * Either way the app opens without waiting for the network.
  */
 public class MainActivity extends Activity {
     static final String BASE = "https://dante3750.github.io/two-minds/";
@@ -157,38 +158,70 @@ public class MainActivity extends Activity {
         return out.toByteArray();
     }
 
-    /** The newest page we can get: live site, then last fetched copy, then the bundled one. */
+    private volatile boolean refreshing;
+
+    /**
+     * The page, without waiting for the network: the last copy fetched from the live site if there is one,
+     * otherwise the copy bundled in the APK. A fresh copy is fetched in the background for the next launch.
+     */
     private byte[] page() {
         File cache = new File(getFilesDir(), "index-" + versionCode() + ".html");
+        byte[] local = null;
+        try {
+            if (cache.length() > 50000) local = readAll(new FileInputStream(cache));
+        } catch (Exception ignored) { }
+        if (local == null) {
+            try {
+                local = readAll(getAssets().open("www/index.html"));
+            } catch (Exception ignored) { }
+        }
+        refreshLater(cache);
+        if (local != null) return local;
+        byte[] live = fetchLive();
+        if (live != null) return live;
+        return "<meta name=viewport content='width=device-width'><body style='background:#140d1f;color:#fff;font:16px sans-serif;padding:32px'>Two Minds could not load. Please reinstall the app.".getBytes(StandardCharsets.UTF_8);
+    }
+
+    /** The live site's page, only if it is reachable and is a build that knows about this app. */
+    private static byte[] fetchLive() {
         HttpURLConnection c = null;
         try {
             c = (HttpURLConnection) new URL(BASE + "index.html").openConnection();
-            c.setConnectTimeout(3000);
-            c.setReadTimeout(5000);
+            c.setConnectTimeout(5000);
+            c.setReadTimeout(10000);
             c.setUseCaches(false);
-            if (c.getResponseCode() == 200) {
-                byte[] live = readAll(c.getInputStream());
-                if (live.length > 50000 && new String(live, StandardCharsets.UTF_8).contains(MARKER)) {
-                    try {
-                        FileOutputStream f = new FileOutputStream(cache);
-                        f.write(live);
-                        f.close();
-                    } catch (Exception ignored) { }
-                    return live;
-                }
-            }
-        } catch (Exception ignored) {
+            if (c.getResponseCode() != 200) return null;
+            byte[] live = readAll(c.getInputStream());
+            return live.length > 50000 && new String(live, StandardCharsets.UTF_8).contains(MARKER) ? live : null;
+        } catch (Exception e) {
+            return null;
         } finally {
             if (c != null) c.disconnect();
         }
-        try {
-            if (cache.length() > 50000) return readAll(new FileInputStream(cache));
-        } catch (Exception ignored) { }
-        try {
-            return readAll(getAssets().open("www/index.html"));
-        } catch (Exception e) {
-            return "<meta name=viewport content='width=device-width'><body style='background:#140d1f;color:#fff;font:16px sans-serif;padding:32px'>Two Minds could not load. Please reinstall the app.".getBytes(StandardCharsets.UTF_8);
-        }
+    }
+
+    private void refreshLater(final File cache) {
+        if (refreshing) return;
+        refreshing = true;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    byte[] live = fetchLive();
+                    if (live == null) return;
+                    File tmp = new File(cache.getPath() + ".tmp");
+                    FileOutputStream f = new FileOutputStream(tmp);
+                    f.write(live);
+                    f.close();
+                    if (!tmp.renameTo(cache)) tmp.delete();
+                    File[] all = getFilesDir().listFiles();      // copies kept by older versions of the app
+                    if (all != null) for (File o : all) if (o.getName().startsWith("index-") && !o.getName().equals(cache.getName())) o.delete();
+                } catch (Exception ignored) {
+                } finally {
+                    refreshing = false;
+                }
+            }
+        }).start();
     }
 
     private class Client extends WebViewClient {
@@ -199,6 +232,13 @@ public class MainActivity extends Activity {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, uri).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));     // WhatsApp, browser…
             } catch (ActivityNotFoundException ignored) { }
+            return true;
+        }
+
+        /** If Android kills the page's process (low memory), start the screen again instead of crashing. */
+        @Override
+        public boolean onRenderProcessGone(WebView view, android.webkit.RenderProcessGoneDetail detail) {
+            recreate();
             return true;
         }
 

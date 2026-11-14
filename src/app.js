@@ -622,6 +622,7 @@ function go(id, opts = {}){
   // leaving a search or a waiting room by any route closes it, so it can't pull you into a match later
   if (id !== 'lobby' && MM.active) mmStop(true);
   if (LV.room && !LV.started && id !== 'lobby' && id !== 'incoming') liveBye();
+  if (id === 'home' || id === 'friends'){ withFriend = null; topicIntent = null; }     // "playing with X" ends when you leave that flow
   current = id;
   if (id !== 'results' && id !== 'coupleRes' && id !== 'incoming'){ parts = []; }
   for (const s of APP_SCREENS) $(s).hidden = s !== id;
@@ -715,7 +716,7 @@ function renderHome(){
   $('hmDaily').onclick = () => { SFX.tap(); startSolo({kind:'daily', topic:'daily'}); };
   wireSocial($('home'));
 }
-function pickTopicThen(mode){ go('topics', {intent: mode}); }
+function pickTopicThen(mode){ withFriend = null; go('topics', {intent: mode}); }
 
 function histRow(h){
   const cls = h.r === 'w' ? 'res-w' : h.r === 'l' ? 'res-l' : h.r === 'd' ? 'res-d' : 'res-p';

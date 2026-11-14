@@ -209,8 +209,11 @@ body.playing::before,body.playing::after{display:none}
 .li .sc span{font:600 11px var(--f);text-transform:uppercase;letter-spacing:.06em}
 .li .x{min-height:40px;padding:0 12px;border-radius:12px;font:600 12.5px var(--f);color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,transparent);flex:none}
 .li .cnt{display:inline-flex;align-items:center;gap:4px;font:600 12px var(--f);color:var(--muted);white-space:nowrap;flex:none}
-.li.fr{gap:8px}
-.li.fr .pillbtn{padding:0 11px}
+/* friend row: name on the first line with the menu, the two actions underneath, so names are never squeezed */
+.li.fr{gap:8px;flex-wrap:wrap}
+.li.fr > div{flex:1 1 0;min-width:calc(100% - 96px)}
+.li.fr .iconbtn{order:1}
+.li.fr .pillbtn{order:2;flex:1 1 0}
 .tic{--c:var(--gold);width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--c);color:var(--tile-ink);flex:none}
 .tic .i{width:18px;height:18px}
 .res-w{color:var(--good)} .res-l{color:var(--bad)} .res-d{color:var(--gold-text)} .res-p{color:var(--muted)}
@@ -578,7 +581,8 @@ details.card summary .i{color:var(--muted)}
   padding:calc(var(--safe-t) + 12px) max(20px,var(--safe-r)) calc(var(--safe-b) + 20px) max(20px,var(--safe-l));
   background:linear-gradient(180deg,color-mix(in oklab,#ff7096 40%,#0b0716),color-mix(in oklab,#a78bfa 22%,#0b0716));color:#fff;--tc:#ff7096}
 .cq .cqtop{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.cq .who{font:700 11.5px var(--f);text-transform:uppercase;letter-spacing:.14em}
+.cq .who{font:700 11.5px var(--f);text-transform:uppercase;letter-spacing:.14em;max-width:none;overflow:visible;white-space:normal}
+.cq .who::before{display:none}
 .cq .qq{flex:1 0 auto;display:grid;place-items:center;text-align:center;font:800 clamp(24px,7vw,32px)/1.15 var(--f);letter-spacing:-.025em;text-wrap:balance;padding:12px 0}
 .cq .olist .opt{font-size:16px;padding:8px 16px}
 .cq .lede{color:#fff}
