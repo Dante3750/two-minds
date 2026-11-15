@@ -10,3 +10,9 @@ android/build/
 android/app/build/
 android/app/src/main/assets/www/
 android/local.properties
+supabase/tests/__pycache__/
+app/node_modules/
+app/.expo/
+app/dist/
+app/android/
+app/ios/
