@@ -24,7 +24,7 @@ class ApiException(message: String, val code: String? = null) : Exception(messag
 class Api(context: Context) {
     val url = BuildConfig.SUPABASE_URL.trimEnd('/')
     private val key = BuildConfig.SUPABASE_ANON_KEY
-    val configured get() = url.startsWith("https://") && key.isNotBlank()
+    val configured get() = url.startsWith("http") && key.isNotBlank()
 
     private val prefs = context.getSharedPreferences("session", Context.MODE_PRIVATE)
     private val http = OkHttpClient.Builder()

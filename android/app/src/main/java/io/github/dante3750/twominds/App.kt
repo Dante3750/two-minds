@@ -19,6 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -28,6 +31,7 @@ import io.github.dante3750.twominds.ui.*
 
 val LocalApp = staticCompositionLocalOf<AppState> { error("no app state") }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun App(s: AppState) {
     LaunchedEffect(Unit) { s.loadAll() }
@@ -37,7 +41,7 @@ fun App(s: AppState) {
         // Android back: walk back through the app; let Android close it from Home
         val activity = LocalContext.current as? android.app.Activity
         BackHandler(enabled = true) { if (!s.back()) activity?.finish() }
-        Box(Modifier.fillMaxSize().background(p.bg)) {
+        Box(Modifier.fillMaxSize().background(p.bg).semantics { testTagsAsResourceId = true }) {
             when {
                 !s.ready -> Splash()
                 !s.signedIn -> SignInScreen()

@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -198,7 +199,7 @@ fun PlayScreen(match: Match) {
                     val dim = a != null && !isRight && !isMine && !oppHere
                     val shake by animateFloatAsState(if (wrongMine) 1f else 0f, keyframes { durationMillis = 400; 0f at 0; 1f at 80; -1f at 160; 1f at 240; -1f at 320; 0f at 400 }, label = "shake")
                     val pop by animateFloatAsState(if (isRight) 1f else 0f, spring(dampingRatio = 0.35f), label = "pop")
-                    Box(Modifier.fillMaxWidth().graphicsLayer { translationX = shake * 10f; scaleX = 1f + pop * 0.03f; scaleY = 1f + pop * 0.03f }.alpha(if (dim) 0.45f else 1f)
+                    Box(Modifier.testTag("opt$i").fillMaxWidth().graphicsLayer { translationX = shake * 10f; scaleX = 1f + pop * 0.03f; scaleY = 1f + pop * 0.03f }.alpha(if (dim) 0.45f else 1f)
                         .press(enabled = phase == "question" && pick == null && showOptions, sound = false, label = o) { submit(i) }
                         .heightIn(min = 60.dp).clip(RoundedCornerShape(16.dp)).background(bg)
                         .then(if (isMine || isRight) Modifier.border(3.dp, Color.White, RoundedCornerShape(16.dp)) else Modifier).padding(horizontal = 44.dp, vertical = 10.dp),

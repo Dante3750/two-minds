@@ -22,6 +22,8 @@ android {
         versionName env('VERSION_NAME', '2.0')
         // public project address and key (safe to ship; the database rules decide what they can do)
         buildConfigField 'String', 'SUPABASE_URL', "\"${env('SUPABASE_URL', props.getProperty('url', ''))}\""
+        // only the automated emulator test talks to a local http server; real builds are https-only
+        manifestPlaceholders = [cleartext: env('ALLOW_CLEARTEXT', 'false')]
         buildConfigField 'String', 'SUPABASE_ANON_KEY', "\"${env('SUPABASE_ANON_KEY', props.getProperty('anonKey', ''))}\""
     }
 
