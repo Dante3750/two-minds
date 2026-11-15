@@ -1,0 +1,41 @@
+name: Set up database
+
+# Applies supabase/migrations/*.sql (each once) and the question bank to the
+# Supabase project in the SUPABASE_DB_URL secret. Run it from the Actions tab,
+# or it runs by itself when the SQL changes on native-app.
+on:
+  workflow_dispatch:
+  push:
+    branches: [native-app]
+    paths: ['supabase/migrations/**', 'supabase/seed.sql']
+
+concurrency: database
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the secret is set
+        env: { DB: '${{ secrets.SUPABASE_DB_URL }}' }
+        run: |
+          if [ -z "$DB" ]; then
+            echo "::error::Add the SUPABASE_DB_URL secret first (Supabase > Connect > Session pooler connection string, with your database password filled in)."
+            exit 1
+          fi
+      - name: Apply migrations and questions
+        env: { DB: '${{ secrets.SUPABASE_DB_URL }}' }
+        run: |
+          sudo apt-get install -y -qq postgresql-client >/dev/null
+          psql "$DB" -v ON_ERROR_STOP=1 -q -c "create table if not exists public._migrations (name text primary key, applied_at timestamptz default now()); revoke all on public._migrations from anon, authenticated;"
+          for f in supabase/migrations/*.sql; do
+            n=$(basename "$f")
+            done_already=$(psql "$DB" -tAc "select 1 from public._migrations where name = '$n'")
+            if [ "$done_already" = "1" ]; then echo "already applied: $n"; continue; fi
+            echo "applying $n"
+            psql "$DB" -v ON_ERROR_STOP=1 -q -1 -f "$f"
+            psql "$DB" -q -c "insert into public._migrations (name) values ('$n')"
+          done
+          echo "loading the question bank"
+          psql "$DB" -v ON_ERROR_STOP=1 -q -f supabase/seed.sql
+          psql "$DB" -tAc "select 'topics: ' || count(*) from public.topics; select 'questions: ' || count(*) from public.questions;" | tee -a "$GITHUB_STEP_SUMMARY"
