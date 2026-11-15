@@ -330,6 +330,18 @@ begin
   return jsonb_build_object('round', p_round, 'right', right_pos, 'you', jsonb_build_object('option', case when orig = -1 then -1 else p_option end, 'ms', v_ms, 'points', pts, 'total', total), 'opp', opp);
 end $$;
 
+-- the other player's answer to a round, once I've answered it (live matches poll this while waiting)
+create function public.round_result(p_match uuid, p_round int) returns jsonb
+language plpgsql stable security definer set search_path = public as $$
+declare u uuid := game.me(); x matches; o answers;
+begin
+  if not exists (select 1 from answers where match_id = p_match and user_id = u and round = p_round and choice is not null) then return null; end if;
+  select * into x from matches where id = p_match;
+  select an.* into o from answers an where an.match_id = p_match and an.user_id <> u and an.round = p_round and an.choice is not null limit 1;
+  if o.match_id is null then return null; end if;
+  return jsonb_build_object('user', o.user_id, 'option', case when o.choice = -1 then -1 else (select k from generate_series(0, 3) k where x.orders[p_round * 4 + k + 1] = o.choice) end, 'ms', o.ms, 'points', o.points);
+end $$;
+
 -- End of my match: totals and, once the result is known, XP, streak, weekly and season points, topic level, badges.
 -- Call again while waiting for a live opponent: if they've gone quiet for a round and a half, the match is settled without them.
 create function public.finish_match(p_match uuid, p_quit boolean default false) returns jsonb
@@ -524,6 +536,8 @@ begin
                 from answers an join match_players mp on mp.match_id = an.match_id and mp.user_id = an.user_id
                 where an.match_id = p_match and an.round = r - 1 and (mp.state = 'done' or an.user_id = u)),
       'bot', case when x.bot is null then null else jsonb_build_object('choice', (x.bot->'picks'->(r::int - 1)->>0)::int,
+             'ms', (x.bot->'picks'->(r::int - 1)->>1)::int,
+             'points', case when (x.bot->'picks'->(r::int - 1)->>0)::int = 0 then game.points(x.time_ms - (x.bot->'picks'->(r::int - 1)->>1)::int, x.time_ms, r = 7) else 0 end,
              'text', case when (x.bot->'picks'->(r::int - 1)->>0)::int between 1 and 3 then q.w[(x.bot->'picks'->(r::int - 1)->>0)::int] else q.a end) end)
       order by r)
     from unnest(x.qids) with ordinality t(qid, r) join questions q on q.id = t.qid));
