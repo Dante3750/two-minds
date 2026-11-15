@@ -45,6 +45,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -213,14 +215,16 @@ fun SectionHead(title: String, action: String? = null, onAction: () -> Unit = {}
 fun Field(value: String, onChange: (String) -> Unit, placeholder: String, modifier: Modifier = Modifier, keyboard: KeyboardType = KeyboardType.Text,
           big: Boolean = false, onDone: (() -> Unit)? = null, tag: String? = null) {
     val p = pal; var focus by remember { mutableStateOf(false) }; val shape = RoundedCornerShape(14.dp)
+    val fm = LocalFocusManager.current
+    val done = { fm.clearFocus(); onDone?.invoke(); Unit }
     BasicTextField(value, onChange,
         modifier.fillMaxWidth().clip(shape).background(p.bg).border(1.dp, if (focus) p.gold else p.line2, shape).padding(horizontal = 14.dp, vertical = 13.dp)
             .onFocusChanged { focus = it.isFocused }.then(if (tag != null) Modifier.semantics { contentDescription = tag } else Modifier),
         singleLine = true, cursorBrush = SolidColor(p.gold),
         textStyle = TextStyle(fontFamily = if (big) Display else Lexend, fontWeight = FontWeight.Medium, fontSize = if (big) 26.sp else 16.sp, color = p.ink,
             textAlign = if (big) TextAlign.Center else TextAlign.Start, letterSpacing = if (big) 10.sp else TextUnit.Unspecified),
-        keyboardOptions = KeyboardOptions(keyboardType = keyboard),
-        keyboardActions = KeyboardActions(onDone = { onDone?.invoke() }, onGo = { onDone?.invoke() }, onSend = { onDone?.invoke() }),
+        keyboardOptions = KeyboardOptions(keyboardType = keyboard, imeAction = if (onDone != null) ImeAction.Go else ImeAction.Done),
+        keyboardActions = KeyboardActions(onDone = { done() }, onGo = { done() }, onSend = { done() }),
         decorationBox = { inner -> Box { if (value.isEmpty()) Txt(placeholder, size = if (big) 18.sp else 16.sp, color = p.muted, align = if (big) TextAlign.Center else null, modifier = Modifier.fillMaxWidth()); inner() } })
 }
 

@@ -39,7 +39,12 @@ def tap(label, t=25, exact=True):
     n = wait(label, t, exact)
     if n is None: raise RuntimeError(f'not found: {label}')
     x, y = center(n); adb('shell', 'input', 'tap', str(x), str(y)); time.sleep(0.7)
+def press(label, t=25):
+    hide_keyboard(); tap(label, t)
 def type_(text): adb('shell', 'input', 'text', text.replace(' ', '%s')); time.sleep(0.5)
+def keyboard_up(): return b'mInputShown=true' in adb('shell', 'dumpsys', 'input_method', out=True)
+def hide_keyboard():
+    if keyboard_up(): adb('shell', 'input', 'keyevent', 'KEYCODE_BACK'); time.sleep(0.8)
 def shot(name):
     with open(os.path.join(SHOTS, name + '.png'), 'wb') as f: f.write(adb('exec-out', 'screencap', '-p', out=True))
 def check(name, ok):
@@ -82,12 +87,12 @@ def play_rounds(pick=0, tag='bot'):
 try:
     adb('shell', 'am', 'start', '-n', f'{PKG}/.MainActivity'); time.sleep(4)
     shot('01_signin')
-    tap('email'); type_('ananya@e2e.dev'); tap('Send my code')
+    tap('email'); type_('ananya@e2e.dev'); press('Send my code')
     check('code screen', wait('code') is not None); shot('02_code')
     tap('code'); type_('123456')
     check('setup screen after sign-in', wait('What should we call you?', 20) is not None)
     tap('name'); type_('Ananya'); time.sleep(0.5); shot('03_setup')
-    tap('Start playing')
+    press('Start playing')
     check('home after setup', wait('Find an opponent', 25) is not None); time.sleep(1.5); shot('04_home')
     scroll(); shot('05_home_scrolled')
 
