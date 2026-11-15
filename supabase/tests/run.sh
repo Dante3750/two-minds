@@ -9,3 +9,4 @@ for f in migrations/*.sql; do psql -qX -v ON_ERROR_STOP=1 -d twominds_test -f "$
 echo "migrations applied"
 psql -qX -v ON_ERROR_STOP=1 -d twominds_test -f seed.sql
 python3 tests/test_game.py
+python3 tests/test_import.py
