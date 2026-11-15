@@ -86,6 +86,7 @@ class Game(val api: Api) {
         return Answer(o.getInt("round"), o.getInt("right"), Pick(y.optInt("option", -1), y.optInt("ms"), y.optInt("points")), y.optInt("total"), pick(o.optJSONObject("opp")))
     }
     suspend fun roundResult(id: String, r: Int): Pick? = pick(api.rpc("round_result", args("p_match" to id, "p_round" to r)) as? JSONObject)
+    suspend fun oppAnswered(id: String, r: Int): Boolean = api.rpc("opp_answered", args("p_match" to id, "p_round" to r)) == true
     suspend fun finish(id: String, quit: Boolean = false) = match(api.rpc("finish_match", args("p_match" to id, "p_quit" to quit)) as JSONObject)
     suspend fun quick(topic: String, timeMs: Int): Match? = (api.rpc("quick_match", args("p_topic" to topic, "p_time_ms" to timeMs)) as? JSONObject)?.let { match(it) }
     suspend fun cancelQuick() { api.rpc("cancel_quick") }

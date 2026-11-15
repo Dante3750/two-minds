@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId 'io.github.dante3750.twominds'
-        minSdk 24
+        minSdk 26
         targetSdk 35
         versionCode env('VERSION_CODE', '100').toInteger()
         versionName env('VERSION_NAME', '2.0')

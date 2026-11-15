@@ -342,6 +342,12 @@ begin
   return jsonb_build_object('user', o.user_id, 'option', case when o.choice = -1 then -1 else (select k from generate_series(0, 3) k where x.orders[p_round * 4 + k + 1] = o.choice) end, 'ms', o.ms, 'points', o.points);
 end $$;
 
+-- has the other player answered this round yet? (only yes/no, never what they picked)
+create function public.opp_answered(p_match uuid, p_round int) returns boolean
+language sql stable security definer set search_path = public as $$
+  select game.in_match(p_match) and exists (select 1 from answers where match_id = p_match and user_id <> auth.uid() and round = p_round and choice is not null)
+$$;
+
 -- End of my match: totals and, once the result is known, XP, streak, weekly and season points, topic level, badges.
 -- Call again while waiting for a live opponent: if they've gone quiet for a round and a half, the match is settled without them.
 create function public.finish_match(p_match uuid, p_quit boolean default false) returns jsonb
