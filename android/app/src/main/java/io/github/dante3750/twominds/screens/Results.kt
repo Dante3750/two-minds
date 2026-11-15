@@ -93,7 +93,12 @@ fun ResultsScreen(id: String) {
                     ScoreCol(oppName, oppColor, opp?.card?.frame, oppScore, res == "l", Modifier.weight(1f))
                 }
                 val rs = rounds
-                if (rs != null && oppScore != null) Race(rs, me, opp?.card?.id, hex(s.profile?.card?.color ?: "#ff6b5a"), hex(oppColor))
+                if (rs != null && oppScore != null) {
+                    val c0 = hex(s.profile?.card?.color ?: "#ff6b5a"); val c1 = hex(oppColor)
+                    // two players with the same colour: draw the other line in gold so they can be told apart
+                    val close = kotlin.math.abs(c0.red - c1.red) + kotlin.math.abs(c0.green - c1.green) + kotlin.math.abs(c0.blue - c1.blue) < 0.35f
+                    Race(rs, me, opp?.card?.id, c0, if (close) p.gold else c1)
+                }
             }
             if (x.practice) CardBox { Small("Practice: no XP. Today's Daily score is already in.") }
             else if (tl != null) CardBox(border = if (levelUp != null) p.gold.copy(alpha = 0.5f) else null) {

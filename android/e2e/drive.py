@@ -41,6 +41,15 @@ def tap(label, t=25, exact=True):
     x, y = center(n); adb('shell', 'input', 'tap', str(x), str(y)); time.sleep(0.7)
 def press(label, t=25):
     hide_keyboard(); tap(label, t)
+def visible(n):
+    a = list(map(int, re.findall(r'\d+', n.get('bounds')))); return a[1] > 120 and a[3] < 2200
+def tap_scroll(label, tries=5):
+    """tap something that may be further down the page"""
+    for _ in range(tries):
+        n = find(label)
+        if n is not None and visible(n): x, y = center(n); adb('shell', 'input', 'tap', str(x), str(y)); time.sleep(0.8); return
+        scroll()
+    raise RuntimeError(f'not found after scrolling: {label}')
 def type_(text): adb('shell', 'input', 'text', text.replace(' ', '%s')); time.sleep(0.5)
 def keyboard_up(): return b'mInputShown=true' in adb('shell', 'dumpsys', 'input_method', out=True)
 def hide_keyboard():
@@ -101,9 +110,9 @@ try:
     tap('Practice'); time.sleep(1.0); shot('08_vs')
     play_rounds(0, 'bot')
     check('results after a bot match', wait('See every round', 30) is not None); time.sleep(2.5); shot('09_results')
-    tap('See every round'); time.sleep(2); shot('10_detail')
+    tap_scroll('See every round'); time.sleep(2); shot('10_detail')
     adb('shell', 'input', 'keyevent', 'KEYCODE_BACK'); time.sleep(1)
-    tap('Home'); time.sleep(1)
+    tap_scroll('Home'); time.sleep(1)
 
     # quick match against B
     threading.Thread(target=player_b, args=('science',), daemon=True).start()
@@ -112,12 +121,15 @@ try:
     play_rounds(1, 'live')
     check('results after a live quick match', wait('See every round', 60) is not None); time.sleep(3); shot('13_live_results')
     check('live result settled', wait('Waiting for the other score…', 2) is None)
-    tap('Home'); time.sleep(1)
+    check('both phones agree on the score', find('You win!') is not None or find('Rohan wins') is not None or find("It's a draw!") is not None)
+    tap_scroll('Home'); time.sleep(1)
 
     tap('Friends'); time.sleep(2); shot('14_friends')
     tap('Profile'); time.sleep(2); shot('15_profile'); scroll(); shot('16_profile_scrolled'); scroll(); shot('17_profile_bottom')
-    tap('Play'); time.sleep(1); tap('Couple'); time.sleep(1.5); shot('18_couple')
-    adb('shell', 'input', 'keyevent', 'KEYCODE_BACK'); time.sleep(1)
+    tap('Play'); time.sleep(1); tap('Couple'); time.sleep(1.5)
+    tap('Their name'); type_('Rohan'); hide_keyboard(); shot('18_couple')
+    tap('Who\'s more likely to…'); time.sleep(1); shot('18b_couple_cover'); tap("I'm ready"); time.sleep(1); shot('18c_couple_vote')
+    adb('shell', 'input', 'keyevent', 'KEYCODE_BACK'); time.sleep(1); adb('shell', 'input', 'keyevent', 'KEYCODE_BACK'); time.sleep(1)
     tap('Match history'); time.sleep(2); shot('19_history')
     adb('shell', 'input', 'keyevent', 'KEYCODE_BACK'); time.sleep(1)
     check('back button returns home', wait('Find an opponent', 5) is not None)
