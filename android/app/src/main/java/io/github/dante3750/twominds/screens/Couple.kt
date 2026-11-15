@@ -64,6 +64,7 @@ private fun CoupleRow(icon: String, color: Color, title: String, sub: String, be
 fun CoupleGameScreen(kind: String, partner: String) {
     val s = LocalApp.current; val ctx = LocalContext.current
     val me = s.profile?.card?.name ?: "You"
+    val myColor = s.profile?.card?.color ?: COLORS[0]; val theirColor = COLORS.first { it != myColor }
     val prefs = remember { ctx.getSharedPreferences("couple", Context.MODE_PRIVATE) }
     val data = remember { JSONObject(ctx.resources.openRawResource(R.raw.couple).bufferedReader().readText()) }
     val n = if (kind == "know") 5 else 8
@@ -100,7 +101,7 @@ fun CoupleGameScreen(kind: String, partner: String) {
                     val who = if (stage == "cover1") firstName else secondName; val other = if (stage == "cover1") secondName else firstName
                     Spacer(Modifier.weight(1f))
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        Avatar(who, if (who == me) s.profile?.card?.color ?: COLORS[0] else COLORS[1], 90.dp)
+                        Avatar(who, if (who == me) myColor else theirColor, 90.dp)
                         Txt("$who's turn", size = 30.sp, weight = FontWeight.Bold, color = Color.White, align = TextAlign.Center)
                         Txt(when {
                             kind == "know" && stage == "cover1" -> "Answer about yourself, in secret. $other, look away!"
@@ -132,7 +133,7 @@ fun CoupleGameScreen(kind: String, partner: String) {
                             listOf(me, partner).forEachIndexed { k, nm ->
                                 Column(Modifier.weight(1f).press(label = nm) { choose(k) }.clip(RoundedCornerShape(22.dp)).background(Color.White.copy(alpha = 0.12f))
                                     .border(2.dp, Color.White.copy(alpha = 0.3f), RoundedCornerShape(22.dp)).padding(vertical = 22.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                                    Avatar(nm, if (k == 0) s.profile?.card?.color ?: COLORS[0] else COLORS[1], 70.dp)
+                                    Avatar(nm, if (k == 0) myColor else theirColor, 70.dp)
                                     Txt(nm, weight = FontWeight.Bold, color = Color.White, lines = 1)
                                 }
                             }
